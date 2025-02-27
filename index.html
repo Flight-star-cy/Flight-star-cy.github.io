@@ -178,10 +178,291 @@
   <div class="post-wrapper">
   <div class="post-wrap-left" data-aos="fade-up">
     
-      <a class="post-link" href="/2024/11/22/mysql%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95/" aria-label="mysql基本用法"></a>
+      <a class="post-link" href="/2025/02/27/Easy%20MD5%E7%BB%95%E8%BF%87/" aria-label=""></a>
     
     
     <div class="post-cover-left">
+      
+        
+        
+          <img data-src="https://github.com/Flight-star-cy/my-images/blob/main/cover/reimu%20and%20marisa.jpg" data-sizes="auto" alt="" class="lazyload">
+        
+      
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2025-02-27</span>
+        <span><span class="icon-pencil"></span>628 words</span>
+        <span><span class="icon-clock"></span>2 mins</span>
+      </div>
+      <h2 class="post-title"></h2>
+      <article class="post-article">
+        
+          Easy MD5绕过（本质应该还是sql注入）
+[BJDCTF2020]Easy MD5：前言：什么是MD5？一种加密方法，被发现存在碰撞漏洞后便不再使用
+加密原理如下：
+12md5(&amp;#x27;hello&amp;#x27;, true)md5(&amp;#x27;hello&amp;#x27;, false)
+
+
+并且会对’   ‘的内容优先做出如下做法：
+把字符串数字转化为数字：’1’&amp;#x3D;&amp;#x3D;&amp;#x3D;1
+会优先计算：’1+1’&amp;#x3D;&amp;#x3D;&amp;#x3D;’2’
+更加仔细的请访问：[buuctf web BJDCTF2020]Easy MD5-CSDN博客
+怎么解决强&amp;#x2F;弱运算
+        
+      </article>
+    </div>
+  </div>
+  </div>
+
+
+  
+  
+  <div class="post-wrapper">
+  <div class="post-wrap-right" data-aos="fade-up">
+    
+      <a class="post-link" href="/2025/02/27/cookie%E6%AC%BA%E9%AA%97/" aria-label=""></a>
+    
+    
+    <div class="post-cover-right">
+      
+        
+        
+          <img data-src="/covers/reimu.webp" data-sizes="auto" alt="" class="lazyload">
+        
+      
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2025-02-27</span>
+        <span><span class="icon-pencil"></span>299 words</span>
+        <span><span class="icon-clock"></span>1 min</span>
+      </div>
+      <h2 class="post-title"></h2>
+      <article class="post-article">
+        
+          [HCTF 2018]admin（session欺骗）前言：何为session?是cookie的一种，用于记录你这个ip的会话，相当于一个定位，让服务器能在茫茫网络当中找到你，继续上次的会话，一般是经过大量加密的，flask框架往往会保护，留下一个签名，但是签名不能防止篡改，存在可利用漏洞
+正片：进入源码发现
+说明我们需要成功登入admin才能获得flag
+方法一：弱爆破已知账号是admin，所以我们就尝试爆破，没想到密码非常简单，直接获得了flag
+方法二：flask_session欺骗我们先注册再登入，留下我们的session
+之后抓包或者使用插件得到session，再用准备好的解密pyt
+        
+      </article>
+    </div>
+  </div>
+  </div>
+
+
+  
+  
+  <div class="post-wrapper">
+  <div class="post-wrap-left" data-aos="fade-up">
+    
+      <a class="post-link" href="/2025/02/27/%E4%B8%8D%E7%9F%A5%E9%81%93%E6%94%BE%E5%9C%A8%E5%93%AA%E9%87%8C%E7%9A%84%E7%AC%94%E8%AE%B0/" aria-label=""></a>
+    
+    
+    <div class="post-cover-left">
+      
+        
+        
+          <img data-src="/covers/reimu and marisa.jpg" data-sizes="auto" alt="" class="lazyload">
+        
+      
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2025-02-27</span>
+        <span><span class="icon-pencil"></span>180 words</span>
+        <span><span class="icon-clock"></span>1 min</span>
+      </div>
+      <h2 class="post-title"></h2>
+      <article class="post-article">
+        
+          在BUU中学到，不知道放在哪里的笔记[极客大挑战 2019]Http（伪造协议）打开源码，发现隐藏页面进入后发现
+提示我们要从这个页面中转过来，那就伪造Referer
+1Referer:https://Sycsecret.buuoj.cn
+
+点开如图所示：
+
+点开后发现，又提示我们要使用别的浏览器，那就伪装一个
+1User-Agent:Syclover
+
+
+又提示我们要使用本地访问，那就伪！
+1X-Forwarded-For :127.0.0.1
+
+
+补充：X-Forwarded-For（XFF）是一个在 HTTP 请求头中常用的字段，主要用于在代理服务器或负载均衡器等中间设备的环境下，记录客
+        
+      </article>
+    </div>
+  </div>
+  </div>
+
+
+  
+  
+  <div class="post-wrapper">
+  <div class="post-wrap-right" data-aos="fade-up">
+    
+      <a class="post-link" href="/2025/02/27/uploud%E5%AE%9E%E6%88%98%E7%AC%94%E8%AE%B0/" aria-label=""></a>
+    
+    
+    <div class="post-cover-right">
+      
+        
+        
+          <img data-src="/covers/reimu.webp" data-sizes="auto" alt="" class="lazyload">
+        
+      
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2025-02-27</span>
+        <span><span class="icon-pencil"></span>405 words</span>
+        <span><span class="icon-clock"></span>1 min</span>
+      </div>
+      <h2 class="post-title"></h2>
+      <article class="post-article">
+        
+          BUU-upload实战——————————-在经历upload-labs后，我刷不明白，决定直接去实战试试看——————————-
+[极客大挑战 2019]Upload由于是第一次做upload，于是便主要是搜为主
+要考察的四个点：
+123451.MIME类型（Content-Type: image/png）2.文件头（GIF89a）3.黑名单检测(phtml)4.检测&amp;lt;?（`&amp;lt;script language=&amp;quot;pHp&amp;quot;&amp;gt;@eval($_POST[&amp;#x27;sb&amp;#x27;])&amp;lt;/script&amp;gt;`）5.找到根目录
+
+1.MIME类型（Con
+        
+      </article>
+    </div>
+  </div>
+  </div>
+
+
+  
+  
+  <div class="post-wrapper">
+  <div class="post-wrap-left" data-aos="fade-up">
+    
+      <a class="post-link" href="/2025/02/27/sqli%E5%AE%9E%E6%88%98%E7%AC%94%E8%AE%B0/" aria-label=""></a>
+    
+    
+    <div class="post-cover-left">
+      
+        
+        
+          <img data-src="/covers/reimu.jpg" data-sizes="auto" alt="" class="lazyload">
+        
+      
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2025-02-27</span>
+        <span><span class="icon-pencil"></span>1.4k words</span>
+        <span><span class="icon-clock"></span>6 mins</span>
+      </div>
+      <h2 class="post-title"></h2>
+      <article class="post-article">
+        
+          sqli实战————————————在经历sqli-labs后，我决定去实战试试看（也就是刷刷ctf题目）——————————-
+**[**极客大挑战 2019]LoveSQL 1没有过滤
+1**union select 1,(select group_concat(table_name)from information_schema.tables where table_schema=database()),3 or 1 = 1 #**
+
+查出Hello geekuser,l0ve1ysq1！(表)
+1**1&amp;#x27; union select 1,(select group_concat
+        
+      </article>
+    </div>
+  </div>
+  </div>
+
+
+  
+  
+  <div class="post-wrapper">
+  <div class="post-wrap-right" data-aos="fade-up">
+    
+      <a class="post-link" href="/2025/02/27/%E7%AE%80%E5%8D%95WAF%E7%BB%95%E8%BF%87/" aria-label=""></a>
+    
+    
+    <div class="post-cover-right">
+      
+        
+        
+          <img data-src="https://github.com/Flight-star-cy/my-images/blob/main/%E5%8D%81%E5%85%AD%E5%A4%9C%E5%92%B2%E5%A4%9C%20(4).jpg;" data-sizes="auto" alt="" class="lazyload">
+        
+      
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2025-02-27</span>
+        <span><span class="icon-pencil"></span>209 words</span>
+        <span><span class="icon-clock"></span>1 min</span>
+      </div>
+      <h2 class="post-title"></h2>
+      <article class="post-article">
+        
+          [RoarCTF 2019]Easy Calc（WAF+文件读取漏洞）原理：在有些服务器解析当中%20（空格）之类的是不会被解析的，所以%20num就会被解析为num
+但是在WAF里还是%00num，不是防止绕过的num，所以就不会对num进行注释绕过。
+正片：打开源码
+
+提醒我们使用了WAF，并且发现存在calc.php，那就看看
+
+发现在这个页面里是使用GET获取num的值最开始发现只能输入数字，后面去查才发现WAF绕过：
+我们构造payload：
+12345?%20num=print_r(scandir(chr(47)))【print_r：输出更好看】【scandir：扫描文件夹】【ch
+        
+      </article>
+    </div>
+  </div>
+  </div>
+
+
+  
+  
+  <div class="post-wrapper">
+  <div class="post-wrap-left" data-aos="fade-up">
+    
+      <a class="post-link" href="/2024/11/30/sqli%E8%AF%AD%E6%B3%95/" aria-label="sqli语法"></a>
+    
+    
+    <div class="post-cover-left">
+      
+        <img data-src="https://github.com/Flight-star-cy/my-images/raw/main/ruime%20and%20sakuya.jpg" data-sizes="auto" alt="sqli语法" class="lazyload">
+      
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2024-11-30</span>
+        <span><span class="icon-pencil"></span>628 words</span>
+        <span><span class="icon-clock"></span>2 mins</span>
+      </div>
+      <h2 class="post-title">sqli语法</h2>
+      <article class="post-article">
+        
+          less1-4：（get）入门，使用联合注入.
+less5-10：（get）使用布尔盲注，时间盲注.
+less11-12：（post）升级，本质上还是联合注入.
+less13-16:  （post） 升级，在post基础上变为盲注，需要布尔盲注，时间盲注.(使用burpsuite爆破)
+less17-:  （post） 升级，在usename加入了转义，导致无法在usename上注入，但是newpassword可以注入。
+闭合类型判断：1：’2：’)3: ‘))4: “5: “)6：”))
+在字符型注入中:   1: 1 and 1&amp;#x3D;2;后面的and 1&amp;#x3D;2会被忽略，加个–
+        
+      </article>
+    </div>
+  </div>
+  </div>
+
+
+  
+  
+  <div class="post-wrapper">
+  <div class="post-wrap-right" data-aos="fade-up">
+    
+      <a class="post-link" href="/2024/11/22/mysql%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95/" aria-label="mysql基本用法"></a>
+    
+    
+    <div class="post-cover-right">
       
         <img data-src="https://github.com/Flight-star-cy/my-images/raw/main/%E5%8D%81%E5%85%AD%E5%A4%9C%E5%92%B2%E5%A4%9C%20(4).jpg" data-sizes="auto" alt="mysql基本用法" class="lazyload">
       
@@ -209,12 +490,12 @@
   
   
   <div class="post-wrapper">
-  <div class="post-wrap-right" data-aos="fade-up">
+  <div class="post-wrap-left" data-aos="fade-up">
     
       <a class="post-link" href="/2024/11/16/%E9%81%87%E5%88%B0%E7%9A%84%E5%90%84%E7%A7%8D%E5%90%84%E6%A0%B7%E7%A5%9E%E5%A5%87%E9%97%AE%E9%A2%98/" aria-label="遇到的各种各样神奇问题"></a>
     
     
-    <div class="post-cover-right">
+    <div class="post-cover-left">
       
         <img data-src="https://github.com/Flight-star-cy/my-images/raw/main/cover/reimu.jpg" data-sizes="auto" alt="遇到的各种各样神奇问题" class="lazyload">
       
@@ -249,12 +530,12 @@ be like：
   
   
   <div class="post-wrapper">
-  <div class="post-wrap-left" data-aos="fade-up">
+  <div class="post-wrap-right" data-aos="fade-up">
     
       <a class="post-link" href="/2024/11/14/%E5%8D%81%E5%85%AD%E5%A4%9C%E5%92%B2%E5%A4%9C/" aria-label="十六夜咲夜"></a>
     
     
-    <div class="post-cover-left">
+    <div class="post-cover-right">
       
         <img data-src="https://github.com/Flight-star-cy/my-images/raw/main/cover/sakuya%20looking%20back.jpg" data-sizes="auto" alt="十六夜咲夜" class="lazyload">
       
@@ -278,74 +559,12 @@ be like：
 
 
   
-  
-  <div class="post-wrapper">
-  <div class="post-wrap-right" data-aos="fade-up">
+
+
+  <nav id="page-nav" data-aos="fade-up">
     
-      <a class="post-link" href="/2024/11/06/%E6%88%91%E7%9A%84%E6%8A%93%E5%8C%85%E4%B9%8B%E6%97%85/" aria-label="我的抓包之旅"></a>
-    
-    
-    <div class="post-cover-right">
-      
-        <img data-src="https://github.com/Flight-star-cy/my-images/raw/main/sakuya&#39;dagger.jpg" data-sizes="auto" alt="我的抓包之旅" class="lazyload">
-      
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2024-11-06</span>
-        <span><span class="icon-pencil"></span>101 words</span>
-        <span><span class="icon-clock"></span>1 min</span>
-      </div>
-      <h2 class="post-title">我的抓包之旅</h2>
-      <article class="post-article">
-        
-           （最近空闲下来了，也是有时间开始抓包了）
-第一步：
-在虚拟机上配置好Java，也就是jdk（我用的是21，这个比较新又稳定），配置好后就应该下载burp了（刚开始看了半天没看懂，后面找到中文补丁就好多了）（破解去哔哩哔哩搜就好了，跳过&amp;#x3D;v&amp;#x3D;）。
-成功后如下图
-
-        
-      </article>
-    </div>
-  </div>
-  </div>
-
-
-  
-  
-  <div class="post-wrapper">
-  <div class="post-wrap-left" data-aos="fade-up">
-    
-      <a class="post-link" href="/2024/11/01/%E8%99%9A%E6%8B%9F%E6%9C%BA/" aria-label="虚拟机"></a>
-    
-    
-    <div class="post-cover-left">
-      
-        <img data-src="https://github.com/Flight-star-cy/my-images/raw/main/cover/9%20eat%20kaki.jpg" data-sizes="auto" alt="虚拟机" class="lazyload">
-      
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2024-11-01</span>
-        <span><span class="icon-pencil"></span>82 words</span>
-        <span><span class="icon-clock"></span>1 min</span>
-      </div>
-      <h2 class="post-title">虚拟机</h2>
-      <article class="post-article">
-        
-          1.说到虚拟机，最开始我是一窍不通的，我是通过哔哩哔哩大学学会的，目前本机有两个虚拟机，一个是window,一个就是Ubuntu22.04。
-2.我的虚拟机软件是VMware，我觉得是一个很强大的软件。
-3.记得下tool，不然卡的要死。
-
-        
-      </article>
-    </div>
-  </div>
-  </div>
-
-
-  
-
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+  </nav>
 
 
 </section>
@@ -362,7 +581,7 @@ be like：
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>Posts</div>
-    <div class="sidebar-state-number">5</div>
+    <div class="sidebar-state-number">12</div>
   </div>
   <div class="sidebar-state-category">
     <div>Categories</div>
@@ -370,7 +589,7 @@ be like：
   </div>
   <div class="sidebar-state-tag">
     <div>Tags</div>
-    <div class="sidebar-state-number">6</div>
+    <div class="sidebar-state-number">7</div>
   </div>
 </div>
 <div class="sidebar-social">
@@ -422,7 +641,7 @@ be like：
     
     <div>
       <span class="icon-copyright"></span>
-      2020-2024
+      2020-2025
       <span class="footer-info-sep"></span>
       Flight-star
     </div>
@@ -435,10 +654,10 @@ be like：
     
       <div>
         <span class="icon-brush"></span>
-        831
+        4.6k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        00:06
+        00:20
       </div>
     
     
@@ -472,7 +691,7 @@ be like：
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>Posts</div>
-    <div class="sidebar-state-number">5</div>
+    <div class="sidebar-state-number">12</div>
   </div>
   <div class="sidebar-state-category">
     <div>Categories</div>
@@ -480,7 +699,7 @@ be like：
   </div>
   <div class="sidebar-state-tag">
     <div>Tags</div>
-    <div class="sidebar-state-number">6</div>
+    <div class="sidebar-state-number">7</div>
   </div>
 </div>
 <div class="sidebar-social">
