@@ -178,6 +178,90 @@
   <div class="post-wrapper">
   <div class="post-wrap-left" data-aos="fade-up">
     
+      <a class="post-link" href="/2025/03/17/%E7%BD%91%E9%BC%8E%E6%9D%AF-2018-Fakebook/" aria-label="[网鼎杯 2018]Fakebook"></a>
+    
+    
+    <div class="post-cover-left">
+      
+        
+        
+          <img data-src="https://github.com/Flight-star-cy/my-images/blob/main/%E5%8D%81%E5%85%AD%E5%A4%9C%E5%92%B2%E5%A4%9C%20(4).jpg;" data-sizes="auto" alt="[网鼎杯 2018]Fakebook" class="lazyload">
+        
+      
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2025-03-17</span>
+        <span><span class="icon-pencil"></span>968 words</span>
+        <span><span class="icon-clock"></span>4 mins</span>
+      </div>
+      <h2 class="post-title">[网鼎杯 2018]Fakebook</h2>
+      <article class="post-article">
+        
+          这道题，，，很有意思！！！！（sql + 反序列化）
+自己的方法：最开始：
+我们需要发现注入点，于是点入1，发现url发生变化：
+测试注入，发现是异或注入：（其实有更简单的方法）
+来用脚本爆破（自己的工具箱）：
+得出库：fakebook
+表：users
+列：no,username,passwd,data
+查列的内容，发现，在data里居然出现了反序列化？？
+然后我就不会做了，就去查wp了。
+别人的方法：居然不需要异或？？？
+利用绕过：（&amp;#x2F;**&amp;#x2F;）
+12345678910111213?no=-1/**/union/**/select/**/1,database(),3,4--
+        
+      </article>
+    </div>
+  </div>
+  </div>
+
+
+  
+  
+  <div class="post-wrapper">
+  <div class="post-wrap-right" data-aos="fade-up">
+    
+      <a class="post-link" href="/2025/03/16/pop%E9%93%BE%E5%AD%97%E7%AC%A6%E4%B8%B2%E9%80%83%E9%80%B8/" aria-label="pop链字符串逃逸"></a>
+    
+    
+    <div class="post-cover-right">
+      
+        
+        
+          <img data-src="https://github.com/Flight-star-cy/my-images/blob/main/hezhao%2002.jpg" data-sizes="auto" alt="pop链字符串逃逸" class="lazyload">
+        
+      
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2025-03-16</span>
+        <span><span class="icon-pencil"></span>121 words</span>
+        <span><span class="icon-clock"></span>1 min</span>
+      </div>
+      <h2 class="post-title">pop链字符串逃逸</h2>
+      <article class="post-article">
+        
+          字符串逃逸1.初步了解：原理1：php里面的类的属性的值，在反序列化后，就不是之前定义的值了，而是我们反序列化输入的值了
+​        2：当你定义了足够多的字符数量，可是&amp;quot; &amp;quot;里面的字符数量又不够时候，就会自动读取后面的字符
+直到字符数量标
+
+明明v2是27个，却只有abc，于是就会把后面的一起读取
+
+
+        
+      </article>
+    </div>
+  </div>
+  </div>
+
+
+  
+  
+  <div class="post-wrapper">
+  <div class="post-wrap-left" data-aos="fade-up">
+    
       <a class="post-link" href="/2025/03/16/BaseCTF2024%E6%96%B0%E7%94%9F%E8%B5%9B-%E6%88%91%E8%A6%81%E7%8E%A9%E5%8E%9F%E7%A5%9E/" aria-label="BaseCTF2024新生赛--我要玩原神"></a>
     
     
@@ -185,7 +269,7 @@
       
         
         
-          <img data-src="https://github.com/Flight-star-cy/my-images/blob/main/cover/reimu%20and%20marisa.jpg" data-sizes="auto" alt="BaseCTF2024新生赛--我要玩原神" class="lazyload">
+          <img data-src="https://github.com/Flight-star-cy/my-images/blob/main/cover/reimu.jpg" data-sizes="auto" alt="BaseCTF2024新生赛--我要玩原神" class="lazyload">
         
       
     </div>
@@ -219,7 +303,7 @@
       
         
         
-          <img data-src="https://github.com/Flight-star-cy/my-images/blob/main/togele.jpg" data-sizes="auto" alt="JAVA" class="lazyload">
+          <img data-src="https://github.com/Flight-star-cy/my-images/blob/main/%E5%8D%81%E5%85%AD%E5%A4%9C%E5%92%B2%E5%A4%9C%20(3).jpg;" data-sizes="auto" alt="JAVA" class="lazyload">
         
       
     </div>
@@ -268,7 +352,7 @@
       
         
         
-          <img data-src="/covers/togele.jpg" data-sizes="auto" alt="关于伪协议的研究" class="lazyload">
+          <img data-src="https://github.com/Flight-star-cy/my-images/blob/main/%E7%BA%A2%E7%BE%8E%E9%93%83.jpg" data-sizes="auto" alt="关于伪协议的研究" class="lazyload">
         
       
     </div>
@@ -308,7 +392,7 @@ CTF 应用：绕过对 $_POST 的过滤，直接传递 PHP 代码。
       
         
         
-          <img data-src="/covers/9 eat kaki.jpg" data-sizes="auto" alt="[网鼎杯 2020 青龙组]AreUSerialz" class="lazyload">
+          <img data-src="https://github.com/Flight-star-cy/my-images/blob/main/%E5%8D%81%E5%85%AD%E5%A4%9C%E5%92%B2%E5%A4%9C%20(3).jpg;" data-sizes="auto" alt="[网鼎杯 2020 青龙组]AreUSerialz" class="lazyload">
         
       
     </div>
@@ -342,7 +426,7 @@ CTF 应用：绕过对 $_POST 的过滤，直接传递 PHP 代码。
       
         
         
-          <img data-src="/covers/十六夜咲夜-cute.jpg" data-sizes="auto" alt="" class="lazyload">
+          <img data-src="/covers/十六夜咲夜 (3).jpg" data-sizes="auto" alt="" class="lazyload">
         
       
     </div>
@@ -382,15 +466,15 @@ CTF 应用：绕过对 $_POST 的过滤，直接传递 PHP 代码。
       
         
         
-          <img data-src="https://github.com/Flight-star-cy/my-images/blob/main/%E5%8D%81%E5%85%AD%E5%A4%9C%E5%92%B2%E5%A4%9C%20(4).jpg;" data-sizes="auto" alt="关于pop链的深入研究" class="lazyload">
+          <img data-src="https://github.com/Flight-star-cy/my-images/blob/main/cover/reimu%20and%20marisa.jpg" data-sizes="auto" alt="关于pop链的深入研究" class="lazyload">
         
       
     </div>
     <div class="post-info">
       <div class="post-meta">
         <span><span class="icon-calendar"></span>2025-03-11</span>
-        <span><span class="icon-pencil"></span>4.6k words</span>
-        <span><span class="icon-clock"></span>21 mins</span>
+        <span><span class="icon-pencil"></span>5.6k words</span>
+        <span><span class="icon-clock"></span>26 mins</span>
       </div>
       <h2 class="post-title">关于pop链的深入研究</h2>
       <article class="post-article">
@@ -419,7 +503,7 @@ array_walk：12345678arra
       
         
         
-          <img data-src="https://github.com/Flight-star-cy/my-images/blob/main/ruime%20and%20sakuya.jpg" data-sizes="auto" alt="" class="lazyload">
+          <img data-src="https://github.com/Flight-star-cy/my-images/blob/main/hezhao%2002.jpg" data-sizes="auto" alt="" class="lazyload">
         
       
     </div>
@@ -462,7 +546,7 @@ array_walk：12345678arra
       
         
         
-          <img data-src="/covers/reimu and marisa.jpg" data-sizes="auto" alt="" class="lazyload">
+          <img data-src="/covers/reimu.webp" data-sizes="auto" alt="" class="lazyload">
         
       
     </div>
@@ -489,94 +573,11 @@ array_walk：12345678arra
 
 
   
-  
-  <div class="post-wrapper">
-  <div class="post-wrap-left" data-aos="fade-up">
-    
-      <a class="post-link" href="/2025/02/27/%E4%B8%8D%E7%9F%A5%E9%81%93%E6%94%BE%E5%9C%A8%E5%93%AA%E9%87%8C%E7%9A%84%E7%AC%94%E8%AE%B0/" aria-label=""></a>
-    
-    
-    <div class="post-cover-left">
-      
-        
-        
-          <img data-src="/covers/sakuya&#39;dagger.jpg" data-sizes="auto" alt="" class="lazyload">
-        
-      
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2025-02-27</span>
-        <span><span class="icon-pencil"></span>180 words</span>
-        <span><span class="icon-clock"></span>1 min</span>
-      </div>
-      <h2 class="post-title"></h2>
-      <article class="post-article">
-        
-          在BUU中学到，不知道放在哪里的笔记[极客大挑战 2019]Http（伪造协议）打开源码，发现隐藏页面进入后发现
-提示我们要从这个页面中转过来，那就伪造Referer
-1Referer:https://Sycsecret.buuoj.cn
-
-点开如图所示：
-
-点开后发现，又提示我们要使用别的浏览器，那就伪装一个
-1User-Agent:Syclover
-
-
-又提示我们要使用本地访问，那就伪！
-1X-Forwarded-For :127.0.0.1
-
-
-补充：X-Forwarded-For（XFF）是一个在 HTTP 请求头中常用的字段，主要用于在代理服务器或负载均衡器等中间设备的环境下，记录客
-        
-      </article>
-    </div>
-  </div>
-  </div>
-
-
-  
-  
-  <div class="post-wrapper">
-  <div class="post-wrap-right" data-aos="fade-up">
-    
-      <a class="post-link" href="/2025/02/27/uploud%E5%AE%9E%E6%88%98%E7%AC%94%E8%AE%B0/" aria-label=""></a>
-    
-    
-    <div class="post-cover-right">
-      
-        
-        
-          <img data-src="/covers/9 eat kaki.jpg" data-sizes="auto" alt="" class="lazyload">
-        
-      
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2025-02-27</span>
-        <span><span class="icon-pencil"></span>413 words</span>
-        <span><span class="icon-clock"></span>1 min</span>
-      </div>
-      <h2 class="post-title"></h2>
-      <article class="post-article">
-        
-          BUU-upload实战——————————-在经历upload-labs后，我刷不明白，决定直接去实战试试看——————————-
-[极客大挑战 2019]Upload由于是第一次做upload，于是便主要是搜为主
-要考察的四个点：
-1234561.MIME类型（Content-Type: image/png）2.文件头（GIF89a）3.黑名单检测(phtml)4.检测&amp;lt;?（`&amp;lt;script language=&amp;quot;pHp&amp;quot;&amp;gt;@eval($_POST[&amp;#x27;sb&amp;#x27;])&amp;lt;/script&amp;gt;`）&amp;lt;?php @eval($_POS
-        
-      </article>
-    </div>
-  </div>
-  </div>
-
-
-  
 
 
   <nav id="page-nav" data-aos="fade-up">
     
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
   </nav>
 
 
@@ -594,7 +595,7 @@ array_walk：12345678arra
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>Posts</div>
-    <div class="sidebar-state-number">19</div>
+    <div class="sidebar-state-number">21</div>
   </div>
   <div class="sidebar-state-category">
     <div>Categories</div>
@@ -602,7 +603,7 @@ array_walk：12345678arra
   </div>
   <div class="sidebar-state-tag">
     <div>Tags</div>
-    <div class="sidebar-state-number">9</div>
+    <div class="sidebar-state-number">11</div>
   </div>
 </div>
 <div class="sidebar-social">
@@ -667,10 +668,10 @@ array_walk：12345678arra
     
       <div>
         <span class="icon-brush"></span>
-        13.7k
+        15.8k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        01:00
+        01:10
       </div>
     
     
@@ -704,7 +705,7 @@ array_walk：12345678arra
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>Posts</div>
-    <div class="sidebar-state-number">19</div>
+    <div class="sidebar-state-number">21</div>
   </div>
   <div class="sidebar-state-category">
     <div>Categories</div>
@@ -712,7 +713,7 @@ array_walk：12345678arra
   </div>
   <div class="sidebar-state-tag">
     <div>Tags</div>
-    <div class="sidebar-state-number">9</div>
+    <div class="sidebar-state-number">11</div>
   </div>
 </div>
 <div class="sidebar-social">
