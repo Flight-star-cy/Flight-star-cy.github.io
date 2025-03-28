@@ -14,7 +14,7 @@
   
   
   <title>
-    友情链接 |
+    SSRF |
     
     Flight-star&#39;blog
   </title>
@@ -29,19 +29,19 @@
 
   
   
-    <meta name="description" content="本站信息 站名： Flight-star‘blog 站长： 朔星 地址： Flight-star-cy.github.io 备用地址：无  申请方法 添加本站后，在本页留言，格式如下  123456&#96;&#96;&#96;yml- name: #您的名字  url: #您的网址  desc: #简短描述  image: #一张图片&#96;&#96;&#96;  小伙伴们">
-<meta property="og:type" content="website">
-<meta property="og:title" content="友情链接">
-<meta property="og:url" content="http://example.com/friend/index.html">
+    <meta name="description" content="初步了解：看见哪些函数可以使用SSRF curl_exec()  用途：发起 HTTP 请求（如 GET&#x2F;POST）。  风险：直接使用用户输入的 URL 参数，可能导致服务器访问任意目标。  示例代码 123$url &#x3D; $_GET[&#x27;url&#x27;];$ch &#x3D; curl_init($url);curl_exec($ch);   file_get_contents()">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SSRF">
+<meta property="og:url" content="http://example.com/2025/03/17/SSRF/index.html">
 <meta property="og:site_name" content="Flight-star&#39;blog">
-<meta property="og:description" content="本站信息 站名： Flight-star‘blog 站长： 朔星 地址： Flight-star-cy.github.io 备用地址：无  申请方法 添加本站后，在本页留言，格式如下  123456&#96;&#96;&#96;yml- name: #您的名字  url: #您的网址  desc: #简短描述  image: #一张图片&#96;&#96;&#96;  小伙伴们">
+<meta property="og:description" content="初步了解：看见哪些函数可以使用SSRF curl_exec()  用途：发起 HTTP 请求（如 GET&#x2F;POST）。  风险：直接使用用户输入的 URL 参数，可能导致服务器访问任意目标。  示例代码 123$url &#x3D; $_GET[&#x27;url&#x27;];$ch &#x3D; curl_init($url);curl_exec($ch);   file_get_contents()">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://example.com/images/banner.webp">
-<meta property="article:published_time" content="2025-01-12T09:08:47.690Z">
-<meta property="article:modified_time" content="2024-11-15T13:47:58.070Z">
+<meta property="og:image" content="http://example.com/images/image-20250324082339821-1742775821313-1.png">
+<meta property="article:published_time" content="2025-03-17T15:30:00.000Z">
+<meta property="article:modified_time" content="2025-03-27T16:27:44.937Z">
 <meta property="article:author" content="Flight-star">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/images/banner.webp">
+<meta name="twitter:image" content="http://example.com/images/image-20250324082339821-1742775821313-1.png">
   
   
     <link rel="alternate" href="/atom.xml" title="Flight-star'blog" type="application/atom+xml">
@@ -152,7 +152,7 @@
 <header id="header">
   
     
-      <img fetchpriority="high" src="/images/banner.webp" alt="友情链接">
+      <img fetchpriority="high" src="/images/banner.webp" alt="SSRF">
     
   
   <div id="header-outer">
@@ -161,7 +161,7 @@
         
         
           <a href="/" id="logo">
-            <h1 data-aos="slide-up">友情链接</h1>
+            <h1 data-aos="slide-up">SSRF</h1>
           </a>
         
       
@@ -177,13 +177,13 @@
 
         <div id="content">
           
-          <section id="main"><article id="page-" class="h-entry article article-type-page" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+          <section id="main"><article id="post-SSRF" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-inner" data-aos="fade-up">
     <div class="article-meta">
       <div class="article-date">
-  <a href="/friend/index.html" class="article-date-link" data-aos="zoom-in">
-    <time datetime="2025-01-12T09:08:47.690Z" itemprop="datePublished">2025-01-12</time>
-    <time style="display: none;" id="post-update-time">2024-11-15</time>
+  <a href="/2025/03/17/SSRF/" class="article-date-link" data-aos="zoom-in">
+    <time datetime="2025-03-17T15:30:00.000Z" itemprop="datePublished">2025-03-17</time>
+    <time style="display: none;" id="post-update-time">2025-03-28</time>
   </a>
 </div>
 
@@ -196,34 +196,61 @@
     <div class="e-content article-entry" itemprop="articleBody">
       
       
-        <h2 id="本站信息"><a href="#本站信息" class="headerlink" title="本站信息"></a>本站信息</h2><ul>
-<li>站名： Flight-star‘blog</li>
-<li>站长： 朔星</li>
-<li>地址： Flight-star-cy.github.io</li>
-<li>备用地址：无</li>
+        <h1 id="初步了解：看见哪些函数可以使用SSRF"><a href="#初步了解：看见哪些函数可以使用SSRF" class="headerlink" title="初步了解：看见哪些函数可以使用SSRF"></a>初步了解：看见哪些函数可以使用SSRF</h1><ol>
+<li><p><strong><code>curl_exec()</code></strong></p>
+<ul>
+<li><p><strong>用途</strong>：发起 HTTP 请求（如 GET&#x2F;POST）。</p>
+</li>
+<li><p><strong>风险</strong>：直接使用用户输入的 URL 参数，可能导致服务器访问任意目标。</p>
+</li>
+<li><p>示例代码</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$url</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;url&#x27;</span>];</span><br><span class="line"><span class="variable">$ch</span> = <span class="title function_ invoke__">curl_init</span>(<span class="variable">$url</span>);</span><br><span class="line"><span class="title function_ invoke__">curl_exec</span>(<span class="variable">$ch</span>);</span><br></pre></td></tr></table></figure></li>
 </ul>
-<h2 id="申请方法"><a href="#申请方法" class="headerlink" title="申请方法"></a>申请方法</h2><ul>
-<li>添加本站后，在本页留言，格式如下</li>
+</li>
+<li><p><strong><code>file_get_contents()</code></strong></p>
+<ul>
+<li><p><strong>用途</strong>：读取文件或 URL 内容。</p>
+</li>
+<li><p><strong>风险</strong>：若参数可控，可通过 <code>file://</code> 协议读取本地文件，或通过 <code>http://</code> 访问内网资源。</p>
+</li>
+<li><p>示例代码</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$content</span> = <span class="title function_ invoke__">file_get_contents</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;url&#x27;</span>]);</span><br></pre></td></tr></table></figure></li>
 </ul>
-<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">```yml</span></span><br><span class="line"><span class="bullet">-</span> <span class="attr">name:</span> <span class="comment">#您的名字</span></span><br><span class="line">  <span class="attr">url:</span> <span class="comment">#您的网址</span></span><br><span class="line">  <span class="attr">desc:</span> <span class="comment">#简短描述</span></span><br><span class="line">  <span class="attr">image:</span> <span class="comment">#一张图片</span></span><br><span class="line"><span class="string">```</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="小伙伴们"><a href="#小伙伴们" class="headerlink" title="小伙伴们"></a>小伙伴们</h2><div class="friend-wrap" data-aos="zoom-in"><div class="friend-item-wrap">
-    <a target="_blank" rel="noopener" href="https://Flight-star-cy.github.io/"></a>
-    <div class="friend-icon-wrap">
-      <div class="friend-icon">
-          <img data-src="https://Flight-star.github.io/avatar/sakuya.webp" data-sizes="auto" alt="Flight-star'blog" class="lazyload">
-      </div>
-    </div>
-    <div class="friend-info-wrap">
-      <div class="friend-name">
-          Flight-star'blog 
-      </div>
-      <div class="friend-desc">
-        一个车万人
-      </div>
-    </div>
-  </div></div>
-
+</li>
+<li><p><strong><code>fsockopen()</code></strong></p>
+<ul>
+<li><p><strong>用途</strong>：创建网络套接字连接。</p>
+</li>
+<li><p><strong>风险</strong>：直接使用用户输入的 IP 和端口，可能导致端口扫描或访问内网服务。</p>
+</li>
+<li><p>示例代码</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$host</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;host&#x27;</span>];</span><br><span class="line"><span class="variable">$port</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;port&#x27;</span>];</span><br><span class="line"><span class="variable">$socket</span> = <span class="title function_ invoke__">fsockopen</span>(<span class="variable">$host</span>, <span class="variable">$port</span>);</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p><strong><code>stream_socket_client()</code></strong></p>
+<ul>
+<li><strong>用途</strong>：创建网络流连接。</li>
+<li><strong>风险</strong>：与 <code>fsockopen()</code> 类似，参数可控时可访问任意地址。</li>
+</ul>
+</li>
+<li><p><strong><code>file_put_contents()</code></strong></p>
+<ul>
+<li><strong>用途</strong>：写入文件或 URL 内容。</li>
+<li><strong>风险</strong>：结合 <code>php://filter</code> 等协议可篡改文件内容。</li>
+</ul>
+</li>
+<li><p><strong><code>parse_url()</code></strong></p>
+<ul>
+<li><p><strong>用途</strong>：解析 URL。</p>
+</li>
+<li><p><strong>风险</strong>：若未严格验证 URL 格式，可能被利用构造恶意协议（如 <code>dict://</code>）。</p>
+</li>
+</ul>
+</li>
+</ol>
+<h1 id="1-前置知识："><a href="#1-前置知识：" class="headerlink" title="1.前置知识："></a>1.前置知识：</h1><h3 id="为什么我们可以访问内网？—–NAT协议"><a href="#为什么我们可以访问内网？—–NAT协议" class="headerlink" title="为什么我们可以访问内网？—–NAT协议"></a>为什么我们可以访问内网？—–NAT协议</h3><p><code>NAT协议</code>———–把我们的内网的<code>ip</code>作为公网的一个端口，<strong>当访问公网+那个端口时候，就会直接访问内网</strong></p>
+<p><img src="/../images/image-20250324082339821-1742775821313-1.png" alt="image-20250324082339821"></p>
+<h1 id="2"><a href="#2" class="headerlink" title="2."></a>2.</h1>
       
     </div>
     <footer class="article-footer">
@@ -240,6 +267,43 @@
   </div>
   
     
+  <nav id="article-nav" data-aos="fade-up">
+    
+      <div class="article-nav-link-wrap article-nav-link-left">
+        
+          
+          
+            <img data-src="/covers/十六夜咲夜 (4).jpg" data-sizes="auto" alt="[BSidesCTF 2020]Had a bad day" class="lazyload">
+          
+        
+        <a href="/2025/03/19/BSidesCF-2020-Had-a-bad-day/"></a>
+        <div class="article-nav-caption">Newer</div>
+        <h3 class="article-nav-title">
+          
+            [BSidesCTF 2020]Had a bad day
+          
+        </h3>
+      </div>
+    
+    
+    <div class="article-nav-link-wrap article-nav-link-right">
+      
+        
+        
+          <img data-src="/covers/十六夜咲夜-cute.jpg" data-sizes="auto" alt="[网鼎杯 2018]Fakebook" class="lazyload">
+        
+      
+      <a href="/2025/03/17/%E7%BD%91%E9%BC%8E%E6%9D%AF-2018-Fakebook/"></a>
+      <div class="article-nav-caption">Older</div>
+      <h3 class="article-nav-title">
+        
+          [网鼎杯 2018]Fakebook
+        
+      </h3>
+    </div>
+    
+  </nav>
+
 
   
 </article>
@@ -252,10 +316,19 @@
 </section>
           
             <aside id="sidebar">
-  <div class="sidebar-wrapper ">
+  <div class="sidebar-wrapper wrap-sticky">
     <div class="sidebar-wrap" data-aos="fade-up">
       
-        <div class="sidebar-author">
+        <div class="sidebar-toc-sidebar"><div class="sidebar-toc">
+  <h3 class="toc-title">Contents</h3>
+  <div class="sidebar-toc-wrapper toc-div-class" >
+      
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%88%9D%E6%AD%A5%E4%BA%86%E8%A7%A3%EF%BC%9A%E7%9C%8B%E8%A7%81%E5%93%AA%E4%BA%9B%E5%87%BD%E6%95%B0%E5%8F%AF%E4%BB%A5%E4%BD%BF%E7%94%A8SSRF"><span class="toc-number">1.</span> <span class="toc-text">初步了解：看见哪些函数可以使用SSRF</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#1-%E5%89%8D%E7%BD%AE%E7%9F%A5%E8%AF%86%EF%BC%9A"><span class="toc-number">2.</span> <span class="toc-text">1.前置知识：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E6%88%91%E4%BB%AC%E5%8F%AF%E4%BB%A5%E8%AE%BF%E9%97%AE%E5%86%85%E7%BD%91%EF%BC%9F%E2%80%94%E2%80%93NAT%E5%8D%8F%E8%AE%AE"><span class="toc-number">2.0.1.</span> <span class="toc-text">为什么我们可以访问内网？—–NAT协议</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2"><span class="toc-number">3.</span> <span class="toc-text">2.</span></a></li></ol>
+      
+  </div>
+</div>
+</div>
+        <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
   <img data-src="/avatar/avatar.webp" data-sizes="auto" alt="Flight-star" class="lazyload">
   <div class="sidebar-author-name">Flight-star</div>
   <div class="sidebar-description"></div>
@@ -304,8 +377,13 @@
     </div>
   
 </div>
-
+</div>
       
+      
+        <div class="sidebar-btn-wrapper" style="position:static">
+          <div class="sidebar-toc-btn current"></div>
+          <div class="sidebar-common-btn"></div>
+        </div>
       
     </div>
   </div>
@@ -365,7 +443,16 @@
       <nav id="mobile-nav">
   <div class="sidebar-wrap">
     
-      <div class="sidebar-author">
+      <div class="sidebar-toc-sidebar"><div class="sidebar-toc">
+  <h3 class="toc-title">Contents</h3>
+  <div class="sidebar-toc-wrapper toc-div-class" >
+      
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%88%9D%E6%AD%A5%E4%BA%86%E8%A7%A3%EF%BC%9A%E7%9C%8B%E8%A7%81%E5%93%AA%E4%BA%9B%E5%87%BD%E6%95%B0%E5%8F%AF%E4%BB%A5%E4%BD%BF%E7%94%A8SSRF"><span class="toc-number">1.</span> <span class="toc-text">初步了解：看见哪些函数可以使用SSRF</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#1-%E5%89%8D%E7%BD%AE%E7%9F%A5%E8%AF%86%EF%BC%9A"><span class="toc-number">2.</span> <span class="toc-text">1.前置知识：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E6%88%91%E4%BB%AC%E5%8F%AF%E4%BB%A5%E8%AE%BF%E9%97%AE%E5%86%85%E7%BD%91%EF%BC%9F%E2%80%94%E2%80%93NAT%E5%8D%8F%E8%AE%AE"><span class="toc-number">2.0.1.</span> <span class="toc-text">为什么我们可以访问内网？—–NAT协议</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2"><span class="toc-number">3.</span> <span class="toc-text">2.</span></a></li></ol>
+      
+  </div>
+</div>
+</div>
+      <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
   <img data-src="/avatar/avatar.webp" data-sizes="auto" alt="Flight-star" class="lazyload">
   <div class="sidebar-author-name">Flight-star</div>
   <div class="sidebar-description"></div>
@@ -414,9 +501,14 @@
     </div>
   
 </div>
-
+</div>
     
   </div>
+  
+    <div class="sidebar-btn-wrapper">
+      <div class="sidebar-toc-btn current"></div>
+      <div class="sidebar-common-btn"></div>
+    </div>
   
 </nav>
 
