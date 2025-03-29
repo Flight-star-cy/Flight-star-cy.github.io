@@ -37,7 +37,7 @@
 <meta property="og:description" content="常见代码：1.intval()强制转化为整数 2.substr($sample,-6,6)  or ($sample,6,6)举例代码 1.是从倒数第六个开始的最后六个字母 2.是第六个开始数六个直到第12个 3.decode&#x2F;encode类(解码与加密类)1.JSON 解码：json_decode()功能：把 JSON 字符串解码成 PHP 变量 12345678910&lt;?php$json">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2025-03-26T15:08:54.000Z">
-<meta property="article:modified_time" content="2025-03-27T16:23:33.236Z">
+<meta property="article:modified_time" content="2025-03-29T14:55:30.949Z">
 <meta property="article:author" content="Flight-star">
 <meta name="twitter:card" content="summary">
   
@@ -181,7 +181,7 @@
       <div class="article-date">
   <a href="/2025/03/26/php%E4%BB%A3%E7%A0%81%E9%98%85%E8%AF%BB/" class="article-date-link" data-aos="zoom-in">
     <time datetime="2025-03-26T15:08:54.000Z" itemprop="datePublished">2025-03-26</time>
-    <time style="display: none;" id="post-update-time">2025-03-28</time>
+    <time style="display: none;" id="post-update-time">2025-03-29</time>
   </a>
 </div>
 
@@ -218,12 +218,34 @@
 
 
 <h4 id="5-序列化数据解码：unserialize"><a href="#5-序列化数据解码：unserialize" class="headerlink" title="5.序列化数据解码：unserialize()"></a>5.序列化数据解码：<code>unserialize()</code></h4><p><font color="red">无需多言</font></p>
-<h3 id="4-array-search（array可以替换成为任意类型）"><a href="#4-array-search（array可以替换成为任意类型）" class="headerlink" title="4.array_search（array可以替换成为任意类型）"></a>4.<code>array_search</code>（array可以替换成为任意类型）</h3><p><font color="red"><strong>查找代码</strong></font></p>
+<h3 id="4-array-search（array可以替换成为任意类型）"><a href="#4-array-search（array可以替换成为任意类型）" class="headerlink" title="4.array_search（array可以替换成为任意类型）"></a>4.<code>array_search</code>（array可以替换成为任意类型）</h3><p><font color="red"><strong>查找代码</strong></font>            <strong>(找到就会<code>false</code>)</strong></p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$d</span> = <span class="title function_ invoke__">array_search</span>(<span class="string">&quot;DGGJ&quot;</span>, <span class="variable">$c</span>[<span class="string">&quot;n&quot;</span>]);</span><br></pre></td></tr></table></figure>
 
+<p><strong>默认是弱比较</strong></p>
 <p><code>$d = array_search(&quot;DGGJ&quot;, $c[&quot;n&quot;]);</code> 这行代码的主要功能是在数组 <code>$c[&quot;n&quot;]</code> 里查找值为 <code>&quot;DGGJ&quot;</code> 的元素，若找到，就返回该元素对应的键；若没找到，则返回 <code>false</code>，最后将结果赋值给变量 <code>$d</code>。</p>
-<h3 id="5-foreach"><a href="#5-foreach" class="headerlink" title="5.foreach"></a>5.<code>foreach</code></h3><p><font color="red"><strong>历遍函数</strong></font></p>
-<h1 id="常见绕过"><a href="#常见绕过" class="headerlink" title="常见绕过"></a>常见绕过</h1>
+<h3 id="5-foreach"><a href="#5-foreach" class="headerlink" title="5.foreach"></a>5.<code>foreach</code></h3><p><font color="red"><strong>历遍函数</strong></font>        <strong>(没有就会<code>false</code>)</strong></p>
+<h3 id="6-ord"><a href="#6-ord" class="headerlink" title="6.ord"></a>6.<code>ord</code></h3><p>用于<font color="red"><strong>取出ASCII码</strong></font>的值</p>
+<h3 id="7-mb-substr-mb-strpos"><a href="#7-mb-substr-mb-strpos" class="headerlink" title="7.mb_substr&#x2F;mb_strpos"></a>7.<code>mb_substr</code>&#x2F;<code>mb_strpos</code></h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$_page</span> = <span class="title function_ invoke__">mb_substr</span>(</span><br><span class="line">    <span class="variable">$page</span>,</span><br><span class="line">    <span class="number">0</span>,</span><br><span class="line">    <span class="title function_ invoke__">mb_strpos</span>(<span class="variable">$page</span> . <span class="string">&#x27;?&#x27;</span>, <span class="string">&#x27;?&#x27;</span>)</span><br><span class="line">);</span><br><span class="line"><span class="keyword">if</span> (<span class="title function_ invoke__">in_array</span>(<span class="variable">$_page</span>, <span class="variable">$whitelist</span>)) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>mb_substr</code> 函数用于截取字符串。</li>
+<li><code>mb_strpos</code> 函数用于查找字符串中某个字符首次出现的位置。</li>
+<li>这里先把 <code>$page</code> 加上 <code>?</code> 再查找 <code>?</code> 的位置，然后截取 <code>$page</code> 从开头到 <code>?</code> 之前的部分赋值给 <code>$_page</code>。</li>
+<li>接着检查 <code>$_page</code> 是否在白名单中，若存在就返回 <code>true</code>。</li>
+</ul>
+<h1 id="常见绕过"><a href="#常见绕过" class="headerlink" title="常见绕过"></a>常见绕过</h1><h3 id="1-科学计数法："><a href="#1-科学计数法：" class="headerlink" title="1.科学计数法："></a>1.科学计数法：</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="variable">$a</span>) &amp;&amp; <span class="title function_ invoke__">intval</span>(<span class="variable">$a</span>) &gt; <span class="number">6000000</span> &amp;&amp; <span class="title function_ invoke__">strlen</span>(<span class="variable">$a</span>) &lt;= <span class="number">3</span>)</span><br></pre></td></tr></table></figure>
+
+<p>使用<code>2e9</code>来绕过</p>
+<h3 id="2-弱对比绕过"><a href="#2-弱对比绕过" class="headerlink" title="2.弱对比绕过"></a>2.弱对比绕过</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$d</span> = <span class="title function_ invoke__">array_search</span>(<span class="string">&quot;DGGJ&quot;</span>, <span class="variable">$c</span>[<span class="string">&quot;n&quot;</span>]);</span><br><span class="line"><span class="variable">$d</span> === <span class="literal">false</span>?<span class="keyword">die</span>(<span class="string">&quot;no...&quot;</span>):<span class="literal">NULL</span>;</span><br><span class="line"><span class="keyword">foreach</span>(<span class="variable">$c</span>[<span class="string">&quot;n&quot;</span>] <span class="keyword">as</span> <span class="variable">$key</span>=&gt;<span class="variable">$val</span>)&#123;</span><br><span class="line">    <span class="variable">$val</span>===<span class="string">&quot;DGGJ&quot;</span>?<span class="keyword">die</span>(<span class="string">&quot;no......&quot;</span>):<span class="literal">NULL</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="search"><a href="#search" class="headerlink" title="search:"></a>search:</h4><p>把<code>c[&quot;n&quot;]</code>里面的进行与”DGGJ”进行查询弱比较,找到就会<code>false</code></p>
+<h4 id="foreach："><a href="#foreach：" class="headerlink" title="foreach："></a>foreach：</h4><p>查询是否有，没有就会<code>false</code></p>
+<p>看似矛盾，但都是<font color="red"><strong>(<code>弱比较！！</code>)</strong></font></p>
+<p>只要输入：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">c=&#123;<span class="string">&quot;m&quot;</span>:<span class="string">&quot;2025%&quot;</span>,<span class="string">&quot;n&quot;</span>:[[<span class="number">0</span>],<span class="number">0</span>]&#125;</span><br></pre></td></tr></table></figure>
+
+<p>0就能绕过</p>
+
       
     </div>
     <footer class="article-footer">
@@ -246,7 +268,7 @@
         
           
           
-            <img data-src="/covers/hezhao 02.jpg" data-sizes="auto" alt="关于修改 Cookie Key 触发漏洞的深入研究" class="lazyload">
+            <img data-src="/covers/十六夜咲夜-cute.jpg" data-sizes="auto" alt="关于修改 Cookie Key 触发漏洞的深入研究" class="lazyload">
           
         
         <a href="/2025/03/28/%E5%85%B3%E4%BA%8E%E4%BF%AE%E6%94%B9-Cookie-Key-%E8%A7%A6%E5%8F%91%E6%BC%8F%E6%B4%9E%E7%9A%84%E6%B7%B1%E5%85%A5%E7%A0%94%E7%A9%B6/"></a>
@@ -263,7 +285,7 @@
       
         
         
-          <img data-src="/covers/ruime and sakuya.jpg" data-sizes="auto" alt="NCTF" class="lazyload">
+          <img data-src="https://github.com/Flight-star-cy/my-images/blob/main/shopping.jpg" data-sizes="auto" alt="NCTF" class="lazyload">
         
       
       <a href="/2025/03/25/NCTF/"></a>
@@ -296,7 +318,7 @@
   <h3 class="toc-title">Contents</h3>
   <div class="sidebar-toc-wrapper toc-div-class" >
       
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E4%BB%A3%E7%A0%81%EF%BC%9A"><span class="toc-number">1.</span> <span class="toc-text">常见代码：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-intval"><span class="toc-number">1.0.1.</span> <span class="toc-text">1.intval()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-substr-sample-6-6-or-sample-6-6"><span class="toc-number">1.0.2.</span> <span class="toc-text">2.substr($sample,-6,6)  or ($sample,6,6)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-decode-encode%E7%B1%BB-%E8%A7%A3%E7%A0%81%E4%B8%8E%E5%8A%A0%E5%AF%86%E7%B1%BB"><span class="toc-number">1.0.3.</span> <span class="toc-text">3.decode&#x2F;encode类(解码与加密类)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-JSON-%E8%A7%A3%E7%A0%81%EF%BC%9Ajson-decode"><span class="toc-number">1.0.3.1.</span> <span class="toc-text">1.JSON 解码：json_decode()</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-URL-%E8%A7%A3%E7%A0%81%EF%BC%9Aurldecode"><span class="toc-number">1.0.3.2.</span> <span class="toc-text">2.URL 解码：urldecode()</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-HTML-%E5%AE%9E%E4%BD%93%E8%A7%A3%E7%A0%81%EF%BC%9Ahtml-entity-decode"><span class="toc-number">1.0.3.3.</span> <span class="toc-text">3.HTML 实体解码：html_entity_decode()</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-Base64-%E8%A7%A3%E7%A0%81%EF%BC%9Abase64-decode"><span class="toc-number">1.0.3.4.</span> <span class="toc-text">4.Base64 解码：base64_decode()</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-%E5%BA%8F%E5%88%97%E5%8C%96%E6%95%B0%E6%8D%AE%E8%A7%A3%E7%A0%81%EF%BC%9Aunserialize"><span class="toc-number">1.0.3.5.</span> <span class="toc-text">5.序列化数据解码：unserialize()</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-array-search%EF%BC%88array%E5%8F%AF%E4%BB%A5%E6%9B%BF%E6%8D%A2%E6%88%90%E4%B8%BA%E4%BB%BB%E6%84%8F%E7%B1%BB%E5%9E%8B%EF%BC%89"><span class="toc-number">1.0.4.</span> <span class="toc-text">4.array_search（array可以替换成为任意类型）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-foreach"><span class="toc-number">1.0.5.</span> <span class="toc-text">5.foreach</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E7%BB%95%E8%BF%87"><span class="toc-number">2.</span> <span class="toc-text">常见绕过</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E4%BB%A3%E7%A0%81%EF%BC%9A"><span class="toc-number">1.</span> <span class="toc-text">常见代码：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-intval"><span class="toc-number">1.0.1.</span> <span class="toc-text">1.intval()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-substr-sample-6-6-or-sample-6-6"><span class="toc-number">1.0.2.</span> <span class="toc-text">2.substr($sample,-6,6)  or ($sample,6,6)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-decode-encode%E7%B1%BB-%E8%A7%A3%E7%A0%81%E4%B8%8E%E5%8A%A0%E5%AF%86%E7%B1%BB"><span class="toc-number">1.0.3.</span> <span class="toc-text">3.decode&#x2F;encode类(解码与加密类)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-JSON-%E8%A7%A3%E7%A0%81%EF%BC%9Ajson-decode"><span class="toc-number">1.0.3.1.</span> <span class="toc-text">1.JSON 解码：json_decode()</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-URL-%E8%A7%A3%E7%A0%81%EF%BC%9Aurldecode"><span class="toc-number">1.0.3.2.</span> <span class="toc-text">2.URL 解码：urldecode()</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-HTML-%E5%AE%9E%E4%BD%93%E8%A7%A3%E7%A0%81%EF%BC%9Ahtml-entity-decode"><span class="toc-number">1.0.3.3.</span> <span class="toc-text">3.HTML 实体解码：html_entity_decode()</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-Base64-%E8%A7%A3%E7%A0%81%EF%BC%9Abase64-decode"><span class="toc-number">1.0.3.4.</span> <span class="toc-text">4.Base64 解码：base64_decode()</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-%E5%BA%8F%E5%88%97%E5%8C%96%E6%95%B0%E6%8D%AE%E8%A7%A3%E7%A0%81%EF%BC%9Aunserialize"><span class="toc-number">1.0.3.5.</span> <span class="toc-text">5.序列化数据解码：unserialize()</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-array-search%EF%BC%88array%E5%8F%AF%E4%BB%A5%E6%9B%BF%E6%8D%A2%E6%88%90%E4%B8%BA%E4%BB%BB%E6%84%8F%E7%B1%BB%E5%9E%8B%EF%BC%89"><span class="toc-number">1.0.4.</span> <span class="toc-text">4.array_search（array可以替换成为任意类型）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-foreach"><span class="toc-number">1.0.5.</span> <span class="toc-text">5.foreach</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-ord"><span class="toc-number">1.0.6.</span> <span class="toc-text">6.ord</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-mb-substr-mb-strpos"><span class="toc-number">1.0.7.</span> <span class="toc-text">7.mb_substr&#x2F;mb_strpos</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E7%BB%95%E8%BF%87"><span class="toc-number">2.</span> <span class="toc-text">常见绕过</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E7%A7%91%E5%AD%A6%E8%AE%A1%E6%95%B0%E6%B3%95%EF%BC%9A"><span class="toc-number">2.0.1.</span> <span class="toc-text">1.科学计数法：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%BC%B1%E5%AF%B9%E6%AF%94%E7%BB%95%E8%BF%87"><span class="toc-number">2.0.2.</span> <span class="toc-text">2.弱对比绕过</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#search"><span class="toc-number">2.0.2.1.</span> <span class="toc-text">search:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#foreach%EF%BC%9A"><span class="toc-number">2.0.2.2.</span> <span class="toc-text">foreach：</span></a></li></ol></li></ol></li></ol></li></ol>
       
   </div>
 </div>
@@ -309,7 +331,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>Posts</div>
-    <div class="sidebar-state-number">36</div>
+    <div class="sidebar-state-number">35</div>
   </div>
   <div class="sidebar-state-category">
     <div>Categories</div>
@@ -387,10 +409,10 @@
     
       <div>
         <span class="icon-brush"></span>
-        26.5k
+        27.7k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        01:56
+        02:03
       </div>
     
     
@@ -420,7 +442,7 @@
   <h3 class="toc-title">Contents</h3>
   <div class="sidebar-toc-wrapper toc-div-class" >
       
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E4%BB%A3%E7%A0%81%EF%BC%9A"><span class="toc-number">1.</span> <span class="toc-text">常见代码：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-intval"><span class="toc-number">1.0.1.</span> <span class="toc-text">1.intval()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-substr-sample-6-6-or-sample-6-6"><span class="toc-number">1.0.2.</span> <span class="toc-text">2.substr($sample,-6,6)  or ($sample,6,6)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-decode-encode%E7%B1%BB-%E8%A7%A3%E7%A0%81%E4%B8%8E%E5%8A%A0%E5%AF%86%E7%B1%BB"><span class="toc-number">1.0.3.</span> <span class="toc-text">3.decode&#x2F;encode类(解码与加密类)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-JSON-%E8%A7%A3%E7%A0%81%EF%BC%9Ajson-decode"><span class="toc-number">1.0.3.1.</span> <span class="toc-text">1.JSON 解码：json_decode()</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-URL-%E8%A7%A3%E7%A0%81%EF%BC%9Aurldecode"><span class="toc-number">1.0.3.2.</span> <span class="toc-text">2.URL 解码：urldecode()</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-HTML-%E5%AE%9E%E4%BD%93%E8%A7%A3%E7%A0%81%EF%BC%9Ahtml-entity-decode"><span class="toc-number">1.0.3.3.</span> <span class="toc-text">3.HTML 实体解码：html_entity_decode()</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-Base64-%E8%A7%A3%E7%A0%81%EF%BC%9Abase64-decode"><span class="toc-number">1.0.3.4.</span> <span class="toc-text">4.Base64 解码：base64_decode()</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-%E5%BA%8F%E5%88%97%E5%8C%96%E6%95%B0%E6%8D%AE%E8%A7%A3%E7%A0%81%EF%BC%9Aunserialize"><span class="toc-number">1.0.3.5.</span> <span class="toc-text">5.序列化数据解码：unserialize()</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-array-search%EF%BC%88array%E5%8F%AF%E4%BB%A5%E6%9B%BF%E6%8D%A2%E6%88%90%E4%B8%BA%E4%BB%BB%E6%84%8F%E7%B1%BB%E5%9E%8B%EF%BC%89"><span class="toc-number">1.0.4.</span> <span class="toc-text">4.array_search（array可以替换成为任意类型）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-foreach"><span class="toc-number">1.0.5.</span> <span class="toc-text">5.foreach</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E7%BB%95%E8%BF%87"><span class="toc-number">2.</span> <span class="toc-text">常见绕过</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E4%BB%A3%E7%A0%81%EF%BC%9A"><span class="toc-number">1.</span> <span class="toc-text">常见代码：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-intval"><span class="toc-number">1.0.1.</span> <span class="toc-text">1.intval()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-substr-sample-6-6-or-sample-6-6"><span class="toc-number">1.0.2.</span> <span class="toc-text">2.substr($sample,-6,6)  or ($sample,6,6)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-decode-encode%E7%B1%BB-%E8%A7%A3%E7%A0%81%E4%B8%8E%E5%8A%A0%E5%AF%86%E7%B1%BB"><span class="toc-number">1.0.3.</span> <span class="toc-text">3.decode&#x2F;encode类(解码与加密类)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-JSON-%E8%A7%A3%E7%A0%81%EF%BC%9Ajson-decode"><span class="toc-number">1.0.3.1.</span> <span class="toc-text">1.JSON 解码：json_decode()</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-URL-%E8%A7%A3%E7%A0%81%EF%BC%9Aurldecode"><span class="toc-number">1.0.3.2.</span> <span class="toc-text">2.URL 解码：urldecode()</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-HTML-%E5%AE%9E%E4%BD%93%E8%A7%A3%E7%A0%81%EF%BC%9Ahtml-entity-decode"><span class="toc-number">1.0.3.3.</span> <span class="toc-text">3.HTML 实体解码：html_entity_decode()</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-Base64-%E8%A7%A3%E7%A0%81%EF%BC%9Abase64-decode"><span class="toc-number">1.0.3.4.</span> <span class="toc-text">4.Base64 解码：base64_decode()</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-%E5%BA%8F%E5%88%97%E5%8C%96%E6%95%B0%E6%8D%AE%E8%A7%A3%E7%A0%81%EF%BC%9Aunserialize"><span class="toc-number">1.0.3.5.</span> <span class="toc-text">5.序列化数据解码：unserialize()</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-array-search%EF%BC%88array%E5%8F%AF%E4%BB%A5%E6%9B%BF%E6%8D%A2%E6%88%90%E4%B8%BA%E4%BB%BB%E6%84%8F%E7%B1%BB%E5%9E%8B%EF%BC%89"><span class="toc-number">1.0.4.</span> <span class="toc-text">4.array_search（array可以替换成为任意类型）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-foreach"><span class="toc-number">1.0.5.</span> <span class="toc-text">5.foreach</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-ord"><span class="toc-number">1.0.6.</span> <span class="toc-text">6.ord</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-mb-substr-mb-strpos"><span class="toc-number">1.0.7.</span> <span class="toc-text">7.mb_substr&#x2F;mb_strpos</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E7%BB%95%E8%BF%87"><span class="toc-number">2.</span> <span class="toc-text">常见绕过</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E7%A7%91%E5%AD%A6%E8%AE%A1%E6%95%B0%E6%B3%95%EF%BC%9A"><span class="toc-number">2.0.1.</span> <span class="toc-text">1.科学计数法：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%BC%B1%E5%AF%B9%E6%AF%94%E7%BB%95%E8%BF%87"><span class="toc-number">2.0.2.</span> <span class="toc-text">2.弱对比绕过</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#search"><span class="toc-number">2.0.2.1.</span> <span class="toc-text">search:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#foreach%EF%BC%9A"><span class="toc-number">2.0.2.2.</span> <span class="toc-text">foreach：</span></a></li></ol></li></ol></li></ol></li></ol>
       
   </div>
 </div>
@@ -433,7 +455,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>Posts</div>
-    <div class="sidebar-state-number">36</div>
+    <div class="sidebar-state-number">35</div>
   </div>
   <div class="sidebar-state-category">
     <div>Categories</div>
