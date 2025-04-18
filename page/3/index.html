@@ -178,14 +178,388 @@
   <div class="post-wrapper">
   <div class="post-wrap-left" data-aos="fade-up">
     
-      <a class="post-link" href="/2025/03/11/%E5%85%B3%E4%BA%8Epop%E9%93%BE%E7%9A%84%E6%B7%B1%E5%85%A5%E7%A0%94%E7%A9%B6/" aria-label="关于pop链的深入研究"></a>
+      <a class="post-link" href="/2025/03/19/BSidesCF-2020-Had-a-bad-day/" aria-label="[BSidesCTF 2020]Had a bad day"></a>
     
     
     <div class="post-cover-left">
       
         
         
-          <img data-src="/covers/reimu.webp" data-sizes="auto" alt="关于pop链的深入研究" class="lazyload">
+          <img data-src="/covers/辉夜与妹红.jpg" data-sizes="auto" alt="[BSidesCTF 2020]Had a bad day" class="lazyload">
+        
+      
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2025-03-19</span>
+        <span><span class="icon-pencil"></span>295 words</span>
+        <span><span class="icon-clock"></span>1 min</span>
+      </div>
+      <h2 class="post-title">[BSidesCTF 2020]Had a bad day</h2>
+      <article class="post-article">
+        
+          [BSidesCTF 2020]Had a bad day离成功就差一步！！！
+进入页面发现有读取url，于是尝试sql，失败了，但是我们发现好像存在文件读取漏洞：
+
+我们尝试读取flag，index，失败了，那就使用伪协议试试看，发现成功了
+
+但是不知道为什么我的无法翻译出来，后面也不知道怎么办了，看了一下wp
+这些base64居然是源码：
+1234567891011121314&amp;lt;?php				$file = $_GET[&amp;#x27;category&amp;#x27;]; 				if(isset($file))				&amp;#123;					if( strpos( $file, &amp;quot
+        
+      </article>
+    </div>
+  </div>
+  </div>
+
+
+  
+  
+  <div class="post-wrapper">
+  <div class="post-wrap-right" data-aos="fade-up">
+    
+      <a class="post-link" href="/2025/03/17/SSRF/" aria-label="SSRF"></a>
+    
+    
+    <div class="post-cover-right">
+      
+        
+        
+          <img data-src="/covers/妹红02.jpg" data-sizes="auto" alt="SSRF" class="lazyload">
+        
+      
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2025-03-17</span>
+        <span><span class="icon-pencil"></span>577 words</span>
+        <span><span class="icon-clock"></span>2 mins</span>
+      </div>
+      <h2 class="post-title">SSRF</h2>
+      <article class="post-article">
+        
+          初步了解：看见哪些函数可以使用SSRF
+curl_exec()
+
+用途：发起 HTTP 请求（如 GET&amp;#x2F;POST）。
+
+风险：直接使用用户输入的 URL 参数，可能导致服务器访问任意目标。
+
+示例代码
+123$url = $_GET[&amp;#x27;url&amp;#x27;];$ch = curl_init($url);curl_exec($ch);
+
+
+file_get_contents()
+
+用途：读取文件或 URL 内容。
+
+风险：若参数可控，可通过 file:// 协议读取本地文件，或通过 http:// 访问内网资源。
+
+示例代码
+1$content = file_get_cont
+        
+      </article>
+    </div>
+  </div>
+  </div>
+
+
+  
+  
+  <div class="post-wrapper">
+  <div class="post-wrap-left" data-aos="fade-up">
+    
+      <a class="post-link" href="/2025/03/17/%E7%BD%91%E9%BC%8E%E6%9D%AF-2018-Fakebook/" aria-label="[网鼎杯 2018]Fakebook"></a>
+    
+    
+    <div class="post-cover-left">
+      
+        
+        
+          <img data-src="/covers/妹红02.jpg" data-sizes="auto" alt="[网鼎杯 2018]Fakebook" class="lazyload">
+        
+      
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2025-03-17</span>
+        <span><span class="icon-pencil"></span>968 words</span>
+        <span><span class="icon-clock"></span>4 mins</span>
+      </div>
+      <h2 class="post-title">[网鼎杯 2018]Fakebook</h2>
+      <article class="post-article">
+        
+          这道题，，，很有意思！！！！（sql + 反序列化）
+自己的方法：最开始：
+我们需要发现注入点，于是点入1，发现url发生变化：
+测试注入，发现是异或注入：（其实有更简单的方法）
+来用脚本爆破（自己的工具箱）：
+得出库：fakebook
+表：users
+列：no,username,passwd,data
+查列的内容，发现，在data里居然出现了反序列化？？
+然后我就不会做了，就去查wp了。
+别人的方法：居然不需要异或？？？
+利用绕过：（&amp;#x2F;**&amp;#x2F;）
+12345678910111213?no=-1/**/union/**/select/**/1,database(),3,4--
+        
+      </article>
+    </div>
+  </div>
+  </div>
+
+
+  
+  
+  <div class="post-wrapper">
+  <div class="post-wrap-right" data-aos="fade-up">
+    
+      <a class="post-link" href="/2025/03/16/pop%E9%93%BE%E5%AD%97%E7%AC%A6%E4%B8%B2%E9%80%83%E9%80%B8/" aria-label="pop链字符串逃逸"></a>
+    
+    
+    <div class="post-cover-right">
+      
+        
+        
+          <img data-src="/covers/sakuya looking back.jpg" data-sizes="auto" alt="pop链字符串逃逸" class="lazyload">
+        
+      
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2025-03-16</span>
+        <span><span class="icon-pencil"></span>128 words</span>
+        <span><span class="icon-clock"></span>1 min</span>
+      </div>
+      <h2 class="post-title">pop链字符串逃逸</h2>
+      <article class="post-article">
+        
+          字符串逃逸1.初步了解：原理1：php里面的类的属性的值，在反序列化后，就不是之前定义的值了，而是我们反序列化输入的值了
+​        2：当你定义了足够多的字符数量，可是&amp;quot; &amp;quot;里面的字符数量又不够时候，就会自动读取后面的字符
+直到字符数量标
+
+明明v2是27个，却只有abc，于是就会把后面的一起读取
+
+呦呵，居然考到了
+
+        
+      </article>
+    </div>
+  </div>
+  </div>
+
+
+  
+  
+  <div class="post-wrapper">
+  <div class="post-wrap-left" data-aos="fade-up">
+    
+      <a class="post-link" href="/2025/03/16/BaseCTF2024%E6%96%B0%E7%94%9F%E8%B5%9B-%E6%88%91%E8%A6%81%E7%8E%A9%E5%8E%9F%E7%A5%9E/" aria-label="BaseCTF2024新生赛--我要玩原神"></a>
+    
+    
+    <div class="post-cover-left">
+      
+        
+        
+          <img data-src="/covers/红美铃.jpg" data-sizes="auto" alt="BaseCTF2024新生赛--我要玩原神" class="lazyload">
+        
+      
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2025-03-16</span>
+        <span><span class="icon-pencil"></span>1.1k words</span>
+        <span><span class="icon-clock"></span>6 mins</span>
+      </div>
+      <h2 class="post-title">BaseCTF2024新生赛--我要玩原神</h2>
+      <article class="post-article">
+        
+          这是什么b名字啊。。。源码：
+1234567891011121314151617181920212223242526272829303132333435 &amp;lt;?phphighlight_file(__FILE__);error_reporting(0);include &amp;#x27;flag.php&amp;#x27;;if (sizeof($_POST[&amp;#x27;len&amp;#x27;]) == sizeof($array)) &amp;#123;  ys_open($_GET[&amp;#x27;tip&amp;#x27;]);&amp;#125; else &amp;#123;  die(&amp;quot;错了！就你还想玩原神？❌❌❌&amp;qu
+        
+      </article>
+    </div>
+  </div>
+  </div>
+
+
+  
+  
+  <div class="post-wrapper">
+  <div class="post-wrap-right" data-aos="fade-up">
+    
+      <a class="post-link" href="/2025/03/15/JAVA/" aria-label="JAVA"></a>
+    
+    
+    <div class="post-cover-right">
+      
+        
+        
+          <img data-src="https://github.com/Flight-star-cy/my-images/blob/main/cover/reimu%20and%20marisa.jpg" data-sizes="auto" alt="JAVA" class="lazyload">
+        
+      
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2025-03-15</span>
+        <span><span class="icon-pencil"></span>490 words</span>
+        <span><span class="icon-clock"></span>1 min</span>
+      </div>
+      <h2 class="post-title">JAVA</h2>
+      <article class="post-article">
+        
+          [RoarCTF 2019]Easy Java
+一个登入页面？试试看sql？发现不行
+完全不会！！！！
+查了才知道是类似文件读取漏洞
+1.打开help，提醒我们
+1java.io.FileNotFoundException:&amp;#123;help.docx&amp;#125;
+
+那我们输入
+1http://9d67dba8-dd72-4813-ae85-2fe82f0224d5.node5.buuoj.cn:81/help.docx
+
+
+得到一个假文件。。。。只能找找其他的线索了
+我们可以发现在打开help时候会有
+1/Download?filename=help.docx
+
+
+我们可能可以读取配置文件
+        
+      </article>
+    </div>
+  </div>
+  </div>
+
+
+  
+  
+  <div class="post-wrapper">
+  <div class="post-wrap-left" data-aos="fade-up">
+    
+      <a class="post-link" href="/2025/03/12/%E5%85%B3%E4%BA%8E%E4%BC%AA%E5%8D%8F%E8%AE%AE%E7%9A%84%E7%A0%94%E7%A9%B6/" aria-label="关于伪协议的研究"></a>
+    
+    
+    <div class="post-cover-left">
+      
+        
+        
+          <img data-src="/covers/红美铃.jpg" data-sizes="auto" alt="关于伪协议的研究" class="lazyload">
+        
+      
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2025-03-12</span>
+        <span><span class="icon-pencil"></span>1.6k words</span>
+        <span><span class="icon-clock"></span>7 mins</span>
+      </div>
+      <h2 class="post-title">关于伪协议的研究</h2>
+      <article class="post-article">
+        
+          伪协议的研究与利用伪代码的大小写是不影响伪代码的作用的！！！
+输入代码类：php://input
+用途：读取 HTTP 请求的原始 POST 数据流，直接执行代码。
+条件：allow_url_include=On（默认关闭）。
+CTF 应用：绕过对 $_POST 的过滤，直接传递 PHP 代码。
+（可以直接传递post的值，那些针对post的过滤就无用了）
+
+绕过原理：
+**$_POST**：在 PHP 中，$_POST 是一个超全局变量，用于接收通过 HTTP POST 方法提交的数据。当客户端以 application/x-www-form-urlencoded 或 multipart/f
+        
+      </article>
+    </div>
+  </div>
+  </div>
+
+
+  
+  
+  <div class="post-wrapper">
+  <div class="post-wrap-right" data-aos="fade-up">
+    
+      <a class="post-link" href="/2025/03/12/%E7%BD%91%E9%BC%8E%E6%9D%AF-2020-%E9%9D%92%E9%BE%99%E7%BB%84-AreUSerialz/" aria-label="[网鼎杯 2020 青龙组]AreUSerialz"></a>
+    
+    
+    <div class="post-cover-right">
+      
+        
+        
+          <img data-src="https://github.com/Flight-star-cy/my-images/blob/main/%E5%8D%81%E5%85%AD%E5%A4%9C%E5%92%B2%E5%A4%9C-cute.jpg;" data-sizes="auto" alt="[网鼎杯 2020 青龙组]AreUSerialz" class="lazyload">
+        
+      
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2025-03-12</span>
+        <span><span class="icon-pencil"></span>473 words</span>
+        <span><span class="icon-clock"></span>2 mins</span>
+      </div>
+      <h2 class="post-title">[网鼎杯 2020 青龙组]AreUSerialz</h2>
+      <article class="post-article">
+        
+          [网鼎杯 2020 青龙组]AreUSerialz（ez_反序列化漏洞）
+123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081&amp;lt;?phpinclude(&amp;quot;flag.php&amp;quot;);highlight_file(__FILE__);class FileHandler &amp;#123;    protected $op;    p
+        
+      </article>
+    </div>
+  </div>
+  </div>
+
+
+  
+  
+  <div class="post-wrapper">
+  <div class="post-wrap-left" data-aos="fade-up">
+    
+      <a class="post-link" href="/2025/03/11/%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E4%B8%AD%E5%B8%B8%E8%A7%81%E7%9A%84%E9%AD%94%E6%9C%AF%E6%96%B9%E7%A8%8B/" aria-label=""></a>
+    
+    
+    <div class="post-cover-left">
+      
+        
+        
+          <img data-src="/covers/shopping.jpg" data-sizes="auto" alt="" class="lazyload">
+        
+      
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2025-03-11</span>
+        <span><span class="icon-pencil"></span>2.3k words</span>
+        <span><span class="icon-clock"></span>10 mins</span>
+      </div>
+      <h2 class="post-title"></h2>
+      <article class="post-article">
+        
+          1. __construct()
+功能：构造函数，在创建对象时自动调用，用于初始化对象的属性。
+
+人话：类被使用就会被调用
+
+示例：
+
+123456789101112class Person &amp;#123;    public $name;    public $age;    public function __construct($name, $age) &amp;#123;        $this-&amp;gt;name = $name;        $this-&amp;gt;age = $age;    &amp;#125;&amp;#125;$person = new Person(&amp;#x27;John&amp;#x27;,
+        
+      </article>
+    </div>
+  </div>
+  </div>
+
+
+  
+  
+  <div class="post-wrapper">
+  <div class="post-wrap-right" data-aos="fade-up">
+    
+      <a class="post-link" href="/2025/03/11/%E5%85%B3%E4%BA%8Epop%E9%93%BE%E7%9A%84%E6%B7%B1%E5%85%A5%E7%A0%94%E7%A9%B6/" aria-label="关于pop链的深入研究"></a>
+    
+    
+    <div class="post-cover-right">
+      
+        
+        
+          <img data-src="https://github.com/Flight-star-cy/my-images/blob/main/hezhao%2002.jpg" data-sizes="auto" alt="关于pop链的深入研究" class="lazyload">
         
       
     </div>
@@ -211,362 +585,11 @@ array_walk：12345678arra
 
 
   
-  
-  <div class="post-wrapper">
-  <div class="post-wrap-right" data-aos="fade-up">
-    
-      <a class="post-link" href="/2025/02/27/Easy%20MD5%E7%BB%95%E8%BF%87/" aria-label=""></a>
-    
-    
-    <div class="post-cover-right">
-      
-        
-        
-          <img data-src="https://github.com/Flight-star-cy/my-images/blob/main/togele.jpg" data-sizes="auto" alt="" class="lazyload">
-        
-      
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2025-02-27</span>
-        <span><span class="icon-pencil"></span>628 words</span>
-        <span><span class="icon-clock"></span>2 mins</span>
-      </div>
-      <h2 class="post-title"></h2>
-      <article class="post-article">
-        
-          Easy MD5绕过（本质应该还是sql注入）
-[BJDCTF2020]Easy MD5：前言：什么是MD5？一种加密方法，被发现存在碰撞漏洞后便不再使用
-加密原理如下：
-12md5(&amp;#x27;hello&amp;#x27;, true)md5(&amp;#x27;hello&amp;#x27;, false)
-
-
-并且会对’   ‘的内容优先做出如下做法：
-把字符串数字转化为数字：’1’&amp;#x3D;&amp;#x3D;&amp;#x3D;1
-会优先计算：’1+1’&amp;#x3D;&amp;#x3D;&amp;#x3D;’2’
-更加仔细的请访问：[buuctf web BJDCTF2020]Easy MD5-CSDN博客
-怎么解决强&amp;#x2F;弱运算
-        
-      </article>
-    </div>
-  </div>
-  </div>
-
-
-  
-  
-  <div class="post-wrapper">
-  <div class="post-wrap-left" data-aos="fade-up">
-    
-      <a class="post-link" href="/2025/02/27/cookie%E6%AC%BA%E9%AA%97/" aria-label=""></a>
-    
-    
-    <div class="post-cover-left">
-      
-        
-        
-          <img data-src="https://github.com/Flight-star-cy/my-images/blob/main/hezhao%2002.jpg" data-sizes="auto" alt="" class="lazyload">
-        
-      
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2025-02-27</span>
-        <span><span class="icon-pencil"></span>299 words</span>
-        <span><span class="icon-clock"></span>1 min</span>
-      </div>
-      <h2 class="post-title"></h2>
-      <article class="post-article">
-        
-          [HCTF 2018]admin（session欺骗）前言：何为session?是cookie的一种，用于记录你这个ip的会话，相当于一个定位，让服务器能在茫茫网络当中找到你，继续上次的会话，一般是经过大量加密的，flask框架往往会保护，留下一个签名，但是签名不能防止篡改，存在可利用漏洞
-正片：进入源码发现
-说明我们需要成功登入admin才能获得flag
-方法一：弱爆破已知账号是admin，所以我们就尝试爆破，没想到密码非常简单，直接获得了flag
-方法二：flask_session欺骗我们先注册再登入，留下我们的session
-之后抓包或者使用插件得到session，再用准备好的解密pyt
-        
-      </article>
-    </div>
-  </div>
-  </div>
-
-
-  
-  
-  <div class="post-wrapper">
-  <div class="post-wrap-right" data-aos="fade-up">
-    
-      <a class="post-link" href="/2025/02/27/%E4%B8%8D%E7%9F%A5%E9%81%93%E6%94%BE%E5%9C%A8%E5%93%AA%E9%87%8C%E7%9A%84%E7%AC%94%E8%AE%B0/" aria-label=""></a>
-    
-    
-    <div class="post-cover-right">
-      
-        
-        
-          <img data-src="https://github.com/Flight-star-cy/my-images/blob/main/%E5%A6%B9%E7%BA%A202.jpg" data-sizes="auto" alt="" class="lazyload">
-        
-      
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2025-02-27</span>
-        <span><span class="icon-pencil"></span>180 words</span>
-        <span><span class="icon-clock"></span>1 min</span>
-      </div>
-      <h2 class="post-title"></h2>
-      <article class="post-article">
-        
-          在BUU中学到，不知道放在哪里的笔记[极客大挑战 2019]Http（伪造协议）打开源码，发现隐藏页面进入后发现
-提示我们要从这个页面中转过来，那就伪造Referer
-1Referer:https://Sycsecret.buuoj.cn
-
-点开如图所示：
-
-点开后发现，又提示我们要使用别的浏览器，那就伪装一个
-1User-Agent:Syclover
-
-
-又提示我们要使用本地访问，那就伪！
-1X-Forwarded-For :127.0.0.1
-
-
-补充：X-Forwarded-For（XFF）是一个在 HTTP 请求头中常用的字段，主要用于在代理服务器或负载均衡器等中间设备的环境下，记录客
-        
-      </article>
-    </div>
-  </div>
-  </div>
-
-
-  
-  
-  <div class="post-wrapper">
-  <div class="post-wrap-left" data-aos="fade-up">
-    
-      <a class="post-link" href="/2025/02/27/uploud%E5%AE%9E%E6%88%98%E7%AC%94%E8%AE%B0/" aria-label=""></a>
-    
-    
-    <div class="post-cover-left">
-      
-        
-        
-          <img data-src="/covers/十六夜咲夜 (4).jpg" data-sizes="auto" alt="" class="lazyload">
-        
-      
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2025-02-27</span>
-        <span><span class="icon-pencil"></span>413 words</span>
-        <span><span class="icon-clock"></span>1 min</span>
-      </div>
-      <h2 class="post-title"></h2>
-      <article class="post-article">
-        
-          BUU-upload实战——————————-在经历upload-labs后，我刷不明白，决定直接去实战试试看——————————-
-[极客大挑战 2019]Upload由于是第一次做upload，于是便主要是搜为主
-要考察的四个点：
-1234561.MIME类型（Content-Type: image/png）2.文件头（GIF89a）3.黑名单检测(phtml)4.检测&amp;lt;?（`&amp;lt;script language=&amp;quot;pHp&amp;quot;&amp;gt;@eval($_POST[&amp;#x27;cmd&amp;#x27;])&amp;lt;/script&amp;gt;`）&amp;lt;?php @eval($_PO
-        
-      </article>
-    </div>
-  </div>
-  </div>
-
-
-  
-  
-  <div class="post-wrapper">
-  <div class="post-wrap-right" data-aos="fade-up">
-    
-      <a class="post-link" href="/2025/02/27/sqli%E5%AE%9E%E6%88%98%E7%AC%94%E8%AE%B0/" aria-label=""></a>
-    
-    
-    <div class="post-cover-right">
-      
-        
-        
-          <img data-src="/covers/辉夜与妹红.jpg" data-sizes="auto" alt="" class="lazyload">
-        
-      
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2025-02-27</span>
-        <span><span class="icon-pencil"></span>1.4k words</span>
-        <span><span class="icon-clock"></span>6 mins</span>
-      </div>
-      <h2 class="post-title"></h2>
-      <article class="post-article">
-        
-          sqli实战————————————在经历sqli-labs后，我决定去实战试试看（也就是刷刷ctf题目）——————————-
-**[**极客大挑战 2019]LoveSQL 1没有过滤
-1**union select 1,(select group_concat(table_name)from information_schema.tables where table_schema=database()),3 or 1 = 1 #**
-
-查出Hello geekuser,l0ve1ysq1！(表)
-1**1&amp;#x27; union select 1,(select group_concat
-        
-      </article>
-    </div>
-  </div>
-  </div>
-
-
-  
-  
-  <div class="post-wrapper">
-  <div class="post-wrap-left" data-aos="fade-up">
-    
-      <a class="post-link" href="/2025/02/27/%E7%AE%80%E5%8D%95WAF%E7%BB%95%E8%BF%87/" aria-label=""></a>
-    
-    
-    <div class="post-cover-left">
-      
-        
-        
-          <img data-src="https://github.com/Flight-star-cy/my-images/blob/main/%E7%BA%A2%E7%BE%8E%E9%93%83.jpg" data-sizes="auto" alt="" class="lazyload">
-        
-      
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2025-02-27</span>
-        <span><span class="icon-pencil"></span>209 words</span>
-        <span><span class="icon-clock"></span>1 min</span>
-      </div>
-      <h2 class="post-title"></h2>
-      <article class="post-article">
-        
-          [RoarCTF 2019]Easy Calc（WAF+文件读取漏洞）原理：在有些服务器解析当中%20（空格）之类的是不会被解析的，所以%20num就会被解析为num
-但是在WAF里还是%00num，不是防止绕过的num，所以就不会对num进行注释绕过。
-正片：打开源码
-
-提醒我们使用了WAF，并且发现存在calc.php，那就看看
-
-发现在这个页面里是使用GET获取num的值最开始发现只能输入数字，后面去查才发现WAF绕过：
-我们构造payload：
-12345?%20num=print_r(scandir(chr(47)))【print_r：输出更好看】【scandir：扫描文件夹】【ch
-        
-      </article>
-    </div>
-  </div>
-  </div>
-
-
-  
-  
-  <div class="post-wrapper">
-  <div class="post-wrap-right" data-aos="fade-up">
-    
-      <a class="post-link" href="/2024/12/28/%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/" aria-label="反序列化初窥"></a>
-    
-    
-    <div class="post-cover-right">
-      
-        
-        
-          <img data-src="/covers/reimu and marisa.jpg" data-sizes="auto" alt="反序列化初窥" class="lazyload">
-        
-      
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2024-12-28</span>
-        <span><span class="icon-pencil"></span>1.8k words</span>
-        <span><span class="icon-clock"></span>7 mins</span>
-      </div>
-      <h2 class="post-title">反序列化初窥</h2>
-      <article class="post-article">
-        
-          [极客大挑战 2019]PHP前提知识补充：PHP序列化与反序列化1234&amp;lt;?php // 定义一个数组 $myArray = array(&amp;#x27;name&amp;#x27; =&amp;gt; &amp;#x27;John&amp;#x27;, &amp;#x27;age&amp;#x27; =&amp;gt; 30); // 序列化数组 $serialized = serialize($myArray); echo &amp;quot;Serialized: &amp;quot;. $serialized . &amp;quot;&amp;lt;br&amp;gt;&amp;quot;; // 反序列化 $unserialized = unserialize($serialize
-        
-      </article>
-    </div>
-  </div>
-  </div>
-
-
-  
-  
-  <div class="post-wrapper">
-  <div class="post-wrap-left" data-aos="fade-up">
-    
-      <a class="post-link" href="/2024/11/30/sqli%E8%AF%AD%E6%B3%95/" aria-label="sqli语法"></a>
-    
-    
-    <div class="post-cover-left">
-      
-        
-        
-          <img data-src="https://github.com/Flight-star-cy/my-images/blob/main/%E5%8D%81%E5%85%AD%E5%A4%9C%E5%92%B2%E5%A4%9C%20(4).jpg;" data-sizes="auto" alt="sqli语法" class="lazyload">
-        
-      
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2024-11-30</span>
-        <span><span class="icon-pencil"></span>628 words</span>
-        <span><span class="icon-clock"></span>2 mins</span>
-      </div>
-      <h2 class="post-title">sqli语法</h2>
-      <article class="post-article">
-        
-          less1-4：（get）入门，使用联合注入.
-less5-10：（get）使用布尔盲注，时间盲注.
-less11-12：（post）升级，本质上还是联合注入.
-less13-16:  （post） 升级，在post基础上变为盲注，需要布尔盲注，时间盲注.(使用burpsuite爆破)
-less17-:  （post） 升级，在usename加入了转义，导致无法在usename上注入，但是newpassword可以注入。
-闭合类型判断：1：’2：’)3: ‘))4: “5: “)6：”))
-在字符型注入中:   1: 1 and 1&amp;#x3D;2;后面的and 1&amp;#x3D;2会被忽略，加个–
-        
-      </article>
-    </div>
-  </div>
-  </div>
-
-
-  
-  
-  <div class="post-wrapper">
-  <div class="post-wrap-right" data-aos="fade-up">
-    
-      <a class="post-link" href="/2024/11/22/mysql%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95/" aria-label="mysql基本用法"></a>
-    
-    
-    <div class="post-cover-right">
-      
-        
-        
-          <img data-src="https://github.com/Flight-star-cy/my-images/blob/main/shopping.jpg" data-sizes="auto" alt="mysql基本用法" class="lazyload">
-        
-      
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2024-11-22</span>
-        <span><span class="icon-pencil"></span>583 words</span>
-        <span><span class="icon-clock"></span>2 mins</span>
-      </div>
-      <h2 class="post-title">mysql基本用法</h2>
-      <article class="post-article">
-        
-          关于mysql基本用法怎么进入：cd &amp;#x2F;d D:\phpstudy_pro\Extensions\MySQL5.7.26\bin          mysql -u root -p          &amp;#x2F;&amp;#x2F;这个是使用普通cmd登入。
-      //使用shell是用\connect root@localhost
-
-查库 前提是show databases;    select schema_name from information_schema.schemata;查表 select table_name from information_schema.table
-        
-      </article>
-    </div>
-  </div>
-  </div>
-
-
-  
 
 
   <nav id="page-nav" data-aos="fade-up">
     
-    <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/4/">Next &raquo;</a>
+    <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/4/">Next &raquo;</a>
   </nav>
 
 
@@ -584,7 +607,7 @@ less17-:  （post） 升级，在usename加入了转义，导致无法在usename
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>Posts</div>
-    <div class="sidebar-state-number">35</div>
+    <div class="sidebar-state-number">44</div>
   </div>
   <div class="sidebar-state-category">
     <div>Categories</div>
@@ -657,10 +680,10 @@ less17-:  （post） 升级，在usename加入了转义，导致无法在usename
     
       <div>
         <span class="icon-brush"></span>
-        27.7k
+        40.8k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        02:03
+        03:03
       </div>
     
     
@@ -694,7 +717,7 @@ less17-:  （post） 升级，在usename加入了转义，导致无法在usename
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>Posts</div>
-    <div class="sidebar-state-number">35</div>
+    <div class="sidebar-state-number">44</div>
   </div>
   <div class="sidebar-state-category">
     <div>Categories</div>

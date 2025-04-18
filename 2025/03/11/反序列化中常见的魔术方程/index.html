@@ -36,7 +36,7 @@
 <meta property="og:description" content="1. __construct() 功能：构造函数，在创建对象时自动调用，用于初始化对象的属性。  人话：类被使用就会被调用  示例：  123456789101112class Person &#123;    public $name;    public $age;    public function __construct($name, $age) &#123;        $this-">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2025-03-11T13:01:39.238Z">
-<meta property="article:modified_time" content="2025-03-14T13:55:49.247Z">
+<meta property="article:modified_time" content="2025-04-12T15:24:29.300Z">
 <meta property="article:author" content="Flight-star">
 <meta name="twitter:card" content="summary">
   
@@ -180,7 +180,7 @@
       <div class="article-date">
   <a href="/2025/03/11/%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E4%B8%AD%E5%B8%B8%E8%A7%81%E7%9A%84%E9%AD%94%E6%9C%AF%E6%96%B9%E7%A8%8B/" class="article-date-link" data-aos="zoom-in">
     <time datetime="2025-03-11T13:01:39.238Z" itemprop="datePublished">2025-03-11</time>
-    <time style="display: none;" id="post-update-time">2025-03-14</time>
+    <time style="display: none;" id="post-update-time">2025-04-12</time>
   </a>
 </div>
 
@@ -216,11 +216,67 @@
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DatabaseConnection</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="variable">$conn</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="variable language_">$this</span>-&gt;conn = <span class="keyword">new</span> <span class="title function_ invoke__">mysqli</span>(<span class="string">&#x27;localhost&#x27;</span>, <span class="string">&#x27;user&#x27;</span>, <span class="string">&#x27;password&#x27;</span>, <span class="string">&#x27;dbname&#x27;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__destruct</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="variable language_">$this</span>-&gt;conn) &#123;</span><br><span class="line">            <span class="variable language_">$this</span>-&gt;conn-&gt;<span class="title function_ invoke__">close</span>();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable">$db</span> = <span class="keyword">new</span> <span class="title class_">DatabaseConnection</span>();</span><br><span class="line"><span class="comment">// 当脚本执行结束或对象被显式销毁时，__destruct() 方法会被调用</span></span><br></pre></td></tr></table></figure>
 
 <h3 id="3-toString"><a href="#3-toString" class="headerlink" title="3. __toString()"></a>3. <code>__toString()</code></h3><ul>
-<li><strong>功能</strong>：当对象被当作字符串使用时自动调用，必须返回一个字符串。</li>
+<li><p><strong>功能</strong>：当对象被当作字符串使用时自动调用，必须返回一个字符串。</p>
+<h3 id="触发-toString-方法的情况"><a href="#触发-toString-方法的情况" class="headerlink" title="触发 __toString 方法的情况"></a>触发 <code>__toString</code> 方法的情况</h3><table>
+<thead>
+<tr>
+<th>触发方式</th>
+<th>描述</th>
+<th>示例代码</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>字符串拼接</td>
+<td>对象参与字符串拼接操作时，触发 <code>__toString</code> 方法。在需要将对象与字符串组合输出的场景中会用到。</td>
+<td><code>php class StringableClass &#123; public function __toString() &#123; return &quot;触发 __toString&quot;; &#125; &#125; $obj = new StringableClass(); echo &quot;拼接结果：&quot; . $obj;</code></td>
+</tr>
+<tr>
+<td><code>echo</code>、<code>print</code> 语句</td>
+<td>直接使用 <code>echo</code> 或 <code>print</code> 输出对象时，触发 <code>__toString</code> 方法，是一种常见的输出对象字符串表示的方式。</td>
+<td><code>php class StringableClass &#123; public function __toString() &#123; return &quot;触发 __toString&quot;; &#125; &#125; $obj = new StringableClass(); echo $obj;</code></td>
+</tr>
+<tr>
+<td><code>printf</code>、<code>sprintf</code> 函数</td>
+<td>在使用字符串格式化函数，将对象作为字符串参数传递时，触发 <code>__toString</code> 方法，用于格式化输出对象的字符串表示。</td>
+<td><code>php class StringableClass &#123; public function __toString() &#123; return &quot;触发 __toString&quot;; &#125; &#125; $obj = new StringableClass(); printf(&quot;格式化结果：%s&quot;, $obj);</code></td>
+</tr>
+<tr>
+<td><code>implode</code> 函数</td>
+<td>当对象在数组中，使用 <code>implode</code> 函数将数组转换为字符串时，触发对象的 <code>__toString</code> 方法，用于将包含对象的数组转换为字符串。</td>
+<td><code>php class StringableClass &#123; public function __toString() &#123; return &quot;触发 __toString&quot;; &#125; &#125; $obj = new StringableClass(); $arr = [$obj]; echo implode(&quot;, &quot;, $arr);</code></td>
+</tr>
+<tr>
+<td>字符串强制类型转换</td>
+<td>使用 <code>(string)</code> 进行强制类型转换时，触发 <code>__toString</code> 方法，用于将对象显式转换为字符串类型。</td>
+<td><code>php class StringableClass &#123; public function __toString() &#123; return &quot;触发 __toString&quot;; &#125; &#125; $obj = new StringableClass(); $str = (string)$obj; echo $str;</code></td>
+</tr>
+<tr>
+<td><code>json_encode</code> 处理对象数组时</td>
+<td>当使用 <code>json_encode</code> 对包含对象的数组进行编码时，如果对象实现了 <code>__toString</code> 方法，会触发该方法，用于在 JSON 编码时获取对象的字符串表示。</td>
+<td><code>php class User &#123; public function __toString() &#123; return &quot;User Object&quot;; &#125; &#125; $user = new User(); $arr = [$user]; echo json_encode($arr);</code></td>
+</tr>
+<tr>
+<td><code>setcookie</code> 函数</td>
+<td>在设置 cookie 的值时，如果传入的是一个实现了 <code>__toString</code> 方法的对象，会触发该方法，用于将对象的值设置为 cookie 的值。</td>
+<td><code>php class CookieValue &#123; public function __toString() &#123; return &quot;cookie_value&quot;; &#125; &#125; $cookieValue = new CookieValue(); setcookie(&#39;test_cookie&#39;, $cookieValue);</code></td>
+</tr>
+<tr>
+<td>Twig 模板引擎输出对象</td>
+<td>在 Twig 模板中输出对象时，如果对象实现了 <code>__toString</code> 方法，会触发该方法，用于在模板中展示对象的字符串表示。</td>
+<td><code>php require_once &#39;vendor/autoload.php&#39;; class MyObject &#123; public function __toString() &#123; return &quot;My Object String&quot;; &#125; &#125; $loader = new \Twig\Loader\ArrayLoader([ &#39;index.html&#39; =&gt; &#39;Object value: &#123;&#123; myObject &#125;&#125;&#39; ]); $twig = new \Twig\Environment($loader); $myObject = new MyObject(); echo $twig-&gt;render(&#39;index.html&#39;, [&#39;myObject&#39; =&gt; $myObject]);</code></td>
+</tr>
+<tr>
+<td>Smarty 模板引擎使用对象</td>
+<td>在 Smarty 模板中使用对象时，如果对象实现了 <code>__toString</code> 方法，会触发该方法，用于在 Smarty 模板中展示对象的字符串表示。</td>
+<td><code>php require_once &#39;libs/Smarty.class.php&#39;; class SmartyObject &#123; public function __toString() &#123; return &quot;Smarty Object String&quot;; &#125; &#125; $smarty = new Smarty(); $smartyObject = new SmartyObject(); $smarty-&gt;assign(&#39;myObject&#39;, $smartyObject); $smarty-&gt;display(&#39;index.tpl&#39;);</code></td>
+</tr>
+</tbody></table>
+</li>
+<li><p><strong>人话：被强制为echo输出时候调用</strong></p>
+</li>
 <li></li>
-<li><strong>人话：被强制为echo输出时候调用</strong></li>
-<li></li>
-<li><strong>示例</strong>：</li>
+<li><p><strong>示例</strong>：</p>
+</li>
 </ul>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Book</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$title</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span>(<span class="params"><span class="variable">$title</span></span>) </span>&#123;</span><br><span class="line">        <span class="variable language_">$this</span>-&gt;title = <span class="variable">$title</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__toString</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;Book title: &quot;</span> . <span class="variable language_">$this</span>-&gt;title;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable">$book</span> = <span class="keyword">new</span> <span class="title class_">Book</span>(<span class="string">&#x27;PHP Programming&#x27;</span>);</span><br><span class="line"><span class="keyword">echo</span> <span class="variable">$book</span>; <span class="comment">// 输出: Book title: PHP Programming</span></span><br></pre></td></tr></table></figure>
 
@@ -259,18 +315,12 @@
 
 <h3 id="7-set"><a href="#7-set" class="headerlink" title="7. __set()"></a>7. <code>__set()</code></h3><ul>
 <li><strong>功能</strong>：当给一个对象中<strong>不存在或不可访问的属性赋值</strong>时自动调用，接收两个参数：属性名和属性值。</li>
-<li></li>
-<li></li>
-<li></li>
 <li><strong>示例</strong>：</li>
 </ul>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyObject</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="variable">$data</span> = [];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__set</span>(<span class="params"><span class="variable">$property</span>, <span class="variable">$value</span></span>) </span>&#123;</span><br><span class="line">        <span class="variable language_">$this</span>-&gt;data[<span class="variable">$property</span>] = <span class="variable">$value</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable">$obj</span> = <span class="keyword">new</span> <span class="title class_">MyObject</span>();</span><br><span class="line"><span class="variable">$obj</span>-&gt;newProperty = <span class="string">&#x27;new value&#x27;</span>; <span class="comment">// 会调用 __set() 方法</span></span><br></pre></td></tr></table></figure>
 
 <h3 id="8-isset"><a href="#8-isset" class="headerlink" title="8. __isset()"></a>8. <code>__isset()</code></h3><ul>
 <li><strong>功能</strong>：当使用 <strong><code>isset()</code> 函数检查一个对象中不存在或不可访问的属性</strong>时自动调用，接收一个参数：属性名。</li>
-<li></li>
-<li></li>
-<li></li>
 <li><strong>示例</strong>：</li>
 </ul>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyObject</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="variable">$data</span> = [];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__isset</span>(<span class="params"><span class="variable">$property</span></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">isset</span>(<span class="variable language_">$this</span>-&gt;data[<span class="variable">$property</span>]);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable">$obj</span> = <span class="keyword">new</span> <span class="title class_">MyObject</span>();</span><br><span class="line"><span class="title function_ invoke__">var_dump</span>(<span class="keyword">isset</span>(<span class="variable">$obj</span>-&gt;nonExistentProperty)); <span class="comment">// 会调用 __isset() 方法</span></span><br></pre></td></tr></table></figure>
@@ -289,6 +339,53 @@
 </ul>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyClass</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$value</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__clone</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="comment">// 可以在这里对克隆后的对象进行一些额外的处理</span></span><br><span class="line">        <span class="variable language_">$this</span>-&gt;value = <span class="variable language_">$this</span>-&gt;value * <span class="number">2</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable">$obj1</span> = <span class="keyword">new</span> <span class="title class_">MyClass</span>();</span><br><span class="line"><span class="variable">$obj1</span>-&gt;value = <span class="number">10</span>;</span><br><span class="line"><span class="variable">$obj2</span> = <span class="keyword">clone</span> <span class="variable">$obj1</span>;</span><br><span class="line"><span class="keyword">echo</span> <span class="variable">$obj2</span>-&gt;value; <span class="comment">// 输出: 20</span></span><br></pre></td></tr></table></figure>
 
+
+
+<h3 id="11-invoke"><a href="#11-invoke" class="headerlink" title="11.__invoke"></a>11.<code>__invoke</code></h3><p>一些会触发的函数：</p>
+<table>
+<thead>
+<tr>
+<th>return</th>
+<th>直接返回</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>直接将对象当作函数调用</td>
+<td>当代码中使用 <code>对象名()</code> 的形式调用对象时，会触发 <code>__invoke</code> 方法。这种方式是最直观的调用对象 <code>__invoke</code> 方法的形式，就像调用普通函数一样使用对象。</td>
+<td><code>php class CallableClass &#123; public function __invoke() &#123; echo &quot;触发 __invoke&quot;; &#125; &#125; $obj = new CallableClass(); $obj();</code></td>
+</tr>
+<tr>
+<td><code>call_user_func</code> 函数</td>
+<td>该函数用于调用一个回调函数，当传入的回调是一个对象时，会触发对象的 <code>__invoke</code> 方法。它可以动态地调用可调用对象，在需要灵活调用不同函数或对象的场景中很有用。</td>
+<td><code>php class CallableClass &#123; public function __invoke() &#123; echo &quot;触发 __invoke&quot;; &#125; &#125; $obj = new CallableClass(); call_user_func($obj);</code></td>
+</tr>
+<tr>
+<td><code>call_user_func_array</code> 函数</td>
+<td>与 <code>call_user_func</code> 类似，但可以传入数组形式的参数，当传入的回调是对象时，触发 <code>__invoke</code> 方法。适用于需要传递多个参数给可调用对象的情况。</td>
+<td><code>php class CallableClass &#123; public function __invoke($param) &#123; echo &quot;触发 __invoke，参数：$param&quot;; &#125; &#125; $obj = new CallableClass(); call_user_func_array($obj, [&#39;test&#39;]);</code></td>
+</tr>
+<tr>
+<td><code>array_map</code> 函数</td>
+<td>将回调函数作用到给定数组的每个元素上。当回调函数是一个可调用对象时，会触发该对象的 <code>__invoke</code> 方法，用于对数组元素进行批量处理。</td>
+<td><code>php class Multiplier &#123; public function __invoke($num) &#123; return $num * 2; &#125; &#125; $numbers = [1, 2, 3]; $multiplier = new Multiplier(); $result = array_map($multiplier, $numbers); print_r($result);</code></td>
+</tr>
+<tr>
+<td><code>array_filter</code> 函数</td>
+<td>用回调函数过滤数组中的元素。若回调函数是一个可调用对象，会触发其 <code>__invoke</code> 方法，用于筛选出符合条件的数组元素。</td>
+<td><code>php class EvenChecker &#123; public function __invoke($num) &#123; return $num % 2 === 0; &#125; &#125; $numbers = [1, 2, 3, 4]; $evenChecker = new EvenChecker(); $result = array_filter($numbers, $evenChecker); print_r($result);</code></td>
+</tr>
+<tr>
+<td><code>usort</code> 函数</td>
+<td>使用用户自定义的比较函数对数组进行排序。当比较函数是一个可调用对象时，会触发该对象的 <code>__invoke</code> 方法，用于实现自定义的排序规则。</td>
+<td><code>php class NumberComparator &#123; public function __invoke($a, $b) &#123; return $a - $b; &#125; &#125; $numbers = [3, 1, 2]; $comparator = new NumberComparator(); usort($numbers, $comparator); print_r($numbers);</code></td>
+</tr>
+<tr>
+<td><code>array_reduce</code> 函数</td>
+<td>用回调函数迭代地将数组简化为单一的值。若回调函数是可调用对象，会触发 <code>__invoke</code> 方法，用于对数组元素进行累积计算。</td>
+<td><code>php class Summer &#123; public function __invoke($carry, $item) &#123; return $carry + $item; &#125; &#125; $numbers = [1, 2, 3]; $summer = new Summer(); $result = array_reduce($numbers, $summer, 0); echo $result;</code></td>
+</tr>
+</tbody></table>
 
       
     </div>
@@ -312,7 +409,7 @@
         
           
           
-            <img data-src="/covers/辉夜02.jpg" data-sizes="auto" alt="[网鼎杯 2020 青龙组]AreUSerialz" class="lazyload">
+            <img data-src="/covers/十六夜咲夜 (4).jpg" data-sizes="auto" alt="[网鼎杯 2020 青龙组]AreUSerialz" class="lazyload">
           
         
         <a href="/2025/03/12/%E7%BD%91%E9%BC%8E%E6%9D%AF-2020-%E9%9D%92%E9%BE%99%E7%BB%84-AreUSerialz/"></a>
@@ -329,7 +426,7 @@
       
         
         
-          <img data-src="/covers/全员02.jpg" data-sizes="auto" alt="关于pop链的深入研究" class="lazyload">
+          <img data-src="https://github.com/Flight-star-cy/my-images/blob/main/guanx-fufumi.jpg" data-sizes="auto" alt="关于pop链的深入研究" class="lazyload">
         
       
       <a href="/2025/03/11/%E5%85%B3%E4%BA%8Epop%E9%93%BE%E7%9A%84%E6%B7%B1%E5%85%A5%E7%A0%94%E7%A9%B6/"></a>
@@ -362,7 +459,7 @@
   <h3 class="toc-title">Contents</h3>
   <div class="sidebar-toc-wrapper toc-div-class" >
       
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-construct"><span class="toc-number">1.</span> <span class="toc-text">1. __construct()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-destruct"><span class="toc-number">2.</span> <span class="toc-text">2. __destruct()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-toString"><span class="toc-number">3.</span> <span class="toc-text">3. __toString()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-call"><span class="toc-number">4.</span> <span class="toc-text">4. __call()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-callStatic"><span class="toc-number">5.</span> <span class="toc-text">5. __callStatic()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-get"><span class="toc-number">6.</span> <span class="toc-text">6. __get()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-set"><span class="toc-number">7.</span> <span class="toc-text">7. __set()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-isset"><span class="toc-number">8.</span> <span class="toc-text">8. __isset()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-unset"><span class="toc-number">9.</span> <span class="toc-text">9. __unset()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-clone"><span class="toc-number">10.</span> <span class="toc-text">10. __clone()</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-construct"><span class="toc-number">1.</span> <span class="toc-text">1. __construct()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-destruct"><span class="toc-number">2.</span> <span class="toc-text">2. __destruct()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-toString"><span class="toc-number">3.</span> <span class="toc-text">3. __toString()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%A6%E5%8F%91-toString-%E6%96%B9%E6%B3%95%E7%9A%84%E6%83%85%E5%86%B5"><span class="toc-number">4.</span> <span class="toc-text">触发 __toString 方法的情况</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-call"><span class="toc-number">5.</span> <span class="toc-text">4. __call()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-callStatic"><span class="toc-number">6.</span> <span class="toc-text">5. __callStatic()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-get"><span class="toc-number">7.</span> <span class="toc-text">6. __get()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-set"><span class="toc-number">8.</span> <span class="toc-text">7. __set()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-isset"><span class="toc-number">9.</span> <span class="toc-text">8. __isset()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-unset"><span class="toc-number">10.</span> <span class="toc-text">9. __unset()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-clone"><span class="toc-number">11.</span> <span class="toc-text">10. __clone()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#11-invoke"><span class="toc-number">12.</span> <span class="toc-text">11.__invoke</span></a></li></ol>
       
   </div>
 </div>
@@ -375,7 +472,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>Posts</div>
-    <div class="sidebar-state-number">35</div>
+    <div class="sidebar-state-number">44</div>
   </div>
   <div class="sidebar-state-category">
     <div>Categories</div>
@@ -453,10 +550,10 @@
     
       <div>
         <span class="icon-brush"></span>
-        27.7k
+        40.8k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        02:03
+        03:03
       </div>
     
     
@@ -486,7 +583,7 @@
   <h3 class="toc-title">Contents</h3>
   <div class="sidebar-toc-wrapper toc-div-class" >
       
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-construct"><span class="toc-number">1.</span> <span class="toc-text">1. __construct()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-destruct"><span class="toc-number">2.</span> <span class="toc-text">2. __destruct()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-toString"><span class="toc-number">3.</span> <span class="toc-text">3. __toString()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-call"><span class="toc-number">4.</span> <span class="toc-text">4. __call()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-callStatic"><span class="toc-number">5.</span> <span class="toc-text">5. __callStatic()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-get"><span class="toc-number">6.</span> <span class="toc-text">6. __get()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-set"><span class="toc-number">7.</span> <span class="toc-text">7. __set()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-isset"><span class="toc-number">8.</span> <span class="toc-text">8. __isset()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-unset"><span class="toc-number">9.</span> <span class="toc-text">9. __unset()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-clone"><span class="toc-number">10.</span> <span class="toc-text">10. __clone()</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-construct"><span class="toc-number">1.</span> <span class="toc-text">1. __construct()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-destruct"><span class="toc-number">2.</span> <span class="toc-text">2. __destruct()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-toString"><span class="toc-number">3.</span> <span class="toc-text">3. __toString()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%A6%E5%8F%91-toString-%E6%96%B9%E6%B3%95%E7%9A%84%E6%83%85%E5%86%B5"><span class="toc-number">4.</span> <span class="toc-text">触发 __toString 方法的情况</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-call"><span class="toc-number">5.</span> <span class="toc-text">4. __call()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-callStatic"><span class="toc-number">6.</span> <span class="toc-text">5. __callStatic()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-get"><span class="toc-number">7.</span> <span class="toc-text">6. __get()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-set"><span class="toc-number">8.</span> <span class="toc-text">7. __set()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-isset"><span class="toc-number">9.</span> <span class="toc-text">8. __isset()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-unset"><span class="toc-number">10.</span> <span class="toc-text">9. __unset()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-clone"><span class="toc-number">11.</span> <span class="toc-text">10. __clone()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#11-invoke"><span class="toc-number">12.</span> <span class="toc-text">11.__invoke</span></a></li></ol>
       
   </div>
 </div>
@@ -499,7 +596,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>Posts</div>
-    <div class="sidebar-state-number">35</div>
+    <div class="sidebar-state-number">44</div>
   </div>
   <div class="sidebar-state-category">
     <div>Categories</div>
