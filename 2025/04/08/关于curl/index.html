@@ -29,13 +29,15 @@
 
   
   
-    <meta property="og:type" content="article">
+    <meta name="description" content="之前就想总结了，搁到现在……curl 常用指令选项（cmd 中使用）在 Windows 的 cmd（命令提示符）中，curl 的用法与 Linux 终端类似，但需注意 引号闭合（避免特殊字符被转义）。以下是常用指令选项及示例： (1) 基本请求方法（-X）指定 HTTP 请求方法（如 GET、POST、PUT、DELETE 等）。示例： 1curl -X POST http:&#x2F;&#x2F;example.c">
+<meta property="og:type" content="article">
 <meta property="og:title" content="关于curl">
 <meta property="og:url" content="http://example.com/2025/04/08/%E5%85%B3%E4%BA%8Ecurl/index.html">
 <meta property="og:site_name" content="Flight-star&#39;blog">
+<meta property="og:description" content="之前就想总结了，搁到现在……curl 常用指令选项（cmd 中使用）在 Windows 的 cmd（命令提示符）中，curl 的用法与 Linux 终端类似，但需注意 引号闭合（避免特殊字符被转义）。以下是常用指令选项及示例： (1) 基本请求方法（-X）指定 HTTP 请求方法（如 GET、POST、PUT、DELETE 等）。示例： 1curl -X POST http:&#x2F;&#x2F;example.c">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2025-04-08T00:40:36.000Z">
-<meta property="article:modified_time" content="2025-04-08T00:40:36.234Z">
+<meta property="article:modified_time" content="2025-05-16T09:12:15.796Z">
 <meta property="article:author" content="Flight-star">
 <meta name="twitter:card" content="summary">
   
@@ -179,7 +181,7 @@
       <div class="article-date">
   <a href="/2025/04/08/%E5%85%B3%E4%BA%8Ecurl/" class="article-date-link" data-aos="zoom-in">
     <time datetime="2025-04-08T00:40:36.000Z" itemprop="datePublished">2025-04-08</time>
-    <time style="display: none;" id="post-update-time">2025-04-08</time>
+    <time style="display: none;" id="post-update-time">2025-05-16</time>
   </a>
 </div>
 
@@ -192,7 +194,25 @@
     <div class="e-content article-entry" itemprop="articleBody">
       
       
-        
+        <h1 id="之前就想总结了，搁到现在……"><a href="#之前就想总结了，搁到现在……" class="headerlink" title="之前就想总结了，搁到现在……"></a>之前就想总结了，搁到现在……</h1><h3 id="curl-常用指令选项（cmd-中使用）"><a href="#curl-常用指令选项（cmd-中使用）" class="headerlink" title="curl 常用指令选项（cmd 中使用）"></a><strong>curl 常用指令选项（cmd 中使用）</strong></h3><p>在 Windows 的 <code>cmd</code>（命令提示符）中，<code>curl</code> 的用法与 Linux 终端类似，但需注意 <strong>引号闭合</strong>（避免特殊字符被转义）。以下是常用指令选项及示例：</p>
+<h4 id="1-基本请求方法（-X）"><a href="#1-基本请求方法（-X）" class="headerlink" title="(1) 基本请求方法（-X）"></a><strong>(1) 基本请求方法（-X）</strong></h4><p>指定 HTTP 请求方法（如 GET、POST、PUT、DELETE 等）。<br><strong>示例</strong>：</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -X POST http://example.com/api  # 发送 POST 请求</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-添加请求头（-H-–header）"><a href="#2-添加请求头（-H-–header）" class="headerlink" title="(2) 添加请求头（-H&#x2F;–header）"></a><strong>(2) 添加请求头（-H&#x2F;–header）</strong></h4><p>通过 <code>-H</code> 或 <code>--header</code> 添加自定义请求头（如认证信息、内容类型等）。<br><strong>示例</strong>：</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -X GET http://example.com/data -H &quot;Content-<span class="built_in">Type</span>: application/json&quot; -H &quot;Authorization: Bearer mytoken123&quot;</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-发送-POST-数据（-d-–data）"><a href="#3-发送-POST-数据（-d-–data）" class="headerlink" title="(3) 发送 POST 数据（-d&#x2F;–data）"></a><strong>(3) 发送 POST 数据（-d&#x2F;–data）</strong></h4><p>通过 <code>-d</code> 或 <code>--data</code> 发送表单或 JSON 数据（适用于 POST&#x2F;PUT 等方法）。<br><strong>示例（表单数据）</strong>：</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -X POST http://example.com/login -d &quot;username=admin&amp;password=<span class="number">123456</span>&quot;</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例（JSON )数：</strong></p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -X POST http://example.com/api -H &quot;Content-<span class="built_in">Type</span>: application/json&quot; -d &quot;&#123;\&quot;name\&quot;:\&quot;张三\&quot;,\&quot;age\&quot;:<span class="number">25</span>&#125;&quot;</span><br></pre></td></tr></table></figure>
+
+<h4 id="4-输出到文件（-o-–output）"><a href="#4-输出到文件（-o-–output）" class="headerlink" title="(4) 输出到文件（-o&#x2F;–output）"></a><strong>(4) 输出到文件（-o&#x2F;–output）</strong></h4><p>通过 <code>-o</code> 将响应内容保存到指定文件（而不是直接输出到终端）。<br><strong>示例</strong>：</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -o result.txt http://example.com/report  # 将响应保存到 result.txt</span><br></pre></td></tr></table></figure>
+
+<h4 id="（5）-显示详细信息（-v-–verbose）"><a href="#（5）-显示详细信息（-v-–verbose）" class="headerlink" title="（5） 显示详细信息（-v&#x2F;–verbose）"></a>（5） 显示详细信息（-v&#x2F;–verbose）</h4><p>通过 <code>-v</code> 开启详细模式，显示请求和响应的完整过程（包括头信息、连接状态等）。<br><strong>示例</strong>：</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -v http://example.com  # 查看请求和响应的详细日志</span><br></pre></td></tr></table></figure>
+
       
     </div>
     <footer class="article-footer">
@@ -215,7 +235,7 @@
         
           
           
-            <img data-src="/covers/hezhao 02.jpg" data-sizes="auto" alt="TGctf" class="lazyload">
+            <img data-src="https://github.com/Flight-star-cy/my-images/blob/main/cover/reimu.jpg" data-sizes="auto" alt="TGctf" class="lazyload">
           
         
         <a href="/2025/04/12/TGctf/"></a>
@@ -232,7 +252,7 @@
       
         
         
-          <img data-src="https://github.com/Flight-star-cy/my-images/blob/main/%E8%BE%89%E5%A4%9C%E4%B8%8E%E5%A6%B9%E7%BA%A2.jpg" data-sizes="auto" alt="SQCTF" class="lazyload">
+          <img data-src="/covers/十六夜咲夜-cute.jpg" data-sizes="auto" alt="SQCTF" class="lazyload">
         
       
       <a href="/2025/04/07/SQCTF/"></a>
@@ -265,7 +285,7 @@
   <h3 class="toc-title">Contents</h3>
   <div class="sidebar-toc-wrapper toc-div-class" >
       
-        
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B9%8B%E5%89%8D%E5%B0%B1%E6%83%B3%E6%80%BB%E7%BB%93%E4%BA%86%EF%BC%8C%E6%90%81%E5%88%B0%E7%8E%B0%E5%9C%A8%E2%80%A6%E2%80%A6"><span class="toc-number">1.</span> <span class="toc-text">之前就想总结了，搁到现在……</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#curl-%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4%E9%80%89%E9%A1%B9%EF%BC%88cmd-%E4%B8%AD%E4%BD%BF%E7%94%A8%EF%BC%89"><span class="toc-number">1.0.1.</span> <span class="toc-text">curl 常用指令选项（cmd 中使用）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E5%9F%BA%E6%9C%AC%E8%AF%B7%E6%B1%82%E6%96%B9%E6%B3%95%EF%BC%88-X%EF%BC%89"><span class="toc-number">1.0.1.1.</span> <span class="toc-text">(1) 基本请求方法（-X）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E6%B7%BB%E5%8A%A0%E8%AF%B7%E6%B1%82%E5%A4%B4%EF%BC%88-H-%E2%80%93header%EF%BC%89"><span class="toc-number">1.0.1.2.</span> <span class="toc-text">(2) 添加请求头（-H&#x2F;–header）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E5%8F%91%E9%80%81-POST-%E6%95%B0%E6%8D%AE%EF%BC%88-d-%E2%80%93data%EF%BC%89"><span class="toc-number">1.0.1.3.</span> <span class="toc-text">(3) 发送 POST 数据（-d&#x2F;–data）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-%E8%BE%93%E5%87%BA%E5%88%B0%E6%96%87%E4%BB%B6%EF%BC%88-o-%E2%80%93output%EF%BC%89"><span class="toc-number">1.0.1.4.</span> <span class="toc-text">(4) 输出到文件（-o&#x2F;–output）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%EF%BC%885%EF%BC%89-%E6%98%BE%E7%A4%BA%E8%AF%A6%E7%BB%86%E4%BF%A1%E6%81%AF%EF%BC%88-v-%E2%80%93verbose%EF%BC%89"><span class="toc-number">1.0.1.5.</span> <span class="toc-text">（5） 显示详细信息（-v&#x2F;–verbose）</span></a></li></ol></li></ol></li></ol></li></ol>
       
   </div>
 </div>
@@ -278,7 +298,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>Posts</div>
-    <div class="sidebar-state-number">44</div>
+    <div class="sidebar-state-number">69</div>
   </div>
   <div class="sidebar-state-category">
     <div>Categories</div>
@@ -356,10 +376,10 @@
     
       <div>
         <span class="icon-brush"></span>
-        40.8k
+        65.1k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        03:03
+        05:01
       </div>
     
     
@@ -389,7 +409,7 @@
   <h3 class="toc-title">Contents</h3>
   <div class="sidebar-toc-wrapper toc-div-class" >
       
-        
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B9%8B%E5%89%8D%E5%B0%B1%E6%83%B3%E6%80%BB%E7%BB%93%E4%BA%86%EF%BC%8C%E6%90%81%E5%88%B0%E7%8E%B0%E5%9C%A8%E2%80%A6%E2%80%A6"><span class="toc-number">1.</span> <span class="toc-text">之前就想总结了，搁到现在……</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#curl-%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4%E9%80%89%E9%A1%B9%EF%BC%88cmd-%E4%B8%AD%E4%BD%BF%E7%94%A8%EF%BC%89"><span class="toc-number">1.0.1.</span> <span class="toc-text">curl 常用指令选项（cmd 中使用）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E5%9F%BA%E6%9C%AC%E8%AF%B7%E6%B1%82%E6%96%B9%E6%B3%95%EF%BC%88-X%EF%BC%89"><span class="toc-number">1.0.1.1.</span> <span class="toc-text">(1) 基本请求方法（-X）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E6%B7%BB%E5%8A%A0%E8%AF%B7%E6%B1%82%E5%A4%B4%EF%BC%88-H-%E2%80%93header%EF%BC%89"><span class="toc-number">1.0.1.2.</span> <span class="toc-text">(2) 添加请求头（-H&#x2F;–header）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E5%8F%91%E9%80%81-POST-%E6%95%B0%E6%8D%AE%EF%BC%88-d-%E2%80%93data%EF%BC%89"><span class="toc-number">1.0.1.3.</span> <span class="toc-text">(3) 发送 POST 数据（-d&#x2F;–data）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-%E8%BE%93%E5%87%BA%E5%88%B0%E6%96%87%E4%BB%B6%EF%BC%88-o-%E2%80%93output%EF%BC%89"><span class="toc-number">1.0.1.4.</span> <span class="toc-text">(4) 输出到文件（-o&#x2F;–output）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%EF%BC%885%EF%BC%89-%E6%98%BE%E7%A4%BA%E8%AF%A6%E7%BB%86%E4%BF%A1%E6%81%AF%EF%BC%88-v-%E2%80%93verbose%EF%BC%89"><span class="toc-number">1.0.1.5.</span> <span class="toc-text">（5） 显示详细信息（-v&#x2F;–verbose）</span></a></li></ol></li></ol></li></ol></li></ol>
       
   </div>
 </div>
@@ -402,7 +422,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>Posts</div>
-    <div class="sidebar-state-number">44</div>
+    <div class="sidebar-state-number">69</div>
   </div>
   <div class="sidebar-state-category">
     <div>Categories</div>

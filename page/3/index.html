@@ -178,34 +178,37 @@
   <div class="post-wrapper">
   <div class="post-wrap-left" data-aos="fade-up">
     
-      <a class="post-link" href="/2025/03/19/BSidesCF-2020-Had-a-bad-day/" aria-label="[BSidesCTF 2020]Had a bad day"></a>
+      <a class="post-link" href="/2025/05/01/iscc/" aria-label="iscc"></a>
     
     
     <div class="post-cover-left">
       
         
         
-          <img data-src="https://github.com/Flight-star-cy/my-images/blob/main/cover/reimu%20and%20marisa.jpg" data-sizes="auto" alt="[BSidesCTF 2020]Had a bad day" class="lazyload">
+          <img data-src="/covers/hezhao 02.jpg" data-sizes="auto" alt="iscc" class="lazyload">
         
       
     </div>
     <div class="post-info">
       <div class="post-meta">
-        <span><span class="icon-calendar"></span>2025-03-19</span>
-        <span><span class="icon-pencil"></span>295 words</span>
+        <span><span class="icon-calendar"></span>2025-05-01</span>
+        <span><span class="icon-pencil"></span>481 words</span>
         <span><span class="icon-clock"></span>1 min</span>
       </div>
-      <h2 class="post-title">[BSidesCTF 2020]Had a bad day</h2>
+      <h2 class="post-title">iscc</h2>
       <article class="post-article">
         
-          [BSidesCTF 2020]Had a bad day离成功就差一步！！！
-进入页面发现有读取url，于是尝试sql，失败了，但是我们发现好像存在文件读取漏洞：
+          150  纸嫁衣1.我们扫描网站：
+123456/docker-compose.yml/Dockerfile/includes//index.php/login//upload/upload.php
 
-我们尝试读取flag，index，失败了，那就使用伪协议试试看，发现成功了
+/Dockerfile
+/docker-compose.yml1234567version: &amp;#x27;3&amp;#x27;services:  paperwedding:    build: .    ports:      - &amp;quot;49102:80&amp;quot;    container_name: wedding
 
-但是不知道为什么我的无法翻译出来，后面也不知道怎么办了，看了一下wp
-这些base64居然是源码：
-1234567891011121314&amp;lt;?php				$file = $_GET[&amp;#x27;category&amp;#x27;]; 				if(isset($file))				&amp;#123;					if( strpos( $file, &amp;quot
+
+
+得到一些有用信息：基础镜像与依赖
+
+基础镜像: php:8.1-ap
         
       </article>
     </div>
@@ -218,90 +221,71 @@
   <div class="post-wrapper">
   <div class="post-wrap-right" data-aos="fade-up">
     
-      <a class="post-link" href="/2025/03/17/SSRF/" aria-label="SSRF"></a>
+      <a class="post-link" href="/2025/04/30/NSSCTF-%E7%AC%94%E8%AE%B0-WEB/" aria-label="NSSCTF_笔记_WEB"></a>
     
     
     <div class="post-cover-right">
       
         
         
-          <img data-src="https://github.com/Flight-star-cy/my-images/blob/main/%E8%BE%89%E5%A4%9C%E4%B8%8E%E5%A6%B9%E7%BA%A2.jpg" data-sizes="auto" alt="SSRF" class="lazyload">
+          <img data-src="https://github.com/Flight-star-cy/my-images/blob/main/togele.jpg" data-sizes="auto" alt="NSSCTF_笔记_WEB" class="lazyload">
         
       
     </div>
     <div class="post-info">
       <div class="post-meta">
-        <span><span class="icon-calendar"></span>2025-03-17</span>
-        <span><span class="icon-pencil"></span>577 words</span>
+        <span><span class="icon-calendar"></span>2025-04-30</span>
+        <span><span class="icon-pencil"></span>2.7k words</span>
+        <span><span class="icon-clock"></span>14 mins</span>
+      </div>
+      <h2 class="post-title">NSSCTF_笔记_WEB</h2>
+      <article class="post-article">
+        
+          [KPCTF 2024 决赛]Where is the flag考察点：
+1.测试XXE是否存在12345678910 &amp;lt;?phplibxml_disable_entity_loader(false);$data = file_get_contents(&amp;quot;php://input&amp;quot;);$xml = simplexml_load_string($data,&amp;#x27;SimpleXMLElement&amp;#x27;, LIBXML_NOENT);if (isset($xml-&amp;gt;username)) &amp;#123;    echo $xml-&amp;gt;username;&amp;#1
+        
+      </article>
+    </div>
+  </div>
+  </div>
+
+
+  
+  
+  <div class="post-wrapper">
+  <div class="post-wrap-left" data-aos="fade-up">
+    
+      <a class="post-link" href="/2025/04/28/NSSCTF-%E7%AC%94%E8%AE%B0_MISC/" aria-label="NSSCTF_笔记_MISc"></a>
+    
+    
+    <div class="post-cover-left">
+      
+        
+        
+          <img data-src="/covers/molisha.jpg" data-sizes="auto" alt="NSSCTF_笔记_MISc" class="lazyload">
+        
+      
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2025-04-28</span>
+        <span><span class="icon-pencil"></span>634 words</span>
         <span><span class="icon-clock"></span>2 mins</span>
       </div>
-      <h2 class="post-title">SSRF</h2>
+      <h2 class="post-title">NSSCTF_笔记_MISc</h2>
       <article class="post-article">
         
-          初步了解：看见哪些函数可以使用SSRF
-curl_exec()
-
-用途：发起 HTTP 请求（如 GET&amp;#x2F;POST）。
-
-风险：直接使用用户输入的 URL 参数，可能导致服务器访问任意目标。
-
-示例代码
-123$url = $_GET[&amp;#x27;url&amp;#x27;];$ch = curl_init($url);curl_exec($ch);
+           我准备试试看深入试试看misc，老是做web 太无聊了 
+[HNCTF 2022]calc_jail_beginner_level4.0.5 第一次接触NC
+1.得到地址，打开Kali1nc node5.anna.nssctf.cn 29086
 
 
-file_get_contents()
-
-用途：读取文件或 URL 内容。
-
-风险：若参数可控，可通过 file:// 协议读取本地文件，或通过 http:// 访问内网资源。
-
-示例代码
-1$content = file_get_cont
-        
-      </article>
-    </div>
-  </div>
-  </div>
-
-
-  
-  
-  <div class="post-wrapper">
-  <div class="post-wrap-left" data-aos="fade-up">
-    
-      <a class="post-link" href="/2025/03/17/%E7%BD%91%E9%BC%8E%E6%9D%AF-2018-Fakebook/" aria-label="[网鼎杯 2018]Fakebook"></a>
-    
-    
-    <div class="post-cover-left">
-      
-        
-        
-          <img data-src="https://github.com/Flight-star-cy/my-images/blob/main/%E7%BA%A2%E7%BE%8E%E9%93%83.jpg" data-sizes="auto" alt="[网鼎杯 2018]Fakebook" class="lazyload">
-        
-      
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2025-03-17</span>
-        <span><span class="icon-pencil"></span>968 words</span>
-        <span><span class="icon-clock"></span>4 mins</span>
-      </div>
-      <h2 class="post-title">[网鼎杯 2018]Fakebook</h2>
-      <article class="post-article">
-        
-          这道题，，，很有意思！！！！（sql + 反序列化）
-自己的方法：最开始：
-我们需要发现注入点，于是点入1，发现url发生变化：
-测试注入，发现是异或注入：（其实有更简单的方法）
-来用脚本爆破（自己的工具箱）：
-得出库：fakebook
-表：users
-列：no,username,passwd,data
-查列的内容，发现，在data里居然出现了反序列化？？
-然后我就不会做了，就去查wp了。
-别人的方法：居然不需要异或？？？
-利用绕过：（&amp;#x2F;**&amp;#x2F;）
-12345678910111213?no=-1/**/union/**/select/**/1,database(),3,4--
+即可进入输入页面
+2.考察Python沙盒逃逸（类似于SSTI）什么是python沙盒逃逸？
+在已知禁用的函数下进行恶意注入
+3.前面都类似SSTI类似SSTI需要一步一步调用OS模板来调用system函数
+不同的是我们需要用print来输出（我们已经进入py环境了）
+1print(().__class__.__mro__[1].__subcla
         
       </article>
     </div>
@@ -314,68 +298,64 @@ file_get_contents()
   <div class="post-wrapper">
   <div class="post-wrap-right" data-aos="fade-up">
     
-      <a class="post-link" href="/2025/03/16/pop%E9%93%BE%E5%AD%97%E7%AC%A6%E4%B8%B2%E9%80%83%E9%80%B8/" aria-label="pop链字符串逃逸"></a>
+      <a class="post-link" href="/2025/04/24/2025-04-24-%E5%86%8D%E6%8E%A2BUU/" aria-label="再探BUU"></a>
     
     
     <div class="post-cover-right">
       
         
         
-          <img data-src="/covers/红美铃.jpg" data-sizes="auto" alt="pop链字符串逃逸" class="lazyload">
+          <img data-src="https://github.com/Flight-star-cy/my-images/blob/main/togele.jpg" data-sizes="auto" alt="再探BUU" class="lazyload">
         
       
     </div>
     <div class="post-info">
       <div class="post-meta">
-        <span><span class="icon-calendar"></span>2025-03-16</span>
-        <span><span class="icon-pencil"></span>128 words</span>
-        <span><span class="icon-clock"></span>1 min</span>
-      </div>
-      <h2 class="post-title">pop链字符串逃逸</h2>
-      <article class="post-article">
-        
-          字符串逃逸1.初步了解：原理1：php里面的类的属性的值，在反序列化后，就不是之前定义的值了，而是我们反序列化输入的值了
-​        2：当你定义了足够多的字符数量，可是&amp;quot; &amp;quot;里面的字符数量又不够时候，就会自动读取后面的字符
-直到字符数量标
-
-明明v2是27个，却只有abc，于是就会把后面的一起读取
-
-呦呵，居然考到了
-
-        
-      </article>
-    </div>
-  </div>
-  </div>
-
-
-  
-  
-  <div class="post-wrapper">
-  <div class="post-wrap-left" data-aos="fade-up">
-    
-      <a class="post-link" href="/2025/03/16/BaseCTF2024%E6%96%B0%E7%94%9F%E8%B5%9B-%E6%88%91%E8%A6%81%E7%8E%A9%E5%8E%9F%E7%A5%9E/" aria-label="BaseCTF2024新生赛--我要玩原神"></a>
-    
-    
-    <div class="post-cover-left">
-      
-        
-        
-          <img data-src="https://github.com/Flight-star-cy/my-images/blob/main/shopping.jpg" data-sizes="auto" alt="BaseCTF2024新生赛--我要玩原神" class="lazyload">
-        
-      
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2025-03-16</span>
-        <span><span class="icon-pencil"></span>1.1k words</span>
+        <span><span class="icon-calendar"></span>2025-04-24</span>
+        <span><span class="icon-pencil"></span>1.4k words</span>
         <span><span class="icon-clock"></span>6 mins</span>
       </div>
-      <h2 class="post-title">BaseCTF2024新生赛--我要玩原神</h2>
+      <h2 class="post-title">再探BUU</h2>
       <article class="post-article">
         
-          这是什么b名字啊。。。源码：
-1234567891011121314151617181920212223242526272829303132333435 &amp;lt;?phphighlight_file(__FILE__);error_reporting(0);include &amp;#x27;flag.php&amp;#x27;;if (sizeof($_POST[&amp;#x27;len&amp;#x27;]) == sizeof($array)) &amp;#123;  ys_open($_GET[&amp;#x27;tip&amp;#x27;]);&amp;#125; else &amp;#123;  die(&amp;quot;错了！就你还想玩原神？❌❌❌&amp;qu
+          1.nmap考察点：namp -oG可写入文件，代码审计
+源码：
+12345678910111213141516171819&amp;lt;?phpif (isset($_SERVER[&amp;#x27;HTTP_X_FORWARDED_FOR&amp;#x27;])) &amp;#123;    $_SERVER[&amp;#x27;REMOTE_ADDR&amp;#x27;] = $_SERVER[&amp;#x27;HTTP_X_FORWARDED_FOR&amp;#x27;];&amp;#125;if(!isset($_GET[&amp;#x27;host&amp;#x27;])) &amp;#123;    highlight_file(__FILE__);&amp;#125; el
+        
+      </article>
+    </div>
+  </div>
+  </div>
+
+
+  
+  
+  <div class="post-wrapper">
+  <div class="post-wrap-left" data-aos="fade-up">
+    
+      <a class="post-link" href="/2025/04/24/%E5%86%8D%E6%8E%A2BUU/" aria-label="再探BUU"></a>
+    
+    
+    <div class="post-cover-left">
+      
+        
+        
+          <img data-src="/covers/ruime and sakuya.jpg" data-sizes="auto" alt="再探BUU" class="lazyload">
+        
+      
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2025-04-24</span>
+        <span><span class="icon-pencil"></span>6k words</span>
+        <span><span class="icon-clock"></span>28 mins</span>
+      </div>
+      <h2 class="post-title">再探BUU</h2>
+      <article class="post-article">
+        
+          1.nmap考察点：namp -oG可写入文件，代码审计
+源码：
+12345678910111213141516171819&amp;lt;?phpif (isset($_SERVER[&amp;#x27;HTTP_X_FORWARDED_FOR&amp;#x27;])) &amp;#123;    $_SERVER[&amp;#x27;REMOTE_ADDR&amp;#x27;] = $_SERVER[&amp;#x27;HTTP_X_FORWARDED_FOR&amp;#x27;];&amp;#125;if(!isset($_GET[&amp;#x27;host&amp;#x27;])) &amp;#123;    highlight_file(__FILE__);&amp;#125; el
         
       </article>
     </div>
@@ -388,43 +368,27 @@ file_get_contents()
   <div class="post-wrapper">
   <div class="post-wrap-right" data-aos="fade-up">
     
-      <a class="post-link" href="/2025/03/15/JAVA/" aria-label="JAVA"></a>
+      <a class="post-link" href="/2025/04/18/%E5%86%85%E5%AD%98%E9%A9%AC/" aria-label="内存马"></a>
     
     
     <div class="post-cover-right">
       
         
         
-          <img data-src="/covers/reimu and marisa.jpg" data-sizes="auto" alt="JAVA" class="lazyload">
+          <img data-src="https://github.com/Flight-star-cy/my-images/blob/main/sakuya&#39;dagger.jpg" data-sizes="auto" alt="内存马" class="lazyload">
         
       
     </div>
     <div class="post-info">
       <div class="post-meta">
-        <span><span class="icon-calendar"></span>2025-03-15</span>
-        <span><span class="icon-pencil"></span>490 words</span>
+        <span><span class="icon-calendar"></span>2025-04-18</span>
+        <span><span class="icon-pencil"></span>0 words</span>
         <span><span class="icon-clock"></span>1 min</span>
       </div>
-      <h2 class="post-title">JAVA</h2>
+      <h2 class="post-title">内存马</h2>
       <article class="post-article">
         
-          [RoarCTF 2019]Easy Java
-一个登入页面？试试看sql？发现不行
-完全不会！！！！
-查了才知道是类似文件读取漏洞
-1.打开help，提醒我们
-1java.io.FileNotFoundException:&amp;#123;help.docx&amp;#125;
-
-那我们输入
-1http://9d67dba8-dd72-4813-ae85-2fe82f0224d5.node5.buuoj.cn:81/help.docx
-
-
-得到一个假文件。。。。只能找找其他的线索了
-我们可以发现在打开help时候会有
-1/Download?filename=help.docx
-
-
-我们可能可以读取配置文件
+          
         
       </article>
     </div>
@@ -437,109 +401,31 @@ file_get_contents()
   <div class="post-wrapper">
   <div class="post-wrap-left" data-aos="fade-up">
     
-      <a class="post-link" href="/2025/03/12/%E5%85%B3%E4%BA%8E%E4%BC%AA%E5%8D%8F%E8%AE%AE%E7%9A%84%E7%A0%94%E7%A9%B6/" aria-label="关于伪协议的研究"></a>
+      <a class="post-link" href="/2025/04/13/wp/" aria-label=""></a>
     
     
     <div class="post-cover-left">
       
         
         
-          <img data-src="https://github.com/Flight-star-cy/my-images/blob/main/shopping.jpg" data-sizes="auto" alt="关于伪协议的研究" class="lazyload">
+          <img data-src="/covers/辉夜02.jpg" data-sizes="auto" alt="" class="lazyload">
         
       
     </div>
     <div class="post-info">
       <div class="post-meta">
-        <span><span class="icon-calendar"></span>2025-03-12</span>
-        <span><span class="icon-pencil"></span>1.6k words</span>
-        <span><span class="icon-clock"></span>7 mins</span>
-      </div>
-      <h2 class="post-title">关于伪协议的研究</h2>
-      <article class="post-article">
-        
-          伪协议的研究与利用伪代码的大小写是不影响伪代码的作用的！！！
-输入代码类：php://input
-用途：读取 HTTP 请求的原始 POST 数据流，直接执行代码。
-条件：allow_url_include=On（默认关闭）。
-CTF 应用：绕过对 $_POST 的过滤，直接传递 PHP 代码。
-（可以直接传递post的值，那些针对post的过滤就无用了）
-
-绕过原理：
-**$_POST**：在 PHP 中，$_POST 是一个超全局变量，用于接收通过 HTTP POST 方法提交的数据。当客户端以 application/x-www-form-urlencoded 或 multipart/f
-        
-      </article>
-    </div>
-  </div>
-  </div>
-
-
-  
-  
-  <div class="post-wrapper">
-  <div class="post-wrap-right" data-aos="fade-up">
-    
-      <a class="post-link" href="/2025/03/12/%E7%BD%91%E9%BC%8E%E6%9D%AF-2020-%E9%9D%92%E9%BE%99%E7%BB%84-AreUSerialz/" aria-label="[网鼎杯 2020 青龙组]AreUSerialz"></a>
-    
-    
-    <div class="post-cover-right">
-      
-        
-        
-          <img data-src="https://github.com/Flight-star-cy/my-images/blob/main/%E5%8D%81%E5%85%AD%E5%A4%9C%E5%92%B2%E5%A4%9C%20(4).jpg;" data-sizes="auto" alt="[网鼎杯 2020 青龙组]AreUSerialz" class="lazyload">
-        
-      
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2025-03-12</span>
-        <span><span class="icon-pencil"></span>473 words</span>
-        <span><span class="icon-clock"></span>2 mins</span>
-      </div>
-      <h2 class="post-title">[网鼎杯 2020 青龙组]AreUSerialz</h2>
-      <article class="post-article">
-        
-          [网鼎杯 2020 青龙组]AreUSerialz（ez_反序列化漏洞）
-123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081&amp;lt;?phpinclude(&amp;quot;flag.php&amp;quot;);highlight_file(__FILE__);class FileHandler &amp;#123;    protected $op;    p
-        
-      </article>
-    </div>
-  </div>
-  </div>
-
-
-  
-  
-  <div class="post-wrapper">
-  <div class="post-wrap-left" data-aos="fade-up">
-    
-      <a class="post-link" href="/2025/03/11/%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E4%B8%AD%E5%B8%B8%E8%A7%81%E7%9A%84%E9%AD%94%E6%9C%AF%E6%96%B9%E7%A8%8B/" aria-label=""></a>
-    
-    
-    <div class="post-cover-left">
-      
-        
-        
-          <img data-src="/covers/sakuya&#39;dagger.jpg" data-sizes="auto" alt="" class="lazyload">
-        
-      
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2025-03-11</span>
-        <span><span class="icon-pencil"></span>2.3k words</span>
-        <span><span class="icon-clock"></span>10 mins</span>
+        <span><span class="icon-calendar"></span>2025-04-13</span>
+        <span><span class="icon-pencil"></span>241 words</span>
+        <span><span class="icon-clock"></span>1 min</span>
       </div>
       <h2 class="post-title"></h2>
       <article class="post-article">
         
-          1. __construct()
-功能：构造函数，在创建对象时自动调用，用于初始化对象的属性。
+          浅红欺醉粉，肯信有江梅nc 靶机 ，输入
+123lscat flag
 
-人话：类被使用就会被调用
-
-示例：
-
-123456789101112class Person &amp;#123;    public $name;    public $age;    public function __construct($name, $age) &amp;#123;        $this-&amp;gt;name = $name;        $this-&amp;gt;age = $age;    &amp;#125;&amp;#125;$person = new Person(&amp;#x27;John&amp;#x27;,
+领取你的小猫娘简单栈溢出，输入搭配覆盖v5就行了
+12345678from pwn import*                                                                                                        context(os=&amp;#x27;linux&amp;#x27;,arch=&amp;#x27;amd64&amp;#x27;,log_level=&amp;#x27;debug&amp;#x27;)p=remote(&amp;quot;challenge.qsnctf
         
       </article>
     </div>
@@ -552,31 +438,106 @@ CTF 应用：绕过对 $_POST 的过滤，直接传递 PHP 代码。
   <div class="post-wrapper">
   <div class="post-wrap-right" data-aos="fade-up">
     
-      <a class="post-link" href="/2025/03/11/%E5%85%B3%E4%BA%8Epop%E9%93%BE%E7%9A%84%E6%B7%B1%E5%85%A5%E7%A0%94%E7%A9%B6/" aria-label="关于pop链的深入研究"></a>
+      <a class="post-link" href="/2025/04/12/TGctf/" aria-label="TGctf"></a>
     
     
     <div class="post-cover-right">
       
         
         
-          <img data-src="https://github.com/Flight-star-cy/my-images/blob/main/sakuya&#39;dagger.jpg" data-sizes="auto" alt="关于pop链的深入研究" class="lazyload">
+          <img data-src="https://github.com/Flight-star-cy/my-images/blob/main/cover/sakuya%20looking%20back.jpg" data-sizes="auto" alt="TGctf" class="lazyload">
         
       
     </div>
     <div class="post-info">
       <div class="post-meta">
-        <span><span class="icon-calendar"></span>2025-03-11</span>
-        <span><span class="icon-pencil"></span>5.6k words</span>
-        <span><span class="icon-clock"></span>26 mins</span>
+        <span><span class="icon-calendar"></span>2025-04-12</span>
+        <span><span class="icon-pencil"></span>1.4k words</span>
+        <span><span class="icon-clock"></span>6 mins</span>
       </div>
-      <h2 class="post-title">关于pop链的深入研究</h2>
+      <h2 class="post-title">TGctf</h2>
       <article class="post-article">
         
-          关于POP链 (Property Oriented Programming Chain）：pop链漏洞通常是在用在有反序列化的程序当中，由于运用了大量的魔术方程，所以可能会出现一些纰漏，导致存在原生函数或者是更加明显的执行函数的被利用。（RCE，数据泄漏等等）
-关于原生函数：常见的原生函数：1`array_walk()`、`system()`、`eval()`、`unserialize()、exec()等
+          web签到：考察点:无参数构造源码：1234567891011$tgctf2025=$_GET[&amp;#x27;tgctf2025&amp;#x27;];if(!preg_match(&amp;quot;/0|1|[3-9]|\~|\`|\@|\#|\\$|\%|\^|\&amp;amp;|\*|\（|\）|\-|\=|\+|\&amp;#123;|\[|\]|\&amp;#125;|\:|\&amp;#x27;|\&amp;quot;|\,|\&amp;lt;|\.|\&amp;gt;|\/|\?|\\\\/i&amp;quot;, $tgctf2025))&amp;#123;    //hint：你可以对着键盘一个一个看，然后在没过滤的符号上用记号笔画一下（bushi    ev
+        
+      </article>
+    </div>
+  </div>
+  </div>
 
-怎么利用原生函数？：system，eval，exec这几个可以直接或者半直接执行函数的就不仔细说了，为什么array_walk也会被利用呢？
-array_walk：12345678arra
+
+  
+  
+  <div class="post-wrapper">
+  <div class="post-wrap-left" data-aos="fade-up">
+    
+      <a class="post-link" href="/2025/04/08/%E5%85%B3%E4%BA%8Ecurl/" aria-label="关于curl"></a>
+    
+    
+    <div class="post-cover-left">
+      
+        
+        
+          <img data-src="https://github.com/Flight-star-cy/my-images/blob/main/%E5%8D%81%E5%85%AD%E5%A4%9C%E5%92%B2%E5%A4%9C%20(3).jpg;" data-sizes="auto" alt="关于curl" class="lazyload">
+        
+      
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2025-04-08</span>
+        <span><span class="icon-pencil"></span>358 words</span>
+        <span><span class="icon-clock"></span>1 min</span>
+      </div>
+      <h2 class="post-title">关于curl</h2>
+      <article class="post-article">
+        
+          之前就想总结了，搁到现在……curl 常用指令选项（cmd 中使用）在 Windows 的 cmd（命令提示符）中，curl 的用法与 Linux 终端类似，但需注意 引号闭合（避免特殊字符被转义）。以下是常用指令选项及示例：
+(1) 基本请求方法（-X）指定 HTTP 请求方法（如 GET、POST、PUT、DELETE 等）。示例：
+1curl -X POST http://example.com/api  # 发送 POST 请求
+
+(2) 添加请求头（-H&amp;#x2F;–header）通过 -H 或 --header 添加自定义请求头（如认证信息、内容类型等）。示例：
+1curl -X 
+        
+      </article>
+    </div>
+  </div>
+  </div>
+
+
+  
+  
+  <div class="post-wrapper">
+  <div class="post-wrap-right" data-aos="fade-up">
+    
+      <a class="post-link" href="/2025/04/07/SQCTF/" aria-label="SQCTF"></a>
+    
+    
+    <div class="post-cover-right">
+      
+        
+        
+          <img data-src="/covers/reimu.jpg" data-sizes="auto" alt="SQCTF" class="lazyload">
+        
+      
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2025-04-07</span>
+        <span><span class="icon-pencil"></span>4.6k words</span>
+        <span><span class="icon-clock"></span>22 mins</span>
+      </div>
+      <h2 class="post-title">SQCTF</h2>
+      <article class="post-article">
+        
+          Flitar战队write-up战队信息：名称：Flitar排名：220WEBezGame奶奶滴，玩了四次才过
+baby include考察点：日志注入，文件读取这是我第一次接触日志注入，希望下次接触新事物也能做出来！我的步骤：1.测试能不能读取&amp;#x2F;etc&amp;#x2F;passwd发现可以，存在注入漏洞！
+
+2.尝试遍历..&amp;#x2F;：发现可以，但是没什么用
+3.尝试伪协议：1.尝试直接读取filter：被禁了，查询了好久，发现我们可以尝试大写
+大小写不会影响伪协议
+
+2.尝试读取flag.php可恶啊！！被这个坑了一天时间，一直在想怎么绕过后缀，搜了一辈子，尝试了
+1234$%[]@
         
       </article>
     </div>
@@ -589,7 +550,7 @@ array_walk：12345678arra
 
   <nav id="page-nav" data-aos="fade-up">
     
-    <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/4/">Next &raquo;</a>
+    <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/4/">Next &raquo;</a>
   </nav>
 
 
@@ -607,7 +568,7 @@ array_walk：12345678arra
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>Posts</div>
-    <div class="sidebar-state-number">44</div>
+    <div class="sidebar-state-number">69</div>
   </div>
   <div class="sidebar-state-category">
     <div>Categories</div>
@@ -680,10 +641,10 @@ array_walk：12345678arra
     
       <div>
         <span class="icon-brush"></span>
-        40.8k
+        65.1k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        03:03
+        05:01
       </div>
     
     
@@ -717,7 +678,7 @@ array_walk：12345678arra
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>Posts</div>
-    <div class="sidebar-state-number">44</div>
+    <div class="sidebar-state-number">69</div>
   </div>
   <div class="sidebar-state-category">
     <div>Categories</div>

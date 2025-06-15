@@ -1,0 +1,907 @@
+
+  <!DOCTYPE html>
+  <html lang="en"  >
+  <head>
+  <meta charset="utf-8">
+  
+
+  
+
+  
+
+  
+  <script>window.icon_font = '4552607_tq6stt6tcg';window.clipboard_tips = {"success":"复制成功(*^▽^*)","fail":"复制失败 (ﾟ⊿ﾟ)ﾂ","copyright":{"enable":false,"count":50,"content":"本文版权：本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！"}};</script>
+  
+  
+  <title>
+    
+    Flight-star&#39;blog
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin><link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7CNoto%20Serif%20SC:400,400italic,700,700italic&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7CNoto%20Serif%20SC:400,400italic,700,700italic&display=swap" media="print" onload="this.media&#x3D;&#39;all&#39;">
+  
+    <link rel="preload" href="//at.alicdn.com/t/c/font_4552607_tq6stt6tcg.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  
+  
+    
+<link rel="stylesheet" href="/css/loader.css">
+
+  
+  
+    <meta property="og:type" content="website">
+<meta property="og:title" content="Flight-star&#39;blog">
+<meta property="og:url" content="http://example.com/page/6/index.html">
+<meta property="og:site_name" content="Flight-star&#39;blog">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/images/banner.webp">
+<meta property="article:author" content="Flight-star">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/images/banner.webp">
+  
+  
+    <link rel="alternate" href="/atom.xml" title="Flight-star'blog" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/images/favicon.ico">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <link rel="preload" href="https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  
+  
+  
+  
+    
+<script src="https://npm.webcache.cn/pace-js@1.2.4/pace.min.js"></script>
+
+  
+  
+    
+<link rel="stylesheet" href="https://npm.webcache.cn/@reimujs/aos@0.0.1/dist/aos.css">
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+  <body>
+    
+  <div id='loader'>
+    <div class="loading-left-bg loading-bg"></div>
+    <div class="loading-right-bg loading-bg"></div>
+    <div class="spinner-box">
+      <div class="loading-taichi">
+        <svg width="150" height="150" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="https://www.w3.org/2000/svg" shape-rendering="geometricPrecision">
+          <path d="M303.5 432A80 80 0 0 1 291.5 592A80 80 0 0 1 303.5 432z" fill="#ff5252" />
+          <path d="M512 65A447 447 0 0 1 512 959L512 929A417 417 0 0 0 512 95A417 417 0 0 0 512 929L512 959A447 447 0 0 1 512 65z 
+         M512 95A417 417 0 0 1 929 512A208.5 208.5 0 0 1 720.5 720.5L720.5 592A80 80 0 0 0 720.5 432A80 80 0 0 0 720.5 592L720.5 720.5A208.5 208.5 0 0 1 512 512A208.5 208.5 0 0 0 303.5 303.5A208.5 208.5 0 0 0 95 512A417 417 0 0 1 512 95z" fill="#ff5252" />
+        </svg>
+      </div>
+      <div class="loading-word">少女祈祷中...</div>
+    </div>
+  </div>
+  </div>
+  <script>
+    var time = null;
+    var startLoading = () => {
+      time = Date.now();
+      document.getElementById('loader').classList.remove("loading");
+    }
+    var endLoading = () => {
+      if (!time) {
+        document.body.style.overflow = 'auto';
+        document.getElementById('loader').classList.add("loading");
+      } else {
+        if (Date.now() - time > 500) {
+          time = null;
+          document.body.style.overflow = 'auto';
+          document.getElementById('loader').classList.add("loading");
+        } else {
+          setTimeout(endLoading, 500 - (Date.now() - time));
+          time = null;
+        }
+      }
+    }
+    window.addEventListener('DOMContentLoaded', endLoading);
+    document.getElementById('loader').addEventListener('click', endLoading);
+  </script>
+
+<div id="copy-tooltip" style="pointer-events: none; opacity: 0; transition: all 0.2s ease; position: fixed;top: 50%;left: 50%;z-index: 999;transform: translate(-50%, -50%);color: white;background: rgba(0, 0, 0, 0.5);padding: 10px 15px;border-radius: 10px;">
+</div>
+
+
+    <div id="container">
+      <div id="wrap">
+        <div id="header-nav">
+  <nav id="main-nav">
+    
+      <span class="main-nav-link-wrap">
+        <div class="main-nav-icon icon-taichi"></div>
+        <a class="main-nav-link" href="/">Home</a>
+      </span>
+    
+      <span class="main-nav-link-wrap">
+        <div class="main-nav-icon icon-taichi"></div>
+        <a class="main-nav-link" href="/archives">Archives</a>
+      </span>
+    
+      <span class="main-nav-link-wrap">
+        <div class="main-nav-icon icon-taichi"></div>
+        <a class="main-nav-link" href="/about">About</a>
+      </span>
+    
+      <span class="main-nav-link-wrap">
+        <div class="main-nav-icon icon-taichi"></div>
+        <a class="main-nav-link" href="/friend">Friend</a>
+      </span>
+    
+    <a id="main-nav-toggle" class="nav-icon"></a>
+  </nav>
+  <nav id="sub-nav">
+    
+      <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed" target="_blank"></a>
+    
+    
+    
+  </nav>
+</div>
+<header id="header">
+  
+    
+      <img fetchpriority="high" src="/images/banner.webp" alt="">
+    
+  
+  <div id="header-outer">
+    <div id="header-title">
+      
+        
+        
+          <a href="/" id="logo">
+            <h1 data-aos="slide-up">Flight-star&#39;blog</h1>
+          </a>
+        
+      
+      
+        
+        <h2 id="subtitle-wrap" data-aos="slide-down">
+          
+        </h2>
+      
+    </div>
+  </div>
+</header>
+
+        <div id="content">
+          
+          <section id="main">
+  
+  
+  <div class="post-wrapper">
+  <div class="post-wrap-left" data-aos="fade-up">
+    
+      <a class="post-link" href="/2025/03/15/JAVA/" aria-label="JAVA"></a>
+    
+    
+    <div class="post-cover-left">
+      
+        
+        
+          <img data-src="/covers/reimu.jpg" data-sizes="auto" alt="JAVA" class="lazyload">
+        
+      
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2025-03-15</span>
+        <span><span class="icon-pencil"></span>490 words</span>
+        <span><span class="icon-clock"></span>1 min</span>
+      </div>
+      <h2 class="post-title">JAVA</h2>
+      <article class="post-article">
+        
+          [RoarCTF 2019]Easy Java
+一个登入页面？试试看sql？发现不行
+完全不会！！！！
+查了才知道是类似文件读取漏洞
+1.打开help，提醒我们
+1java.io.FileNotFoundException:&amp;#123;help.docx&amp;#125;
+
+那我们输入
+1http://9d67dba8-dd72-4813-ae85-2fe82f0224d5.node5.buuoj.cn:81/help.docx
+
+
+得到一个假文件。。。。只能找找其他的线索了
+我们可以发现在打开help时候会有
+1/Download?filename=help.docx
+
+
+我们可能可以读取配置文件
+        
+      </article>
+    </div>
+  </div>
+  </div>
+
+
+  
+  
+  <div class="post-wrapper">
+  <div class="post-wrap-right" data-aos="fade-up">
+    
+      <a class="post-link" href="/2025/03/12/%E5%85%B3%E4%BA%8E%E4%BC%AA%E5%8D%8F%E8%AE%AE%E7%9A%84%E7%A0%94%E7%A9%B6/" aria-label="关于伪协议的研究"></a>
+    
+    
+    <div class="post-cover-right">
+      
+        
+        
+          <img data-src="https://github.com/Flight-star-cy/my-images/blob/main/togele.jpg" data-sizes="auto" alt="关于伪协议的研究" class="lazyload">
+        
+      
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2025-03-12</span>
+        <span><span class="icon-pencil"></span>1.6k words</span>
+        <span><span class="icon-clock"></span>7 mins</span>
+      </div>
+      <h2 class="post-title">关于伪协议的研究</h2>
+      <article class="post-article">
+        
+          伪协议的研究与利用伪代码的大小写是不影响伪代码的作用的！！！
+输入代码类：php://input
+用途：读取 HTTP 请求的原始 POST 数据流，直接执行代码。
+条件：allow_url_include=On（默认关闭）。
+CTF 应用：绕过对 $_POST 的过滤，直接传递 PHP 代码。
+（可以直接传递post的值，那些针对post的过滤就无用了）
+
+绕过原理：
+**$_POST**：在 PHP 中，$_POST 是一个超全局变量，用于接收通过 HTTP POST 方法提交的数据。当客户端以 application/x-www-form-urlencoded 或 multipart/f
+        
+      </article>
+    </div>
+  </div>
+  </div>
+
+
+  
+  
+  <div class="post-wrapper">
+  <div class="post-wrap-left" data-aos="fade-up">
+    
+      <a class="post-link" href="/2025/03/12/%E7%BD%91%E9%BC%8E%E6%9D%AF-2020-%E9%9D%92%E9%BE%99%E7%BB%84-AreUSerialz/" aria-label="[网鼎杯 2020 青龙组]AreUSerialz"></a>
+    
+    
+    <div class="post-cover-left">
+      
+        
+        
+          <img data-src="https://github.com/Flight-star-cy/my-images/blob/main/guanx-fufumi.jpg" data-sizes="auto" alt="[网鼎杯 2020 青龙组]AreUSerialz" class="lazyload">
+        
+      
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2025-03-12</span>
+        <span><span class="icon-pencil"></span>473 words</span>
+        <span><span class="icon-clock"></span>2 mins</span>
+      </div>
+      <h2 class="post-title">[网鼎杯 2020 青龙组]AreUSerialz</h2>
+      <article class="post-article">
+        
+          [网鼎杯 2020 青龙组]AreUSerialz（ez_反序列化漏洞）
+123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081&amp;lt;?phpinclude(&amp;quot;flag.php&amp;quot;);highlight_file(__FILE__);class FileHandler &amp;#123;    protected $op;    p
+        
+      </article>
+    </div>
+  </div>
+  </div>
+
+
+  
+  
+  <div class="post-wrapper">
+  <div class="post-wrap-right" data-aos="fade-up">
+    
+      <a class="post-link" href="/2025/03/11/%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E4%B8%AD%E5%B8%B8%E8%A7%81%E7%9A%84%E9%AD%94%E6%9C%AF%E6%96%B9%E7%A8%8B/" aria-label=""></a>
+    
+    
+    <div class="post-cover-right">
+      
+        
+        
+          <img data-src="https://github.com/Flight-star-cy/my-images/blob/main/%E5%8D%81%E5%85%AD%E5%A4%9C%E5%92%B2%E5%A4%9C%20(4).jpg;" data-sizes="auto" alt="" class="lazyload">
+        
+      
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2025-03-11</span>
+        <span><span class="icon-pencil"></span>2.3k words</span>
+        <span><span class="icon-clock"></span>10 mins</span>
+      </div>
+      <h2 class="post-title"></h2>
+      <article class="post-article">
+        
+          1. __construct()
+功能：构造函数，在创建对象时自动调用，用于初始化对象的属性。
+
+人话：类被使用就会被调用
+
+示例：
+
+123456789101112class Person &amp;#123;    public $name;    public $age;    public function __construct($name, $age) &amp;#123;        $this-&amp;gt;name = $name;        $this-&amp;gt;age = $age;    &amp;#125;&amp;#125;$person = new Person(&amp;#x27;John&amp;#x27;,
+        
+      </article>
+    </div>
+  </div>
+  </div>
+
+
+  
+  
+  <div class="post-wrapper">
+  <div class="post-wrap-left" data-aos="fade-up">
+    
+      <a class="post-link" href="/2025/03/11/%E5%85%B3%E4%BA%8Epop%E9%93%BE%E7%9A%84%E6%B7%B1%E5%85%A5%E7%A0%94%E7%A9%B6/" aria-label="关于pop链的深入研究"></a>
+    
+    
+    <div class="post-cover-left">
+      
+        
+        
+          <img data-src="https://github.com/Flight-star-cy/my-images/blob/main/cover/reimu%20and%20marisa.jpg" data-sizes="auto" alt="关于pop链的深入研究" class="lazyload">
+        
+      
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2025-03-11</span>
+        <span><span class="icon-pencil"></span>5.6k words</span>
+        <span><span class="icon-clock"></span>26 mins</span>
+      </div>
+      <h2 class="post-title">关于pop链的深入研究</h2>
+      <article class="post-article">
+        
+          关于POP链 (Property Oriented Programming Chain）：pop链漏洞通常是在用在有反序列化的程序当中，由于运用了大量的魔术方程，所以可能会出现一些纰漏，导致存在原生函数或者是更加明显的执行函数的被利用。（RCE，数据泄漏等等）
+关于原生函数：常见的原生函数：1`array_walk()`、`system()`、`eval()`、`unserialize()、exec()等
+
+怎么利用原生函数？：system，eval，exec这几个可以直接或者半直接执行函数的就不仔细说了，为什么array_walk也会被利用呢？
+array_walk：12345678arra
+        
+      </article>
+    </div>
+  </div>
+  </div>
+
+
+  
+  
+  <div class="post-wrapper">
+  <div class="post-wrap-right" data-aos="fade-up">
+    
+      <a class="post-link" href="/2025/02/27/Easy%20MD5%E7%BB%95%E8%BF%87/" aria-label=""></a>
+    
+    
+    <div class="post-cover-right">
+      
+        
+        
+          <img data-src="https://github.com/Flight-star-cy/my-images/blob/main/%E8%BE%89%E5%A4%9C02.jpg" data-sizes="auto" alt="" class="lazyload">
+        
+      
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2025-02-27</span>
+        <span><span class="icon-pencil"></span>628 words</span>
+        <span><span class="icon-clock"></span>2 mins</span>
+      </div>
+      <h2 class="post-title"></h2>
+      <article class="post-article">
+        
+          Easy MD5绕过（本质应该还是sql注入）
+[BJDCTF2020]Easy MD5：前言：什么是MD5？一种加密方法，被发现存在碰撞漏洞后便不再使用
+加密原理如下：
+12md5(&amp;#x27;hello&amp;#x27;, true)md5(&amp;#x27;hello&amp;#x27;, false)
+
+
+并且会对’   ‘的内容优先做出如下做法：
+把字符串数字转化为数字：’1’&amp;#x3D;&amp;#x3D;&amp;#x3D;1
+会优先计算：’1+1’&amp;#x3D;&amp;#x3D;&amp;#x3D;’2’
+更加仔细的请访问：[buuctf web BJDCTF2020]Easy MD5-CSDN博客
+怎么解决强&amp;#x2F;弱运算
+        
+      </article>
+    </div>
+  </div>
+  </div>
+
+
+  
+  
+  <div class="post-wrapper">
+  <div class="post-wrap-left" data-aos="fade-up">
+    
+      <a class="post-link" href="/2025/02/27/cookie%E6%AC%BA%E9%AA%97/" aria-label=""></a>
+    
+    
+    <div class="post-cover-left">
+      
+        
+        
+          <img data-src="https://github.com/Flight-star-cy/my-images/blob/main/%E7%BA%A2%E7%BE%8E%E9%93%83.jpg" data-sizes="auto" alt="" class="lazyload">
+        
+      
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2025-02-27</span>
+        <span><span class="icon-pencil"></span>299 words</span>
+        <span><span class="icon-clock"></span>1 min</span>
+      </div>
+      <h2 class="post-title"></h2>
+      <article class="post-article">
+        
+          [HCTF 2018]admin（session欺骗）前言：何为session?是cookie的一种，用于记录你这个ip的会话，相当于一个定位，让服务器能在茫茫网络当中找到你，继续上次的会话，一般是经过大量加密的，flask框架往往会保护，留下一个签名，但是签名不能防止篡改，存在可利用漏洞
+正片：进入源码发现
+说明我们需要成功登入admin才能获得flag
+方法一：弱爆破已知账号是admin，所以我们就尝试爆破，没想到密码非常简单，直接获得了flag
+方法二：flask_session欺骗我们先注册再登入，留下我们的session
+之后抓包或者使用插件得到session，再用准备好的解密pyt
+        
+      </article>
+    </div>
+  </div>
+  </div>
+
+
+  
+  
+  <div class="post-wrapper">
+  <div class="post-wrap-right" data-aos="fade-up">
+    
+      <a class="post-link" href="/2025/02/27/%E4%B8%8D%E7%9F%A5%E9%81%93%E6%94%BE%E5%9C%A8%E5%93%AA%E9%87%8C%E7%9A%84%E7%AC%94%E8%AE%B0/" aria-label=""></a>
+    
+    
+    <div class="post-cover-right">
+      
+        
+        
+          <img data-src="/covers/全员02.jpg" data-sizes="auto" alt="" class="lazyload">
+        
+      
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2025-02-27</span>
+        <span><span class="icon-pencil"></span>180 words</span>
+        <span><span class="icon-clock"></span>1 min</span>
+      </div>
+      <h2 class="post-title"></h2>
+      <article class="post-article">
+        
+          在BUU中学到，不知道放在哪里的笔记[极客大挑战 2019]Http（伪造协议）打开源码，发现隐藏页面进入后发现
+提示我们要从这个页面中转过来，那就伪造Referer
+1Referer:https://Sycsecret.buuoj.cn
+
+点开如图所示：
+
+点开后发现，又提示我们要使用别的浏览器，那就伪装一个
+1User-Agent:Syclover
+
+
+又提示我们要使用本地访问，那就伪！
+1X-Forwarded-For :127.0.0.1
+
+
+补充：X-Forwarded-For（XFF）是一个在 HTTP 请求头中常用的字段，主要用于在代理服务器或负载均衡器等中间设备的环境下，记录客
+        
+      </article>
+    </div>
+  </div>
+  </div>
+
+
+  
+  
+  <div class="post-wrapper">
+  <div class="post-wrap-left" data-aos="fade-up">
+    
+      <a class="post-link" href="/2025/02/27/uploud%E5%AE%9E%E6%88%98%E7%AC%94%E8%AE%B0/" aria-label=""></a>
+    
+    
+    <div class="post-cover-left">
+      
+        
+        
+          <img data-src="https://github.com/Flight-star-cy/my-images/blob/main/%E8%BE%89%E5%A4%9C%E4%B8%8E%E5%A6%B9%E7%BA%A2.jpg" data-sizes="auto" alt="" class="lazyload">
+        
+      
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2025-02-27</span>
+        <span><span class="icon-pencil"></span>413 words</span>
+        <span><span class="icon-clock"></span>1 min</span>
+      </div>
+      <h2 class="post-title"></h2>
+      <article class="post-article">
+        
+          BUU-upload实战——————————-在经历upload-labs后，我刷不明白，决定直接去实战试试看——————————-
+[极客大挑战 2019]Upload由于是第一次做upload，于是便主要是搜为主
+要考察的四个点：
+1234561.MIME类型（Content-Type: image/png）2.文件头（GIF89a）3.黑名单检测(phtml)4.检测&amp;lt;?（`&amp;lt;script language=&amp;quot;pHp&amp;quot;&amp;gt;@eval($_POST[&amp;#x27;cmd&amp;#x27;])&amp;lt;/script&amp;gt;`）&amp;lt;?php @eval($_PO
+        
+      </article>
+    </div>
+  </div>
+  </div>
+
+
+  
+  
+  <div class="post-wrapper">
+  <div class="post-wrap-right" data-aos="fade-up">
+    
+      <a class="post-link" href="/2025/02/27/sqli%E5%AE%9E%E6%88%98%E7%AC%94%E8%AE%B0/" aria-label=""></a>
+    
+    
+    <div class="post-cover-right">
+      
+        
+        
+          <img data-src="https://github.com/Flight-star-cy/my-images/blob/main/hezhao%2002.jpg" data-sizes="auto" alt="" class="lazyload">
+        
+      
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2025-02-27</span>
+        <span><span class="icon-pencil"></span>1.4k words</span>
+        <span><span class="icon-clock"></span>6 mins</span>
+      </div>
+      <h2 class="post-title"></h2>
+      <article class="post-article">
+        
+          sqli实战————————————在经历sqli-labs后，我决定去实战试试看（也就是刷刷ctf题目）——————————-
+**[**极客大挑战 2019]LoveSQL 1没有过滤
+1**union select 1,(select group_concat(table_name)from information_schema.tables where table_schema=database()),3 or 1 = 1 #**
+
+查出Hello geekuser,l0ve1ysq1！(表)
+1**1&amp;#x27; union select 1,(select group_concat
+        
+      </article>
+    </div>
+  </div>
+  </div>
+
+
+  
+
+
+  <nav id="page-nav" data-aos="fade-up">
+    
+    <a class="extend prev" rel="prev" href="/page/5/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/7/">Next &raquo;</a>
+  </nav>
+
+
+</section>
+          
+            <aside id="sidebar">
+  <div class="sidebar-wrapper ">
+    <div class="sidebar-wrap" data-aos="fade-up">
+      
+        <div class="sidebar-author">
+  <img data-src="/avatar/avatar.webp" data-sizes="auto" alt="Flight-star" class="lazyload">
+  <div class="sidebar-author-name">Flight-star</div>
+  <div class="sidebar-description"></div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>Posts</div>
+    <div class="sidebar-state-number">69</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>Categories</div>
+    <div class="sidebar-state-number">0</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>Tags</div>
+    <div class="sidebar-state-number">11</div>
+  </div>
+</div>
+<div class="sidebar-social">
+  
+</div>
+<div class="sidebar-menu">
+  
+    <div class="sidebar-menu-link-wrap">
+      <a class="sidebar-menu-link-dummy" href="/" aria-label="Home"></a>
+      <div class="sidebar-menu-icon icon-taichi"></div>
+      <div class="sidebar-menu-link">Home</div>
+    </div>
+  
+    <div class="sidebar-menu-link-wrap">
+      <a class="sidebar-menu-link-dummy" href="/archives" aria-label="Archives"></a>
+      <div class="sidebar-menu-icon icon-taichi"></div>
+      <div class="sidebar-menu-link">Archives</div>
+    </div>
+  
+    <div class="sidebar-menu-link-wrap">
+      <a class="sidebar-menu-link-dummy" href="/about" aria-label="About"></a>
+      <div class="sidebar-menu-icon icon-taichi"></div>
+      <div class="sidebar-menu-link">About</div>
+    </div>
+  
+    <div class="sidebar-menu-link-wrap">
+      <a class="sidebar-menu-link-dummy" href="/friend" aria-label="Friend"></a>
+      <div class="sidebar-menu-icon icon-taichi"></div>
+      <div class="sidebar-menu-link">Friend</div>
+    </div>
+  
+</div>
+
+      
+      
+    </div>
+  </div>
+
+  
+</aside>
+
+          
+        </div>
+        <footer id="footer">
+  <div style="width: 100%; overflow: hidden">
+    <div class="footer-line"></div>
+  </div>
+  <div id="footer-info">
+    
+    <div>
+      <span class="icon-copyright"></span>
+      2020-2025
+      <span class="footer-info-sep"></span>
+      Flight-star
+    </div>
+    
+      <div>
+        Powered by&nbsp;<a href="https://hexo.io/" rel="noopener external nofollow noreferrer" target="_blank">Hexo</a>&nbsp;
+        Theme.<a href="https://github.com/D-Sketon/hexo-theme-reimu" rel="noopener external nofollow noreferrer" target="_blank">Reimu</a>
+      </div>
+    
+    
+      <div>
+        <span class="icon-brush"></span>
+        65.1k
+        &nbsp;|&nbsp;
+        <span class="icon-coffee"></span>
+        05:01
+      </div>
+    
+    
+    
+    
+      <div>
+        <span class="icon-eye"></span>
+        <span id="busuanzi_container_site_pv">Number of visits&nbsp;<span id="busuanzi_value_site_pv"></span></span>
+        &nbsp;|&nbsp;
+        <span class="icon-user"></span>
+        <span id="busuanzi_container_site_uv">Number of visitors&nbsp;<span id="busuanzi_value_site_uv"></span></span>
+      </div>
+    
+  </div>
+</footer>
+
+        <div class="sidebar-top">
+          <img src="/images/taichi.png" height="50" width="50" alt="backtop" />
+          <div class="arrow-up"></div>
+        </div>
+        <div id="mask"></div>
+      </div>
+      <nav id="mobile-nav">
+  <div class="sidebar-wrap">
+    
+      <div class="sidebar-author">
+  <img data-src="/avatar/avatar.webp" data-sizes="auto" alt="Flight-star" class="lazyload">
+  <div class="sidebar-author-name">Flight-star</div>
+  <div class="sidebar-description"></div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>Posts</div>
+    <div class="sidebar-state-number">69</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>Categories</div>
+    <div class="sidebar-state-number">0</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>Tags</div>
+    <div class="sidebar-state-number">11</div>
+  </div>
+</div>
+<div class="sidebar-social">
+  
+</div>
+<div class="sidebar-menu">
+  
+    <div class="sidebar-menu-link-wrap">
+      <a class="sidebar-menu-link-dummy" href="/" aria-label="Home"></a>
+      <div class="sidebar-menu-icon icon-taichi"></div>
+      <div class="sidebar-menu-link">Home</div>
+    </div>
+  
+    <div class="sidebar-menu-link-wrap">
+      <a class="sidebar-menu-link-dummy" href="/archives" aria-label="Archives"></a>
+      <div class="sidebar-menu-icon icon-taichi"></div>
+      <div class="sidebar-menu-link">Archives</div>
+    </div>
+  
+    <div class="sidebar-menu-link-wrap">
+      <a class="sidebar-menu-link-dummy" href="/about" aria-label="About"></a>
+      <div class="sidebar-menu-icon icon-taichi"></div>
+      <div class="sidebar-menu-link">About</div>
+    </div>
+  
+    <div class="sidebar-menu-link-wrap">
+      <a class="sidebar-menu-link-dummy" href="/friend" aria-label="Friend"></a>
+      <div class="sidebar-menu-icon icon-taichi"></div>
+      <div class="sidebar-menu-link">Friend</div>
+    </div>
+  
+</div>
+
+    
+  </div>
+  
+</nav>
+
+    </div>
+    
+    
+<script src="https://npm.webcache.cn/lazysizes@5.3.2/lazysizes.min.js"></script>
+
+
+<script src="https://npm.webcache.cn/clipboard@2.0.11/dist/clipboard.min.js"></script>
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+  
+<script src="/js/aos.js"></script>
+
+  <script>
+    var aosInit = () => {
+      AOS.init({
+        duration: 1000,
+        easing: "ease",
+        once: true,
+        offset: 50,
+      });
+    };
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', aosInit);
+    } else {
+      aosInit();
+    }
+  </script>
+
+
+
+<script src="/js/pjax_script.js" data-pjax></script>
+
+
+<script type="module" data-pjax>
+  import PhotoSwipeLightbox from "https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe-lightbox.esm.min.js";
+  
+  const pswp = () => {
+    if (_$$('.article-entry a.article-gallery-item').length > 0) {
+      new PhotoSwipeLightbox({
+        gallery: '.article-entry',
+        children: 'a.article-gallery-item',
+        pswpModule: () => import("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.min.js")
+      }).init();
+    }
+    if(_$$('.article-gallery a.article-gallery-item').length > 0) {
+      new PhotoSwipeLightbox({
+        gallery: '.article-gallery',
+        children: 'a.article-gallery-item',
+        pswpModule: () => import("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.min.js")
+      }).init();
+    }
+    window.lightboxStatus = 'done';
+    window.removeEventListener('lightbox:ready', pswp);
+  }
+  if(window.lightboxStatus === 'ready') {
+    pswp()
+  } else {
+    window.addEventListener('lightbox:ready', pswp);
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+<script src="https://npm.webcache.cn/mouse-firework@0.0.4/dist/index.umd.js"></script>
+
+  <script>
+    window.firework && window.firework(JSON.parse('{"excludeElements":["a","button"],"particles":[{"shape":"circle","move":["emit"],"easing":"easeOutExpo","colors":["#ff5252","#ff7c7c","#ffafaf","#ffd0d0"],"number":20,"duration":[1200,1800],"shapeOptions":{"radius":[16,32],"alpha":[0.3,0.5]}},{"shape":"circle","move":["diffuse"],"easing":"easeOutExpo","colors":["#ff0000"],"number":1,"duration":[1200,1800],"shapeOptions":{"radius":20,"alpha":[0.2,0.5],"lineWidth":6}}]}'))
+  </script>
+
+
+
+
+
+
+
+  
+<script src="https://npm.webcache.cn/quicklink@2.3.0/dist/quicklink.umd.js"></script>
+
+  <script data-pjax>
+    window.quicklink?.listen({
+      timeout: 3000,
+      priority: true,
+      ignores: []
+    });
+  </script>
+
+
+<div id="lazy-script">
+  <div>
+    
+  </div>
+</div>
+
+
+  <script>
+    console.log(String.raw`%c 
+ ______     ______     __     __    __     __  __    
+/\  == \   /\  ___\   /\ \   /\ "-./  \   /\ \/\ \   
+\ \  __<   \ \  __\   \ \ \  \ \ \-./\ \  \ \ \_\ \  
+ \ \_\ \_\  \ \_____\  \ \_\  \ \_\ \ \_\  \ \_____\ 
+  \/_/ /_/   \/_____/   \/_/   \/_/  \/_/   \/_____/ 
+                                                  
+`,'color: #ff5252;')
+    console.log('%c Theme.Reimu v' + '0.3.3' + ' %c https://github.com/D-Sketon/hexo-theme-reimu ', 'color: white; background: #ff5252; padding:5px 0;', 'padding:4px;border:1px solid #ff5252;')
+  </script>
+  
+
+
+
+  
+<script src="https://npm.webcache.cn/busuanzi@2.3.0/bsz.pure.mini.js" async></script>
+
+
+
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.getRegistrations().then((registrations) => {
+      for (let registration of registrations) {
+        registration.unregister();
+      }
+    });
+  }
+</script>
+
+  <!-- hexo injector body_end start -->
+<script src="/js/insert_highlight.js" data-pjax></script>
+<!-- hexo injector body_end end --></body>
+  </html>
+
