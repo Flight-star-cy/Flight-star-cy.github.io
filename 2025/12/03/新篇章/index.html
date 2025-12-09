@@ -1,0 +1,616 @@
+
+  <!DOCTYPE html>
+  <html lang="en"  >
+  <head>
+  <meta charset="utf-8">
+  
+
+  
+
+  
+
+  
+  <script>window.icon_font = '4552607_tq6stt6tcg';window.clipboard_tips = {"success":"复制成功(*^▽^*)","fail":"复制失败 (ﾟ⊿ﾟ)ﾂ","copyright":{"enable":false,"count":50,"content":"本文版权：本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！"}};</script>
+  
+  
+  <title>
+    算法 |
+    
+    Flight-star&#39;blog
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin><link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7CNoto%20Serif%20SC:400,400italic,700,700italic&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7CNoto%20Serif%20SC:400,400italic,700,700italic&display=swap" media="print" onload="this.media&#x3D;&#39;all&#39;">
+  
+    <link rel="preload" href="//at.alicdn.com/t/c/font_4552607_tq6stt6tcg.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  
+  
+    
+<link rel="stylesheet" href="/css/loader.css">
+
+  
+  
+    <meta name="description" content="我需要学习算法，我要开始重新认真哈希表（12.3）本质：就是找到一个可以一一对应的表格关系，节省下寻找的时间（通常是：字典，列表，数组之类可一一对应的）python:12345678class Solution:    def twoSum(self, nums: List[int], target: int) -&gt; List[int]:        hashtext &#x3D; dict()">
+<meta property="og:type" content="article">
+<meta property="og:title" content="算法">
+<meta property="og:url" content="http://example.com/2025/12/03/%E6%96%B0%E7%AF%87%E7%AB%A0/index.html">
+<meta property="og:site_name" content="Flight-star&#39;blog">
+<meta property="og:description" content="我需要学习算法，我要开始重新认真哈希表（12.3）本质：就是找到一个可以一一对应的表格关系，节省下寻找的时间（通常是：字典，列表，数组之类可一一对应的）python:12345678class Solution:    def twoSum(self, nums: List[int], target: int) -&gt; List[int]:        hashtext &#x3D; dict()">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2025-12-03T14:30:54.000Z">
+<meta property="article:modified_time" content="2025-12-09T02:45:43.045Z">
+<meta property="article:author" content="Flight-star">
+<meta name="twitter:card" content="summary">
+  
+  
+    <link rel="alternate" href="/atom.xml" title="Flight-star'blog" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/images/favicon.ico">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <link rel="preload" href="https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  
+  
+  
+  
+    
+<script src="https://npm.webcache.cn/pace-js@1.2.4/pace.min.js"></script>
+
+  
+  
+    
+<link rel="stylesheet" href="https://npm.webcache.cn/@reimujs/aos@0.0.1/dist/aos.css">
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+  <body>
+    
+  <div id='loader'>
+    <div class="loading-left-bg loading-bg"></div>
+    <div class="loading-right-bg loading-bg"></div>
+    <div class="spinner-box">
+      <div class="loading-taichi">
+        <svg width="150" height="150" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="https://www.w3.org/2000/svg" shape-rendering="geometricPrecision">
+          <path d="M303.5 432A80 80 0 0 1 291.5 592A80 80 0 0 1 303.5 432z" fill="#ff5252" />
+          <path d="M512 65A447 447 0 0 1 512 959L512 929A417 417 0 0 0 512 95A417 417 0 0 0 512 929L512 959A447 447 0 0 1 512 65z 
+         M512 95A417 417 0 0 1 929 512A208.5 208.5 0 0 1 720.5 720.5L720.5 592A80 80 0 0 0 720.5 432A80 80 0 0 0 720.5 592L720.5 720.5A208.5 208.5 0 0 1 512 512A208.5 208.5 0 0 0 303.5 303.5A208.5 208.5 0 0 0 95 512A417 417 0 0 1 512 95z" fill="#ff5252" />
+        </svg>
+      </div>
+      <div class="loading-word">少女祈祷中...</div>
+    </div>
+  </div>
+  </div>
+  <script>
+    var time = null;
+    var startLoading = () => {
+      time = Date.now();
+      document.getElementById('loader').classList.remove("loading");
+    }
+    var endLoading = () => {
+      if (!time) {
+        document.body.style.overflow = 'auto';
+        document.getElementById('loader').classList.add("loading");
+      } else {
+        if (Date.now() - time > 500) {
+          time = null;
+          document.body.style.overflow = 'auto';
+          document.getElementById('loader').classList.add("loading");
+        } else {
+          setTimeout(endLoading, 500 - (Date.now() - time));
+          time = null;
+        }
+      }
+    }
+    window.addEventListener('DOMContentLoaded', endLoading);
+    document.getElementById('loader').addEventListener('click', endLoading);
+  </script>
+
+<div id="copy-tooltip" style="pointer-events: none; opacity: 0; transition: all 0.2s ease; position: fixed;top: 50%;left: 50%;z-index: 999;transform: translate(-50%, -50%);color: white;background: rgba(0, 0, 0, 0.5);padding: 10px 15px;border-radius: 10px;">
+</div>
+
+
+    <div id="container">
+      <div id="wrap">
+        <div id="header-nav">
+  <nav id="main-nav">
+    
+      <span class="main-nav-link-wrap">
+        <div class="main-nav-icon icon-taichi"></div>
+        <a class="main-nav-link" href="/">Home</a>
+      </span>
+    
+      <span class="main-nav-link-wrap">
+        <div class="main-nav-icon icon-taichi"></div>
+        <a class="main-nav-link" href="/archives">Archives</a>
+      </span>
+    
+      <span class="main-nav-link-wrap">
+        <div class="main-nav-icon icon-taichi"></div>
+        <a class="main-nav-link" href="/about">About</a>
+      </span>
+    
+      <span class="main-nav-link-wrap">
+        <div class="main-nav-icon icon-taichi"></div>
+        <a class="main-nav-link" href="/friend">Friend</a>
+      </span>
+    
+    <a id="main-nav-toggle" class="nav-icon"></a>
+  </nav>
+  <nav id="sub-nav">
+    
+      <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed" target="_blank"></a>
+    
+    
+    
+  </nav>
+</div>
+<header id="header">
+  
+    
+      <img fetchpriority="high" src="/images/banner.webp" alt="算法">
+    
+  
+  <div id="header-outer">
+    <div id="header-title">
+      
+        
+        
+          <a href="/" id="logo">
+            <h1 data-aos="slide-up">算法</h1>
+          </a>
+        
+      
+      
+        
+        <h2 id="subtitle-wrap" data-aos="slide-down">
+          
+        </h2>
+      
+    </div>
+  </div>
+</header>
+
+        <div id="content">
+          
+          <section id="main"><article id="post-新篇章" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner" data-aos="fade-up">
+    <div class="article-meta">
+      <div class="article-date">
+  <a href="/2025/12/03/%E6%96%B0%E7%AF%87%E7%AB%A0/" class="article-date-link" data-aos="zoom-in">
+    <time datetime="2025-12-03T14:30:54.000Z" itemprop="datePublished">2025-12-03</time>
+    <time style="display: none;" id="post-update-time">2025-12-09</time>
+  </a>
+</div>
+
+      
+
+    </div>
+    <div class="hr-line"></div>
+    
+
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+      
+        <h1 id="我需要学习算法，我要开始重新认真"><a href="#我需要学习算法，我要开始重新认真" class="headerlink" title="我需要学习算法，我要开始重新认真"></a>我需要学习算法，我要开始重新认真</h1><h2 id="哈希表（12-3）"><a href="#哈希表（12-3）" class="headerlink" title="哈希表（12.3）"></a>哈希表（12.3）</h2><h3 id="本质：就是找到一个可以一一对应的表格关系，节省下寻找的时间"><a href="#本质：就是找到一个可以一一对应的表格关系，节省下寻找的时间" class="headerlink" title="本质：就是找到一个可以一一对应的表格关系，节省下寻找的时间"></a>本质：就是找到一个可以一一对应的表格关系，节省下寻找的时间</h3><h3 id="（通常是：字典，列表，数组之类可一一对应的）"><a href="#（通常是：字典，列表，数组之类可一一对应的）" class="headerlink" title="（通常是：字典，列表，数组之类可一一对应的）"></a>（通常是：字典，列表，数组之类可一一对应的）</h3><h4 id="python"><a href="#python" class="headerlink" title="python:"></a>python:</h4><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">twoSum</span>(<span class="params">self, nums: <span class="type">List</span>[<span class="built_in">int</span>], target: <span class="built_in">int</span></span>) -&gt; <span class="type">List</span>[<span class="built_in">int</span>]:</span><br><span class="line">        hashtext = <span class="built_in">dict</span>()</span><br><span class="line">        <span class="keyword">for</span> i,num <span class="keyword">in</span> <span class="built_in">enumerate</span>(nums):</span><br><span class="line">            <span class="keyword">if</span> (target - num) <span class="keyword">in</span> hashtext:</span><br><span class="line">                <span class="keyword">return</span> [hashtext[target - num],i]   <span class="comment">#直接根据目标数找到对应的下标</span></span><br><span class="line">            <span class="comment">#这里key是数，value是下标</span></span><br><span class="line">            hashtext[nums[i]] = i</span><br></pre></td></tr></table></figure>
+
+<h5 id="for-i-num-in-enumerate-nums-：遍历数组（同时拿下标和值）"><a href="#for-i-num-in-enumerate-nums-：遍历数组（同时拿下标和值）" class="headerlink" title="for i, num in enumerate(nums)：遍历数组（同时拿下标和值）"></a><code>for i, num in enumerate(nums)</code>：遍历数组（同时拿下标和值）</h5><ul>
+<li><code>enumerate(nums)</code> 是 Python 内置函数，遍历数组时会同时返回「元素的下标 i」和「元素的值 num」。</li>
+<li>比如 <code>nums</code> &#x3D; [2,7,11,15]，遍历第一次得到 (0,2)，第二次 (1,7)，以此类推。</li>
+<li>不用 <code>for i in range(len(nums))</code> + <code>num = nums[i]</code>，是因为 <code>enumerate</code> 更简洁高效。</li>
+</ul>
+<h2 id="在python中创建链表："><a href="#在python中创建链表：" class="headerlink" title="在python中创建链表："></a>在python中创建链表：</h2><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Lianbiao</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self,vale=<span class="number">0</span>,<span class="built_in">next</span>=<span class="literal">None</span></span>)：		<span class="comment">#这里是给初始赋值</span></span><br><span class="line">    	<span class="variable language_">self</span>.vale = vale	<span class="comment">#让vale/next能接受外来变量的同时，也能给他初始赋值</span></span><br><span class="line">        <span class="variable language_">self</span>.<span class="built_in">next</span> = <span class="built_in">next</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="具体实现："><a href="#具体实现：" class="headerlink" title="具体实现："></a>具体实现：</h3><h4 id="赋值："><a href="#赋值：" class="headerlink" title="赋值："></a>赋值：</h4><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">test_1 = Lianbiao(<span class="number">1</span>)</span><br><span class="line">test_2 = Lianbiao(<span class="number">2</span>)</span><br><span class="line">test_1.<span class="built_in">next</span> = test_2</span><br></pre></td></tr></table></figure>
+
+<h4 id="遍历："><a href="#遍历：" class="headerlink" title="遍历："></a>遍历：</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print()</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h2 id="两数相加："><a href="#两数相加：" class="headerlink" title="两数相加："></a>两数相加：</h2><h3 id="递归法："><a href="#递归法：" class="headerlink" title="递归法："></a>递归法：</h3><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"># class ListNode:</span></span><br><span class="line"><span class="comment">#     def __init__(self, val=0, next=None):</span></span><br><span class="line"><span class="comment">#         self.val = val</span></span><br><span class="line"><span class="comment">#         self.next = next</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">addTwoNumbers</span>(<span class="params">self, l1: <span class="type">Optional</span>[ListNode], l2: <span class="type">Optional</span>[ListNode],carry=<span class="number">0</span></span>) -&gt; <span class="type">Optional</span>[ListNode]:			<span class="comment">#新增了一个输入carry，用于更加方便添加进位</span></span><br><span class="line">        <span class="comment">#递归出口</span></span><br><span class="line">        <span class="keyword">if</span> carry == <span class="number">0</span> <span class="keyword">and</span> <span class="keyword">not</span> l1 <span class="keyword">and</span> <span class="keyword">not</span> l2:			<span class="comment">#写递归就要把终止条件写在前面</span></span><br><span class="line">            <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line"></span><br><span class="line">        s = carry		</span><br><span class="line">        <span class="keyword">if</span> l1:</span><br><span class="line">            s += l1.val</span><br><span class="line">            l1 = l1.<span class="built_in">next</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> l2:</span><br><span class="line">            s += l2.val</span><br><span class="line">            l2 = l2.<span class="built_in">next</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> ListNode(s%<span class="number">10</span>,<span class="variable language_">self</span>.addTwoNumbers(l1,l2,s//<span class="number">10</span>))   </span><br><span class="line">    	<span class="comment">#必须加self，不然找不到</span></span><br><span class="line">        <span class="comment">#s//10是清除s的原本值</span></span><br><span class="line">    	<span class="comment">#s//10只能是 0/1，用于计算进位</span></span><br><span class="line">        <span class="comment">#s%10是拿来计算个位的，也就是当前该放哪一个进入</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="迭代："><a href="#迭代：" class="headerlink" title="迭代："></a>迭代：</h3><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"># class ListNode:</span></span><br><span class="line"><span class="comment">#     def __init__(self, val=0, next=None):</span></span><br><span class="line"><span class="comment">#         self.val = val</span></span><br><span class="line"><span class="comment">#         self.next = next</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">addTwoNumbers</span>(<span class="params">self, l1: <span class="type">Optional</span>[ListNode], l2: <span class="type">Optional</span>[ListNode]</span>) -&gt; <span class="type">Optional</span>[ListNode]:</span><br><span class="line">       <span class="keyword">if</span> l1.val + l2.val &gt;=<span class="number">10</span>:         <span class="comment">#别少了最初给i的赋值</span></span><br><span class="line">        temp = <span class="number">1</span></span><br><span class="line">       <span class="keyword">else</span>:</span><br><span class="line">        temp = <span class="number">0</span></span><br><span class="line">       node_1 = ListNode((l1.val + l2.val)%<span class="number">10</span>)</span><br><span class="line">       mid_1 = node_1</span><br><span class="line">       <span class="keyword">if</span> l1.val != <span class="literal">None</span> <span class="keyword">and</span> l2.val != <span class="literal">None</span>:</span><br><span class="line">        <span class="keyword">while</span> l1.<span class="built_in">next</span> <span class="keyword">and</span> l2.<span class="built_in">next</span>:</span><br><span class="line">            mid_1.<span class="built_in">next</span> = ListNode((l1.<span class="built_in">next</span>.val + l2.<span class="built_in">next</span>.val + temp)%<span class="number">10</span>)      </span><br><span class="line">            </span><br><span class="line">            <span class="comment">#应该用l1.next.val，少了next</span></span><br><span class="line">            </span><br><span class="line">            <span class="keyword">if</span> (l1.<span class="built_in">next</span>.val + l2.<span class="built_in">next</span>.val + temp) &gt;= <span class="number">10</span>:          </span><br><span class="line">                temp = <span class="number">1</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                temp = <span class="number">0</span></span><br><span class="line">            l1 = l1.<span class="built_in">next</span></span><br><span class="line">            l2 = l2.<span class="built_in">next</span></span><br><span class="line">            mid_1 = mid_1.<span class="built_in">next</span> </span><br><span class="line">        <span class="keyword">if</span> l1.<span class="built_in">next</span> != <span class="literal">None</span>:</span><br><span class="line">            <span class="keyword">while</span> l1.<span class="built_in">next</span>:</span><br><span class="line">                mid_1.<span class="built_in">next</span> = ListNode((l1.<span class="built_in">next</span>.val + temp)%<span class="number">10</span>)</span><br><span class="line">                <span class="keyword">if</span> (l1.<span class="built_in">next</span>.val + temp) &gt;= <span class="number">10</span>:</span><br><span class="line">                    temp = <span class="number">1</span></span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    temp = <span class="number">0</span></span><br><span class="line">                l1 = l1.<span class="built_in">next</span></span><br><span class="line">                mid_1 = mid_1.<span class="built_in">next</span></span><br><span class="line">        <span class="keyword">if</span> l2.<span class="built_in">next</span> != <span class="literal">None</span>:</span><br><span class="line">            <span class="keyword">while</span> l2.<span class="built_in">next</span>:</span><br><span class="line">                mid_1.<span class="built_in">next</span> = ListNode((l2.<span class="built_in">next</span>.val + temp)%<span class="number">10</span>)</span><br><span class="line">                <span class="keyword">if</span> (l2.<span class="built_in">next</span>.val + temp) &gt;= <span class="number">10</span>:</span><br><span class="line">                    temp = <span class="number">1</span></span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    temp = <span class="number">0</span>   </span><br><span class="line">                l2 = l2.<span class="built_in">next</span></span><br><span class="line">                mid_1 = mid_1.<span class="built_in">next</span></span><br><span class="line">        <span class="keyword">if</span> temp == <span class="number">1</span>:</span><br><span class="line">            mid_1.<span class="built_in">next</span> = ListNode(<span class="number">1</span>)</span><br><span class="line">        <span class="keyword">return</span> node_1           <span class="comment">#要输出node_1（头节点），而不是mid_1</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="注意点："><a href="#注意点：" class="headerlink" title="注意点："></a>注意点：</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1.记得用在写完开头后，后面的循环要写上next</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+      
+      
+      
+      
+      
+      
+
+    </footer>
+  </div>
+  
+    
+  <nav id="article-nav" data-aos="fade-up">
+    
+    
+    <div class="article-nav-link-wrap article-nav-link-right">
+      
+        
+        
+          <img data-src="/covers/sakuya looking back.jpg" data-sizes="auto" alt="" class="lazyload">
+        
+      
+      <a href="/2025/11/08/%E5%9F%BA%E7%A1%80Linux/"></a>
+      <div class="article-nav-caption">Older</div>
+      <h3 class="article-nav-title">
+        
+          (no title)
+        
+      </h3>
+    </div>
+    
+  </nav>
+
+
+  
+</article>
+
+
+
+
+
+
+</section>
+          
+            <aside id="sidebar">
+  <div class="sidebar-wrapper wrap-sticky">
+    <div class="sidebar-wrap" data-aos="fade-up">
+      
+        <div class="sidebar-toc-sidebar"><div class="sidebar-toc">
+  <h3 class="toc-title">Contents</h3>
+  <div class="sidebar-toc-wrapper toc-div-class" >
+      
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%88%91%E9%9C%80%E8%A6%81%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95%EF%BC%8C%E6%88%91%E8%A6%81%E5%BC%80%E5%A7%8B%E9%87%8D%E6%96%B0%E8%AE%A4%E7%9C%9F"><span class="toc-number">1.</span> <span class="toc-text">我需要学习算法，我要开始重新认真</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%93%88%E5%B8%8C%E8%A1%A8%EF%BC%8812-3%EF%BC%89"><span class="toc-number">1.1.</span> <span class="toc-text">哈希表（12.3）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%AC%E8%B4%A8%EF%BC%9A%E5%B0%B1%E6%98%AF%E6%89%BE%E5%88%B0%E4%B8%80%E4%B8%AA%E5%8F%AF%E4%BB%A5%E4%B8%80%E4%B8%80%E5%AF%B9%E5%BA%94%E7%9A%84%E8%A1%A8%E6%A0%BC%E5%85%B3%E7%B3%BB%EF%BC%8C%E8%8A%82%E7%9C%81%E4%B8%8B%E5%AF%BB%E6%89%BE%E7%9A%84%E6%97%B6%E9%97%B4"><span class="toc-number">1.1.1.</span> <span class="toc-text">本质：就是找到一个可以一一对应的表格关系，节省下寻找的时间</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%88%E9%80%9A%E5%B8%B8%E6%98%AF%EF%BC%9A%E5%AD%97%E5%85%B8%EF%BC%8C%E5%88%97%E8%A1%A8%EF%BC%8C%E6%95%B0%E7%BB%84%E4%B9%8B%E7%B1%BB%E5%8F%AF%E4%B8%80%E4%B8%80%E5%AF%B9%E5%BA%94%E7%9A%84%EF%BC%89"><span class="toc-number">1.1.2.</span> <span class="toc-text">（通常是：字典，列表，数组之类可一一对应的）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#python"><span class="toc-number">1.1.2.1.</span> <span class="toc-text">python:</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#for-i-num-in-enumerate-nums-%EF%BC%9A%E9%81%8D%E5%8E%86%E6%95%B0%E7%BB%84%EF%BC%88%E5%90%8C%E6%97%B6%E6%8B%BF%E4%B8%8B%E6%A0%87%E5%92%8C%E5%80%BC%EF%BC%89"><span class="toc-number">1.1.2.1.1.</span> <span class="toc-text">for i, num in enumerate(nums)：遍历数组（同时拿下标和值）</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9C%A8python%E4%B8%AD%E5%88%9B%E5%BB%BA%E9%93%BE%E8%A1%A8%EF%BC%9A"><span class="toc-number">1.2.</span> <span class="toc-text">在python中创建链表：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B7%E4%BD%93%E5%AE%9E%E7%8E%B0%EF%BC%9A"><span class="toc-number">1.2.1.</span> <span class="toc-text">具体实现：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%B5%8B%E5%80%BC%EF%BC%9A"><span class="toc-number">1.2.1.1.</span> <span class="toc-text">赋值：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%81%8D%E5%8E%86%EF%BC%9A"><span class="toc-number">1.2.1.2.</span> <span class="toc-text">遍历：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%A4%E6%95%B0%E7%9B%B8%E5%8A%A0%EF%BC%9A"><span class="toc-number">1.3.</span> <span class="toc-text">两数相加：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%92%E5%BD%92%E6%B3%95%EF%BC%9A"><span class="toc-number">1.3.1.</span> <span class="toc-text">递归法：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%AD%E4%BB%A3%EF%BC%9A"><span class="toc-number">1.3.2.</span> <span class="toc-text">迭代：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B3%A8%E6%84%8F%E7%82%B9%EF%BC%9A"><span class="toc-number">1.3.2.1.</span> <span class="toc-text">注意点：</span></a></li></ol></li></ol></li></ol></li></ol>
+      
+  </div>
+</div>
+</div>
+        <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar.webp" data-sizes="auto" alt="Flight-star" class="lazyload">
+  <div class="sidebar-author-name">Flight-star</div>
+  <div class="sidebar-description"></div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>Posts</div>
+    <div class="sidebar-state-number">84</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>Categories</div>
+    <div class="sidebar-state-number">0</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>Tags</div>
+    <div class="sidebar-state-number">12</div>
+  </div>
+</div>
+<div class="sidebar-social">
+  
+</div>
+<div class="sidebar-menu">
+  
+    <div class="sidebar-menu-link-wrap">
+      <a class="sidebar-menu-link-dummy" href="/" aria-label="Home"></a>
+      <div class="sidebar-menu-icon icon-taichi"></div>
+      <div class="sidebar-menu-link">Home</div>
+    </div>
+  
+    <div class="sidebar-menu-link-wrap">
+      <a class="sidebar-menu-link-dummy" href="/archives" aria-label="Archives"></a>
+      <div class="sidebar-menu-icon icon-taichi"></div>
+      <div class="sidebar-menu-link">Archives</div>
+    </div>
+  
+    <div class="sidebar-menu-link-wrap">
+      <a class="sidebar-menu-link-dummy" href="/about" aria-label="About"></a>
+      <div class="sidebar-menu-icon icon-taichi"></div>
+      <div class="sidebar-menu-link">About</div>
+    </div>
+  
+    <div class="sidebar-menu-link-wrap">
+      <a class="sidebar-menu-link-dummy" href="/friend" aria-label="Friend"></a>
+      <div class="sidebar-menu-icon icon-taichi"></div>
+      <div class="sidebar-menu-link">Friend</div>
+    </div>
+  
+</div>
+</div>
+      
+      
+        <div class="sidebar-btn-wrapper" style="position:static">
+          <div class="sidebar-toc-btn current"></div>
+          <div class="sidebar-common-btn"></div>
+        </div>
+      
+    </div>
+  </div>
+
+  
+</aside>
+
+          
+        </div>
+        <footer id="footer">
+  <div style="width: 100%; overflow: hidden">
+    <div class="footer-line"></div>
+  </div>
+  <div id="footer-info">
+    
+    <div>
+      <span class="icon-copyright"></span>
+      2020-2025
+      <span class="footer-info-sep"></span>
+      Flight-star
+    </div>
+    
+      <div>
+        Powered by&nbsp;<a href="https://hexo.io/" rel="noopener external nofollow noreferrer" target="_blank">Hexo</a>&nbsp;
+        Theme.<a href="https://github.com/D-Sketon/hexo-theme-reimu" rel="noopener external nofollow noreferrer" target="_blank">Reimu</a>
+      </div>
+    
+    
+      <div>
+        <span class="icon-brush"></span>
+        79.7k
+        &nbsp;|&nbsp;
+        <span class="icon-coffee"></span>
+        06:09
+      </div>
+    
+    
+    
+    
+      <div>
+        <span class="icon-eye"></span>
+        <span id="busuanzi_container_site_pv">Number of visits&nbsp;<span id="busuanzi_value_site_pv"></span></span>
+        &nbsp;|&nbsp;
+        <span class="icon-user"></span>
+        <span id="busuanzi_container_site_uv">Number of visitors&nbsp;<span id="busuanzi_value_site_uv"></span></span>
+      </div>
+    
+  </div>
+</footer>
+
+        <div class="sidebar-top">
+          <img src="/images/taichi.png" height="50" width="50" alt="backtop" />
+          <div class="arrow-up"></div>
+        </div>
+        <div id="mask"></div>
+      </div>
+      <nav id="mobile-nav">
+  <div class="sidebar-wrap">
+    
+      <div class="sidebar-toc-sidebar"><div class="sidebar-toc">
+  <h3 class="toc-title">Contents</h3>
+  <div class="sidebar-toc-wrapper toc-div-class" >
+      
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%88%91%E9%9C%80%E8%A6%81%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95%EF%BC%8C%E6%88%91%E8%A6%81%E5%BC%80%E5%A7%8B%E9%87%8D%E6%96%B0%E8%AE%A4%E7%9C%9F"><span class="toc-number">1.</span> <span class="toc-text">我需要学习算法，我要开始重新认真</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%93%88%E5%B8%8C%E8%A1%A8%EF%BC%8812-3%EF%BC%89"><span class="toc-number">1.1.</span> <span class="toc-text">哈希表（12.3）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%AC%E8%B4%A8%EF%BC%9A%E5%B0%B1%E6%98%AF%E6%89%BE%E5%88%B0%E4%B8%80%E4%B8%AA%E5%8F%AF%E4%BB%A5%E4%B8%80%E4%B8%80%E5%AF%B9%E5%BA%94%E7%9A%84%E8%A1%A8%E6%A0%BC%E5%85%B3%E7%B3%BB%EF%BC%8C%E8%8A%82%E7%9C%81%E4%B8%8B%E5%AF%BB%E6%89%BE%E7%9A%84%E6%97%B6%E9%97%B4"><span class="toc-number">1.1.1.</span> <span class="toc-text">本质：就是找到一个可以一一对应的表格关系，节省下寻找的时间</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%88%E9%80%9A%E5%B8%B8%E6%98%AF%EF%BC%9A%E5%AD%97%E5%85%B8%EF%BC%8C%E5%88%97%E8%A1%A8%EF%BC%8C%E6%95%B0%E7%BB%84%E4%B9%8B%E7%B1%BB%E5%8F%AF%E4%B8%80%E4%B8%80%E5%AF%B9%E5%BA%94%E7%9A%84%EF%BC%89"><span class="toc-number">1.1.2.</span> <span class="toc-text">（通常是：字典，列表，数组之类可一一对应的）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#python"><span class="toc-number">1.1.2.1.</span> <span class="toc-text">python:</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#for-i-num-in-enumerate-nums-%EF%BC%9A%E9%81%8D%E5%8E%86%E6%95%B0%E7%BB%84%EF%BC%88%E5%90%8C%E6%97%B6%E6%8B%BF%E4%B8%8B%E6%A0%87%E5%92%8C%E5%80%BC%EF%BC%89"><span class="toc-number">1.1.2.1.1.</span> <span class="toc-text">for i, num in enumerate(nums)：遍历数组（同时拿下标和值）</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9C%A8python%E4%B8%AD%E5%88%9B%E5%BB%BA%E9%93%BE%E8%A1%A8%EF%BC%9A"><span class="toc-number">1.2.</span> <span class="toc-text">在python中创建链表：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B7%E4%BD%93%E5%AE%9E%E7%8E%B0%EF%BC%9A"><span class="toc-number">1.2.1.</span> <span class="toc-text">具体实现：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%B5%8B%E5%80%BC%EF%BC%9A"><span class="toc-number">1.2.1.1.</span> <span class="toc-text">赋值：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%81%8D%E5%8E%86%EF%BC%9A"><span class="toc-number">1.2.1.2.</span> <span class="toc-text">遍历：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%A4%E6%95%B0%E7%9B%B8%E5%8A%A0%EF%BC%9A"><span class="toc-number">1.3.</span> <span class="toc-text">两数相加：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%92%E5%BD%92%E6%B3%95%EF%BC%9A"><span class="toc-number">1.3.1.</span> <span class="toc-text">递归法：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%AD%E4%BB%A3%EF%BC%9A"><span class="toc-number">1.3.2.</span> <span class="toc-text">迭代：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B3%A8%E6%84%8F%E7%82%B9%EF%BC%9A"><span class="toc-number">1.3.2.1.</span> <span class="toc-text">注意点：</span></a></li></ol></li></ol></li></ol></li></ol>
+      
+  </div>
+</div>
+</div>
+      <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar.webp" data-sizes="auto" alt="Flight-star" class="lazyload">
+  <div class="sidebar-author-name">Flight-star</div>
+  <div class="sidebar-description"></div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>Posts</div>
+    <div class="sidebar-state-number">84</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>Categories</div>
+    <div class="sidebar-state-number">0</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>Tags</div>
+    <div class="sidebar-state-number">12</div>
+  </div>
+</div>
+<div class="sidebar-social">
+  
+</div>
+<div class="sidebar-menu">
+  
+    <div class="sidebar-menu-link-wrap">
+      <a class="sidebar-menu-link-dummy" href="/" aria-label="Home"></a>
+      <div class="sidebar-menu-icon icon-taichi"></div>
+      <div class="sidebar-menu-link">Home</div>
+    </div>
+  
+    <div class="sidebar-menu-link-wrap">
+      <a class="sidebar-menu-link-dummy" href="/archives" aria-label="Archives"></a>
+      <div class="sidebar-menu-icon icon-taichi"></div>
+      <div class="sidebar-menu-link">Archives</div>
+    </div>
+  
+    <div class="sidebar-menu-link-wrap">
+      <a class="sidebar-menu-link-dummy" href="/about" aria-label="About"></a>
+      <div class="sidebar-menu-icon icon-taichi"></div>
+      <div class="sidebar-menu-link">About</div>
+    </div>
+  
+    <div class="sidebar-menu-link-wrap">
+      <a class="sidebar-menu-link-dummy" href="/friend" aria-label="Friend"></a>
+      <div class="sidebar-menu-icon icon-taichi"></div>
+      <div class="sidebar-menu-link">Friend</div>
+    </div>
+  
+</div>
+</div>
+    
+  </div>
+  
+    <div class="sidebar-btn-wrapper">
+      <div class="sidebar-toc-btn current"></div>
+      <div class="sidebar-common-btn"></div>
+    </div>
+  
+</nav>
+
+    </div>
+    
+    
+<script src="https://npm.webcache.cn/lazysizes@5.3.2/lazysizes.min.js"></script>
+
+
+<script src="https://npm.webcache.cn/clipboard@2.0.11/dist/clipboard.min.js"></script>
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+  
+<script src="/js/aos.js"></script>
+
+  <script>
+    var aosInit = () => {
+      AOS.init({
+        duration: 1000,
+        easing: "ease",
+        once: true,
+        offset: 50,
+      });
+    };
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', aosInit);
+    } else {
+      aosInit();
+    }
+  </script>
+
+
+
+<script src="/js/pjax_script.js" data-pjax></script>
+
+
+<script type="module" data-pjax>
+  import PhotoSwipeLightbox from "https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe-lightbox.esm.min.js";
+  
+  const pswp = () => {
+    if (_$$('.article-entry a.article-gallery-item').length > 0) {
+      new PhotoSwipeLightbox({
+        gallery: '.article-entry',
+        children: 'a.article-gallery-item',
+        pswpModule: () => import("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.min.js")
+      }).init();
+    }
+    if(_$$('.article-gallery a.article-gallery-item').length > 0) {
+      new PhotoSwipeLightbox({
+        gallery: '.article-gallery',
+        children: 'a.article-gallery-item',
+        pswpModule: () => import("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.min.js")
+      }).init();
+    }
+    window.lightboxStatus = 'done';
+    window.removeEventListener('lightbox:ready', pswp);
+  }
+  if(window.lightboxStatus === 'ready') {
+    pswp()
+  } else {
+    window.addEventListener('lightbox:ready', pswp);
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+<script src="https://npm.webcache.cn/mouse-firework@0.0.4/dist/index.umd.js"></script>
+
+  <script>
+    window.firework && window.firework(JSON.parse('{"excludeElements":["a","button"],"particles":[{"shape":"circle","move":["emit"],"easing":"easeOutExpo","colors":["#ff5252","#ff7c7c","#ffafaf","#ffd0d0"],"number":20,"duration":[1200,1800],"shapeOptions":{"radius":[16,32],"alpha":[0.3,0.5]}},{"shape":"circle","move":["diffuse"],"easing":"easeOutExpo","colors":["#ff0000"],"number":1,"duration":[1200,1800],"shapeOptions":{"radius":20,"alpha":[0.2,0.5],"lineWidth":6}}]}'))
+  </script>
+
+
+
+
+
+
+
+  
+<script src="https://npm.webcache.cn/quicklink@2.3.0/dist/quicklink.umd.js"></script>
+
+  <script data-pjax>
+    window.quicklink?.listen({
+      timeout: 3000,
+      priority: true,
+      ignores: []
+    });
+  </script>
+
+
+<div id="lazy-script">
+  <div>
+    
+  </div>
+</div>
+
+
+  <script>
+    console.log(String.raw`%c 
+ ______     ______     __     __    __     __  __    
+/\  == \   /\  ___\   /\ \   /\ "-./  \   /\ \/\ \   
+\ \  __<   \ \  __\   \ \ \  \ \ \-./\ \  \ \ \_\ \  
+ \ \_\ \_\  \ \_____\  \ \_\  \ \_\ \ \_\  \ \_____\ 
+  \/_/ /_/   \/_____/   \/_/   \/_/  \/_/   \/_____/ 
+                                                  
+`,'color: #ff5252;')
+    console.log('%c Theme.Reimu v' + '0.3.3' + ' %c https://github.com/D-Sketon/hexo-theme-reimu ', 'color: white; background: #ff5252; padding:5px 0;', 'padding:4px;border:1px solid #ff5252;')
+  </script>
+  
+
+
+
+  
+<script src="https://npm.webcache.cn/busuanzi@2.3.0/bsz.pure.mini.js" async></script>
+
+
+
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.getRegistrations().then((registrations) => {
+      for (let registration of registrations) {
+        registration.unregister();
+      }
+    });
+  }
+</script>
+
+  <!-- hexo injector body_end start -->
+<script src="/js/insert_highlight.js" data-pjax></script>
+<!-- hexo injector body_end end --></body>
+  </html>
+

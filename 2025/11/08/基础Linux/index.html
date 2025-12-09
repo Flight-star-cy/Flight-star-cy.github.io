@@ -1,0 +1,643 @@
+
+  <!DOCTYPE html>
+  <html lang="en"  >
+  <head>
+  <meta charset="utf-8">
+  
+
+  
+
+  
+
+  
+  <script>window.icon_font = '4552607_tq6stt6tcg';window.clipboard_tips = {"success":"复制成功(*^▽^*)","fail":"复制失败 (ﾟ⊿ﾟ)ﾂ","copyright":{"enable":false,"count":50,"content":"本文版权：本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！"}};</script>
+  
+  
+  <title>
+    
+    Flight-star&#39;blog
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin><link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7CNoto%20Serif%20SC:400,400italic,700,700italic&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7CNoto%20Serif%20SC:400,400italic,700,700italic&display=swap" media="print" onload="this.media&#x3D;&#39;all&#39;">
+  
+    <link rel="preload" href="//at.alicdn.com/t/c/font_4552607_tq6stt6tcg.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  
+  
+    
+<link rel="stylesheet" href="/css/loader.css">
+
+  
+  
+    <meta name="description" content="&#x2F;boot存放系统启动所需的核心文件，包括Linux 内核、启动加载器（如 GRUB）的配置文件和程序等，是系统启动的关键目录。 &#x2F;dev全称为 “device”，是设备文件的统一管理目录。Linux 将硬件设备（如硬盘、键盘、鼠标、网卡等）抽象为文件，应用程序通过访问这些文件与硬件交互（例如&#x2F;dev&#x2F;sda代表第一个硬盘，&#x2F;dev&#x2F;tty代表终端设备）。 &#x2F;etc系">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Flight-star&#39;blog">
+<meta property="og:url" content="http://example.com/2025/11/08/%E5%9F%BA%E7%A1%80Linux/index.html">
+<meta property="og:site_name" content="Flight-star&#39;blog">
+<meta property="og:description" content="&#x2F;boot存放系统启动所需的核心文件，包括Linux 内核、启动加载器（如 GRUB）的配置文件和程序等，是系统启动的关键目录。 &#x2F;dev全称为 “device”，是设备文件的统一管理目录。Linux 将硬件设备（如硬盘、键盘、鼠标、网卡等）抽象为文件，应用程序通过访问这些文件与硬件交互（例如&#x2F;dev&#x2F;sda代表第一个硬盘，&#x2F;dev&#x2F;tty代表终端设备）。 &#x2F;etc系">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2025-11-08T06:52:02.560Z">
+<meta property="article:modified_time" content="2025-11-08T16:28:09.373Z">
+<meta property="article:author" content="Flight-star">
+<meta name="twitter:card" content="summary">
+  
+  
+    <link rel="alternate" href="/atom.xml" title="Flight-star'blog" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/images/favicon.ico">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <link rel="preload" href="https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  
+  
+  
+  
+    
+<script src="https://npm.webcache.cn/pace-js@1.2.4/pace.min.js"></script>
+
+  
+  
+    
+<link rel="stylesheet" href="https://npm.webcache.cn/@reimujs/aos@0.0.1/dist/aos.css">
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+  <body>
+    
+  <div id='loader'>
+    <div class="loading-left-bg loading-bg"></div>
+    <div class="loading-right-bg loading-bg"></div>
+    <div class="spinner-box">
+      <div class="loading-taichi">
+        <svg width="150" height="150" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="https://www.w3.org/2000/svg" shape-rendering="geometricPrecision">
+          <path d="M303.5 432A80 80 0 0 1 291.5 592A80 80 0 0 1 303.5 432z" fill="#ff5252" />
+          <path d="M512 65A447 447 0 0 1 512 959L512 929A417 417 0 0 0 512 95A417 417 0 0 0 512 929L512 959A447 447 0 0 1 512 65z 
+         M512 95A417 417 0 0 1 929 512A208.5 208.5 0 0 1 720.5 720.5L720.5 592A80 80 0 0 0 720.5 432A80 80 0 0 0 720.5 592L720.5 720.5A208.5 208.5 0 0 1 512 512A208.5 208.5 0 0 0 303.5 303.5A208.5 208.5 0 0 0 95 512A417 417 0 0 1 512 95z" fill="#ff5252" />
+        </svg>
+      </div>
+      <div class="loading-word">少女祈祷中...</div>
+    </div>
+  </div>
+  </div>
+  <script>
+    var time = null;
+    var startLoading = () => {
+      time = Date.now();
+      document.getElementById('loader').classList.remove("loading");
+    }
+    var endLoading = () => {
+      if (!time) {
+        document.body.style.overflow = 'auto';
+        document.getElementById('loader').classList.add("loading");
+      } else {
+        if (Date.now() - time > 500) {
+          time = null;
+          document.body.style.overflow = 'auto';
+          document.getElementById('loader').classList.add("loading");
+        } else {
+          setTimeout(endLoading, 500 - (Date.now() - time));
+          time = null;
+        }
+      }
+    }
+    window.addEventListener('DOMContentLoaded', endLoading);
+    document.getElementById('loader').addEventListener('click', endLoading);
+  </script>
+
+<div id="copy-tooltip" style="pointer-events: none; opacity: 0; transition: all 0.2s ease; position: fixed;top: 50%;left: 50%;z-index: 999;transform: translate(-50%, -50%);color: white;background: rgba(0, 0, 0, 0.5);padding: 10px 15px;border-radius: 10px;">
+</div>
+
+
+    <div id="container">
+      <div id="wrap">
+        <div id="header-nav">
+  <nav id="main-nav">
+    
+      <span class="main-nav-link-wrap">
+        <div class="main-nav-icon icon-taichi"></div>
+        <a class="main-nav-link" href="/">Home</a>
+      </span>
+    
+      <span class="main-nav-link-wrap">
+        <div class="main-nav-icon icon-taichi"></div>
+        <a class="main-nav-link" href="/archives">Archives</a>
+      </span>
+    
+      <span class="main-nav-link-wrap">
+        <div class="main-nav-icon icon-taichi"></div>
+        <a class="main-nav-link" href="/about">About</a>
+      </span>
+    
+      <span class="main-nav-link-wrap">
+        <div class="main-nav-icon icon-taichi"></div>
+        <a class="main-nav-link" href="/friend">Friend</a>
+      </span>
+    
+    <a id="main-nav-toggle" class="nav-icon"></a>
+  </nav>
+  <nav id="sub-nav">
+    
+      <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed" target="_blank"></a>
+    
+    
+    
+  </nav>
+</div>
+<header id="header">
+  
+    
+      <img fetchpriority="high" src="/images/banner.webp" alt="">
+    
+  
+  <div id="header-outer">
+    <div id="header-title">
+      
+        
+        
+          <a href="/" id="logo">
+            <h1 data-aos="slide-up">Flight-star&#39;blog</h1>
+          </a>
+        
+      
+      
+        
+        <h2 id="subtitle-wrap" data-aos="slide-down">
+          
+        </h2>
+      
+    </div>
+  </div>
+</header>
+
+        <div id="content">
+          
+          <section id="main"><article id="post-基础Linux" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner" data-aos="fade-up">
+    <div class="article-meta">
+      <div class="article-date">
+  <a href="/2025/11/08/%E5%9F%BA%E7%A1%80Linux/" class="article-date-link" data-aos="zoom-in">
+    <time datetime="2025-11-08T06:52:02.560Z" itemprop="datePublished">2025-11-08</time>
+    <time style="display: none;" id="post-update-time">2025-11-09</time>
+  </a>
+</div>
+
+      
+
+    </div>
+    <div class="hr-line"></div>
+    
+
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+      
+        <h3 id="boot"><a href="#boot" class="headerlink" title="&#x2F;boot"></a><strong>&#x2F;boot</strong></h3><p>存放系统启动所需的核心文件，包括<strong>Linux 内核</strong>、<strong>启动加载器（如 GRUB）的配置文件和程序</strong>等，是系统启动的关键目录。</p>
+<h3 id="dev"><a href="#dev" class="headerlink" title="&#x2F;dev"></a><strong>&#x2F;dev</strong></h3><p>全称为 “device”，是<strong>设备文件的统一管理目录</strong>。Linux 将硬件设备（如硬盘、键盘、鼠标、网卡等）抽象为文件，应用程序通过访问这些文件与硬件交互（例如<code>/dev/sda</code>代表第一个硬盘，<code>/dev/tty</code>代表终端设备）。</p>
+<h3 id="etc"><a href="#etc" class="headerlink" title="&#x2F;etc"></a><strong>&#x2F;etc</strong></h3><p>系统<strong>配置文件的核心目录</strong>，包含几乎所有系统级的配置文件。例如：</p>
+<ul>
+<li>网络配置（<code>/etc/network/interfaces</code>）、服务配置（<code>/etc/apache2/</code>）；</li>
+<li>用户信息（<code>/etc/passwd</code>、<code>/etc/shadow</code>）；</li>
+<li>系统服务的启动脚本（<code>/etc/init.d/</code>）等。</li>
+</ul>
+<h3 id="home"><a href="#home" class="headerlink" title="&#x2F;home"></a><strong>&#x2F;home</strong></h3><p>普通用户的<strong>家目录</strong>，每个用户在<code>/home</code>下有一个以自己用户名命名的子目录（如<code>/home/user1</code>），用于存放用户的个人文件、配置、文档等，是用户数据的 “私人空间”。</p>
+<h3 id="media"><a href="#media" class="headerlink" title="&#x2F;media"></a><strong>&#x2F;media</strong></h3><p>专门用于挂载<strong>可移动媒体设备</strong>（如 U 盘、光盘、移动硬盘等）。当插入这些设备时，系统会自动或手动将其挂载到<code>/media</code>下的子目录，方便用户访问设备中的文件。</p>
+<h3 id="mnt"><a href="#mnt" class="headerlink" title="&#x2F;mnt"></a><strong>&#x2F;mnt</strong></h3><p>临时<strong>挂载点目录</strong>，管理员可手动将外部文件系统（如额外的硬盘分区、网络共享目录）挂载到这里，用于临时访问这些文件系统的内容（例如挂载一个 ISO 镜像用于读取安装文件）。</p>
+<h3 id="opt"><a href="#opt" class="headerlink" title="&#x2F;opt"></a><strong>&#x2F;opt</strong></h3><p>“optional” 的缩写，用于安装<strong>第三方可选应用程序</strong>（如商业软件、独立开发的工具）。将软件安装到<code>/opt</code>可与系统默认的<code>/usr</code>目录区分开，保持系统目录的整洁性。</p>
+<h3 id="proc"><a href="#proc" class="headerlink" title="&#x2F;proc"></a><strong>&#x2F;proc</strong></h3><p><strong>虚拟文件系统</strong>（不占用实际磁盘空间），用于暴露<strong>系统内核和进程的实时信息</strong>。例如：</p>
+<ul>
+<li><code>proc/cpuinfo</code>：查看 CPU 硬件信息；</li>
+<li><code>proc/meminfo</code>：查看内存使用情况；</li>
+<li>每个进程会以其 PID 为名称生成一个子目录，包含该进程的运行状态、资源占用等细节。</li>
+</ul>
+<h3 id="root"><a href="#root" class="headerlink" title="&#x2F;root"></a><strong>&#x2F;root</strong></h3><p><code>root</code>用户（系统管理员）的<strong>家目录</strong>，功能与普通用户的<code>/home</code>类似，但仅<code>root</code>用户可访问，用于存放管理员的个人配置和文件。</p>
+<h3 id="run"><a href="#run" class="headerlink" title="&#x2F;run"></a><strong>&#x2F;run</strong></h3><p>存放系统<strong>运行时的临时文件</strong>，如进程的 PID 文件、锁文件等。这些文件在系统启动时创建，关机时自动删除，用于记录系统运行的临时状态（例如<code>/run/nginx.pid</code>记录 Nginx 进程的 ID）。</p>
+<h3 id="srv"><a href="#srv" class="headerlink" title="&#x2F;srv"></a><strong>&#x2F;srv</strong></h3><p>“service” 的缩写，用于存放<strong>系统服务的专属数据</strong>（如 Web 服务的网页文件、FTP 服务的共享文件等）。不过实际使用中该目录的使用率较低，很多服务会选择其他目录（如<code>/var/www</code>）存储数据。</p>
+<h3 id="sys"><a href="#sys" class="headerlink" title="&#x2F;sys"></a><strong>&#x2F;sys</strong></h3><p>与<code>/proc</code>类似的<strong>虚拟文件系统</strong>（属于<code>sysfs</code>文件系统），用于暴露<strong>硬件设备和内核的底层信息</strong>，方便用户空间程序与内核交互（例如查看硬件设备的属性、配置设备参数）。</p>
+<h3 id="tmp"><a href="#tmp" class="headerlink" title="&#x2F;tmp"></a><strong>&#x2F;tmp</strong></h3><p>临时文件目录，系统和用户可在此创建<strong>临时文件</strong>，这些文件在系统重启后会被自动清除，常用于存放程序运行时的临时缓存、中间文件等（例如编译过程中的临时目标文件）。</p>
+<h3 id="usr"><a href="#usr" class="headerlink" title="&#x2F;usr"></a><strong>&#x2F;usr</strong></h3><p>“Unix System Resources” 的缩写，是系统级<strong>共享资源的核心目录</strong>，包含：</p>
+<ul>
+<li>应用程序（<code>/usr/bin</code>、<code>/usr/sbin</code>）；</li>
+<li>库文件（<code>/usr/lib</code>）；</li>
+<li>文档（<code>/usr/share/doc</code>）；</li>
+<li>头文件（<code>/usr/include</code>）等，是系统功能的主要载体之一。</li>
+</ul>
+<h3 id="var"><a href="#var" class="headerlink" title="&#x2F;var"></a><strong>&#x2F;var</strong></h3><p>“variable” 的缩写，存放<strong>随系统运行动态变化的文件</strong>，包括：</p>
+<ul>
+<li>日志文件（<code>/var/log</code>）；</li>
+<li>邮件（<code>/var/mail</code>）；</li>
+<li>缓存（<code>/var/cache</code>）；</li>
+<li>数据库文件、系统锁文件等。这些文件需要长期保存，不会因系统重启而删除。</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+      
+      
+      
+      
+      
+      
+
+    </footer>
+  </div>
+  
+    
+  <nav id="article-nav" data-aos="fade-up">
+    
+      <div class="article-nav-link-wrap article-nav-link-left">
+        
+          
+          
+            <img data-src="https://github.com/Flight-star-cy/my-images/blob/main/togele.jpg" data-sizes="auto" alt="算法" class="lazyload">
+          
+        
+        <a href="/2025/12/03/%E6%96%B0%E7%AF%87%E7%AB%A0/"></a>
+        <div class="article-nav-caption">Newer</div>
+        <h3 class="article-nav-title">
+          
+            算法
+          
+        </h3>
+      </div>
+    
+    
+    <div class="article-nav-link-wrap article-nav-link-right">
+      
+        
+        
+          <img data-src="/covers/十六夜咲夜 (4).jpg" data-sizes="auto" alt="服务器取证" class="lazyload">
+        
+      
+      <a href="/2025/11/06/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%8F%96%E8%AF%81/"></a>
+      <div class="article-nav-caption">Older</div>
+      <h3 class="article-nav-title">
+        
+          服务器取证
+        
+      </h3>
+    </div>
+    
+  </nav>
+
+
+  
+</article>
+
+
+
+
+
+
+</section>
+          
+            <aside id="sidebar">
+  <div class="sidebar-wrapper wrap-sticky">
+    <div class="sidebar-wrap" data-aos="fade-up">
+      
+        <div class="sidebar-toc-sidebar"><div class="sidebar-toc">
+  <h3 class="toc-title">Contents</h3>
+  <div class="sidebar-toc-wrapper toc-div-class" >
+      
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#boot"><span class="toc-number">1.</span> <span class="toc-text">&#x2F;boot</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#dev"><span class="toc-number">2.</span> <span class="toc-text">&#x2F;dev</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#etc"><span class="toc-number">3.</span> <span class="toc-text">&#x2F;etc</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#home"><span class="toc-number">4.</span> <span class="toc-text">&#x2F;home</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#media"><span class="toc-number">5.</span> <span class="toc-text">&#x2F;media</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#mnt"><span class="toc-number">6.</span> <span class="toc-text">&#x2F;mnt</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#opt"><span class="toc-number">7.</span> <span class="toc-text">&#x2F;opt</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#proc"><span class="toc-number">8.</span> <span class="toc-text">&#x2F;proc</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#root"><span class="toc-number">9.</span> <span class="toc-text">&#x2F;root</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#run"><span class="toc-number">10.</span> <span class="toc-text">&#x2F;run</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#srv"><span class="toc-number">11.</span> <span class="toc-text">&#x2F;srv</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sys"><span class="toc-number">12.</span> <span class="toc-text">&#x2F;sys</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#tmp"><span class="toc-number">13.</span> <span class="toc-text">&#x2F;tmp</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#usr"><span class="toc-number">14.</span> <span class="toc-text">&#x2F;usr</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#var"><span class="toc-number">15.</span> <span class="toc-text">&#x2F;var</span></a></li></ol>
+      
+  </div>
+</div>
+</div>
+        <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar.webp" data-sizes="auto" alt="Flight-star" class="lazyload">
+  <div class="sidebar-author-name">Flight-star</div>
+  <div class="sidebar-description"></div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>Posts</div>
+    <div class="sidebar-state-number">84</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>Categories</div>
+    <div class="sidebar-state-number">0</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>Tags</div>
+    <div class="sidebar-state-number">12</div>
+  </div>
+</div>
+<div class="sidebar-social">
+  
+</div>
+<div class="sidebar-menu">
+  
+    <div class="sidebar-menu-link-wrap">
+      <a class="sidebar-menu-link-dummy" href="/" aria-label="Home"></a>
+      <div class="sidebar-menu-icon icon-taichi"></div>
+      <div class="sidebar-menu-link">Home</div>
+    </div>
+  
+    <div class="sidebar-menu-link-wrap">
+      <a class="sidebar-menu-link-dummy" href="/archives" aria-label="Archives"></a>
+      <div class="sidebar-menu-icon icon-taichi"></div>
+      <div class="sidebar-menu-link">Archives</div>
+    </div>
+  
+    <div class="sidebar-menu-link-wrap">
+      <a class="sidebar-menu-link-dummy" href="/about" aria-label="About"></a>
+      <div class="sidebar-menu-icon icon-taichi"></div>
+      <div class="sidebar-menu-link">About</div>
+    </div>
+  
+    <div class="sidebar-menu-link-wrap">
+      <a class="sidebar-menu-link-dummy" href="/friend" aria-label="Friend"></a>
+      <div class="sidebar-menu-icon icon-taichi"></div>
+      <div class="sidebar-menu-link">Friend</div>
+    </div>
+  
+</div>
+</div>
+      
+      
+        <div class="sidebar-btn-wrapper" style="position:static">
+          <div class="sidebar-toc-btn current"></div>
+          <div class="sidebar-common-btn"></div>
+        </div>
+      
+    </div>
+  </div>
+
+  
+</aside>
+
+          
+        </div>
+        <footer id="footer">
+  <div style="width: 100%; overflow: hidden">
+    <div class="footer-line"></div>
+  </div>
+  <div id="footer-info">
+    
+    <div>
+      <span class="icon-copyright"></span>
+      2020-2025
+      <span class="footer-info-sep"></span>
+      Flight-star
+    </div>
+    
+      <div>
+        Powered by&nbsp;<a href="https://hexo.io/" rel="noopener external nofollow noreferrer" target="_blank">Hexo</a>&nbsp;
+        Theme.<a href="https://github.com/D-Sketon/hexo-theme-reimu" rel="noopener external nofollow noreferrer" target="_blank">Reimu</a>
+      </div>
+    
+    
+      <div>
+        <span class="icon-brush"></span>
+        79.7k
+        &nbsp;|&nbsp;
+        <span class="icon-coffee"></span>
+        06:09
+      </div>
+    
+    
+    
+    
+      <div>
+        <span class="icon-eye"></span>
+        <span id="busuanzi_container_site_pv">Number of visits&nbsp;<span id="busuanzi_value_site_pv"></span></span>
+        &nbsp;|&nbsp;
+        <span class="icon-user"></span>
+        <span id="busuanzi_container_site_uv">Number of visitors&nbsp;<span id="busuanzi_value_site_uv"></span></span>
+      </div>
+    
+  </div>
+</footer>
+
+        <div class="sidebar-top">
+          <img src="/images/taichi.png" height="50" width="50" alt="backtop" />
+          <div class="arrow-up"></div>
+        </div>
+        <div id="mask"></div>
+      </div>
+      <nav id="mobile-nav">
+  <div class="sidebar-wrap">
+    
+      <div class="sidebar-toc-sidebar"><div class="sidebar-toc">
+  <h3 class="toc-title">Contents</h3>
+  <div class="sidebar-toc-wrapper toc-div-class" >
+      
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#boot"><span class="toc-number">1.</span> <span class="toc-text">&#x2F;boot</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#dev"><span class="toc-number">2.</span> <span class="toc-text">&#x2F;dev</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#etc"><span class="toc-number">3.</span> <span class="toc-text">&#x2F;etc</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#home"><span class="toc-number">4.</span> <span class="toc-text">&#x2F;home</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#media"><span class="toc-number">5.</span> <span class="toc-text">&#x2F;media</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#mnt"><span class="toc-number">6.</span> <span class="toc-text">&#x2F;mnt</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#opt"><span class="toc-number">7.</span> <span class="toc-text">&#x2F;opt</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#proc"><span class="toc-number">8.</span> <span class="toc-text">&#x2F;proc</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#root"><span class="toc-number">9.</span> <span class="toc-text">&#x2F;root</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#run"><span class="toc-number">10.</span> <span class="toc-text">&#x2F;run</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#srv"><span class="toc-number">11.</span> <span class="toc-text">&#x2F;srv</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sys"><span class="toc-number">12.</span> <span class="toc-text">&#x2F;sys</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#tmp"><span class="toc-number">13.</span> <span class="toc-text">&#x2F;tmp</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#usr"><span class="toc-number">14.</span> <span class="toc-text">&#x2F;usr</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#var"><span class="toc-number">15.</span> <span class="toc-text">&#x2F;var</span></a></li></ol>
+      
+  </div>
+</div>
+</div>
+      <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar.webp" data-sizes="auto" alt="Flight-star" class="lazyload">
+  <div class="sidebar-author-name">Flight-star</div>
+  <div class="sidebar-description"></div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>Posts</div>
+    <div class="sidebar-state-number">84</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>Categories</div>
+    <div class="sidebar-state-number">0</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>Tags</div>
+    <div class="sidebar-state-number">12</div>
+  </div>
+</div>
+<div class="sidebar-social">
+  
+</div>
+<div class="sidebar-menu">
+  
+    <div class="sidebar-menu-link-wrap">
+      <a class="sidebar-menu-link-dummy" href="/" aria-label="Home"></a>
+      <div class="sidebar-menu-icon icon-taichi"></div>
+      <div class="sidebar-menu-link">Home</div>
+    </div>
+  
+    <div class="sidebar-menu-link-wrap">
+      <a class="sidebar-menu-link-dummy" href="/archives" aria-label="Archives"></a>
+      <div class="sidebar-menu-icon icon-taichi"></div>
+      <div class="sidebar-menu-link">Archives</div>
+    </div>
+  
+    <div class="sidebar-menu-link-wrap">
+      <a class="sidebar-menu-link-dummy" href="/about" aria-label="About"></a>
+      <div class="sidebar-menu-icon icon-taichi"></div>
+      <div class="sidebar-menu-link">About</div>
+    </div>
+  
+    <div class="sidebar-menu-link-wrap">
+      <a class="sidebar-menu-link-dummy" href="/friend" aria-label="Friend"></a>
+      <div class="sidebar-menu-icon icon-taichi"></div>
+      <div class="sidebar-menu-link">Friend</div>
+    </div>
+  
+</div>
+</div>
+    
+  </div>
+  
+    <div class="sidebar-btn-wrapper">
+      <div class="sidebar-toc-btn current"></div>
+      <div class="sidebar-common-btn"></div>
+    </div>
+  
+</nav>
+
+    </div>
+    
+    
+<script src="https://npm.webcache.cn/lazysizes@5.3.2/lazysizes.min.js"></script>
+
+
+<script src="https://npm.webcache.cn/clipboard@2.0.11/dist/clipboard.min.js"></script>
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+  
+<script src="/js/aos.js"></script>
+
+  <script>
+    var aosInit = () => {
+      AOS.init({
+        duration: 1000,
+        easing: "ease",
+        once: true,
+        offset: 50,
+      });
+    };
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', aosInit);
+    } else {
+      aosInit();
+    }
+  </script>
+
+
+
+<script src="/js/pjax_script.js" data-pjax></script>
+
+
+<script type="module" data-pjax>
+  import PhotoSwipeLightbox from "https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe-lightbox.esm.min.js";
+  
+  const pswp = () => {
+    if (_$$('.article-entry a.article-gallery-item').length > 0) {
+      new PhotoSwipeLightbox({
+        gallery: '.article-entry',
+        children: 'a.article-gallery-item',
+        pswpModule: () => import("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.min.js")
+      }).init();
+    }
+    if(_$$('.article-gallery a.article-gallery-item').length > 0) {
+      new PhotoSwipeLightbox({
+        gallery: '.article-gallery',
+        children: 'a.article-gallery-item',
+        pswpModule: () => import("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.min.js")
+      }).init();
+    }
+    window.lightboxStatus = 'done';
+    window.removeEventListener('lightbox:ready', pswp);
+  }
+  if(window.lightboxStatus === 'ready') {
+    pswp()
+  } else {
+    window.addEventListener('lightbox:ready', pswp);
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+<script src="https://npm.webcache.cn/mouse-firework@0.0.4/dist/index.umd.js"></script>
+
+  <script>
+    window.firework && window.firework(JSON.parse('{"excludeElements":["a","button"],"particles":[{"shape":"circle","move":["emit"],"easing":"easeOutExpo","colors":["#ff5252","#ff7c7c","#ffafaf","#ffd0d0"],"number":20,"duration":[1200,1800],"shapeOptions":{"radius":[16,32],"alpha":[0.3,0.5]}},{"shape":"circle","move":["diffuse"],"easing":"easeOutExpo","colors":["#ff0000"],"number":1,"duration":[1200,1800],"shapeOptions":{"radius":20,"alpha":[0.2,0.5],"lineWidth":6}}]}'))
+  </script>
+
+
+
+
+
+
+
+  
+<script src="https://npm.webcache.cn/quicklink@2.3.0/dist/quicklink.umd.js"></script>
+
+  <script data-pjax>
+    window.quicklink?.listen({
+      timeout: 3000,
+      priority: true,
+      ignores: []
+    });
+  </script>
+
+
+<div id="lazy-script">
+  <div>
+    
+  </div>
+</div>
+
+
+  <script>
+    console.log(String.raw`%c 
+ ______     ______     __     __    __     __  __    
+/\  == \   /\  ___\   /\ \   /\ "-./  \   /\ \/\ \   
+\ \  __<   \ \  __\   \ \ \  \ \ \-./\ \  \ \ \_\ \  
+ \ \_\ \_\  \ \_____\  \ \_\  \ \_\ \ \_\  \ \_____\ 
+  \/_/ /_/   \/_____/   \/_/   \/_/  \/_/   \/_____/ 
+                                                  
+`,'color: #ff5252;')
+    console.log('%c Theme.Reimu v' + '0.3.3' + ' %c https://github.com/D-Sketon/hexo-theme-reimu ', 'color: white; background: #ff5252; padding:5px 0;', 'padding:4px;border:1px solid #ff5252;')
+  </script>
+  
+
+
+
+  
+<script src="https://npm.webcache.cn/busuanzi@2.3.0/bsz.pure.mini.js" async></script>
+
+
+
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.getRegistrations().then((registrations) => {
+      for (let registration of registrations) {
+        registration.unregister();
+      }
+    });
+  }
+</script>
+
+  <!-- hexo injector body_end start -->
+<script src="/js/insert_highlight.js" data-pjax></script>
+<!-- hexo injector body_end end --></body>
+  </html>
+
