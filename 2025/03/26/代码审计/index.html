@@ -29,12 +29,12 @@
 
   
   
-    <meta name="description" content="常见绕过1.科学计数法：123if(isset($a) &amp;&amp; intval($a) &gt; 6000000 &amp;&amp; strlen($a) &lt;&#x3D; 3)    #使用&#96;2e9&#96;来绕过  2.弱对比绕过12345$d &#x3D; array_search(&quot;DGGJ&quot;, $c[&quot;n&quot;]);$d &#x3D;&#x3D;&#x3D; false?die(&quot;">
+    <meta name="description" content="常见绕过12345678md5(md5($this-&gt;var11)) &#x3D;&#x3D; 666	#var11 &#x3D; 213即可if (preg_match(&quot;&#x2F;flag|system|tail|more|less|php|tac|cat|sort|shell|nl|sed|awk| &#x2F;i&quot;, $this-&gt;command))&#123;echo &quot;nonono&amp;quot">
 <meta property="og:type" content="article">
 <meta property="og:title" content="代码审计">
 <meta property="og:url" content="http://example.com/2025/03/26/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/index.html">
 <meta property="og:site_name" content="Flight-star&#39;blog">
-<meta property="og:description" content="常见绕过1.科学计数法：123if(isset($a) &amp;&amp; intval($a) &gt; 6000000 &amp;&amp; strlen($a) &lt;&#x3D; 3)    #使用&#96;2e9&#96;来绕过  2.弱对比绕过12345$d &#x3D; array_search(&quot;DGGJ&quot;, $c[&quot;n&quot;]);$d &#x3D;&#x3D;&#x3D; false?die(&quot;">
+<meta property="og:description" content="常见绕过12345678md5(md5($this-&gt;var11)) &#x3D;&#x3D; 666	#var11 &#x3D; 213即可if (preg_match(&quot;&#x2F;flag|system|tail|more|less|php|tac|cat|sort|shell|nl|sed|awk| &#x2F;i&quot;, $this-&gt;command))&#123;echo &quot;nonono&amp;quot">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/images/image-20250616142056149-1750054856909-9.png">
 <meta property="og:image" content="http://example.com/images/image-20250616143128691-1750055489617-11.png">
@@ -42,7 +42,7 @@
 <meta property="og:image" content="http://example.com/images/image-20250616145607570-1750056968259-15.png">
 <meta property="og:image" content="http://example.com/images/image-20250616145626916-1750056987955-17.png">
 <meta property="article:published_time" content="2025-03-26T15:08:54.000Z">
-<meta property="article:modified_time" content="2025-06-16T06:58:24.616Z">
+<meta property="article:modified_time" content="2026-04-26T12:17:14.910Z">
 <meta property="article:author" content="Flight-star">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://example.com/images/image-20250616142056149-1750054856909-9.png">
@@ -187,7 +187,7 @@
       <div class="article-date">
   <a href="/2025/03/26/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/" class="article-date-link" data-aos="zoom-in">
     <time datetime="2025-03-26T15:08:54.000Z" itemprop="datePublished">2025-03-26</time>
-    <time style="display: none;" id="post-update-time">2025-06-16</time>
+    <time style="display: none;" id="post-update-time">2026-04-26</time>
   </a>
 </div>
 
@@ -200,7 +200,13 @@
     <div class="e-content article-entry" itemprop="articleBody">
       
       
-        <h1 id="常见绕过"><a href="#常见绕过" class="headerlink" title="常见绕过"></a>常见绕过</h1><h3 id="1-科学计数法："><a href="#1-科学计数法：" class="headerlink" title="1.科学计数法："></a>1.科学计数法：</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="variable">$a</span>) &amp;&amp; <span class="title function_ invoke__">intval</span>(<span class="variable">$a</span>) &gt; <span class="number">6000000</span> &amp;&amp; <span class="title function_ invoke__">strlen</span>(<span class="variable">$a</span>) &lt;= <span class="number">3</span>)</span><br><span class="line">    </span><br><span class="line"><span class="comment">#使用`2e9`来绕过</span></span><br></pre></td></tr></table></figure>
+        <h1 id="常见绕过"><a href="#常见绕过" class="headerlink" title="常见绕过"></a>常见绕过</h1><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">md5(md5($this-&gt;var11)) == <span class="number">666</span>	</span><br><span class="line"><span class="comment">#var11 = 213即可</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (preg_match(<span class="string">&quot;/flag|system|tail|more|less|php|tac|cat|sort|shell|nl|sed|awk| /i&quot;</span>, $this-&gt;command))&#123;</span><br><span class="line">echo <span class="string">&quot;nonono&quot;</span>; </span><br><span class="line"><span class="comment">#passthru				代替system</span></span><br><span class="line"><span class="comment">#tab键位		   			绕过空格</span></span><br><span class="line"><span class="comment">#</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h3 id="1-科学计数法："><a href="#1-科学计数法：" class="headerlink" title="1.科学计数法："></a>1.科学计数法：</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="variable">$a</span>) &amp;&amp; <span class="title function_ invoke__">intval</span>(<span class="variable">$a</span>) &gt; <span class="number">6000000</span> &amp;&amp; <span class="title function_ invoke__">strlen</span>(<span class="variable">$a</span>) &lt;= <span class="number">3</span>)</span><br><span class="line">    </span><br><span class="line"><span class="comment">#使用`2e9`来绕过</span></span><br></pre></td></tr></table></figure>
 
 <h3 id="2-弱对比绕过"><a href="#2-弱对比绕过" class="headerlink" title="2.弱对比绕过"></a>2.弱对比绕过</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$d</span> = <span class="title function_ invoke__">array_search</span>(<span class="string">&quot;DGGJ&quot;</span>, <span class="variable">$c</span>[<span class="string">&quot;n&quot;</span>]);</span><br><span class="line"><span class="variable">$d</span> === <span class="literal">false</span>?<span class="keyword">die</span>(<span class="string">&quot;no...&quot;</span>):<span class="literal">NULL</span>;</span><br><span class="line"><span class="keyword">foreach</span>(<span class="variable">$c</span>[<span class="string">&quot;n&quot;</span>] <span class="keyword">as</span> <span class="variable">$key</span>=&gt;<span class="variable">$val</span>)&#123;</span><br><span class="line">    <span class="variable">$val</span>===<span class="string">&quot;DGGJ&quot;</span>?<span class="keyword">die</span>(<span class="string">&quot;no......&quot;</span>):<span class="literal">NULL</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -304,7 +310,7 @@
         
           
           
-            <img data-src="https://github.com/Flight-star-cy/my-images/blob/main/guanx-fufumi.jpg" data-sizes="auto" alt="关于修改 Cookie Key 触发漏洞的深入研究" class="lazyload">
+            <img data-src="/covers/sakuya looking back.jpg" data-sizes="auto" alt="关于修改 Cookie Key 触发漏洞的深入研究" class="lazyload">
           
         
         <a href="/2025/03/28/%E5%85%B3%E4%BA%8E%E4%BF%AE%E6%94%B9-Cookie-Key-%E8%A7%A6%E5%8F%91%E6%BC%8F%E6%B4%9E%E7%9A%84%E6%B7%B1%E5%85%A5%E7%A0%94%E7%A9%B6/"></a>
@@ -321,7 +327,7 @@
       
         
         
-          <img data-src="https://github.com/Flight-star-cy/my-images/blob/main/guanx-fufumi.jpg" data-sizes="auto" alt="NCTF" class="lazyload">
+          <img data-src="/covers/reimu.webp" data-sizes="auto" alt="NCTF" class="lazyload">
         
       
       <a href="/2025/03/25/NCTF/"></a>
@@ -367,7 +373,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>Posts</div>
-    <div class="sidebar-state-number">84</div>
+    <div class="sidebar-state-number">88</div>
   </div>
   <div class="sidebar-state-category">
     <div>Categories</div>
@@ -432,7 +438,7 @@
     
     <div>
       <span class="icon-copyright"></span>
-      2020-2025
+      2020-2026
       <span class="footer-info-sep"></span>
       Flight-star
     </div>
@@ -445,10 +451,10 @@
     
       <div>
         <span class="icon-brush"></span>
-        79.7k
+        54.8k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        06:09
+        04:14
       </div>
     
     
@@ -491,7 +497,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>Posts</div>
-    <div class="sidebar-state-number">84</div>
+    <div class="sidebar-state-number">88</div>
   </div>
   <div class="sidebar-state-category">
     <div>Categories</div>

